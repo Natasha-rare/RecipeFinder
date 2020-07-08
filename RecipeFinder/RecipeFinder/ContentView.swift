@@ -9,21 +9,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    init(){
+        UITableView.appearance().backgroundColor = .yellow
+    }
+    
     var body: some View {
-        VStack(alignment: .leading){
-        Text("Recipe Finder")
+        ZStack
+            {
+            Color.yellow
+                .edgesIgnoringSafeArea(.all)
+            Text("Recipe Finder")
             .font(.largeTitle)
             .fontWeight(.semibold)
             .multilineTextAlignment(.center)
             .foregroundColor(.black) //можно заменить когда придумаем фон
-            
+                
         }
-        .foregroundColor(/*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/)
+        
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
 }
