@@ -33,13 +33,13 @@ class ViewController: UIViewController {
         
         let login = UITextField()
         login.backgroundColor = .lightGray
-        login.text = "login"
+        login.placeholder = "login"
         login.frame = CGRect(x: 47, y: 246, width: 272, height: 65)
         login.textColor = .white
         
         let password = UITextField()
         password.backgroundColor = .lightGray
-        password.text = "password"
+        password.placeholder = "password"
         password.frame = CGRect(x: 47, y: 341, width: 272, height: 65)
         password.textColor = .white
         
