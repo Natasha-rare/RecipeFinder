@@ -15,20 +15,47 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
-        let label = UILabel()
-        label.frame = CGRect(x: 50, y: 50, width: 300, height: 40)
-        label.textColor = UIColor.black
-        label.text = "Recipe Finder"
-        label.font = UIFont(name: "MarkerFelt-Thin", size: 45)
         
+        let label = UILabel()
+        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
+        label.textColor = UIColor.blue
+        label.text = "Recipe Finder"
+        label.font = UIFont(name: "Roboto", size: 38)
+        label.textAlignment = .center
+        
+        let label2 = UILabel()
+        label2.frame = CGRect(x: 35, y: 138, width: 309, height: 93)
+        label2.textColor = UIColor.blue
+        label2.text = "Enter your products. We’ll show you the recipe"
+        label2.font = UIFont(name: "Roboto", size: 27)
+        label2.numberOfLines = 2
+        label2.textAlignment = .center
+        
+        let login = UITextField()
+        login.backgroundColor = .lightGray
+        login.text = "login"
+        login.frame = CGRect(x: 47, y: 246, width: 272, height: 65)
+        login.textColor = .white
+        
+        let password = UITextField()
+        password.backgroundColor = .lightGray
+        password.text = "password"
+        password.frame = CGRect(x: 47, y: 341, width: 272, height: 65)
+        password.textColor = .white
         
         let buttonStart = UIButton()
-        buttonStart.setTitle("START", for: .normal)
-        buttonStart.setTitleColor(UIColor.blue, for: .normal)
-        buttonStart.frame = CGRect(x: 15, y: -50, width: 300, height: 500)
+        buttonStart.setTitle("Let's go", for: .normal)
+        buttonStart.setTitleColor(UIColor.white, for: .normal)
+        buttonStart.backgroundColor = .systemPink
+        buttonStart.frame = CGRect(x: 47, y: 476, width: 274, height: 77)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         
+//        let image = UIImage(cgImage: <#T##CGImage#>)
+        
         super.view.addSubview(label)
+        super.view.addSubview(label2)
+        super.view.addSubview(login)
+        super.view.addSubview(password)
         super.view.addSubview(buttonStart)
         
     }
