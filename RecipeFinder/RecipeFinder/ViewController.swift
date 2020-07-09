@@ -8,6 +8,51 @@
 
 import UIKit
 
+class SecondaryViewController: UIViewController
+{
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        view.backgroundColor = .blue
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
+        label.textColor = UIColor.white
+        label.text = "Input Ingredients"
+        label.font = UIFont(name: "MarkerFelt-Wide", size: 38)
+        label.textAlignment = .center
+       
+        let label2 = UILabel()
+        label2.frame = CGRect(x: 8, y: 322, width: 360, height: 49)
+        label2.textColor = UIColor.lightGray
+        label2.text = "Recognized Text"
+        label2.font = UIFont(name: "MarkerFelt-Thin", size: 38)
+        label2.textAlignment = .center
+        
+        let buttonDone = UIButton()
+        buttonDone.setTitle("DONE", for: .normal)
+        buttonDone.setTitleColor(UIColor.white, for: .normal)
+        buttonDone.backgroundColor = .systemPink
+        buttonDone.frame = CGRect(x: 47, y: 476, width: 274, height: 77)
+        buttonDone.addTarget(self, action: #selector(self.buttonClicked_DONE), for: .touchUpInside)
+        
+        let image = UIImage(named: "microphone 1.jpg")
+        let imageMicro = UIImageView(image: image)
+        imageMicro.frame = CGRect(x: 144, y: 592, width: 87, height: 87)
+        
+        super.view.addSubview(label2)
+        super.view.addSubview(label)
+        super.view.addSubview(buttonDone)
+        super.view.addSubview(imageMicro)
+    }
+
+    @objc func buttonClicked_DONE(sender : UIButton) {
+            print("Button 'DONE' Clicked")
+        }
+}
+
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -20,14 +65,14 @@ class ViewController: UIViewController {
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.blue
         label.text = "Recipe Finder"
-        label.font = UIFont(name: "Roboto", size: 38)
+        label.font = UIFont(name: "MarkerFelt-Wide", size: 38)
         label.textAlignment = .center
         
         let label2 = UILabel()
         label2.frame = CGRect(x: 35, y: 138, width: 309, height: 93)
-        label2.textColor = UIColor.blue
+        label2.textColor = UIColor.systemBlue
         label2.text = "Enter your products. We’ll show you the recipe"
-        label2.font = UIFont(name: "Roboto", size: 27)
+        label2.font = UIFont(name: "MarkerFelt-Thin", size: 27)
         label2.numberOfLines = 2
         label2.textAlignment = .center
         
@@ -50,20 +95,26 @@ class ViewController: UIViewController {
         buttonStart.frame = CGRect(x: 47, y: 476, width: 274, height: 77)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         
-//        let image = UIImage(cgImage: <#T##CGImage#>)
+        let image = UIImage(named: "image 1.jpg")
+        let imageView = UIImageView(image: image)
+        imageView.frame = CGRect(x: 57, y: 583, width: 262, height: 195)
         
         super.view.addSubview(label)
         super.view.addSubview(label2)
         super.view.addSubview(login)
         super.view.addSubview(password)
+        super.view.addSubview(imageView)
         super.view.addSubview(buttonStart)
         
     }
     
     @objc func buttonClicked(sender : UIButton) {
-        
+        let vc = SecondaryViewController()
+        self.present(vc, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(vc, animated: true)
         print("Button Clicked")
     }
+    
     
 }
 
