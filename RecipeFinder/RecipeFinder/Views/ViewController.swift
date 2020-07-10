@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         let login = UITextField()
         login.backgroundColor = .lightGray
         login.placeholder = "login"
-        login.frame = CGRect(x: 47, y: 246, width: 272, height: 65)
+        login.frame = CGRect(x: 49, y: 246, width: 270, height: 65)
         login.textColor = .white
         login.layer.cornerRadius = 15.0
         login.layer.borderWidth = 2.0
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         let password = UITextField()
         password.backgroundColor = .lightGray
         password.placeholder = "password"
-        password.frame = CGRect(x: 47, y: 341, width: 272, height: 65)
+        password.frame = CGRect(x: 49, y: 341, width: 270, height: 65)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
         password.layer.borderWidth = 2.0

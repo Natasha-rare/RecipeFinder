@@ -23,7 +23,7 @@ class RegistrationController: UIViewController{
         let login = UITextField()
         login.backgroundColor = .lightGray
         login.placeholder = "login"
-        login.frame = CGRect(x: 47, y: 200, width: 200, height: 40)
+        login.frame = CGRect(x: 49, y: 200, width: 270, height: 40)
         login.textColor = .white
         login.layer.cornerRadius = 15.0
         login.layer.borderWidth = 2.0
@@ -32,7 +32,7 @@ class RegistrationController: UIViewController{
         let password = UITextField()
         password.backgroundColor = .lightGray
         password.placeholder = "password"
-        password.frame = CGRect(x: 47, y: 250, width: 272, height: 40)
+        password.frame = CGRect(x: 49, y: 250, width: 270, height: 40)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
         password.layer.borderWidth = 2.0
@@ -41,7 +41,7 @@ class RegistrationController: UIViewController{
         let confirm = UITextField()
         confirm.backgroundColor = .lightGray
         confirm.placeholder = "confirm password"
-        confirm.frame = CGRect(x: 47, y: 300, width: 272, height: 40)
+        confirm.frame = CGRect(x: 49, y: 300, width: 270, height: 40)
         confirm.textColor = .white
         confirm.layer.cornerRadius = 15.0
         confirm.layer.borderWidth = 2.0
@@ -50,7 +50,7 @@ class RegistrationController: UIViewController{
         let email = UITextField()
         email.backgroundColor = .lightGray
         email.placeholder = "password"
-        email.frame = CGRect(x: 47, y: 350, width: 272, height: 40)
+        email.frame = CGRect(x: 49, y: 350, width: 270, height: 40)
         email.textColor = .white
         email.layer.cornerRadius = 15.0
         email.layer.borderWidth = 2.0
