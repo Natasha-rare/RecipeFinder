@@ -53,21 +53,11 @@ class ViewController: UIViewController {
         buttonStart.setTitle("Let's go", for: .normal)
         buttonStart.setTitleColor(UIColor.white, for: .normal)
         buttonStart.backgroundColor = .systemPink
-        buttonStart.frame = CGRect(x: 47, y: 450, width: 274, height: 60)
-        buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonStart.frame = CGRect(x: 47, y: 476, width: 274, height: 77)
+        buttonStart.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         buttonStart.layer.cornerRadius = 15.0
         buttonStart.layer.borderWidth = 2.0
         buttonStart.layer.borderColor = UIColor.systemPink.cgColor
-        
-        let buttonRegistr = UIButton()
-        buttonRegistr.setTitle("Registration", for: .normal)
-        buttonRegistr.setTitleColor(UIColor.white, for: .normal)
-        buttonRegistr.backgroundColor = .systemPink
-        buttonRegistr.frame = CGRect(x: 47, y: 520, width: 274, height: 60)
-        buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
-        buttonRegistr.layer.cornerRadius = 15.0
-        buttonRegistr.layer.borderWidth = 2.0
-        buttonRegistr.layer.borderColor = UIColor.systemPink.cgColor
         
         let image = UIImage(named: "image 1.jpg")
         let imageView = UIImageView(image: image)
@@ -79,22 +69,17 @@ class ViewController: UIViewController {
         super.view.addSubview(password)
         super.view.addSubview(imageView)
         super.view.addSubview(buttonStart)
-        super.view.addSubview(buttonRegistr)
+        
     }
     
     @objc func buttonClicked(sender : UIButton) {
         let vc = RootViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-        print("Button1 Clicked")
+        print("Button Clicked")
     }
     
-    @objc func buttonRegistr(sender : UIButton) {
-        let viewc = RegistrationController()
-        viewc.modalPresentationStyle = .fullScreen
-        self.present(viewc, animated: true, completion: nil)
-        print("Button2 Clicked")
-    }
+    
 }
 
 
