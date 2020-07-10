@@ -9,20 +9,11 @@
 import Foundation
 import  UIKit
 class RootViewController: UIViewController{
-    private var x: Int = 0
+
     override func viewDidLoad() {
-        if (x == 0) // if user logged in
-        {
+
         super.viewDidLoad()
         view.backgroundColor = .white
         // tab bar and etc
-        }
-        else{
-            // TODO: present ViewController (login/sign up)
-            // это не робит!
-            let loginVc = ViewController()
-            loginVc.modalPresentationStyle = .fullScreen
-            present(loginVc, animated: false)
-        }
     }
 }
