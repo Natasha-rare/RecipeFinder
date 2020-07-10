@@ -36,12 +36,18 @@ class ViewController: UIViewController {
         login.placeholder = "login"
         login.frame = CGRect(x: 47, y: 246, width: 272, height: 65)
         login.textColor = .white
+        login.layer.cornerRadius = 15.0
+        login.layer.borderWidth = 2.0
+        login.layer.borderColor = UIColor.lightGray.cgColor
         
         let password = UITextField()
         password.backgroundColor = .lightGray
         password.placeholder = "password"
         password.frame = CGRect(x: 47, y: 341, width: 272, height: 65)
         password.textColor = .white
+        password.layer.cornerRadius = 15.0
+        password.layer.borderWidth = 2.0
+        password.layer.borderColor = UIColor.lightGray.cgColor
         
         let buttonStart = UIButton()
         buttonStart.setTitle("Let's go", for: .normal)
@@ -49,6 +55,9 @@ class ViewController: UIViewController {
         buttonStart.backgroundColor = .systemPink
         buttonStart.frame = CGRect(x: 47, y: 476, width: 274, height: 77)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        buttonStart.layer.cornerRadius = 15.0
+        buttonStart.layer.borderWidth = 2.0
+        buttonStart.layer.borderColor = UIColor.systemPink.cgColor
         
         let image = UIImage(named: "image 1.jpg")
         let imageView = UIImageView(image: image)
