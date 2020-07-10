@@ -16,9 +16,9 @@ class RootViewController: UITabBarController{
         let homeVC = HomeController()
         let savedVC = SavedController()
         let profileVC = ProfileController()
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: ""), tag: 0)
-        savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: ""), tag: 0)
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: ""), tag: 0)
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home.png"), tag: 0)
+        savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "post.png"), tag: 0)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user.png"), tag: 0)
         let viewControllerList = [homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
         // tab bar and etc
