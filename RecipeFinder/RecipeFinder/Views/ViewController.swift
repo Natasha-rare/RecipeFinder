@@ -67,7 +67,6 @@ class ViewController: UIViewController {
         let vc = RootViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(vc, animated: true)
         print("Button Clicked")
     }
     

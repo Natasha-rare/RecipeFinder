@@ -8,12 +8,17 @@
 
 import Foundation
 import  UIKit
-class RootViewController: UIViewController{
+class RootViewController: UITabBarController{
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        view.backgroundColor = .white
+        let homeVC = HomeController()
+        let savedVC = SavedController()
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: ""), tag: 0)
+        savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: ""), tag: 0)
+        let viewControllerList = [ homeVC, savedVC ]
+        viewControllers = viewControllerList
         // tab bar and etc
     }
 }
