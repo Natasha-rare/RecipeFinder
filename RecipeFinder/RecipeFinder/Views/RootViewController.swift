@@ -21,6 +21,8 @@ class RootViewController: UITabBarController{
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user.png"), tag: 0)
         let viewControllerList = [homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
+        tabBar.barTintColor = .white
+        tabBar.isTranslucent = false
         // tab bar and etc
     }
 }
