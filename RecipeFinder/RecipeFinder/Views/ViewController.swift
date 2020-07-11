@@ -9,21 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var label = UILabel()
+    var label2 = UILabel()
+    var email = UITextField()
+    var password = UITextField()
+    var buttonStart = UIButton()
+    var buttonRegistr = UIButton()
+    var image = UIImage(named: "image 1.jpg")
+    var warning =  UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
         
-        let label = UILabel()
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.blue
         label.text = "Recipe Finder"
         label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
         
-        let label2 = UILabel()
         label2.frame = CGRect(x: 35, y: 138, width: 309, height: 93)
         label2.textColor = UIColor.systemBlue
         label2.text = "Enter your products. We’ll show you the recipe"
@@ -31,7 +36,6 @@ class ViewController: UIViewController {
         label2.numberOfLines = 2
         label2.textAlignment = .center
         
-        let email = UITextField()
         email.backgroundColor = .lightGray
         email.attributedPlaceholder = NSAttributedString(string: "  Email",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -41,18 +45,23 @@ class ViewController: UIViewController {
         email.layer.borderWidth = 2.0
         email.layer.borderColor = UIColor.lightGray.cgColor
         
-        let password = UITextField()
         password.backgroundColor = .lightGray
         password.attributedPlaceholder = NSAttributedString(string: "   Password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        password.frame = CGRect(x: 49, y: 341, width: 270, height: 65)
+        password.frame = CGRect(x: 49, y: 330, width: 270, height: 65)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
         password.layer.borderWidth = 2.0
         password.layer.borderColor = UIColor.lightGray.cgColor
         password.isSecureTextEntry = true
         
-        let buttonStart = UIButton()
+        warning.text = "Password should contain capital, lowercase letters and numbers"
+        warning.frame = CGRect(x: 10, y: 390, width: 350, height: 60)
+        warning.textColor = UIColor.red
+        warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
+        warning.numberOfLines = 2
+        warning.textAlignment = .center
+        
         buttonStart.setTitle("Let's go", for: .normal)
         buttonStart.setTitleColor(UIColor.white, for: .normal)
         buttonStart.backgroundColor = .systemPink
@@ -62,7 +71,6 @@ class ViewController: UIViewController {
         buttonStart.layer.borderWidth = 2.0
         buttonStart.layer.borderColor = UIColor.systemPink.cgColor
         
-        let buttonRegistr = UIButton()
         buttonRegistr.setTitle("Registration", for: .normal)
         buttonRegistr.setTitleColor(UIColor.white, for: .normal)
         buttonRegistr.backgroundColor = .systemPink
@@ -86,14 +94,51 @@ class ViewController: UIViewController {
     }
     
     @objc func buttonClicked(sender : UIButton) {
-        let vc = RootViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
-        print("Button1 Clicked")
+        let Password = password.text
+        let Email = email.text
+        print("Password : \(Password ?? ""), Email: \(Email ?? "")")
+        //var url_text =  "https://recipe-finder-api.azurewebsites.net?email=" + Email! ?? "" + "&pass=" + Password!
+        //let url = URL(string: url_text)
+        //print(url)
+        let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
+        let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
+        if Password == "" || Email == ""{
+            warning.text = "You've entered an empry value"
+            super.view.addSubview(warning)
+        }
+        else{
+            if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
+            {
+                print("Password right, email right")
+                let vc = RootViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+                print("Button1 Clicked")
+                
+            }
+            else if password_check.evaluate(with: Password) == false
+            {
+                print("Password wrong")
+                if Password!.count < 8 {
+                    warning.text = "Your password is too short"
+                }
+                else {
+                    warning.text = "Password should contain capital, lowercase letters and numbers"
+                }
+                super.view.addSubview(warning)
+            }
+            else {
+                print("Email wrong")
+                warning.text = "This email adress doesn't exist"
+                super.view.addSubview(warning)
+            }
+        }
     }
     
     @objc func buttonRegistr(sender : UIButton) {
         let viewc = RegistrationController()
+        viewc.modalPresentationStyle = .fullScreen
         self.present(viewc, animated: true, completion: nil)
         print("Button2 Clicked")
     }
