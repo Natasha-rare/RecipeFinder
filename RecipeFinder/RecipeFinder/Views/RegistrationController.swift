@@ -16,22 +16,24 @@ class RegistrationController: UIViewController{
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.black
         label.text = "Registration"
-        label.font = UIFont(name: "MarkerFelt-Wide", size: 40)
+        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
         super.view.addSubview(label)
         
-        let login = UITextField()
-        login.backgroundColor = .lightGray
-        login.placeholder = "login"
-        login.frame = CGRect(x: 49, y: 200, width: 270, height: 40)
-        login.textColor = .white
-        login.layer.cornerRadius = 15.0
-        login.layer.borderWidth = 2.0
-        login.layer.borderColor = UIColor.lightGray.cgColor
+        let email = UITextField()
+        email.backgroundColor = .lightGray
+        email.attributedPlaceholder = NSAttributedString(string: "   Email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        email.frame = CGRect(x: 49, y: 200, width: 270, height: 40)
+        email.textColor = .white
+        email.layer.cornerRadius = 15.0
+        email.layer.borderWidth = 2.0
+        email.layer.borderColor = UIColor.lightGray.cgColor
         
         let password = UITextField()
         password.backgroundColor = .lightGray
-        password.placeholder = "password"
+        password.attributedPlaceholder = NSAttributedString(string: "   Password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         password.frame = CGRect(x: 49, y: 250, width: 270, height: 40)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
@@ -40,21 +42,23 @@ class RegistrationController: UIViewController{
         
         let confirm = UITextField()
         confirm.backgroundColor = .lightGray
-        confirm.placeholder = "confirm password"
+        confirm.attributedPlaceholder = NSAttributedString(string: "   Confirm password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         confirm.frame = CGRect(x: 49, y: 300, width: 270, height: 40)
         confirm.textColor = .white
         confirm.layer.cornerRadius = 15.0
         confirm.layer.borderWidth = 2.0
         confirm.layer.borderColor = UIColor.lightGray.cgColor
         
-        let email = UITextField()
-        email.backgroundColor = .lightGray
-        email.placeholder = "password"
-        email.frame = CGRect(x: 49, y: 350, width: 270, height: 40)
-        email.textColor = .white
-        email.layer.cornerRadius = 15.0
-        email.layer.borderWidth = 2.0
-        email.layer.borderColor = UIColor.lightGray.cgColor
+        let name = UITextField()
+        name.backgroundColor = .lightGray
+        name.attributedPlaceholder = NSAttributedString(string: "   Your name",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        name.frame = CGRect(x: 49, y: 350, width: 270, height: 40)
+        name.textColor = .white
+        name.layer.cornerRadius = 15.0
+        name.layer.borderWidth = 2.0
+        name.layer.borderColor = UIColor.lightGray.cgColor
         
         let buttonCreate = UIButton()
         buttonCreate.setTitle("Ready to cook", for: .normal)
@@ -67,10 +71,10 @@ class RegistrationController: UIViewController{
         buttonCreate.layer.borderColor = UIColor.systemPink.cgColor
         
         super.view.addSubview(buttonCreate)
-        super.view.addSubview(login)
+        super.view.addSubview(email)
         super.view.addSubview(password)
         super.view.addSubview(confirm)
-        super.view.addSubview(email)
+        super.view.addSubview(name)
     }
     @objc func buttonClicked(sender : UIButton) {
            let vc = RootViewController()

@@ -20,29 +20,31 @@ class ViewController: UIViewController {
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.blue
         label.text = "Recipe Finder"
-        label.font = UIFont(name: "MarkerFelt-Wide", size: 38)
+        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
         
         let label2 = UILabel()
         label2.frame = CGRect(x: 35, y: 138, width: 309, height: 93)
         label2.textColor = UIColor.systemBlue
         label2.text = "Enter your products. We’ll show you the recipe"
-        label2.font = UIFont(name: "MarkerFelt-Thin", size: 27)
+        label2.font = UIFont.systemFont(ofSize: 30, weight: .thin)
         label2.numberOfLines = 2
         label2.textAlignment = .center
         
-        let login = UITextField()
-        login.backgroundColor = .lightGray
-        login.placeholder = "login"
-        login.frame = CGRect(x: 49, y: 246, width: 270, height: 65)
-        login.textColor = .white
-        login.layer.cornerRadius = 15.0
-        login.layer.borderWidth = 2.0
-        login.layer.borderColor = UIColor.lightGray.cgColor
+        let email = UITextField()
+        email.backgroundColor = .lightGray
+        email.attributedPlaceholder = NSAttributedString(string: "  Email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        email.frame = CGRect(x: 49, y: 246, width: 270, height: 65)
+        email.textColor = .white
+        email.layer.cornerRadius = 15.0
+        email.layer.borderWidth = 2.0
+        email.layer.borderColor = UIColor.lightGray.cgColor
         
         let password = UITextField()
         password.backgroundColor = .lightGray
-        password.placeholder = "password"
+        password.attributedPlaceholder = NSAttributedString(string: "   Password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         password.frame = CGRect(x: 49, y: 341, width: 270, height: 65)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
@@ -75,7 +77,7 @@ class ViewController: UIViewController {
         
         super.view.addSubview(label)
         super.view.addSubview(label2)
-        super.view.addSubview(login)
+        super.view.addSubview(email)
         super.view.addSubview(password)
         super.view.addSubview(imageView)
         super.view.addSubview(buttonStart)
