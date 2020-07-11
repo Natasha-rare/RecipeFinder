@@ -14,7 +14,7 @@ class RegistrationController: UIViewController{
         view.backgroundColor = .white
         let label = UILabel()
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.blue
         label.text = "Registration"
         label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
@@ -34,6 +34,7 @@ class RegistrationController: UIViewController{
         password.backgroundColor = .lightGray
         password.attributedPlaceholder = NSAttributedString(string: "   Password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        password.isSecureTextEntry = true
         password.frame = CGRect(x: 49, y: 250, width: 270, height: 40)
         password.textColor = .white
         password.layer.cornerRadius = 15.0
@@ -45,6 +46,7 @@ class RegistrationController: UIViewController{
         confirm.attributedPlaceholder = NSAttributedString(string: "   Confirm password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         confirm.frame = CGRect(x: 49, y: 300, width: 270, height: 40)
+        password.isSecureTextEntry = true
         confirm.textColor = .white
         confirm.layer.cornerRadius = 15.0
         confirm.layer.borderWidth = 2.0

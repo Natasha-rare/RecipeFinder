@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         password.layer.cornerRadius = 15.0
         password.layer.borderWidth = 2.0
         password.layer.borderColor = UIColor.lightGray.cgColor
+        password.isSecureTextEntry = true
         
         let buttonStart = UIButton()
         buttonStart.setTitle("Let's go", for: .normal)
@@ -93,7 +94,6 @@ class ViewController: UIViewController {
     
     @objc func buttonRegistr(sender : UIButton) {
         let viewc = RegistrationController()
-        viewc.modalPresentationStyle = .fullScreen
         self.present(viewc, animated: true, completion: nil)
         print("Button2 Clicked")
     }
