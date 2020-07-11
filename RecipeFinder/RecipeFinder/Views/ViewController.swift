@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -104,13 +104,14 @@ class ViewController: UIViewController {
         let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
         if Password == "" || Email == ""{
-            warning.text = "You've entered an empry value"
+            warning.text = "You've entered an empty value"
             super.view.addSubview(warning)
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
             {
                 print("Password right, email right")
+                auth(email: email.text!, password: password.text!)
                 let vc = RootViewController()
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
@@ -130,7 +131,7 @@ class ViewController: UIViewController {
             }
             else {
                 print("Email wrong")
-                warning.text = "This email adress doesn't exist"
+                warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
             }
         }
@@ -144,4 +145,25 @@ class ViewController: UIViewController {
     }
 }
 
+
+public func auth(email: String, password: String)->Bool{
+    let url = URL(string: "https://recipe-finder-api.azurewebsites.net")!
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    
+    let json = [
+        "email": "\(email)",
+        "pass": "\(password)"
+    ]
+    if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
+        URLSession.shared.uploadTask(with: request, from: jsonData){
+            data, response, error in
+            if let httpResponse = response as? HTTPURLResponse{
+                print(httpResponse.statusCode)
+            }
+        }.resume()
+    }
+    return true
+}
 
