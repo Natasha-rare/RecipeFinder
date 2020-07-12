@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 class ProfileController: UIViewController{
+    var buttonExit = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -19,5 +20,20 @@ class ProfileController: UIViewController{
         label.font = UIFont(name: "MarkerFelt-Wide", size: 40)
         label.textAlignment = .center
         super.view.addSubview(label)
+        buttonExit.setTitle("Log out", for: .normal)
+        buttonExit.setTitleColor(UIColor.white, for: .normal)
+        buttonExit.backgroundColor = .systemPink
+        buttonExit.frame = CGRect(x: 47, y: 520, width: 274, height: 77)
+        buttonExit.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        buttonExit.layer.cornerRadius = 15.0
+        buttonExit.layer.borderWidth = 2.0
+        buttonExit.layer.borderColor = UIColor.systemPink.cgColor
+        super.view.addSubview(buttonExit)
+    }
+    @objc func buttonClicked(sender: UIButton){
+        let vc = ViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        print("Button1 Clicked")
     }
 }
