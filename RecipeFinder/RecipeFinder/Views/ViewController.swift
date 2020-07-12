@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
