@@ -86,6 +86,7 @@ class RegistrationController: UIViewController{
         super.view.addSubview(confirm)
         super.view.addSubview(name)
     }
+    
     @objc func buttonClicked(sender : UIButton) {
            let Password = password.text
            let Email = email.text
@@ -105,11 +106,24 @@ class RegistrationController: UIViewController{
            else{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
                {
+                register(email: Email!, password: Password!, name: Name!){result in
+                    print(result)
+                    if result == "\"Signed up!\""{
+                        let vc = RootViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    else if result == "\"User exists!\""{
+                        self.warning.textColor = .red
+                        self.warning.text = "User with the same email is already excist! Please Log In"
+                        super.view.addSubview(self.warning)
+                    }
+                }
                    print("Password right, email right")
-                   let vc = RootViewController()
-                   vc.modalPresentationStyle = .fullScreen
-                   self.present(vc, animated: true, completion: nil)
-                   print("Button1 Clicked")
+//                   let vc = RootViewController()
+//                   vc.modalPresentationStyle = .fullScreen
+//                   self.present(vc, animated: true, completion: nil)
+//                   print("Button1 Clicked")
                    
                }
                else if password_check.evaluate(with: Password) == false
@@ -135,4 +149,40 @@ class RegistrationController: UIViewController{
                }
            }
        }
+    
+}
+
+public func register(email: String, password: String, name: String, with completion: @escaping (String) -> ()){
+    let url = URL(string: "https://recipe-finder-api.azurewebsites.net/register")!
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    // Set HTTP Request Headers
+    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    let newUser = [
+        "email": "\(email)",
+        "password": "\(password)",
+        "name": "\(name)"
+    ]
+
+    let jsonData = try! JSONEncoder().encode(newUser)
+    request.httpBody = jsonData
+
+    URLSession.shared.dataTask(with: request){
+        data, response, error in
+        if let error = error {
+            print("Error! \(error)")
+        }
+        if let data = data{
+            
+            if let result = String(data: data, encoding: .utf8){
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+        
+    }.resume()
 }
