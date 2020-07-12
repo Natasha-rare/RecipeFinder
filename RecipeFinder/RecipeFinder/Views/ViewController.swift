@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     @objc func buttonClicked(sender : UIButton) {
         let Password = password.text
         let Email = email.text
-        print("Password : \(Password ?? ""), Email: \(Email ?? "")")
+        //print("Password : \(Password ?? ""), Email: \(Email ?? "")")
         //var url_text =  "https://recipe-finder-api.azurewebsites.net?email=" + Email! ?? "" + "&pass=" + Password!
         //let url = URL(string: url_text)
         //print(url)
@@ -109,18 +109,31 @@ class ViewController: UIViewController {
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
-            {
-                print("Password right, email right")
-                auth(email: email.text!, password: password.text!)
-                let vc = RootViewController()
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
-                print("Button1 Clicked")
+                {
+                
+                auth(email: email.text!, password: password.text!){
+                    result in
+                    print(result)
+                    if result == "\"Logged in!\""{
+                        let vc = RootViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    else if result == "\"Incorrect password!\""{
+                        self.warning.text = "Incorrect password :("
+                        super.view.addSubview(self.warning)
+                    }
+                    else{
+                        self.warning.textColor = .red
+                        self.warning.text = "Hey! Seems you have to register!"
+                        super.view.addSubview(self.warning)
+                    }
+                }
                 
             }
             else if password_check.evaluate(with: Password) == false
             {
-                print("Password wrong")
+                //print("Password wrong")
                 if Password!.count < 8 {
                     warning.text = "Your password is too short"
                 }
@@ -130,7 +143,7 @@ class ViewController: UIViewController {
                 super.view.addSubview(warning)
             }
             else {
-                print("Email wrong")
+                //print("Email wrong")
                 warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
             }
@@ -141,29 +154,43 @@ class ViewController: UIViewController {
         let viewc = RegistrationController()
         viewc.modalPresentationStyle = .fullScreen
         self.present(viewc, animated: true, completion: nil)
-        print("Button2 Clicked")
+        //print("Button2 Clicked")
     }
 }
 
 
-public func auth(email: String, password: String)->Bool{
+public func auth(email: String, password: String, with completion: @escaping (String) -> ()){
     let url = URL(string: "https://recipe-finder-api.azurewebsites.net")!
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
+    // Set HTTP Request Headers
+    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    let json = [
+    let newUser = [
         "email": "\(email)",
-        "pass": "\(password)"
+        "password": "\(password)"
     ]
-    if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
-        URLSession.shared.uploadTask(with: request, from: jsonData){
-            data, response, error in
-            if let httpResponse = response as? HTTPURLResponse{
-                print(httpResponse.statusCode)
+    
+    let jsonData = try! JSONEncoder().encode(newUser)
+    request.httpBody = jsonData
+    
+    URLSession.shared.dataTask(with: request){
+        data, response, error in
+        if let error = error {
+            print("Error! \(error)")
+        }
+        if let data = data{
+            
+            if let result = String(data: data, encoding: .utf8){
+                DispatchQueue.main.async {
+                    completion(result)
+                }
             }
-        }.resume()
-    }
-    return true
+        }
+        
+    }.resume()
+    
 }
 
