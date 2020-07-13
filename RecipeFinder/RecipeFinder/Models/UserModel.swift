@@ -10,17 +10,17 @@ import Foundation
 
 public struct User: Codable {
     var id: Int
-    var name: String
+    var name: String?
     var email: String
-    var savedLinks: [Link]
-    var productList: [Products]
+    var savedLinks: [Link]?
+    var productList: [Products]?
 }
 
 public struct Products: Codable {
-    var product: String
-    var amount: Double
+    var product: String?
+    var amount: Double?
 }
 
 public struct Link: Codable {
-    var address: String
+    var address: String?
 }

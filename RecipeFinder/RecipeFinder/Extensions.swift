@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class GrayTextField: UITextField{
     override init(frame: CGRect) {
@@ -71,5 +72,24 @@ class NeoButton: UIButton {
         
         self.layer.insertSublayer(lightShadow, at: 0)
         self.layer.insertSublayer(darkShadow, at: 1)
+    }
+}
+
+
+extension ProfileController{
+    func FetchUserData(){
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email") ?? "Nope"
+        let password = defaults.string(forKey: "password") ?? "Nope"
+        print(email)
+        let url =  "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)"
+        
+        let request = AF.request(url)
+        request.responseDecodable(of: User.self){
+            (response) in
+            guard let user = response.value else{return}
+            self.greeting.text = "Hello, \(user.name ?? "Chef")"
+            self.email.text = "Your email: \(user.email)"
+        }
     }
 }
