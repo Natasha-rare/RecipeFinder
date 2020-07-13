@@ -8,4 +8,21 @@
 
 import Foundation
 
-//here will be user model
+struct User: Identifiable, Codable {
+    var id: Int
+    var name: String
+    var email: String
+    var SavedLinks: [Link]
+    var ProductList: [Products]
+}
+
+struct Products: Identifiable, Codable {
+    var id: Int
+    var product: String
+    var amount: Double
+}
+
+struct Link: Identifiable, Codable {
+    var id: Int
+    var address: String
+}
