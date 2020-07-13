@@ -20,38 +20,42 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        view.layer.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
         
-        
-        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.blue
+        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
+//        label.backgroundColor = .white
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Recipe Finder"
-        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 35, y: 138, width: 309, height: 93)
-        label2.textColor = UIColor.systemBlue
+        label2.frame = CGRect(x: 45, y: 104, width: 286, height: 83)
+//        label2.backgroundColor = .white
+        label2.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
+        label2.font = UIFont(name: "Harmattan-Regular", size: 30)
+        label2.numberOfLines = 0
+        label2.lineBreakMode = .byWordWrapping
         label2.text = "Enter your products. We’ll show you the recipe"
-        label2.font = UIFont.systemFont(ofSize: 30, weight: .thin)
-        label2.numberOfLines = 2
         label2.textAlignment = .center
         
-        email.backgroundColor = .lightGray
+        email.backgroundColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
         email.attributedPlaceholder = NSAttributedString(string: "  Email",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        email.frame = CGRect(x: 49, y: 246, width: 270, height: 65)
-        email.textColor = .white
-        email.layer.cornerRadius = 15.0
-        email.layer.borderWidth = 2.0
-        email.layer.borderColor = UIColor.lightGray.cgColor
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)])
+        email.frame = CGRect(x: 58, y: 468, width: 257, height: 58)
+        email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
+        email.font = UIFont(name: "Harmattan-Regular", size: 27)
+        email.layer.cornerRadius = 35.0
+//        email.layer.cornerRadius = 15.0
+//        email.layer.borderWidth = 2.0
+//        email.layer.borderColor = UIColor.lightGray.cgColor
         
-        password.backgroundColor = .lightGray
-        password.attributedPlaceholder = NSAttributedString(string: "   Password",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        password.frame = CGRect(x: 49, y: 330, width: 270, height: 65)
-        password.textColor = .white
-        password.layer.cornerRadius = 15.0
-        password.layer.borderWidth = 2.0
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        password.backgroundColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
+        password.attributedPlaceholder = NSAttributedString(string: "  Password",
+           attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)])
+        password.frame = CGRect(x: 58, y: 536, width: 257, height: 58)
+        password.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
+        password.font = UIFont(name: "Harmattan-Regular", size: 27)
+        password.layer.cornerRadius = 35.0
         password.isSecureTextEntry = true
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
@@ -62,26 +66,43 @@ class ViewController: UIViewController {
         warning.textAlignment = .center
         
         buttonStart.setTitle("Let's go", for: .normal)
-        buttonStart.setTitleColor(UIColor.white, for: .normal)
-        buttonStart.backgroundColor = .systemPink
-        buttonStart.frame = CGRect(x: 47, y: 450, width: 274, height: 60)
+        buttonStart.setTitleColor(UIColor.black, for: .normal)
+        buttonStart.frame = CGRect(x: 58, y: 643, width: 257, height: 58)
+        buttonStart.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
-        buttonStart.layer.cornerRadius = 15.0
-        buttonStart.layer.borderWidth = 2.0
-        buttonStart.layer.borderColor = UIColor.systemPink.cgColor
+        buttonStart.layer.cornerRadius = 35.0
         
-        buttonRegistr.setTitle("Registration", for: .normal)
-        buttonRegistr.setTitleColor(UIColor.white, for: .normal)
-        buttonRegistr.backgroundColor = .systemPink
-        buttonRegistr.frame = CGRect(x: 47, y: 520, width: 274, height: 60)
+        let darkShadow = CALayer()
+        darkShadow.frame = buttonStart.bounds
+        
+        darkShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+        darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        darkShadow.cornerRadius = 35
+        darkShadow.shadowOffset = CGSize(width: 10, height: 10)
+        darkShadow.shadowOpacity = 1
+        darkShadow.shadowRadius = 30
+        buttonStart.layer.insertSublayer(darkShadow, at: 0)
+
+        let lightShadow = CALayer()
+        lightShadow.frame = buttonStart.bounds
+        lightShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+        lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
+        lightShadow.cornerRadius = 35
+        lightShadow.shadowOffset = CGSize(width: -10, height: -10)
+        lightShadow.shadowOpacity = 1
+        lightShadow.shadowRadius = 30
+        buttonStart.layer.insertSublayer(lightShadow, at: 0)
+
+        
+        buttonRegistr.setTitle("Don’t have an account?", for: .normal)
+        buttonRegistr.setTitleColor(UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1), for: .normal)
+        buttonRegistr.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
+        buttonRegistr.frame = CGRect(x: 0, y: 750, width: 375, height: 33)
         buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
-        buttonRegistr.layer.cornerRadius = 15.0
-        buttonRegistr.layer.borderWidth = 2.0
-        buttonRegistr.layer.borderColor = UIColor.systemPink.cgColor
         
         let image = UIImage(named: "image 1.jpg")
         let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 57, y: 583, width: 262, height: 195)
+        imageView.frame = CGRect(x: 95, y: 216, width: 185, height: 185)
         
         super.view.addSubview(label)
         super.view.addSubview(label2)
