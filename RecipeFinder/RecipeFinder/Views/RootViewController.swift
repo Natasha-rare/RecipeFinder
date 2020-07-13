@@ -21,7 +21,7 @@ class RootViewController: UITabBarController{
         savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
         groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "shopping-cart"), tag: 0)
-        let viewControllerList = [groceryVC, homeVC, savedVC, profileVC]
+        let viewControllerList = [ homeVC, savedVC, groceryVC, profileVC]
         viewControllers = viewControllerList
         tabBar.barTintColor = .white
         tabBar.isTranslucent = true
