@@ -12,17 +12,15 @@ public struct User: Codable {
     var id: Int
     var name: String
     var email: String
-    var SavedLinks: [Link]
-    var ProductList: [Products]
+    var savedLinks: [Link]
+    var productList: [Products]
 }
 
 public struct Products: Codable {
-    var id: Int
     var product: String
     var amount: Double
 }
 
 public struct Link: Codable {
-    var id: Int
     var address: String
 }

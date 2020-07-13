@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 class ProfileController: UIViewController{
     var buttonExit = NeoButton()
+    var test = NeoButton()
     let label = UILabel()
     var name = UILabel()
     var email = UILabel()
     var password = UILabel()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = .white
         
@@ -28,7 +30,8 @@ class ProfileController: UIViewController{
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 128, y: 139, width: 117, height: 117)
         
-        
+        test.load(title: "fetch", frame: CGRect(x: 58, y: 550, width: 259, height: 58))
+        test.addTarget(self, action: #selector(self.clicked(sender:)), for: .touchUpInside)
         
         buttonExit.load(title: "log out", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
@@ -36,6 +39,7 @@ class ProfileController: UIViewController{
         super.view.addSubview(label)
         super.view.addSubview(buttonExit)
         super.view.addSubview(imageView)
+        super.view.addSubview(test)
         
 //        var urlString = "https://recipe-finder-api.azurewebsites.net?email=johnappleseed@ya.ru&pass=123"
     }
@@ -51,21 +55,27 @@ class ProfileController: UIViewController{
         print("Button1 Clicked")
     }
     
+    @objc func clicked(sender: UIButton){
+        FetchUserData()
+    }
+    
     func FetchUserData(){
         let defaults = UserDefaults.standard
-        
-        let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(String(describing: defaults.data(forKey: "email")))&pass=\(String(describing: defaults.data(forKey: "password")))")!
+        let email = defaults.data(forKey: "email")
+        let password = defaults.data(forKey: "password")
+        let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)")!
         
                URLSession.shared.dataTask(with: url){
                    data, response, error in
                    
                    if let data = data {
+                    print(data)
                        
-                       if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
+                       if let decodedResponse = try? JSONDecoder().decode(User.self, from: data) {
                            // we have good data – go back to the main thread
                            DispatchQueue.main.async {
                                // update our UI
-                            print(decodedResponse)
+                            print(decodedResponse.email)
                                //self.user = decodedResponse
                            }
 
