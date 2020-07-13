@@ -1,11 +1,3 @@
-//
-//  VoiceController.swift
-//  RecipeFinder
-//
-//  Created by I on 13.07.2020.
-//  Copyright © 2020 Наталья Автухович. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Speech
@@ -15,7 +7,7 @@ class VoiceController: UIViewController{
     var labelHead = UILabel()
     var button = NeoButton()
     let audioEngine = AVAudioEngine()
-    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
+    var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru_RU"))
     let request = SFSpeechAudioBufferRecognitionRequest()
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
@@ -60,6 +52,7 @@ class VoiceController: UIViewController{
             self.alertView(message: "Recognization is free right now. Please try again after some time.")
         }
         task = speechRecognizer?.recognitionTask(with: request, resultHandler: {(response, error) in
+            if response != nil{
             guard let response = response else{
                 if error != nil {
                     self.alertView(message: error.debugDescription)
@@ -69,12 +62,15 @@ class VoiceController: UIViewController{
                 return
             }
             let message = response.bestTranscription.formattedString
-            self.label.text = message
+                self.label.text = message}
+            else{
+                self.alertView(message: "There must have been some problem")
+            }
         })
     }
     func cancelSpeechRecognition(){
         task.finish()
-        task.cancel()
+        //task.cancel()
         task = nil
         
         request.endAudio()
