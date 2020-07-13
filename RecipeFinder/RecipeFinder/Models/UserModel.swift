@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Identifiable, Codable {
+public struct User: Codable {
     var id: Int
     var name: String
     var email: String
@@ -16,13 +16,13 @@ struct User: Identifiable, Codable {
     var ProductList: [Products]
 }
 
-struct Products: Identifiable, Codable {
+public struct Products: Codable {
     var id: Int
     var product: String
     var amount: Double
 }
 
-struct Link: Identifiable, Codable {
+public struct Link: Codable {
     var id: Int
     var address: String
 }

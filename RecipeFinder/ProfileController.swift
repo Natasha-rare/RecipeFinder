@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 class ProfileController: UIViewController{
     var buttonExit = NeoButton()
+    //var user = User()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -21,6 +22,8 @@ class ProfileController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         super.view.addSubview(label)
+        
+        
         
         buttonExit.load(title: "log out", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
@@ -36,5 +39,31 @@ class ProfileController: UIViewController{
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
         print("Button1 Clicked")
+    }
+    
+    func FetchUserData(){
+        let defaults = UserDefaults.standard
+        
+        let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(String(describing: defaults.data(forKey: "email")))&pass=\(String(describing: defaults.data(forKey: "password")))")!
+        
+               URLSession.shared.dataTask(with: url){
+                   data, response, error in
+                   
+                   if let data = data {
+                       
+                       if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
+                           // we have good data – go back to the main thread
+                           DispatchQueue.main.async {
+                               // update our UI
+                            print(decodedResponse)
+                               //self.user = decodedResponse
+                           }
+
+                           // everything is good, so we can exit
+                           return
+                       }
+                   }
+                   
+               }.resume()
     }
 }
