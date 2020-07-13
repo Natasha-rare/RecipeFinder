@@ -10,75 +10,43 @@ import Foundation
 import UIKit
 class RegistrationController: UIViewController{
     var warning = UILabel()
-    var email = UITextField()
+    var email = GrayTextField()
     var label = UILabel()
-    var password = UITextField()
-    var name = UITextField()
-    var confirm = UITextField()
-    var buttonCreate = UIButton()
+    var password = GrayTextField()
+    var name = GrayTextField()
+    var confirm = GrayTextField()
+    var buttonCreate = NeoButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let label = UILabel()
-        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.blue
+        view.layer.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+        
+        
+        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Registration"
-        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         super.view.addSubview(label)
         
-        email.backgroundColor = .lightGray
-        email.attributedPlaceholder = NSAttributedString(string: "   Email",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        email.frame = CGRect(x: 49, y: 200, width: 270, height: 40)
-        email.textColor = .white
-        email.layer.cornerRadius = 15.0
-        email.layer.borderWidth = 2.0
-        email.layer.borderColor = UIColor.lightGray.cgColor
         
-        password.backgroundColor = .lightGray
-        password.attributedPlaceholder = NSAttributedString(string: "   Password",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        password.isSecureTextEntry = true
-        password.frame = CGRect(x: 49, y: 250, width: 270, height: 40)
-        password.textColor = .white
-        password.layer.cornerRadius = 15.0
-        password.layer.borderWidth = 2.0
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        name.loadField(placeholderText: "name", isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
         
-        confirm.backgroundColor = .lightGray
-        confirm.attributedPlaceholder = NSAttributedString(string: "   Confirm password",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        confirm.frame = CGRect(x: 49, y: 300, width: 270, height: 40)
-        password.isSecureTextEntry = true
-        confirm.textColor = .white
-        confirm.layer.cornerRadius = 15.0
-        confirm.layer.borderWidth = 2.0
-        confirm.layer.borderColor = UIColor.lightGray.cgColor
+        email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
         
-        name.backgroundColor = .lightGray
-        name.attributedPlaceholder = NSAttributedString(string: "   Your name",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        name.frame = CGRect(x: 49, y: 350, width: 270, height: 40)
-        name.textColor = .white
-        name.layer.cornerRadius = 15.0
-        name.layer.borderWidth = 2.0
-        name.layer.borderColor = UIColor.lightGray.cgColor
+        password.loadField(placeholderText: "password", isSecure: false, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
         
-        buttonCreate.setTitle("Ready to cook", for: .normal)
-        buttonCreate.setTitleColor(UIColor.white, for: .normal)
-        buttonCreate.backgroundColor = .systemPink
-        buttonCreate.frame = CGRect(x: 47, y: 520, width: 274, height: 77)
-        buttonCreate.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
-        buttonCreate.layer.cornerRadius = 15.0
-        buttonCreate.layer.borderWidth = 2.0
-        buttonCreate.layer.borderColor = UIColor.systemPink.cgColor
+        confirm.loadField(placeholderText: "repeat password", isSecure: false, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
+        
+        buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: 257, height: 58))
+        buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
-        warning.frame = CGRect(x: 10, y: 400, width: 350, height: 60)
+        warning.frame = CGRect(x: 0, y: 456, width: 257, height: 58)
         warning.textColor = UIColor.red
         warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
-        warning.numberOfLines = 2
+        warning.numberOfLines = 0
+        warning.lineBreakMode = .byWordWrapping
         warning.textAlignment = .center
         super.view.addSubview(buttonCreate)
         super.view.addSubview(email)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -18,19 +19,17 @@ class ViewController: UIViewController {
     var password = GrayTextField()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         view.backgroundColor = .white
         view.layer.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
-//        label.backgroundColor = .white
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Recipe Finder"
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
         label2.frame = CGRect(x: 45, y: 104, width: 286, height: 83)
-//        label2.backgroundColor = .white
         label2.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         label2.font = UIFont(name: "Harmattan-Regular", size: 30)
         label2.numberOfLines = 0

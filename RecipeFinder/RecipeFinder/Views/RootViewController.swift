@@ -24,7 +24,10 @@ class RootViewController: UITabBarController{
         let viewControllerList = [groceryVC, homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
         tabBar.barTintColor = .white
-        tabBar.isTranslucent = false
+        tabBar.isTranslucent = true
+        
+        tabBar.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
+        tabBar.unselectedItemTintColor = .lightGray
         // tab bar and etc
     }
 }

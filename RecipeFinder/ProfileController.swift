@@ -9,25 +9,22 @@
 import Foundation
 import UIKit
 class ProfileController: UIViewController{
-    var buttonExit = UIButton()
+    var buttonExit = NeoButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         let label = UILabel()
-        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.black
-        label.text = "Your profile"
-        label.font = UIFont(name: "MarkerFelt-Wide", size: 40)
+        
+        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.text = "Profile"
+        label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         super.view.addSubview(label)
-        buttonExit.setTitle("Log out", for: .normal)
-        buttonExit.setTitleColor(UIColor.white, for: .normal)
-        buttonExit.backgroundColor = .systemPink
-        buttonExit.frame = CGRect(x: 47, y: 520, width: 274, height: 77)
-        buttonExit.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
-        buttonExit.layer.cornerRadius = 15.0
-        buttonExit.layer.borderWidth = 2.0
-        buttonExit.layer.borderColor = UIColor.systemPink.cgColor
+        
+        buttonExit.load(title: "log out", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
+        buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        
         super.view.addSubview(buttonExit)
     }
     @objc func buttonClicked(sender: UIButton){

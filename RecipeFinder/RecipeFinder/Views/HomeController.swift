@@ -13,11 +13,13 @@ class HomeController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .white
         let label = UILabel()
-        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.black
-        label.text = "Home page"
-        label.font = UIFont(name: "MarkerFelt-Wide", size: 38)
+        
+        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.text = "Home"
+        label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
+        
         super.view.addSubview(label)
     }
 }
