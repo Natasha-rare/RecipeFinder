@@ -28,6 +28,10 @@ class ProfileController: UIViewController{
         super.view.addSubview(buttonExit)
     }
     @objc func buttonClicked(sender: UIButton){
+        
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "logged")
+        
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)

@@ -91,6 +91,12 @@ class ViewController: UIViewController {
                     result in
                     print(result)
                     if result == "\"Logged in!\""{
+                        
+                        let defaults = UserDefaults.standard
+                        defaults.set(self.email.text, forKey: "email")
+                        defaults.set(self.password.text, forKey: "password")
+                        defaults.set(true, forKey: "logged")
+                        
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
