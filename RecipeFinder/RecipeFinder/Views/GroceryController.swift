@@ -11,7 +11,7 @@ import UIKit
 
 class GroceryController: UIViewController{
     override func viewDidLoad() {
-        
+        view.backgroundColor = .white
         super.viewDidLoad()
     }
 }

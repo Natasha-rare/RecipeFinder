@@ -72,26 +72,14 @@ class ViewController: UIViewController {
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonStart.layer.cornerRadius = 35.0
         
-        let darkShadow = CALayer()
-        darkShadow.frame = buttonStart.bounds
-        
-        darkShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
-        darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-        darkShadow.cornerRadius = 35
-        darkShadow.shadowOffset = CGSize(width: 10, height: 10)
-        darkShadow.shadowOpacity = 1
-        darkShadow.shadowRadius = 30
-        buttonStart.layer.insertSublayer(darkShadow, at: 0)
+       
+        let shadow = CALayer()
+        shadow.darkShadow(button: buttonStart)
+        buttonStart.layer.insertSublayer(shadow, at: 0)
 
-        let lightShadow = CALayer()
-        lightShadow.frame = buttonStart.bounds
-        lightShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
-        lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
-        lightShadow.cornerRadius = 35
-        lightShadow.shadowOffset = CGSize(width: -10, height: -10)
-        lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = 30
-        buttonStart.layer.insertSublayer(lightShadow, at: 0)
+        let anotherShadow = CALayer()
+        anotherShadw.lightShadow(button: buttonStart)
+        buttonStart.layer.insertSublayer(anotherShadow, at: 0)
 
         
         buttonRegistr.setTitle("Don’t have an account?", for: .normal)
