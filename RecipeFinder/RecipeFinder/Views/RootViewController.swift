@@ -16,10 +16,12 @@ class RootViewController: UITabBarController{
         let homeVC = HomeController()
         let savedVC = SavedController()
         let profileVC = ProfileController()
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home.png"), tag: 0)
-        savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "post.png"), tag: 0)
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user.png"), tag: 0)
-        let viewControllerList = [homeVC, savedVC, profileVC]
+        let groceryVC = GroceryController()
+        homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.png"), tag: 0)
+        savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
+        profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
+        groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "shopping-cart"), tag: 0)
+        let viewControllerList = [groceryVC, homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
         tabBar.barTintColor = .white
         tabBar.isTranslucent = false

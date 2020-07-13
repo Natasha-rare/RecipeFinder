@@ -172,7 +172,6 @@ class ViewController: UIViewController {
     
     @objc func buttonRegistr(sender : UIButton) {
         let viewc = RegistrationController()
-        viewc.modalPresentationStyle = .fullScreen
         self.present(viewc, animated: true, completion: nil)
         //print("Button2 Clicked")
     }
