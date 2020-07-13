@@ -10,17 +10,16 @@ class GroceryController: UIViewController{
     let request = SFSpeechAudioBufferRecognitionRequest()
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
+    var labelHead = UILabel()
     override func viewDidLoad() {
         view.backgroundColor = .white
         super.viewDidLoad()
-        
-        let label = UILabel()
-        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Grocery"
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
+        label.textColor = UIColor.black
+        label.text = ""
+        label.font = UIFont(name: "Georgia", size: 10)
         label.textAlignment = .center
-        
+        label.numberOfLines = 12
         super.view.addSubview(label)
         button.setTitle("Start", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -30,7 +29,14 @@ class GroceryController: UIViewController{
         button.layer.cornerRadius = 15.0
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.systemPink.cgColor
+        
+        labelHead.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
+        labelHead.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        labelHead.text = "Grocery"
+        labelHead.font = UIFont(name: "Georgia", size: 43)
+        labelHead.textAlignment = .center
         super.view.addSubview(button)
+        super.view.addSubview(labelHead)
         requestPermission()
     }
     func startSpeechRecognition(){
