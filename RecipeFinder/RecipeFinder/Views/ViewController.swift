@@ -10,12 +10,12 @@ import UIKit
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
-    var email = UITextField()
-    var password = UITextField()
-    var buttonStart = UIButton()
+    var buttonStart = NeoButton()
     var buttonRegistr = UIButton()
     var image = UIImage(named: "image 1.jpg")
     var warning =  UILabel()
+    var email = GrayTextField()
+    var password = GrayTextField()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -38,25 +38,9 @@ class ViewController: UIViewController {
         label2.text = "Enter your products. We’ll show you the recipe"
         label2.textAlignment = .center
         
-        email.backgroundColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
-        email.attributedPlaceholder = NSAttributedString(string: "  Email",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)])
-        email.frame = CGRect(x: 58, y: 468, width: 257, height: 58)
-        email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        email.font = UIFont(name: "Harmattan-Regular", size: 27)
-        email.layer.cornerRadius = 35.0
-//        email.layer.cornerRadius = 15.0
-//        email.layer.borderWidth = 2.0
-//        email.layer.borderColor = UIColor.lightGray.cgColor
+        email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
-        password.backgroundColor = UIColor(red: 0.892, green: 0.892, blue: 0.892, alpha: 1)
-        password.attributedPlaceholder = NSAttributedString(string: "  Password",
-           attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)])
-        password.frame = CGRect(x: 58, y: 536, width: 257, height: 58)
-        password.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        password.font = UIFont(name: "Harmattan-Regular", size: 27)
-        password.layer.cornerRadius = 35.0
-        password.isSecureTextEntry = true
+        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
         warning.frame = CGRect(x: 10, y: 390, width: 350, height: 60)
@@ -65,21 +49,9 @@ class ViewController: UIViewController {
         warning.numberOfLines = 2
         warning.textAlignment = .center
         
-        buttonStart.setTitle("Let's go", for: .normal)
-        buttonStart.setTitleColor(UIColor.black, for: .normal)
-        buttonStart.frame = CGRect(x: 58, y: 643, width: 257, height: 58)
-        buttonStart.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
-        buttonStart.layer.cornerRadius = 35.0
         
-       
-        let shadow = CALayer()
-        shadow.darkShadow(button: buttonStart)
-        buttonStart.layer.insertSublayer(shadow, at: 0)
-
-        let anotherShadow = CALayer()
-        anotherShadw.lightShadow(button: buttonStart)
-        buttonStart.layer.insertSublayer(anotherShadow, at: 0)
+        buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
+        buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
 
         
         buttonRegistr.setTitle("Don’t have an account?", for: .normal)
@@ -104,10 +76,7 @@ class ViewController: UIViewController {
     @objc func buttonClicked(sender : UIButton) {
         let Password = password.text
         let Email = email.text
-        //print("Password : \(Password ?? ""), Email: \(Email ?? "")")
-        //var url_text =  "https://recipe-finder-api.azurewebsites.net?email=" + Email! ?? "" + "&pass=" + Password!
-        //let url = URL(string: url_text)
-        //print(url)
+        
         let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
         let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
@@ -141,7 +110,6 @@ class ViewController: UIViewController {
             }
             else if password_check.evaluate(with: Password) == false
             {
-                //print("Password wrong")
                 if Password!.count < 8 {
                     warning.text = "Your password is too short"
                 }
@@ -151,7 +119,6 @@ class ViewController: UIViewController {
                 super.view.addSubview(warning)
             }
             else {
-                //print("Email wrong")
                 warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
             }
@@ -161,7 +128,6 @@ class ViewController: UIViewController {
     @objc func buttonRegistr(sender : UIButton) {
         let viewc = RegistrationController()
         self.present(viewc, animated: true, completion: nil)
-        //print("Button2 Clicked")
     }
 }
 
