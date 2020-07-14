@@ -6,7 +6,7 @@ class GroceryController: UIViewController{
 
     var buttonEnter = NeoButton()
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
@@ -21,7 +21,7 @@ class GroceryController: UIViewController{
         super.view.addSubview(buttonEnter)
   }
 
-    @objc func buttonClicked(sender : UIButton) {
+    @objc func buttonClicked(sender : NeoButton) {
         
     }
     

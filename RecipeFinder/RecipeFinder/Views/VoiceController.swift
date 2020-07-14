@@ -12,7 +12,7 @@ class VoiceController: UIViewController{
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.black
