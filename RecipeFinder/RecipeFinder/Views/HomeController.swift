@@ -32,7 +32,7 @@ class HomeController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 58, y: 375, width: 259, height: 31)
+        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = "It seems that you didn’t enter ingridients!"
         label2.font = UIFont(name: "Roboto", size: 20)
