@@ -12,6 +12,7 @@
 		1211690424B6516700879FED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211690324B6516700879FED /* ViewController.swift */; };
 		1211690924B6516800879FED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1211690824B6516800879FED /* Assets.xcassets */; };
 		1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211690A24B6516800879FED /* LaunchScreen.storyboard */; };
+		12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */; };
 		200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */; };
 		6F38CCAD24BDFDE800551327 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38CCAC24BDFDE800551327 /* ProfileController.swift */; };
 		6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41B77224BC61BE00011770 /* GroceryController.swift */; };
@@ -38,6 +39,7 @@
 		1211690824B6516800879FED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1211690B24B6516800879FED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1211690D24B6516800879FED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Harmattan-Regular.ttf"; sourceTree = "<group>"; };
 		6F38CCAC24BDFDE800551327 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		6F41B77224BC61BE00011770 /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
 		6F4291AD24B879D700611FDA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		121168FE24B6516700879FED /* RecipeFinder */ = {
 			isa = PBXGroup;
 			children = (
+				12AABE1524BE11DC00F2C9E4 /* Fonts */,
 				6F5518EC24B7A19500E5981D /* Models */,
 				6F5518EB24B7A18C00E5981D /* Views */,
 				121168FF24B6516700879FED /* AppDelegate.swift */,
@@ -99,6 +102,14 @@
 				6F78E73324BC6B8A0054B4FF /* Extensions.swift */,
 			);
 			path = RecipeFinder;
+			sourceTree = "<group>";
+		};
+		12AABE1524BE11DC00F2C9E4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6F5518EB24B7A18C00E5981D /* Views */ = {
@@ -208,6 +219,7 @@
 			files = (
 				1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */,
 				1211690924B6516800879FED /* Assets.xcassets in Resources */,
+				12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

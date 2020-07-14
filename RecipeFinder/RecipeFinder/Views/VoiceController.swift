@@ -17,7 +17,7 @@ class VoiceController: UIViewController{
         label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
         label.textColor = UIColor.lightGray
         label.text = "Your ingridients will be here."
-        label.font = UIFont(name: "Roboto", size: 19)
+        label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 100
         super.view.addSubview(label)

@@ -24,7 +24,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         resultLabel.text = "Choose image"
         resultLabel.frame = CGRect(x: 20, y: 50, width: 400, height: 20)
         resultLabel.textColor = .black
-        resultLabel.font = UIFont.systemFont(ofSize: 19)
+        resultLabel.font = UIFont(name: "Harmattan-Regular", size: 20)
         
         super.view.addSubview(resultLabel)
         

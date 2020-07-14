@@ -20,14 +20,14 @@ class SecondaryViewController: UIViewController
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.white
         label.text = "Input Ingredients"
-        label.font = UIFont(name: "MarkerFelt-Wide", size: 38)
+        label.font = UIFont(name: "Harmattan-Regular", size: 30)
         label.textAlignment = .center
        
         let label2 = UILabel()
         label2.frame = CGRect(x: 8, y: 322, width: 360, height: 49)
         label2.textColor = UIColor.lightGray
         label2.text = "Recognized Text"
-        label2.font = UIFont(name: "MarkerFelt-Thin", size: 38)
+        label2.font = UIFont(name: "Harmattan-Regular", size: 30)
         label2.textAlignment = .center
         
         let buttonDone = UIButton()
@@ -40,6 +40,7 @@ class SecondaryViewController: UIViewController
         let image = UIImage(named: "microphone 1.jpg")
         let imageMicro = UIImageView(image: image)
         imageMicro.frame = CGRect(x: 144, y: 592, width: 87, height: 87)
+        imageMicro.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         
         super.view.addSubview(label2)
         super.view.addSubview(label)

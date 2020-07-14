@@ -26,17 +26,19 @@ class ProfileController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        let image = UIImage(named: "user.png")
+        let image = UIImage(named: "user-1.png")
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 128, y: 139, width: 117, height: 117)
         
-        greeting.frame = CGRect(x: 0, y: 280, width: 400, height: 50)
-        greeting.font = UIFont(name: "Roboto", size: 30)
+        greeting.frame = CGRect(x: 61, y: 281, width: 257, height: 58)
+        greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
+        greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
         
-        email.frame = CGRect(x: 0, y: 300, width: 400, height: 50)
-        greeting.font = UIFont(name: "Roboto", size: 30)
-        greeting.textAlignment = .center
+        email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
+        email.font = UIFont(name: "Harmattan-Regular", size: 24)
+        email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
+        email.textAlignment = .center
         
         buttonExit.load(title: "log out", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)

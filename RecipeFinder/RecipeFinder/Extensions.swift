@@ -59,7 +59,7 @@ class NeoButton: UIButton {
         lightShadow.cornerRadius = 35
         lightShadow.shadowOffset = CGSize(width: -10, height: -10)
         lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = 30
+        lightShadow.shadowRadius = 10
         
         let darkShadow = CALayer()
         darkShadow.frame = self.bounds
@@ -68,7 +68,7 @@ class NeoButton: UIButton {
         darkShadow.cornerRadius = 35
         darkShadow.shadowOffset = CGSize(width: 10, height: 10)
         darkShadow.shadowOpacity = 1
-        darkShadow.shadowRadius = 30
+        darkShadow.shadowRadius = 10
         
         self.layer.insertSublayer(lightShadow, at: 0)
         self.layer.insertSublayer(darkShadow, at: 1)
