@@ -46,6 +46,7 @@ class HomeController: UIViewController{
         buttonVoice.load(title: "voice", frame: CGRect(x: 113, y: 433, width: 100, height: 58))
         buttonScan.load(title: "camera", frame: CGRect(x: 113, y: 533, width: 100, height: 58))
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
+        buttonVoice.addTarget(self, action: #selector(self.buttonVoice(sender:)), for: .touchUpInside)
         
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
@@ -74,7 +75,10 @@ class HomeController: UIViewController{
         let viewc = ScanController()
         self.present(viewc, animated: true, completion: nil)
     }
-    
+    @objc func buttonVoice(sender: UIButton){
+        let voiceVC = VoiceController()
+        self.present(voiceVC, animated: true, completion: nil)
+    }
     func startSpeechRecognition(){
         let node = audioEngine.inputNode
         let recordingFormat = node.outputFormat(forBus: 0)

@@ -14,20 +14,20 @@ class VoiceController: UIViewController{
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
-        label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
-        label.textColor = UIColor.black
-        label.text = ""
-        label.font = UIFont(name: "Georgia", size: 10)
+        label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
+        label.textColor = UIColor.lightGray
+        label.text = "Your ingridients will be here."
+        label.font = UIFont(name: "Roboto", size: 19)
         label.textAlignment = .center
-        label.numberOfLines = 12
+        label.numberOfLines = 100
         super.view.addSubview(label)
         labelHead.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         labelHead.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        labelHead.text = "Grocery"
+        labelHead.text = "Just speak"
         labelHead.font = UIFont(name: "Georgia", size: 43)
         labelHead.textAlignment = .center
         super.view.addSubview(labelHead)
-        button.load(title: "start", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
+        button.load(title: "start", frame: CGRect(x: 58, y: 584, width: 259, height: 58))
         button.addTarget(self, action: #selector(self.buttonStart(sender:)), for: .touchUpInside)
         super.view.addSubview(button)
         requestPermission()
@@ -81,11 +81,11 @@ class VoiceController: UIViewController{
         isStart = !isStart
         if isStart{
             startSpeechRecognition()
-            button.setTitle("Stop", for: .normal)
+            button.setTitle("done", for: .normal)
         }
         else{
             cancelSpeechRecognition()
-            button.setTitle("Start", for: .normal)
+            button.setTitle("start", for: .normal)
         }
     }
     func alertView(message: String){
