@@ -81,15 +81,25 @@ extension ProfileController{
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "email") ?? "Nope"
         let password = defaults.string(forKey: "password") ?? "Nope"
-        print(email)
         let url =  "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)"
-        
         let request = AF.request(url)
         request.responseDecodable(of: User.self){
             (response) in
             guard let user = response.value else{return}
             self.greeting.text = "Hello, \(user.name ?? "Chef")"
             self.email.text = "Your email: \(user.email)"
+        }
+       
+    }
+}
+
+extension HomeController{
+    func getRecipes(){
+        let url = "https://api.edamam.com/search?q=chicken&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+        AF.request(url).responseDecodable(of: Welcome.self){
+            response in
+            guard let recipes = response.value else {return}
+            print(recipes.hits[0].recipe.label)
         }
     }
 }

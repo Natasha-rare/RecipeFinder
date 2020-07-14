@@ -18,6 +18,7 @@ class RootViewController: UITabBarController{
         let profileVC = ProfileController()
         let groceryVC = GroceryController()
         profileVC.FetchUserData()
+        homeVC.getRecipes()
         homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.png"), tag: 0)
         savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
