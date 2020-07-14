@@ -46,7 +46,10 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
     private lazy var classificationRequest: VNCoreMLRequest = {
       do {
         // 2
-        let model = try VNCoreMLModel(for: SqueezeNet().model)
+        var model = try VNCoreMLModel(for: SqueezeNet().model)
+        if #available(iOS 12.0, *) {
+            model = try VNCoreMLModel(for: Fridge_copy().model)
+        }
         // 3
         let request = VNCoreMLRequest(model: model) { request, _ in
             if let classifications =
