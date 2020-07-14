@@ -37,7 +37,7 @@ class HomeController: UIViewController{
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = "It seems that you didn’t enter ingridients!"
-        label2.font = UIFont(name: "Harmattan-Regular", size: 17)
+        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
@@ -45,8 +45,10 @@ class HomeController: UIViewController{
         buttonText.load(title: "text", frame: CGRect(x: 113, y: 333, width: 150, height: 58))
         buttonVoice.load(title: "voice", frame: CGRect(x: 113, y: 433, width: 150, height: 58))
         buttonScan.load(title: "camera", frame: CGRect(x: 113, y: 533, width: 150, height: 58))
+        
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         buttonVoice.addTarget(self, action: #selector(self.buttonVoice(sender:)), for: .touchUpInside)
+        buttonText.addTarget(self, action: #selector(self.buttonText(sender:)), for: .touchUpInside)
         
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
@@ -75,6 +77,12 @@ class HomeController: UIViewController{
         let viewc = ScanController()
         self.present(viewc, animated: true, completion: nil)
     }
+    
+    @objc func buttonText(sender: NeoButton){
+        let viewc = TextController()
+        self.present(viewc, animated: true, completion: nil)
+    }
+    
     @objc func buttonVoice(sender: UIButton){
         let voiceVC = VoiceController()
         self.present(voiceVC, animated: true, completion: nil)

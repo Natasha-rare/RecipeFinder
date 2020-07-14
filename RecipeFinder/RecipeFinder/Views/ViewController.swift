@@ -29,13 +29,13 @@ class ViewController: UIViewController {
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 45, y: 104, width: 286, height: 83)
+        label2.frame = CGRect(x: 45, y: 104, width: 286, height: 80)
         label2.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        label2.font = UIFont(name: "Harmattan-Regular", size: 30)
-        label2.numberOfLines = 0
-        label2.lineBreakMode = .byWordWrapping
+        label2.font = UIFont(name: "Harmattan-Regular", size: 27)
         label2.text = "Enter your products. We’ll show you the recipe"
         label2.textAlignment = .center
+        label2.numberOfLines = 0
+        label2.lineBreakMode = .byWordWrapping
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
