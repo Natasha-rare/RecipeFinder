@@ -54,11 +54,11 @@ class HomeController: UIViewController{
         
         let text = UIImage(named: "Text.png")
         let textView = UIImageView(image: text)
-        textView.frame = CGRect(x: 62, y: 447, width: 30, height: 30)
+        textView.frame = CGRect(x: 62, y: 347, width: 30, height: 30)
         
         let voice = UIImage(named: "voice.png")
         let voiceView = UIImageView(image: voice)
-        voiceView.frame = CGRect(x: 62, y: 347, width: 30, height: 30)
+        voiceView.frame = CGRect(x: 62, y: 447, width: 30, height: 30)
         
         super.view.addSubview(label)
         super.view.addSubview(label2)
