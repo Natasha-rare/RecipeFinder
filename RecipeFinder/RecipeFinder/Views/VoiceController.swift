@@ -8,7 +8,7 @@ class VoiceController: UIViewController{
     var button = NeoButton()
     let audioEngine = AVAudioEngine()
     var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru_RU"))
-    let request = SFSpeechAudioBufferRecognitionRequest()
+    var request = SFSpeechAudioBufferRecognitionRequest()
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
     override func viewDidLoad() {
@@ -70,12 +70,15 @@ class VoiceController: UIViewController{
     }
     func cancelSpeechRecognition(){
         task.finish()
-        //task.cancel()
-        task = nil
-        
         request.endAudio()
         audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
+
+        if audioEngine.inputNode.numberOfInputs > 0 {
+            audioEngine.inputNode.removeTap(onBus: 0)
+        }
+        //cancelSpeechRecognization()
+        label.text = nil
+        
     }
     @objc func buttonStart(sender: Any){
         isStart = !isStart
@@ -86,7 +89,7 @@ class VoiceController: UIViewController{
         else{
             cancelSpeechRecognition()
             button.setTitle("start", for: .normal)
-        }
+            }
     }
     func alertView(message: String){
         let controller = UIAlertController.init(title: "Error occured!", message: message, preferredStyle: .alert)
