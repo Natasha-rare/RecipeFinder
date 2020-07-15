@@ -98,8 +98,8 @@ extension HomeController: RecipeArrayDelegate{
     
     func getIngridients(_ array: [String]) {
         if array.count != 0{
-            
             getRecipes(ingridients: array)
+            self.numberOfIngredient = array.count
         }
         else{
             self.label2.text = "It seems that you didn’t enter ingridients!"
@@ -118,9 +118,11 @@ extension HomeController: RecipeArrayDelegate{
             guard let recipes = response.value else {return}
             print(recipes.hits[0].recipe.label)
             super.view.subviews.forEach { $0.removeFromSuperview() }
+        
             self.loadViewWithCards(recipes: recipes)
         }
     }
+    
     
     func loadViewWithoutCards(){
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
@@ -168,10 +170,13 @@ extension HomeController: RecipeArrayDelegate{
     }
     
     
+    
     func loadViewWithCards(recipes: Welcome){
+        self.rec = recipes
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = recipes.hits[0].recipe.label
+        print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         super.view.addSubview(label)

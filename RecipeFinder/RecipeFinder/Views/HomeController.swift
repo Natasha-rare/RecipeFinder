@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import Speech
 
-class HomeController: UIViewController{
-        
+class HomeController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+    
+    
     let label = UILabel()
     let label2 = UILabel()
     let buttonText = NeoButton()
@@ -23,12 +24,27 @@ class HomeController: UIViewController{
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
     var cardViewEnabled: Bool = false
+    var numberOfIngredient: Int = 0
+    var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         loadViewWithoutCards()
         requestPermission()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell
+        
+        cell.name?.text = rec.hits[indexPath.row].recipe.label
+        cell.image?.image = UIImage(named: rec.hits[indexPath.row].recipe.image)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return numberOfIngredient
     }
     
     @objc func buttonRegistr(sender : UIButton) {
@@ -46,6 +62,7 @@ class HomeController: UIViewController{
         let voiceVC = VoiceController()
         self.present(voiceVC, animated: true, completion: nil)
     }
+    
     func startSpeechRecognition(){
         let node = audioEngine.inputNode
         let recordingFormat = node.outputFormat(forBus: 0)

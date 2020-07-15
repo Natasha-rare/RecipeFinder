@@ -12,6 +12,7 @@
 		1211690424B6516700879FED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211690324B6516700879FED /* ViewController.swift */; };
 		1211690924B6516800879FED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1211690824B6516800879FED /* Assets.xcassets */; };
 		1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211690A24B6516800879FED /* LaunchScreen.storyboard */; };
+		128C311D24BF3D9A002B4EB6 /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128C311C24BF3D9A002B4EB6 /* HomeControllerCell.swift */; };
 		12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */; };
 		12AABE1924BE1E0A00F2C9E4 /* TextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AABE1824BE1E0A00F2C9E4 /* TextController.swift */; };
 		200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */; };
@@ -40,6 +41,7 @@
 		1211690824B6516800879FED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1211690B24B6516800879FED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1211690D24B6516800879FED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		128C311C24BF3D9A002B4EB6 /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
 		12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Harmattan-Regular.ttf"; sourceTree = "<group>"; };
 		12AABE1824BE1E0A00F2C9E4 /* TextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
 		6F38CCAC24BDFDE800551327 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				1211690A24B6516800879FED /* LaunchScreen.storyboard */,
 				1211690D24B6516800879FED /* Info.plist */,
 				6F78E73324BC6B8A0054B4FF /* Extensions.swift */,
+				128C311C24BF3D9A002B4EB6 /* HomeControllerCell.swift */,
 			);
 			path = RecipeFinder;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				128C311D24BF3D9A002B4EB6 /* HomeControllerCell.swift in Sources */,
 				12AABE1924BE1E0A00F2C9E4 /* TextController.swift in Sources */,
 				6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */,
 				6F5518EA24B7A18300E5981D /* AddIngridients.swift in Sources */,

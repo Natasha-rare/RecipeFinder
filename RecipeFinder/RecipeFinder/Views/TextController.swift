@@ -64,11 +64,7 @@ class TextController: UIViewController, UITextFieldDelegate{
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func buttonGo(_ sender: Any) {
-           performAction()
-       }
-       
-   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        textField.resignFirstResponder()
        performAction()
        return true
