@@ -150,15 +150,27 @@ extension HomeController{
     }
     
     
-    
     func loadViewWithCards(recipes: Welcome){
-        self.rec = recipes
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = recipes.hits[0].recipe.label
         print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
-        label.textAlignment = .center
+        
+        var count: Int = 0
+        for hit in recipes.hits{
+            let url = URL(string: hit.recipe.image)!
+            let data = try? Data(contentsOf: url)
+            var image = UIImage()
+            if let imageData = data {
+                image = UIImage(data: imageData)!
+            }
+            let imageV = UIImageView(image: image)
+            imageV.frame = CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232)
+            imageV.layer.shadowColor = UIColor.lightGray.cgColor
+            super.view.addSubview(imageV)
+            count += 1
+        }
         super.view.addSubview(label)
     }
 }
