@@ -11,6 +11,7 @@ import UIKit
 import Speech
 
 class HomeController: UIViewController{
+        
     let label = UILabel()
     let label2 = UILabel()
     let buttonText = NeoButton()
@@ -26,7 +27,6 @@ class HomeController: UIViewController{
         
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -80,6 +80,7 @@ class HomeController: UIViewController{
     
     @objc func buttonText(sender: NeoButton){
         let viewc = TextController()
+        viewc.delegate = self
         self.present(viewc, animated: true, completion: nil)
     }
     

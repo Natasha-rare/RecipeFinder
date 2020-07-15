@@ -94,7 +94,17 @@ extension ProfileController{
     }
 }
 
-extension HomeController{
+extension HomeController: RecipeArrayDelegate{
+    
+    func getIngridients(_ array: [String]) {
+        if array.count != 0{
+            getRecipes(ingridients: array)
+        }
+        else{
+            self.label2.text = "It seems that you didn’t enter ingridients!"
+        }
+    }
+    
     func getRecipes(ingridients: [String]){
         //optimizing string for request
         var string: String = ""
