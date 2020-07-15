@@ -94,35 +94,7 @@ extension ProfileController{
     }
 }
 
-extension HomeController: RecipeArrayDelegate{
-    
-    func getIngridients(_ array: [String]) {
-        if array.count != 0{
-            getRecipes(ingridients: array)
-            self.numberOfIngredient = array.count
-        }
-        else{
-            self.label2.text = "It seems that you didn’t enter ingridients!"
-        }
-    }
-    
-    func getRecipes(ingridients: [String]){
-        //optimizing string for request
-        var string: String = ""
-        for i in ingridients{
-            string += i + "%20"
-        }
-        let url = "https://api.edamam.com/search?q=\(string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
-        AF.request(url).responseDecodable(of: Welcome.self){
-            response in
-            guard let recipes = response.value else {return}
-            print(recipes.hits[0].recipe.label)
-            super.view.subviews.forEach { $0.removeFromSuperview() }
-        
-            self.loadViewWithCards(recipes: recipes)
-        }
-    }
-    
+extension HomeController{
     
     func loadViewWithoutCards(){
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
