@@ -11,6 +11,7 @@ import UIKit
 import Speech
 
 class HomeController: UIViewController{
+        
     let label = UILabel()
     let label2 = UILabel()
     let buttonText = NeoButton()
@@ -21,54 +22,12 @@ class HomeController: UIViewController{
     let request = SFSpeechAudioBufferRecognitionRequest()
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
+    var cardViewEnabled: Bool = false
     override func viewDidLoad() {
         
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
-        
-        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Home"
-        label.font = UIFont(name: "Georgia", size: 43)
-        label.textAlignment = .center
-        
-        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
-        label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label2.text = "It seems that you didn’t enter ingridients!"
-        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
-        label2.textAlignment = .center
-        label2.numberOfLines = 0
-        label2.lineBreakMode = .byWordWrapping
-        
-        buttonText.load(title: "text", frame: CGRect(x: 144, y: 333, width: 168, height: 60))
-        buttonVoice.load(title: "voice", frame: CGRect(x: 144, y: 433, width: 168, height: 60))
-        buttonScan.load(title: "camera", frame: CGRect(x: 144, y: 533, width: 168, height: 60))
-        
-        buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
-        buttonVoice.addTarget(self, action: #selector(self.buttonVoice(sender:)), for: .touchUpInside)
-        buttonText.addTarget(self, action: #selector(self.buttonText(sender:)), for: .touchUpInside)
-        
-        let camera = UIImage(named: "camera.png")
-        let cameraView = UIImageView(image: camera)
-        cameraView.frame = CGRect(x: 62, y: 548, width: 30, height: 30)
-        
-        let text = UIImage(named: "Text.png")
-        let textView = UIImageView(image: text)
-        textView.frame = CGRect(x: 62, y: 348, width: 30, height: 30)
-        
-        let voice = UIImage(named: "voice.png")
-        let voiceView = UIImageView(image: voice)
-        voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
-        
-        super.view.addSubview(label)
-        super.view.addSubview(label2)
-        super.view.addSubview(buttonText)
-        super.view.addSubview(buttonVoice)
-        super.view.addSubview(buttonScan)
-        super.view.addSubview(cameraView)
-        super.view.addSubview(textView)
-        super.view.addSubview(voiceView)
+        loadViewWithoutCards()
         requestPermission()
     }
     
@@ -79,6 +38,7 @@ class HomeController: UIViewController{
     
     @objc func buttonText(sender: NeoButton){
         let viewc = TextController()
+        viewc.delegate = self
         self.present(viewc, animated: true, completion: nil)
     }
     
@@ -167,3 +127,4 @@ class HomeController: UIViewController{
     }
     
 }
+

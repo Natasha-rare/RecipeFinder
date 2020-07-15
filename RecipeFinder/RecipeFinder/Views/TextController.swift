@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
-class TextController: UIViewController, UITextFieldDelegate
-{
+protocol RecipeArrayDelegate: AnyObject {
+    func getIngridients(_ array: [String])
+}
+
+class TextController: UIViewController, UITextFieldDelegate{
+    
+    weak var delegate: RecipeArrayDelegate?
+    
     var label = UILabel()
     var label2 = UILabel()
     var buttonDone = NeoButton()
@@ -54,7 +60,7 @@ class TextController: UIViewController, UITextFieldDelegate
     }
     
     @objc func buttonClicked(sender: NeoButton){
-        HomeController().getRecipes(ingridients: productsList)
+        self.delegate?.getIngridients(productsList)
         self.dismiss(animated: true, completion: nil)
     }
     

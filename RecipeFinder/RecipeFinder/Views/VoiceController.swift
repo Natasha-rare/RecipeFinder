@@ -30,7 +30,7 @@ class VoiceController: UIViewController {
         super.view.addSubview(button)
         label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
         label.textColor = UIColor.lightGray
-        label.text = "Your ingridients will be here."
+        label.text = "Тут будут ваши ингридиенты."
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 100
@@ -151,7 +151,7 @@ class VoiceController: UIViewController {
             print("audioEngine couldn't start because of an error.")
         }
 
-        self.label.text = "Тут будут твои ингредиенты."
+        self.label.text = "Тут будут ваши ингридиенты."
     }
     
 }

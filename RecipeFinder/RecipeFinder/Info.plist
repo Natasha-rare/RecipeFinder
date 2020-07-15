@@ -63,6 +63,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need your camera for ML</string>
+	<string>We need your camera to scan your products</string>
 </dict>
 </plist>
