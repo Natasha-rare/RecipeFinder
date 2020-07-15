@@ -15,7 +15,8 @@ class GroceryController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        buttonEnter.load(title: "clear all", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
+        buttonEnter.load(title: "clear all", frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 1, green: 0.562, blue: 0.562, alpha: 1))
+        buttonEnter.setTitleColor(.white, for: .normal)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         super.view.addSubview(label)
         super.view.addSubview(buttonEnter)

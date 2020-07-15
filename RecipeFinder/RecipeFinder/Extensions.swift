@@ -44,34 +44,34 @@ class NeoButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String, frame: CGRect){
+    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)){
         
         setTitle("\(title)", for: .normal)
         setTitleColor(UIColor.black, for: .normal)
         self.frame = frame
-        backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
+        backgroundColor = color
         layer.cornerRadius = 35.0
         
         let lightShadow = CALayer()
         lightShadow.frame = self.bounds
-        lightShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+        lightShadow.backgroundColor = self.backgroundColor?.cgColor
         lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
         lightShadow.cornerRadius = 35
         lightShadow.shadowOffset = CGSize(width: -10, height: -10)
         lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = 10
+        lightShadow.shadowRadius = 7
         
         let darkShadow = CALayer()
         darkShadow.frame = self.bounds
-        darkShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+        darkShadow.backgroundColor = self.backgroundColor?.cgColor
         darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
         darkShadow.cornerRadius = 35
         darkShadow.shadowOffset = CGSize(width: 10, height: 10)
         darkShadow.shadowOpacity = 1
         darkShadow.shadowRadius = 10
         
-        self.layer.insertSublayer(lightShadow, at: 0)
-        self.layer.insertSublayer(darkShadow, at: 1)
+        self.layer.insertSublayer(lightShadow, at: 1)
+        self.layer.insertSublayer(darkShadow, at: 0)
     }
     
 }
