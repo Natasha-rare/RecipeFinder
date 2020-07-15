@@ -41,9 +41,9 @@ class HomeController: UIViewController{
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         
-        buttonText.load(title: "text", frame: CGRect(x: 113, y: 333, width: 150, height: 58))
-        buttonVoice.load(title: "voice", frame: CGRect(x: 113, y: 433, width: 150, height: 58))
-        buttonScan.load(title: "camera", frame: CGRect(x: 113, y: 533, width: 150, height: 58))
+        buttonText.load(title: "text", frame: CGRect(x: 144, y: 333, width: 168, height: 60))
+        buttonVoice.load(title: "voice", frame: CGRect(x: 144, y: 433, width: 168, height: 60))
+        buttonScan.load(title: "camera", frame: CGRect(x: 144, y: 533, width: 168, height: 60))
         
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         buttonVoice.addTarget(self, action: #selector(self.buttonVoice(sender:)), for: .touchUpInside)
@@ -51,15 +51,15 @@ class HomeController: UIViewController{
         
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
-        cameraView.frame = CGRect(x: 62, y: 547, width: 30, height: 30)
+        cameraView.frame = CGRect(x: 62, y: 548, width: 30, height: 30)
         
         let text = UIImage(named: "Text.png")
         let textView = UIImageView(image: text)
-        textView.frame = CGRect(x: 62, y: 347, width: 30, height: 30)
+        textView.frame = CGRect(x: 62, y: 348, width: 30, height: 30)
         
         let voice = UIImage(named: "voice.png")
         let voiceView = UIImageView(image: voice)
-        voiceView.frame = CGRect(x: 62, y: 447, width: 30, height: 30)
+        voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
         super.view.addSubview(label)
         super.view.addSubview(label2)

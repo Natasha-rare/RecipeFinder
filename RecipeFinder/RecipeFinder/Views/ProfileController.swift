@@ -40,7 +40,7 @@ class ProfileController: UIViewController{
         email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         email.textAlignment = .center
         
-        buttonExit.load(title: "log out", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
+        buttonExit.load(title: "log out", frame: CGRect(x: 102, y: 525, width: 170, height: 58))
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         
         super.view.addSubview(label)

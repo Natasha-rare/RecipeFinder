@@ -8,6 +8,7 @@
 
 import Foundation
 import  UIKit
+
 class RootViewController: UITabBarController{
 
     override func viewDidLoad() {
@@ -27,6 +28,9 @@ class RootViewController: UITabBarController{
         viewControllers = viewControllerList
         tabBar.barTintColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         tabBar.isTranslucent = true
+        
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
         
         tabBar.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         tabBar.unselectedItemTintColor = .lightGray
