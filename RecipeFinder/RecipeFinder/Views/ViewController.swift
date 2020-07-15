@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         
         buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
 
         
         buttonRegistr.setTitle("Don’t have an account?", for: .normal)
@@ -72,7 +73,12 @@ class ViewController: UIViewController {
         super.view.addSubview(buttonRegistr)
     }
     
-    @objc func buttonClicked(sender : UIButton) {
+    @objc func buttonClicked2(sender : NeoButton){
+        sender.setShadows()
+    }
+    
+    @objc func buttonClicked(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
         let Password = password.text
         let Email = email.text
         

@@ -46,21 +46,39 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         return numberOfIngredient
     }
     
-    @objc func buttonRegistr(sender : UIButton) {
+    //touch up/down
+    @objc func buttonRegistr(sender : NeoButton) {
+        sender.setShadows()
+        
         let viewc = ScanController()
         self.present(viewc, animated: true, completion: nil)
     }
+    @objc func buttonRegistr2(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
+    }
     
+    //touch up/down
     @objc func buttonText(sender: NeoButton){
+        sender.setShadows()
         let viewc = TextController()
         viewc.delegate = self
         self.present(viewc, animated: true, completion: nil)
     }
+    @objc func buttonText2(sender: NeoButton){
+        sender.layer.sublayers?.removeFirst(2)
+    }
     
-    @objc func buttonVoice(sender: UIButton){
+    //touch up/down
+    @objc func buttonVoice(sender: NeoButton){
+        sender.setShadows()
+        
         let voiceVC = VoiceController()
         self.present(voiceVC, animated: true, completion: nil)
     }
+    @objc func buttonVoice2(sender: NeoButton){
+        sender.layer.sublayers?.removeFirst(2)
+    }
+    
     func getIngridients(_ array: [String]) {
         if array.count != 0{
             getRecipes(ingridients: array)

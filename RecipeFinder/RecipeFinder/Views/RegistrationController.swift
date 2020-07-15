@@ -40,6 +40,7 @@ class RegistrationController: UIViewController{
         
         buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: 257, height: 58))
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonCreate.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
         warning.frame = CGRect(x: 0, y: 456, width: 257, height: 58)
@@ -54,8 +55,11 @@ class RegistrationController: UIViewController{
         super.view.addSubview(confirm)
         super.view.addSubview(name)
     }
-    
+    @objc func buttonClicked2(sender : NeoButton){
+        sender.setShadows()
+    }
     @objc func buttonClicked(sender : UIButton) {
+            sender.layer.sublayers?.removeFirst(2)
            let Password = password.text
            let Email = email.text
            let Confirm = confirm.text

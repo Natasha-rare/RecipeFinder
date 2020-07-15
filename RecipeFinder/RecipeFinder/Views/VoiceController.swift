@@ -27,6 +27,7 @@ class VoiceController: UIViewController {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         button.load(title: "start", frame: CGRect(x: 58, y: 584, width: 259, height: 58))
         button.addTarget(self, action: #selector(self.btnStartSpeechToText(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
         super.view.addSubview(button)
         label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
         label.textColor = UIColor.lightGray
@@ -43,8 +44,8 @@ class VoiceController: UIViewController {
         super.view.addSubview(labelHead)
         self.setupSpeech()
     }
-    @objc func btnStartSpeechToText(_ sender: UIButton) {
-
+    @objc func btnStartSpeechToText(_ sender: NeoButton) {
+        sender.setShadows()
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -54,6 +55,9 @@ class VoiceController: UIViewController {
             self.startRecording()
             self.button.setTitle("done", for: .normal)
         }
+    }
+    @objc func buttonClickedDown(_ sender: NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
     }
 
 

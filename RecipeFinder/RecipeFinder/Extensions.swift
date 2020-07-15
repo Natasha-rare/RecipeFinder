@@ -43,7 +43,6 @@ class NeoButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)){
         
         setTitle("\(title)", for: .normal)
@@ -52,26 +51,30 @@ class NeoButton: UIButton {
         backgroundColor = color
         layer.cornerRadius = 35.0
         
+        setShadows()
+        
+    }
+    func setShadows(){
         let lightShadow = CALayer()
-        lightShadow.frame = self.bounds
-        lightShadow.backgroundColor = self.backgroundColor?.cgColor
-        lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
-        lightShadow.cornerRadius = 35
-        lightShadow.shadowOffset = CGSize(width: -10, height: -10)
-        lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = 7
-        
-        let darkShadow = CALayer()
-        darkShadow.frame = self.bounds
-        darkShadow.backgroundColor = self.backgroundColor?.cgColor
-        darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-        darkShadow.cornerRadius = 35
-        darkShadow.shadowOffset = CGSize(width: 10, height: 10)
-        darkShadow.shadowOpacity = 1
-        darkShadow.shadowRadius = 10
-        
-        self.layer.insertSublayer(lightShadow, at: 1)
-        self.layer.insertSublayer(darkShadow, at: 0)
+               lightShadow.frame = self.bounds
+               lightShadow.backgroundColor = self.backgroundColor?.cgColor
+               lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
+               lightShadow.cornerRadius = 35
+               lightShadow.shadowOffset = CGSize(width: -10, height: -10)
+               lightShadow.shadowOpacity = 1
+               lightShadow.shadowRadius = 7
+               
+               let darkShadow = CALayer()
+               darkShadow.frame = self.bounds
+               darkShadow.backgroundColor = self.backgroundColor?.cgColor
+               darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+               darkShadow.cornerRadius = 35
+               darkShadow.shadowOffset = CGSize(width: 10, height: 10)
+               darkShadow.shadowOpacity = 1
+               darkShadow.shadowRadius = 10
+               
+               self.layer.insertSublayer(lightShadow, at: 1)
+               self.layer.insertSublayer(darkShadow, at: 0)
     }
     
 }
@@ -116,8 +119,13 @@ extension HomeController{
         buttonScan.load(title: "camera", frame: CGRect(x: 144, y: 533, width: 168, height: 60))
         
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
+        buttonScan.addTarget(self, action: #selector(self.buttonRegistr2(sender:)), for: .touchDown)
+        
         buttonVoice.addTarget(self, action: #selector(self.buttonVoice(sender:)), for: .touchUpInside)
+        buttonVoice.addTarget(self, action: #selector(self.buttonVoice2(sender:)), for: .touchDown)
+        
         buttonText.addTarget(self, action: #selector(self.buttonText(sender:)), for: .touchUpInside)
+        buttonText.addTarget(self, action: #selector(self.buttonText2(sender:)), for: .touchDown)
         
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)

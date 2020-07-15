@@ -18,12 +18,16 @@ class GroceryController: UIViewController{
         buttonEnter.load(title: "clear all", frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 1, green: 0.562, blue: 0.562, alpha: 1))
         buttonEnter.setTitleColor(.white, for: .normal)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
         super.view.addSubview(label)
         super.view.addSubview(buttonEnter)
   }
 
     @objc func buttonClicked(sender : NeoButton) {
-        
+        sender.setShadows()
+    }
+    @objc func buttonClicked1(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
     }
     
 }

@@ -47,6 +47,7 @@ class TextController: UIViewController, UITextFieldDelegate{
         
         buttonDone.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         buttonDone.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonDone.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
         let search = UIImage(named: "search.png")
         let searchView = UIImageView(image: search)
@@ -60,6 +61,12 @@ class TextController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func buttonClicked(sender: NeoButton){
+        sender.setShadows()
+        self.delegate?.getIngridients(productsList)
+        self.dismiss(animated: true, completion: nil)
+    }
+    @objc func buttonClicked2(sender: NeoButton){
+        sender.layer.sublayers?.removeFirst(2)
         self.delegate?.getIngridients(productsList)
         self.dismiss(animated: true, completion: nil)
     }

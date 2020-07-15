@@ -44,6 +44,7 @@ class ProfileController: UIViewController{
         
         buttonExit.setTitleColor(.white, for: .normal)
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonExit.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
         super.view.addSubview(label)
         super.view.addSubview(buttonExit)
@@ -52,8 +53,8 @@ class ProfileController: UIViewController{
         super.view.addSubview(email)
     }
     
-    @objc func buttonClicked(sender: UIButton){
-        
+    @objc func buttonClicked(sender: NeoButton){
+        sender.setShadows()
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "logged")
         
@@ -61,5 +62,8 @@ class ProfileController: UIViewController{
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
         print("Button1 Clicked")
+    }
+    @objc func buttonClicked2(sender: NeoButton){
+        sender.layer.sublayers?.removeFirst(2)
     }
 }
