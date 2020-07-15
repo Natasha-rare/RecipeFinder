@@ -151,11 +151,16 @@ extension HomeController{
         
         var count: Int = 0
         for hit in recipes.hits{
-            let im = UIImage(contentsOfFile: hit.recipe.image)
-            let image = UIImageView(image: im)
-            image.frame = CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232)
-            image.layer.shadowColor = UIColor.lightGray.cgColor
-            super.view.addSubview(image)
+            let url = URL(string: hit.recipe.image)!
+            let data = try? Data(contentsOf: url)
+            var image = UIImage()
+            if let imageData = data {
+                image = UIImage(data: imageData)!
+            }
+            let imageV = UIImageView(image: image)
+            imageV.frame = CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232)
+            imageV.layer.shadowColor = UIColor.lightGray.cgColor
+            super.view.addSubview(imageV)
             count += 1
         }
         super.view.addSubview(label)
