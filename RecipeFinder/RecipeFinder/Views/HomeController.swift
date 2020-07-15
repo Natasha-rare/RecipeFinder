@@ -25,7 +25,6 @@ class HomeController: UIViewController{
         
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        getRecipes()
         
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)

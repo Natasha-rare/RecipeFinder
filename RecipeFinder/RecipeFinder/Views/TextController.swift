@@ -54,9 +54,8 @@ class TextController: UIViewController, UITextFieldDelegate
     }
     
     @objc func buttonClicked(sender: NeoButton){
-        for i in productsList{
-            print(i)
-        }
+        HomeController().getRecipes(ingridients: productsList)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonGo(_ sender: Any) {

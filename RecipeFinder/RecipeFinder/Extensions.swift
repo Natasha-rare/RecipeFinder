@@ -95,12 +95,18 @@ extension ProfileController{
 }
 
 extension HomeController{
-    func getRecipes(){
-        let url = "https://api.edamam.com/search?q=chicken&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+    func getRecipes(ingridients: [String]){
+        //optimizing string for request
+        var string: String = ""
+        for i in ingridients{
+            string += i + "%20"
+        }
+        let url = "https://api.edamam.com/search?q=\(string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
         AF.request(url).responseDecodable(of: Welcome.self){
             response in
             guard let recipes = response.value else {return}
             print(recipes.hits[0].recipe.label)
+            self.label2.text = recipes.hits[0].recipe.label
         }
     }
 }
