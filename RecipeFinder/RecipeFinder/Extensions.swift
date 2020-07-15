@@ -36,7 +36,7 @@ class GrayTextField: UITextField{
 class NeoButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        load(title: "Hi", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
+        load(title: "Hi", frame: frame)
     }
     
     

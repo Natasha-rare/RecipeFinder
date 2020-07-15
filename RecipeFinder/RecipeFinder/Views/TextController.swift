@@ -39,7 +39,7 @@ class TextController: UIViewController, UITextFieldDelegate
         textSearch.loadField(placeholderText: "input ingredients", isSecure: false, frame: CGRect(x: 97, y: 364, width: 225, height: 48))
         textSearch.delegate = self
         
-        buttonDone.load(title: "done", frame: CGRect(x: 58, y: 589, width: 259, height: 58))
+        buttonDone.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         buttonDone.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         
         let search = UIImage(named: "search.png")
