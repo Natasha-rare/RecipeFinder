@@ -22,6 +22,7 @@ class RootViewController: UITabBarController{
         savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
         groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "shopping-cart"), tag: 0)
+        
         let viewControllerList = [groceryVC, homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
         tabBar.barTintColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
