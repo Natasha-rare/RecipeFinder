@@ -21,6 +21,7 @@ class HomeController: UIViewController{
     let request = SFSpeechAudioBufferRecognitionRequest()
     var task: SFSpeechRecognitionTask!
     var isStart: Bool = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()

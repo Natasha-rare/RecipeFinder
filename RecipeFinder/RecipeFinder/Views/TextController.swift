@@ -54,8 +54,9 @@ class TextController: UIViewController, UITextFieldDelegate
     }
     
     @objc func buttonClicked(sender: NeoButton){
-        HomeController().getRecipes(ingridients: productsList)
-        self.dismiss(animated: true, completion: nil)
+        let vc = HomeController()
+        vc.label2.text = "Hi!"
+        //self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonGo(_ sender: Any) {
