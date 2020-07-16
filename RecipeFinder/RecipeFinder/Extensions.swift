@@ -34,6 +34,10 @@ class GrayTextField: UITextField{
 }
 
 class CardImage: UIImageView{
+    
+    var title = ""
+    var frameText = CGRect()
+    
     override init(image: UIImage?) {
         super.init(image: image)
         load(image: image!)
@@ -43,11 +47,16 @@ class CardImage: UIImageView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage){
+    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66)){
+        
+        self.title = title
+        self.frameText = frame_lab
+        self.layer.cornerRadius = 20.0
+        
         
         self.image = image
         self.frame = frame
-        layer.cornerRadius = 10.0
+        
         setShadows()
     }
     
@@ -61,7 +70,7 @@ class CardImage: UIImageView{
             lightShadow.shadowOpacity = 1
             lightShadow.shadowRadius = 7
 
-            let darkShadow = CALayer()
+        let darkShadow = CALayer()
             darkShadow.frame = self.bounds
             darkShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
             darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
@@ -70,15 +79,25 @@ class CardImage: UIImageView{
             darkShadow.shadowOpacity = 1
             darkShadow.shadowRadius = 10
         
-            let im = CALayer()
-            let myImage = self.image?.cgImage
-
+        let im = CALayer()
+        let myImage = self.image?.cgImage
             im.frame = self.bounds
             im.cornerRadius = 10
             im.contents = myImage
-            self.layer.insertSublayer(lightShadow, at: 1)
-            self.layer.insertSublayer(darkShadow, at: 0)
-            self.layer.insertSublayer(im, at: 2)
+        
+        let label = UILabel()
+            label.frame = self.frameText
+            label.textColor = UIColor.white
+            label.text = self.title
+            label.font = UIFont(name: "Harmattan-Regular", size: 24)
+            label.textAlignment = .left
+            label.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            label.layer.cornerRadius = 10
+        
+        self.layer.insertSublayer(lightShadow, at: 1)
+        self.layer.insertSublayer(darkShadow, at: 0)
+        self.layer.insertSublayer(im, at: 2)
+        self.addSubview(label)
     }
     
 }
@@ -217,6 +236,8 @@ extension HomeController{
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
         
+
+
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -225,9 +246,15 @@ extension HomeController{
                 image = UIImage(data: imageData)!
             }
             let imageV = CardImage(image: image)
-            imageV.load(frame: CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232), image: image)
+            imageV.load(title: hit.recipe.label,frame: CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232), image: image)
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped))
+            
+            imageV.addGestureRecognizer(tapGesture)
+            imageV.isUserInteractionEnabled = true
             
             scrollView.addSubview(imageV)
+            
             count += 1
         }
         
@@ -236,4 +263,9 @@ extension HomeController{
         scrollView.addSubview(label)
         super.view.addSubview(scrollView)
     }
+    
+     @objc func imageTapped(gesture: UIGestureRecognizer) {
+        print("Image Tapped")
+       }
 }
+
