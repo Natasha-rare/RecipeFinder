@@ -16,6 +16,7 @@ class ProfileController: UIViewController{
     var email = UILabel()
     var password = UILabel()
     var greeting = UILabel()
+    var defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -34,11 +35,13 @@ class ProfileController: UIViewController{
         greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
+        greeting.text = "Hello, " + defaults.string(forKey: "name")! + "!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
         email.font = UIFont(name: "Harmattan-Regular", size: 24)
         email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         email.textAlignment = .center
+        email.text = defaults.string(forKey: "email")
         
         buttonExit.load(title: "log out", frame: CGRect(x: 102, y: 525, width: 170, height: 58), color: UIColor(red: 1, green: 0.562, blue: 0.562, alpha: 1))
         

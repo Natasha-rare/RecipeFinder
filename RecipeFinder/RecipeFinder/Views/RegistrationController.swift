@@ -18,6 +18,7 @@ class RegistrationController: UIViewController{
     var name = GrayTextField()
     var confirm = GrayTextField()
     var buttonCreate = NeoButton()
+    var defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -60,24 +61,7 @@ class RegistrationController: UIViewController{
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }
-    func encrypt(plainText : String, password: String) -> String {
-        
-        let data: Data = plainText.data(using: .utf8)!
-        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKey)
-        let encryptedString : String = encryptedData.base64EncodedString() // getting base64encoded string of encrypted data.
-        return encryptedString
-    }
-    func decrypt(encryptedText : String, password: String) -> String {
-        do  {
-            let data: Data = Data(base64Encoded: encryptedText)! // Just get data from encrypted base64Encoded string.
-            let decryptedData = try RNCryptor.decrypt(data: data, withPassword: password)
-            let decryptedString = String(data: decryptedData, encoding: .utf8) // Getting original string, using same .utf8 encoding option,which we used for encryption.
-            return decryptedString ?? ""
-        }
-        catch {
-            return "FAILED"
-        }
-    }
+   
     @objc func buttonClicked(sender : UIButton) {
             sender.layer.sublayers?.removeFirst(2)
            let Password = password.text
@@ -106,6 +90,10 @@ class RegistrationController: UIViewController{
                 register(email: Email!, password: hashedPassword, name: Name!){result in
                     print(result)
                     if result == "\"Signed up!\""{
+                        self.defaults.set(self.email.text, forKey: "email")
+                        self.defaults.set(self.password.text, forKey: "password")
+                        self.defaults.set(self.name.text, forKey: "name")
+                        self.defaults.set(true, forKey: "logged")
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)

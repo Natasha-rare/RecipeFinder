@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import RNCryptor
 import CryptoSwift
+import RNCryptor
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var warning =  UILabel()
     var email = GrayTextField()
     var password = GrayTextField()
+    private var name: [String] = [""]
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -121,11 +123,32 @@ class ViewController: UIViewController {
                     result in
                     print(result)
                     if result == "\"Logged in!\""{
-
-                        let defaults = UserDefaults.standard
-                        defaults.set(self.email.text, forKey: "email")
-                        defaults.set(self.password.text, forKey: "password")
-                        defaults.set(true, forKey: "logged")
+                        let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(Email!)&pass=\(hashedPassword)")!
+                        //var request = URLRequest(url: url)
+                        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                            if let error = error {
+                                print("error: \(error)")
+                            } else {
+                                if let response = response as? HTTPURLResponse {
+                                    print("statusCode: \(response.statusCode)")
+                                }
+                                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                                    print("data: \(dataString)")
+                                    var namel = dataString.components(separatedBy: "name\":\"")[1]
+                                    print(namel)
+                                    namel = namel.components(separatedBy: "\",\"e")[0]
+                                    print(namel)
+                                    self.name[0] = namel
+                                    self.defaults.set(namel, forKey: "name")
+                                }
+                            }
+                        }
+                        task.resume()
+                        print(self.name[0])
+                        
+                        self.defaults.set(self.email.text, forKey: "email")
+                        self.defaults.set(self.password.text, forKey: "password")
+                        self.defaults.set(true, forKey: "logged")
 
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
@@ -157,6 +180,7 @@ class ViewController: UIViewController {
                 warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
             }
+            print(self.name)
         }
     }
     
