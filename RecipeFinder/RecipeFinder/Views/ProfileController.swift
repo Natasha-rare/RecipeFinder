@@ -1,11 +1,3 @@
-//
-//  ProfileController.swift
-//  RecipeFinder
-//
-//  Created by I on 10.07.2020.
-//  Copyright © 2020 Наталья Автухович. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Alamofire
@@ -69,4 +61,3 @@ class ProfileController: UIViewController{
     @objc func buttonClicked2(sender: NeoButton){
         sender.layer.sublayers?.removeFirst(2)
     }
-}
