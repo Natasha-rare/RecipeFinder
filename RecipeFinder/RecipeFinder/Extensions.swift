@@ -37,7 +37,7 @@ class CardImage: UIImageView{
     
     var title = ""
     var frameText = CGRect()
-    
+    var frameBtn = CGRect()
     override init(image: UIImage?) {
         super.init(image: image)
         load(image: image!)
@@ -47,11 +47,12 @@ class CardImage: UIImageView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66)){
+    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66), frame_button: CGRect = CGRect(x: 184, y: 180, width: 66, height: 66)){
         
         self.title = title
         self.frameText = frame_lab
-        self.layer.cornerRadius = 20.0
+        self.frameBtn = frame_button
+        self.layer.cornerRadius = 10
         
         
         self.image = image
@@ -68,7 +69,7 @@ class CardImage: UIImageView{
             lightShadow.cornerRadius = 10
             lightShadow.shadowOffset = CGSize(width: -10, height: -10)
             lightShadow.shadowOpacity = 1
-            lightShadow.shadowRadius = 7
+            lightShadow.shadowRadius = 10
 
         let darkShadow = CALayer()
             darkShadow.frame = self.bounds
@@ -82,8 +83,13 @@ class CardImage: UIImageView{
         let im = CALayer()
         let myImage = self.image?.cgImage
             im.frame = self.bounds
-            im.cornerRadius = 10
+            im.cornerRadius = 17
             im.contents = myImage
+        im.masksToBounds = true
+        
+        let button = UIButton()
+        button.frame = self.frameBtn
+        button.setImage(UIImage(named: "like.png"), for: .normal)
         
         let label = UILabel()
             label.frame = self.frameText
@@ -93,14 +99,18 @@ class CardImage: UIImageView{
             label.textAlignment = .left
             label.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
             label.layer.cornerRadius = 10
+            label.layer.masksToBounds = true
         
         self.layer.insertSublayer(lightShadow, at: 1)
         self.layer.insertSublayer(darkShadow, at: 0)
         self.layer.insertSublayer(im, at: 2)
+//        self.layer.masksToBounds = true
         self.addSubview(label)
+        self.addSubview(button)
     }
     
 }
+
 
 class NeoButton: UIButton {
     override init(frame: CGRect) {
@@ -211,8 +221,6 @@ extension HomeController{
         let voiceView = UIImageView(image: voice)
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
-       
-        
         super.view.addSubview(label)
         super.view.addSubview(label2)
         super.view.addSubview(buttonText)
@@ -237,7 +245,6 @@ extension HomeController{
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
         
 
-
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -252,7 +259,6 @@ extension HomeController{
             
             imageV.addGestureRecognizer(tapGesture)
             imageV.isUserInteractionEnabled = true
-            
             scrollView.addSubview(imageV)
             
             count += 1
