@@ -61,3 +61,4 @@ class ProfileController: UIViewController{
     @objc func buttonClicked2(sender: NeoButton){
         sender.layer.sublayers?.removeFirst(2)
     }
+}
