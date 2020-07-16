@@ -18,7 +18,6 @@ class RegistrationController: UIViewController{
     var name = GrayTextField()
     var confirm = GrayTextField()
     var buttonCreate = NeoButton()
-    let encryptionKEY = "$3N2@C7@pXp"
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -64,7 +63,7 @@ class RegistrationController: UIViewController{
     func encrypt(plainText : String, password: String) -> String {
         
         let data: Data = plainText.data(using: .utf8)!
-        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKEY)
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKey)
         let encryptedString : String = encryptedData.base64EncodedString() // getting base64encoded string of encrypted data.
         return encryptedString
     }

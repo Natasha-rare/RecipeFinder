@@ -18,8 +18,6 @@ class ViewController: UIViewController {
     var warning =  UILabel()
     var email = GrayTextField()
     var password = GrayTextField()
-    let encryptionKEY = "$3N2@C7@pXp"
-    let bad = "AwFZ4VXNhLGrDIla25vsByttG1O8F+okdjYU0YMaTyy5gmDQw6qJ7A3aMhLXfpOZ/BD/OYeOmvds/VT048Vke9EQBX5oxUJzqgF9NE4eXfgR6A=="
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,7 +80,7 @@ class ViewController: UIViewController {
     func encrypt(plainText : String, password: String) -> String {
         
         let data: Data = plainText.data(using: .utf8)!
-        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKEY)
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKey)
         let encryptedString : String = encryptedData.base64EncodedString() // getting base64encoded string of encrypted data.
         return encryptedString
     }
