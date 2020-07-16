@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import RNCryptor
 import CryptoSwift
 class RegistrationController: UIViewController{
     var warning = UILabel()
@@ -61,7 +60,13 @@ class RegistrationController: UIViewController{
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }
-   
+    
+    func setdefault(Email: String, Password: String, Logged: Bool){
+        self.defaults.set(Email, forKey: "email")
+        self.defaults.set(Password, forKey: "password")
+        self.defaults.set(Logged, forKey: "logged")
+    }
+    
     @objc func buttonClicked(sender : UIButton) {
             sender.layer.sublayers?.removeFirst(2)
            let Password = password.text
@@ -82,18 +87,13 @@ class RegistrationController: UIViewController{
            else{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
                {
-                //let hashedPassword = encrypt(plainText: Password!, password: encryptionKEY)
-                //print("HASHED:" + hashedPassword)
-               // print(decrypt(encryptedText: hashedPassword, password: encryptionKEY))
                 let hashedPassword = ("\(Password!).\(Email!)").sha256()
                 print(hashedPassword)
                 register(email: Email!, password: hashedPassword, name: Name!){result in
                     print(result)
                     if result == "\"Signed up!\""{
-                        self.defaults.set(self.email.text, forKey: "email")
-                        self.defaults.set(self.password.text, forKey: "password")
+                        self.setdefault(Email: Email!, Password: Password!, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
-                        self.defaults.set(true, forKey: "logged")
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
