@@ -178,6 +178,8 @@ extension HomeController{
         buttonText.addTarget(self, action: #selector(self.buttonText(sender:)), for: .touchUpInside)
         buttonText.addTarget(self, action: #selector(self.buttonText2(sender:)), for: .touchDown)
         
+        
+        
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
         cameraView.frame = CGRect(x: 62, y: 548, width: 30, height: 30)
@@ -189,6 +191,8 @@ extension HomeController{
         let voice = UIImage(named: "voice.png")
         let voiceView = UIImageView(image: voice)
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
+        
+       
         
         super.view.addSubview(label)
         super.view.addSubview(label2)
@@ -209,7 +213,10 @@ extension HomeController{
         print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
         var count: Int = 0
-
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
+        
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -220,9 +227,13 @@ extension HomeController{
             let imageV = CardImage(image: image)
             imageV.load(frame: CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232), image: image)
             
-            super.view.addSubview(imageV)
+            scrollView.addSubview(imageV)
             count += 1
         }
-        super.view.addSubview(label)
+        
+        scrollView.contentSize.height = CGFloat(Float(count * 280 + 140))
+
+        scrollView.addSubview(label)
+        super.view.addSubview(scrollView)
     }
 }

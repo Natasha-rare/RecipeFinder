@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 import Speech
 import Alamofire
-class HomeController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RecipeArrayDelegate{
+class HomeController: UIViewController, RecipeArrayDelegate{
 
     let label = UILabel()
     let label2 = UILabel()
-    
     let buttonText = NeoButton()
     let buttonVoice = NeoButton()
     let buttonScan = NeoButton()
@@ -28,27 +27,27 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     var numberOfIngredient: Int = 0
     var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
     
+    let scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-//        tableView.frame = view.frame
-//        self.view.addSubview(tableView)
         loadViewWithoutCards()
         requestPermission()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell
-        
-        cell.name?.text = rec.hits[indexPath.row].recipe.label
-        cell.image?.image = UIImage(named: rec.hits[indexPath.row].recipe.image)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfIngredient
-    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell
+//
+//        cell.name?.text = rec.hits[indexPath.row].recipe.label
+//        cell.image?.image = UIImage(named: rec.hits[indexPath.row].recipe.image)
+//
+//        return cell
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return numberOfIngredient
+//    }
     
     //touch up/down
     @objc func buttonRegistr(sender : NeoButton) {
