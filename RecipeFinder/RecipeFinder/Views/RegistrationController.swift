@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import RNCryptor
+import CryptoSwift
 class RegistrationController: UIViewController{
     var warning = UILabel()
     var email = GrayTextField()
@@ -16,6 +18,7 @@ class RegistrationController: UIViewController{
     var name = GrayTextField()
     var confirm = GrayTextField()
     var buttonCreate = NeoButton()
+    let encryptionKEY = "$3N2@C7@pXp"
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -58,6 +61,24 @@ class RegistrationController: UIViewController{
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }
+    func encrypt(plainText : String, password: String) -> String {
+        
+        let data: Data = plainText.data(using: .utf8)!
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKEY)
+        let encryptedString : String = encryptedData.base64EncodedString() // getting base64encoded string of encrypted data.
+        return encryptedString
+    }
+    func decrypt(encryptedText : String, password: String) -> String {
+        do  {
+            let data: Data = Data(base64Encoded: encryptedText)! // Just get data from encrypted base64Encoded string.
+            let decryptedData = try RNCryptor.decrypt(data: data, withPassword: password)
+            let decryptedString = String(data: decryptedData, encoding: .utf8) // Getting original string, using same .utf8 encoding option,which we used for encryption.
+            return decryptedString ?? ""
+        }
+        catch {
+            return "FAILED"
+        }
+    }
     @objc func buttonClicked(sender : UIButton) {
             sender.layer.sublayers?.removeFirst(2)
            let Password = password.text
@@ -78,7 +99,12 @@ class RegistrationController: UIViewController{
            else{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
                {
-                register(email: Email!, password: Password!, name: Name!){result in
+                //let hashedPassword = encrypt(plainText: Password!, password: encryptionKEY)
+                //print("HASHED:" + hashedPassword)
+               // print(decrypt(encryptedText: hashedPassword, password: encryptionKEY))
+                let hashedPassword = ("\(Password!).\(Email!)").sha256()
+                print(hashedPassword)
+                register(email: Email!, password: hashedPassword, name: Name!){result in
                     print(result)
                     if result == "\"Signed up!\""{
                         let vc = RootViewController()
@@ -96,7 +122,7 @@ class RegistrationController: UIViewController{
 //                   vc.modalPresentationStyle = .fullScreen
 //                   self.present(vc, animated: true, completion: nil)
 //                   print("Button1 Clicked")
-                   
+
                }
                else if password_check.evaluate(with: Password) == false
                {

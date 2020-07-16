@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import RNCryptor
+import CryptoSwift
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -17,6 +18,8 @@ class ViewController: UIViewController {
     var warning =  UILabel()
     var email = GrayTextField()
     var password = GrayTextField()
+    let encryptionKEY = "$3N2@C7@pXp"
+    let bad = "AwFZ4VXNhLGrDIla25vsByttG1O8F+okdjYU0YMaTyy5gmDQw6qJ7A3aMhLXfpOZ/BD/OYeOmvds/VT048Vke9EQBX5oxUJzqgF9NE4eXfgR6A=="
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +79,24 @@ class ViewController: UIViewController {
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }
-    
+    func encrypt(plainText : String, password: String) -> String {
+        
+        let data: Data = plainText.data(using: .utf8)!
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: encryptionKEY)
+        let encryptedString : String = encryptedData.base64EncodedString() // getting base64encoded string of encrypted data.
+        return encryptedString
+    }
+    func decrypt(encryptedText : String, password: String) -> String {
+        do  {
+            let data: Data = Data(base64Encoded: encryptedText)! // Just get data from encrypted base64Encoded string.
+            let decryptedData = try RNCryptor.decrypt(data: data, withPassword: password)
+            let decryptedString = String(data: decryptedData, encoding: .utf8) // Getting original string, using same .utf8 encoding option,which we used for encryption.
+            return decryptedString ?? ""
+        }
+        catch {
+            return "FAILED"
+        }
+    }
     @objc func buttonClicked(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
         let Password = password.text
@@ -92,17 +112,23 @@ class ViewController: UIViewController {
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
                 {
-                
-                auth(email: email.text!, password: password.text!){
+                    let hashedPassword = ("\(Password!).\(Email!)").sha256()
+                    print(hashedPassword)
+//                let hashedPassword = encrypt(plainText: Password!, password: encryptionKEY)
+//                print("Password" + Password!)
+//                print("HASHED:" + hashedPassword)
+//                print(decrypt(encryptedText: hashedPassword, password: encryptionKEY))
+//                print(decrypt(encryptedText: bad, password: encryptionKEY))
+                auth(email: Email!, password: hashedPassword){
                     result in
                     print(result)
                     if result == "\"Logged in!\""{
-                        
+
                         let defaults = UserDefaults.standard
                         defaults.set(self.email.text, forKey: "email")
                         defaults.set(self.password.text, forKey: "password")
                         defaults.set(true, forKey: "logged")
-                        
+
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
