@@ -14,7 +14,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
 
     let label = UILabel()
     let label2 = UILabel()
-//    let tableView = UITableView()
+    
     let buttonText = NeoButton()
     let buttonVoice = NeoButton()
     let buttonScan = NeoButton()
@@ -27,24 +27,6 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     let cardViewEnabled: Bool = false
     var numberOfIngredient: Int = 0
     var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
-    
-//    /// Show always scroll indicator in table view
-//    @objc func showScrollIndicatorsInContacts() {
-//        UIView.animate(withDuration: 0.001) {
-//            self.tableView.flashScrollIndicators()
-//        }
-//    }
-//
-//    /// Start timer for always show scroll indicator in table view
-//    func startTimerForShowScrollIndicator() {
-//        self.timerForShowScrollIndicator = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.showScrollIndicatorsInContacts), userInfo: nil, repeats: true)
-//    }
-//
-//    /// Stop timer for always show scroll indicator in table view
-//    func stopTimerForShowScrollIndicator() {
-//        self.timerForShowScrollIndicator.invalidate()
-//        self.timerForShowScrollIndicator = Timer()
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

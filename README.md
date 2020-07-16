@@ -1,2 +1,2 @@
 # RecipeFinder
-BestTeamEver's project for HSE
+App for finding recipes based on ingridients
