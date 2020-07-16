@@ -33,6 +33,56 @@ class GrayTextField: UITextField{
     }
 }
 
+class CardImage: UIImageView{
+    override init(image: UIImage?) {
+        super.init(image: image)
+        load(image: image!)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage){
+        
+        self.image = image
+        self.frame = frame
+        layer.cornerRadius = 10.0
+        setShadows()
+    }
+    
+    func setShadows(){
+        let lightShadow = CALayer()
+            lightShadow.frame = self.bounds
+            lightShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+            lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
+            lightShadow.cornerRadius = 10
+            lightShadow.shadowOffset = CGSize(width: -10, height: -10)
+            lightShadow.shadowOpacity = 1
+            lightShadow.shadowRadius = 7
+
+            let darkShadow = CALayer()
+            darkShadow.frame = self.bounds
+            darkShadow.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
+            darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+            darkShadow.cornerRadius = 10
+            darkShadow.shadowOffset = CGSize(width: 10, height: 10)
+            darkShadow.shadowOpacity = 1
+            darkShadow.shadowRadius = 10
+        
+            let im = CALayer()
+            let myImage = self.image?.cgImage
+
+            im.frame = self.bounds
+            im.cornerRadius = 10
+            im.contents = myImage
+            self.layer.insertSublayer(lightShadow, at: 1)
+            self.layer.insertSublayer(darkShadow, at: 0)
+            self.layer.insertSublayer(im, at: 2)
+    }
+    
+}
+
 class NeoButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +93,7 @@ class NeoButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)){
         
         setTitle("\(title)", for: .normal)
@@ -157,8 +208,8 @@ extension HomeController{
         label.text = recipes.hits[0].recipe.label
         print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
-        
         var count: Int = 0
+
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -166,10 +217,9 @@ extension HomeController{
             if let imageData = data {
                 image = UIImage(data: imageData)!
             }
-            let imageV = UIImageView(image: image)
-            imageV.frame = CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232)
-            imageV.layer.shadowColor = UIColor.lightGray.cgColor
-            imageV.layer.cornerRadius = 17
+            let imageV = CardImage(image: image)
+            imageV.load(frame: CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232), image: image)
+            
             super.view.addSubview(imageV)
             count += 1
         }
