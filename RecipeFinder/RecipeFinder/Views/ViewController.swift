@@ -29,20 +29,20 @@ class ViewController: UIViewController {
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 45, y: 104, width: 286, height: 80)
+        label2.frame = CGRect(x: 45, y: 104, width: 286, height: 83)
         label2.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        label2.font = UIFont(name: "Harmattan-Regular", size: 27)
-        label2.text = "Enter your products. We’ll show you the recipe"
-        label2.textAlignment = .center
+        label2.font = UIFont(name: "Harmattan-Regular", size: 25)
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
+        label2.textAlignment = .center
+        label2.text = "Enter your products. We’ll show you the recipe."
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
         password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
-        warning.frame = CGRect(x: 10, y: 390, width: 350, height: 60)
+        warning.frame = CGRect(x: 10, y: 395, width: 350, height: 60)
         warning.textColor = UIColor.red
         warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
         warning.numberOfLines = 2
@@ -60,9 +60,9 @@ class ViewController: UIViewController {
         buttonRegistr.frame = CGRect(x: 0, y: 750, width: 375, height: 33)
         buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         
-        let image = UIImage(named: "image 1.jpg")
+        let image = UIImage(named: "mainImage.png")
         let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 95, y: 216, width: 185, height: 185)
+        imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
         
         super.view.addSubview(label)
         super.view.addSubview(label2)

@@ -168,6 +168,7 @@ extension HomeController{
             let imageV = UIImageView(image: image)
             imageV.frame = CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232)
             imageV.layer.shadowColor = UIColor.lightGray.cgColor
+            imageV.layer.cornerRadius = 17
             super.view.addSubview(imageV)
             count += 1
         }
