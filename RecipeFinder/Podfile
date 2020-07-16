@@ -7,5 +7,6 @@ target 'RecipeFinder' do
 
   # Pods for RecipeFinder
 pod "Alamofire"
-
+pod "CryptoSwift", "1.3.1"
+pod "RNCryptor", "5.1.0"
 end
