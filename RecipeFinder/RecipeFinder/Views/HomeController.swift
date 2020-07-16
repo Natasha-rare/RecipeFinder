@@ -112,6 +112,16 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func getRecipes(ingridients: [String]){
+        super.view.subviews.forEach { $0.removeFromSuperview() }
+        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
+        label2.text = "Loading your recipes..."
+        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label2.textAlignment = .center
+        label2.numberOfLines = 0
+        label2.lineBreakMode = .byWordWrapping
+        super.view.addSubview(label2)
+        
         //optimizing string for request
         var string: String = ""
         for i in ingridients{
@@ -121,8 +131,6 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         AF.request(url).responseDecodable(of: Welcome.self){
             response in
             guard let recipes = response.value else {return}
-            print(recipes.hits[0].recipe.label)
-            super.view.subviews.forEach { $0.removeFromSuperview() }
             
             self.loadViewWithCards(recipes: recipes)
         }
