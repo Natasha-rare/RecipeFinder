@@ -28,6 +28,8 @@ class VoiceController: UIViewController {
     var recognitionTask : SFSpeechRecognitionTask?
     let audioEngine = AVAudioEngine()
     var ingredients:[String] = []
+    let phrazes = ["It seems that you didn’t enter ingridients!", "You have to enter some products to search the recipe!"]
+    var i = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -47,7 +49,7 @@ class VoiceController: UIViewController {
         
         label.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label.text = "It seems that you didn’t enter ingridients!"
+        label.text = phrazes[0]
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -202,5 +204,15 @@ extension VoiceController: SFSpeechRecognizerDelegate {
         } else {
             self.button.isEnabled = false
         }
+    }
+}
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
     }
 }
