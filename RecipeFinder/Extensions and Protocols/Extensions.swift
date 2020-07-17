@@ -37,7 +37,7 @@ class CardImage: UIImageView{
     
     var title = ""
     var frameText = CGRect()
-    var frameBtn = CGRect()
+    var frameLab = CGRect()
     override init(image: UIImage?) {
         super.init(image: image)
         load(image: image!)
@@ -47,13 +47,12 @@ class CardImage: UIImageView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66), frame_button: CGRect = CGRect(x: 184, y: 180, width: 66, height: 66)){
+    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66), frame_text: CGRect = CGRect(x: 45, y: 180, width: 180, height: 66)){
         
         self.title = title
-        self.frameText = frame_lab
-        self.frameBtn = frame_button
+        self.frameText = frame_text
+        self.frameLab = frame_lab
         self.layer.cornerRadius = 10
-        
         
         self.image = image
         self.frame = frame
@@ -83,30 +82,31 @@ class CardImage: UIImageView{
         let im = CALayer()
         let myImage = self.image?.cgImage
             im.frame = self.bounds
-            im.cornerRadius = 17
+            im.cornerRadius = 10
             im.contents = myImage
         im.masksToBounds = true
         
-        let button = UIButton()
-        button.frame = self.frameBtn
-        button.setImage(UIImage(named: "like.png"), for: .normal)
         
         let label = UILabel()
-            label.frame = self.frameText
-            label.textColor = UIColor.white
-            label.text = self.title
-            label.font = UIFont(name: "Harmattan-Regular", size: 24)
-            label.textAlignment = .left
-            label.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            label.frame = self.frameLab
+            label.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
             label.layer.cornerRadius = 10
             label.layer.masksToBounds = true
+        
+        let text = UILabel()
+            text.frame = self.frameText
+            text.textColor = UIColor.white
+            text.text = self.title
+            text.font = UIFont(name: "Harmattan-Regular", size: 24)
+            text.textAlignment = .left
+        
         
         self.layer.insertSublayer(lightShadow, at: 1)
         self.layer.insertSublayer(darkShadow, at: 0)
         self.layer.insertSublayer(im, at: 2)
 //        self.layer.masksToBounds = true
         self.addSubview(label)
-        self.addSubview(button)
+        self.addSubview(text)
     }
     
 }
@@ -252,14 +252,30 @@ extension HomeController{
                 image = UIImage(data: imageData)!
             }
             let imageV = CardImage(image: image)
-            imageV.load(title: hit.recipe.label,frame: CGRect(x: 72, y: 120 + count * 280, width: 232, height: 232), image: image)
+            imageV.load(title: hit.recipe.label,frame: CGRect(x: 80, y: 120 + count * 280, width: 232, height: 232), image: image)
             
             let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped))
             
             imageV.addGestureRecognizer(tapGesture)
             imageV.isUserInteractionEnabled = true
-            scrollView.addSubview(imageV)
+
+            let button = UIButton()
+            button.frame = CGRect(x: 290, y: 318 + count * 280, width: 30, height: 30)
+            button.setImage(UIImage(named: "like.png"), for: .normal)
+//            button.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            button.layer.cornerRadius = 10
+            button.layer.masksToBounds = true
             
+            let buttonGrocery = UIButton()
+            buttonGrocery.frame = CGRect(x: 90, y: 318 + count * 280, width: 30, height: 30)
+            buttonGrocery.setImage(UIImage(named: "Local Grocery Store.png.png"), for: .normal)
+//
+            buttonGrocery.layer.cornerRadius = 10
+            buttonGrocery.layer.masksToBounds = true
+            
+            scrollView.addSubview(imageV)
+            scrollView.addSubview(button)
+            scrollView.addSubview(buttonGrocery)
             count += 1
         }
         
