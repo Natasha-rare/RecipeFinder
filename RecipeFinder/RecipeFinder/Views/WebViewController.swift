@@ -13,9 +13,11 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate{
     
     var url = ""
+    var button = NeoButton()
     override func viewDidLoad() {
-    
+        button.load(title: "done", frame: CGRect(x: 20, y: 20, width: 150, height: 58))
         super.viewDidLoad()
+        super.view.addSubview(button)
         setupUI()
         print("URL_URL_URL\(url)")
         let myRequest = URLRequest(url: URL(string: url)!)
