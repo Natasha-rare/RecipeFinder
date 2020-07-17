@@ -57,11 +57,14 @@ class VoiceController: UIViewController {
         labelHead.text = "Just speak"
         labelHead.font = UIFont(name: "Georgia", size: 43)
         labelHead.textAlignment = .center
+        let imageSound = UIImageView(image: UIImage(named: "sound.png"))
+        imageSound.frame = CGRect(x: 67, y: 377, width: 257, height: 67)
         
         super.view.addSubview(button)
         super.view.addSubview(doneButton)
         super.view.addSubview(label)
         super.view.addSubview(labelHead)
+        super.view.addSubview(imageSound)
         self.setupSpeech()
     }
     @objc func btnStartSpeechToText(_ sender: UIButton) {
