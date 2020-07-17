@@ -12,14 +12,13 @@ import WebKit
 
 class WebViewController: UIViewController, WKUIDelegate{
     
-    
+    var url = ""
     override func viewDidLoad() {
     
-        
         super.viewDidLoad()
         setupUI()
         
-        let myRequest = URLRequest(url: URL(string: "https://www.google.com")!)
+        let myRequest = URLRequest(url: URL(string: url)!)
         webView.load(myRequest)
     }
     

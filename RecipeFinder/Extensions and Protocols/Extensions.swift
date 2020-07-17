@@ -254,7 +254,7 @@ extension HomeController{
             let imageV = CardImage(image: image)
             imageV.load(title: hit.recipe.label,frame: CGRect(x: 80, y: 120 + count * 280, width: 232, height: 232), image: image)
             
-            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped))
+            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped(_:)))
             
             imageV.addGestureRecognizer(tapGesture)
             imageV.isUserInteractionEnabled = true
@@ -285,8 +285,10 @@ extension HomeController{
         super.view.addSubview(scrollView)
     }
     
-    @objc func imageTapped(gesture: UIGestureRecognizer) {
+    @objc func imageTapped(_ gesture: UIGestureRecognizer) {
+        
         let vc = WebViewController()
+        vc.url = "https://apple.com"
         self.present(vc, animated: true, completion: nil)
        }
 }
