@@ -58,6 +58,10 @@ class CardImage: UIButton{
         
         layer.cornerRadius = 10
         layer.masksToBounds = true
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        layer.shadowOffset = CGSize(width: 10, height: 10)
+        layer.shadowRadius = 10
+        layer.shadowOpacity = 1
         setImage(image, for: .normal)
         
         self.frame = frame
@@ -257,7 +261,7 @@ extension HomeController{
             }
             
             let imageV = CardImage()
-            imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 232, height: 232), image: image, url: hit.recipe.url)
+            imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 256, height: 256), image: image, url: hit.recipe.url)
             imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)
 //           let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped(_:)))
 //            tapGesture.delegate  = self
@@ -265,14 +269,14 @@ extension HomeController{
 //            imageV.isUserInteractionEnabled = true
 
             let button = UIButton()
-            button.frame = CGRect(x: 278, y: 318 + count * 280, width: 30, height: 30)
+            button.frame = CGRect(x: 275, y: 315 + count * 280, width: 30, height: 30)
             button.setImage(UIImage(named: "like.png"), for: .normal)
 //            button.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
             button.layer.cornerRadius = 10
             button.layer.masksToBounds = true
             
             let buttonGrocery = UIButton()
-            buttonGrocery.frame = CGRect(x: 78, y: 318 + count * 280, width: 30, height: 30)
+            buttonGrocery.frame = CGRect(x: 75, y: 315 + count * 280, width: 30, height: 30)
             buttonGrocery.setImage(UIImage(named: "Local Grocery Store.png.png"), for: .normal)
             
             buttonGrocery.layer.cornerRadius = 10

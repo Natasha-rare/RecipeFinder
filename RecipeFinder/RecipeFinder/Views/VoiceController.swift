@@ -16,13 +16,14 @@ class VoiceController: UIViewController {
     
     weak var delegate: RecipeArrayDelegate?
     
-    var button = NeoButton()
+    var button = UIButton()
     var buttonSet = NeoButton()
     var label = UILabel()
     var labelHead = UILabel()
     let speechRecognizer = SFSpeechRecognizer()
     var doneButton = NeoButton()
-
+    var productsList: [String] = []
+    
     var recognitionRequest : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask : SFSpeechRecognitionTask?
     let audioEngine = AVAudioEngine()
@@ -30,30 +31,41 @@ class VoiceController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        button.load(title: "start", frame: CGRect(x: 58, y: 500, width: 259, height: 58))
+        button.frame = CGRect(x: 113, y: 500, width: 150, height: 58)
+        button.setTitle("start", for: .normal)
+        button.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
+        button.backgroundColor = view.backgroundColor
+        button.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        button.layer.cornerRadius = 30
+        button.layer.masksToBounds = true
+        button.layer.borderWidth = 1
         button.addTarget(self, action: #selector(self.btnStartSpeechToText(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
-        doneButton.load(title: "done", frame: CGRect(x: 58, y: 650, width: 259, height: 58))
+        
+        doneButton.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         doneButton.addTarget(self, action: #selector(self.buttonDoneClicked(_:)), for: .touchUpInside)
-        super.view.addSubview(button)
-        super.view.addSubview(doneButton)
-        label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
-        label.textColor = UIColor.lightGray
-        label.text = "Ingridients you entered will appear here"
+        
+        label.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
+        label.text = "It seems that you didn’t enter ingridients!"
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
-        label.numberOfLines = 100
-        super.view.addSubview(label)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        
         labelHead.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         labelHead.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         labelHead.text = "Just speak"
         labelHead.font = UIFont(name: "Georgia", size: 43)
         labelHead.textAlignment = .center
+        
+        super.view.addSubview(button)
+        super.view.addSubview(doneButton)
+        super.view.addSubview(label)
         super.view.addSubview(labelHead)
         self.setupSpeech()
     }
-    @objc func btnStartSpeechToText(_ sender: NeoButton) {
-        sender.setShadows()
+    @objc func btnStartSpeechToText(_ sender: UIButton) {
+//        sender.setShadows()
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -61,27 +73,24 @@ class VoiceController: UIViewController {
             self.button.setTitle("start", for: .normal)
         } else {
             self.startRecording()
-            self.button.setTitle("done", for: .normal)
+            self.button.setTitle("stop", for: .normal)
         }
     }
     @objc func buttonSetPressed(){
-        if self.label.text != "Тут будут ваши ингридиенты."{
-            ingredients = self.label.text?.components(separatedBy: " ") as! [String]
-            print(ingredients)
+        if self.label.text != "It seems that you didn’t enter ingridients!"{
             let vc = HomeController()
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
-        
     }
+    
     @objc func buttonClickedDown(_ sender: NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }
     
     @objc func buttonDoneClicked(_ sender: UIButton){
-        let arr = label.text!.components(separatedBy: " ")
-        print(arr)
-        delegate?.getIngridients(arr)
+        productsList = label.text!.components(separatedBy: " ")
+        self.delegate?.getIngridients(productsList)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -182,8 +191,6 @@ class VoiceController: UIViewController {
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-
-        self.label.text = "Тут будут ваши ингридиенты."
     }
     
 }
