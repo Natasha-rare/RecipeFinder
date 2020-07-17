@@ -286,7 +286,6 @@ extension HomeController{
     }
     
     @objc func imageTapped(_ gesture: UIGestureRecognizer) {
-        
         let vc = WebViewController()
         vc.url = "https://apple.com"
         self.present(vc, animated: true, completion: nil)

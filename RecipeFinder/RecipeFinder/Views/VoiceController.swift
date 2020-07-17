@@ -13,10 +13,14 @@ import AVKit
 
 class VoiceController: UIViewController {
 
+    
+    weak var delegate: RecipeArrayDelegate?
+    
     var button = NeoButton()
     var label = UILabel()
     var labelHead = UILabel()
-    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru-RU"))
+    let speechRecognizer = SFSpeechRecognizer()
+    var doneButton = NeoButton()
 
     var recognitionRequest : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask : SFSpeechRecognitionTask?
@@ -28,10 +32,13 @@ class VoiceController: UIViewController {
         button.load(title: "start", frame: CGRect(x: 58, y: 584, width: 259, height: 58))
         button.addTarget(self, action: #selector(self.btnStartSpeechToText(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
+        doneButton.load(title: "done", frame: CGRect(x: 58, y: 650, width: 259, height: 58))
+        doneButton.addTarget(self, action: #selector(self.buttonDoneClicked(_:)), for: .touchUpInside)
         super.view.addSubview(button)
+        super.view.addSubview(doneButton)
         label.frame = CGRect(x: 3, y: 246, width: 370, height: 100)
         label.textColor = UIColor.lightGray
-        label.text = "Тут будут ваши ингридиенты."
+        label.text = "Ingridients you entered will appear here"
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 100
@@ -58,6 +65,13 @@ class VoiceController: UIViewController {
     }
     @objc func buttonClickedDown(_ sender: NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
+    }
+    
+    @objc func buttonDoneClicked(_ sender: UIButton){
+        let arr = label.text!.components(separatedBy: " ")
+        print(arr)
+        delegate?.getIngridients(arr)
+        self.dismiss(animated: true, completion: nil)
     }
 
 
