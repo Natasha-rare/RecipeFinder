@@ -89,7 +89,7 @@ class CardImage: UIImageView{
         
         let label = UILabel()
             label.frame = self.frameLab
-            label.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
+            label.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
             label.layer.cornerRadius = 10
             label.layer.masksToBounds = true
         
@@ -136,25 +136,25 @@ class NeoButton: UIButton {
     }
     func setShadows(){
         let lightShadow = CALayer()
-               lightShadow.frame = self.bounds
-               lightShadow.backgroundColor = self.backgroundColor?.cgColor
-               lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
-               lightShadow.cornerRadius = 35
-               lightShadow.shadowOffset = CGSize(width: -10, height: -10)
-               lightShadow.shadowOpacity = 1
-               lightShadow.shadowRadius = 7
+           lightShadow.frame = self.bounds
+           lightShadow.backgroundColor = self.backgroundColor?.cgColor
+           lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
+           lightShadow.cornerRadius = 35
+           lightShadow.shadowOffset = CGSize(width: -10, height: -10)
+           lightShadow.shadowOpacity = 1
+           lightShadow.shadowRadius = 7
                
-               let darkShadow = CALayer()
-               darkShadow.frame = self.bounds
-               darkShadow.backgroundColor = self.backgroundColor?.cgColor
-               darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-               darkShadow.cornerRadius = 35
-               darkShadow.shadowOffset = CGSize(width: 10, height: 10)
-               darkShadow.shadowOpacity = 1
-               darkShadow.shadowRadius = 10
+       let darkShadow = CALayer()
+           darkShadow.frame = self.bounds
+           darkShadow.backgroundColor = self.backgroundColor?.cgColor
+           darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+           darkShadow.cornerRadius = 35
+           darkShadow.shadowOffset = CGSize(width: 10, height: 10)
+           darkShadow.shadowOpacity = 1
+           darkShadow.shadowRadius = 10
                
-               self.layer.insertSublayer(lightShadow, at: 1)
-               self.layer.insertSublayer(darkShadow, at: 0)
+       self.layer.insertSublayer(lightShadow, at: 1)
+       self.layer.insertSublayer(darkShadow, at: 0)
     }
     
 }
@@ -253,22 +253,21 @@ extension HomeController{
                 image = UIImage(data: imageData)!
             }
             let imageV = CardImage(image: image)
-            imageV.load(title: hit.recipe.label,frame: CGRect(x: 80, y: 120 + count * 280, width: 232, height: 232), image: image)
+                imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 232, height: 232), image: image)
             
             let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped))
-            
             imageV.addGestureRecognizer(tapGesture)
             imageV.isUserInteractionEnabled = true
 
             let button = UIButton()
-            button.frame = CGRect(x: 290, y: 318 + count * 280, width: 30, height: 30)
+            button.frame = CGRect(x: 278, y: 318 + count * 280, width: 30, height: 30)
             button.setImage(UIImage(named: "like.png"), for: .normal)
 //            button.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
             button.layer.cornerRadius = 10
             button.layer.masksToBounds = true
             
             let buttonGrocery = UIButton()
-            buttonGrocery.frame = CGRect(x: 90, y: 318 + count * 280, width: 30, height: 30)
+            buttonGrocery.frame = CGRect(x: 78, y: 318 + count * 280, width: 30, height: 30)
             buttonGrocery.setImage(UIImage(named: "Local Grocery Store.png.png"), for: .normal)
 //
             buttonGrocery.layer.cornerRadius = 10
