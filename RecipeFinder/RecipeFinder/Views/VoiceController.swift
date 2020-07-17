@@ -17,6 +17,7 @@ class VoiceController: UIViewController {
     weak var delegate: RecipeArrayDelegate?
     
     var button = NeoButton()
+    var buttonSet = NeoButton()
     var label = UILabel()
     var labelHead = UILabel()
     let speechRecognizer = SFSpeechRecognizer()
@@ -24,12 +25,12 @@ class VoiceController: UIViewController {
 
     var recognitionRequest : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask : SFSpeechRecognitionTask?
-    let audioEngine     = AVAudioEngine()
-
+    let audioEngine = AVAudioEngine()
+    var ingredients:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        button.load(title: "start", frame: CGRect(x: 58, y: 584, width: 259, height: 58))
+        button.load(title: "start", frame: CGRect(x: 58, y: 500, width: 259, height: 58))
         button.addTarget(self, action: #selector(self.btnStartSpeechToText(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
         doneButton.load(title: "done", frame: CGRect(x: 58, y: 650, width: 259, height: 58))
@@ -62,6 +63,16 @@ class VoiceController: UIViewController {
             self.startRecording()
             self.button.setTitle("done", for: .normal)
         }
+    }
+    @objc func buttonSetPressed(){
+        if self.label.text != "Тут будут ваши ингридиенты."{
+            ingredients = self.label.text?.components(separatedBy: " ") as! [String]
+            print(ingredients)
+            let vc = HomeController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+        
     }
     @objc func buttonClickedDown(_ sender: NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
@@ -99,6 +110,9 @@ class VoiceController: UIViewController {
             case .notDetermined:
                 isButtonEnabled = false
                 print("Speech recognition not yet authorized")
+            @unknown default:
+                isButtonEnabled = false
+                print("unknown default")
             }
 
             OperationQueue.main.addOperation() {
