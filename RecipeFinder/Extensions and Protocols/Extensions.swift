@@ -33,30 +33,34 @@ class GrayTextField: UITextField{
     }
 }
 
-class CardImage: UIImageView{
+class CardImage: UIButton{
     
     var title = ""
     var frameText = CGRect()
     var frameLab = CGRect()
-    override init(image: UIImage?) {
-        super.init(image: image)
-        load(image: image!)
+    var urlIm = ""
+    var image = UIImage()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        load(frame: frame)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String = "", frame: CGRect = CGRect(x: 0, y: 0, width: 256, height: 256), image: UIImage, frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66), frame_text: CGRect = CGRect(x: 45, y: 180, width: 180, height: 66)){
+    func load(title: String = "", frame: CGRect, image: UIImage = UIImage(), frame_lab: CGRect = CGRect(x: 6, y: 180, width: 244, height: 66), frame_text: CGRect = CGRect(x: 45, y: 180, width: 180, height: 66), url:String = ""){
         
+        self.urlIm = url
         self.title = title
         self.frameText = frame_text
         self.frameLab = frame_lab
-        self.layer.cornerRadius = 10
         
-        self.image = image
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+        setImage(image, for: .normal)
+        
         self.frame = frame
-        
         setShadows()
     }
     
@@ -78,14 +82,13 @@ class CardImage: UIImageView{
             darkShadow.shadowOffset = CGSize(width: 10, height: 10)
             darkShadow.shadowOpacity = 1
             darkShadow.shadowRadius = 10
-        
+
         let im = CALayer()
-        let myImage = self.image?.cgImage
+        let myImage = self.image.cgImage
             im.frame = self.bounds
             im.cornerRadius = 10
             im.contents = myImage
         im.masksToBounds = true
-        
         
         let label = UILabel()
             label.frame = self.frameLab
@@ -101,9 +104,10 @@ class CardImage: UIImageView{
             text.textAlignment = .left
         
         
-        self.layer.insertSublayer(lightShadow, at: 1)
-        self.layer.insertSublayer(darkShadow, at: 0)
-        self.layer.insertSublayer(im, at: 2)
+//        layer.insertSublayer(lightShadow, at: 1)
+//        layer.insertSublayer(darkShadow, at: 0)
+//        layer.insertSublayer(im, at: 2)
+//        self.setImage(image, for: .normal)
 //        self.layer.masksToBounds = true
         self.addSubview(label)
         self.addSubview(text)
@@ -251,13 +255,14 @@ extension HomeController{
             if let imageData = data {
                 image = UIImage(data: imageData)!
             }
-            let imageV = CardImage(image: image)
-                imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 232, height: 232), image: image)
             
-            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped(_:)))
-            
-            imageV.addGestureRecognizer(tapGesture)
-            imageV.isUserInteractionEnabled = true
+            let imageV = CardImage()
+            imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 232, height: 232), image: image, url: hit.recipe.url)
+            imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)
+//           let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped(_:)))
+//            tapGesture.delegate  = self
+//            imageV.addGestureRecognizer(tapGesture)
+//            imageV.isUserInteractionEnabled = true
 
             let button = UIButton()
             button.frame = CGRect(x: 278, y: 318 + count * 280, width: 30, height: 30)
@@ -269,7 +274,7 @@ extension HomeController{
             let buttonGrocery = UIButton()
             buttonGrocery.frame = CGRect(x: 78, y: 318 + count * 280, width: 30, height: 30)
             buttonGrocery.setImage(UIImage(named: "Local Grocery Store.png.png"), for: .normal)
-//
+            
             buttonGrocery.layer.cornerRadius = 10
             buttonGrocery.layer.masksToBounds = true
             
@@ -285,10 +290,11 @@ extension HomeController{
         super.view.addSubview(scrollView)
     }
     
-    @objc func imageTapped(_ gesture: UIGestureRecognizer) {
-        
+    @objc func imageTapped(_ sender: CardImage) {
+        print(sender.urlIm) // ссылка
+        print("aa[dlsfksefs;")
         let vc = WebViewController()
-        vc.url = "https://apple.com"
+        vc.url = sender.urlIm
         self.present(vc, animated: true, completion: nil)
        }
 }

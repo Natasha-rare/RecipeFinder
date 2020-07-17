@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 import Speech
 import Alamofire
-class HomeController: UIViewController, RecipeArrayDelegate{
+class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizerDelegate{
 
     let label = UILabel()
     let label2 = UILabel()
     let buttonText = NeoButton()
     let buttonVoice = NeoButton()
     let buttonScan = NeoButton()
+//    let imageV = CardImage()
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
@@ -26,7 +27,7 @@ class HomeController: UIViewController, RecipeArrayDelegate{
     let cardViewEnabled: Bool = false
     var numberOfIngredient: Int = 0
     var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
-//    var tapGesture = UITapGestureRecognizer()
+    var selectedImage: String = ""
     let scrollView = UIScrollView()
     
     override func viewDidLoad() {
@@ -48,6 +49,13 @@ class HomeController: UIViewController, RecipeArrayDelegate{
     }
     @objc func buttonRegistr2(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
+    }
+    
+    @objc func imageTapped(sender: CardImage){
+        print(sender.urlIm)
+        let vc = WebViewController()
+        vc.url = sender.urlIm
+        self.present(vc, animated: true, completion: nil)
     }
     
     //touch up/down
