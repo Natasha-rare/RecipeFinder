@@ -43,6 +43,7 @@ class VoiceController: UIViewController {
         
         doneButton.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         doneButton.addTarget(self, action: #selector(self.buttonDoneClicked(_:)), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
         
         label.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
@@ -79,21 +80,16 @@ class VoiceController: UIViewController {
             self.button.setTitle("stop", for: .normal)
         }
     }
-    @objc func buttonSetPressed(){
-        if self.label.text != "It seems that you didn’t enter ingridients!"{
-            let vc = HomeController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
     
     @objc func buttonClickedDown(_ sender: NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }
     
     @objc func buttonDoneClicked(_ sender: UIButton){
+        if label.text != "It seems that you didn’t enter ingridients!"{
         productsList = label.text!.components(separatedBy: " ")
         self.delegate?.getIngridients(productsList)
+        }
         self.dismiss(animated: true, completion: nil)
     }
 
