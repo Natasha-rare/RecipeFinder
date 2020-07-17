@@ -74,6 +74,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         sender.setShadows()
         
         let voiceVC = VoiceController()
+        voiceVC.delegate = self
         self.present(voiceVC, animated: true, completion: nil)
     }
     @objc func buttonVoice2(sender: NeoButton){
