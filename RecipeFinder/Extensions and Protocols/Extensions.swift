@@ -233,10 +233,9 @@ extension HomeController{
     
     
     func loadViewWithCards(recipes: Welcome){
-        
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = recipes.hits[0].recipe.label
+        label.text = "Home"
         print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
         var count: Int = 0
@@ -270,8 +269,8 @@ extension HomeController{
         super.view.addSubview(scrollView)
     }
     
-     @objc func imageTapped(gesture: UIGestureRecognizer) {
-        print("Image Tapped")
+    @objc func imageTapped(gesture: UIGestureRecognizer) {
+        let vc = WebViewController()
+        self.present(vc, animated: true, completion: nil)
        }
 }
-

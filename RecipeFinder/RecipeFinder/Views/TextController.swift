@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-protocol RecipeArrayDelegate: AnyObject {
-    func getIngridients(_ array: [String])
-}
-
 class TextController: UIViewController, UITextFieldDelegate{
     
     weak var delegate: RecipeArrayDelegate?
