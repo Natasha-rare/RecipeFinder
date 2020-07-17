@@ -79,22 +79,16 @@ class VoiceController: UIViewController {
             self.button.setTitle("stop", for: .normal)
         }
     }
-    @objc func buttonSetPressed(){
-        if self.label.text != "It seems that you didn’t enter ingridients!"{
-            let vc = HomeController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
-    
     @objc func buttonClickedDown(_ sender: NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }
     
     @objc func buttonDoneClicked(_ sender: UIButton){
-        productsList = label.text!.components(separatedBy: " ")
-        self.delegate?.getIngridients(productsList)
-        self.dismiss(animated: true, completion: nil)
+        if self.label.text != "It seems that you didn’t enter ingridients!"{
+            productsList = label.text!.components(separatedBy: " ")
+            self.delegate?.getIngridients(productsList)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
 
