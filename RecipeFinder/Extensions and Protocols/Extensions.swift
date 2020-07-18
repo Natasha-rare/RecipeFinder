@@ -254,16 +254,17 @@ extension HomeController{
     
     
     func loadViewWithCards(recipes: Welcome){
-        label.frame = CGRect(x: 0, y: 10, width: 375, height: 79)
+        label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Home"
+        
         
         label2.frame = CGRect(x: 60, y: 80, width: 256, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
-        label2.numberOfLines = 0
+        label2.numberOfLines = 2
         label2.lineBreakMode = .byWordWrapping
         print(recipes)
         label.font = UIFont(name: "Georgia", size: 43)
@@ -271,13 +272,13 @@ extension HomeController{
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
+        
+      
         let button = NeoButton()
-        button.load(title: "Find other recipes", frame: CGRect(x: 60, y: 180, width: 256, height: 60))
+        button.load(title: "Find other recipes", frame: CGRect(x: 60, y: 160, width: 256, height: 60))
         button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+        label2.text =  "Ingredients: " + recipes.q + " "
         
-        
-        
-        label2.text = "Your ingredients: " + recipes.q
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -287,11 +288,11 @@ extension HomeController{
             }
             
             let imageV = CardImage()
-            imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 300 + count * 280, width: 256, height: 256), image: image, url: hit.recipe.url)
+            imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 270 + count * 280, width: 256, height: 256), image: image, url: hit.recipe.url)
             imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)
 
             let button = LikeButton()
-            button.frame = CGRect(x: 275, y: 315 + count * 280, width: 30, height: 30)
+            button.frame = CGRect(x: 275, y: 285 + count * 280, width: 30, height: 30)
             button.setImage(UIImage(named: "like.png"), for: .normal)
             button.layer.cornerRadius = 10
             button.layer.masksToBounds = true
@@ -299,7 +300,7 @@ extension HomeController{
             button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
             
             let buttonGrocery = UIButton()
-            buttonGrocery.frame = CGRect(x: 75, y: 315 + count * 280, width: 30, height: 30)
+            buttonGrocery.frame = CGRect(x: 75, y: 285 + count * 280, width: 30, height: 30)
             buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
             
             buttonGrocery.layer.cornerRadius = 10
@@ -311,9 +312,10 @@ extension HomeController{
             count += 1
         }
         
-        scrollView.contentSize.height = CGFloat(Float(count * 280 + 300))
+        scrollView.contentSize.height = CGFloat(Float(count * 280 + 270))
 
         scrollView.addSubview(label)
+        label2.text = label2.text!.lowercased()
         scrollView.addSubview(label2)
         scrollView.addSubview(button)
         super.view.addSubview(scrollView)

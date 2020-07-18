@@ -35,11 +35,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-//        
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-//        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        view.addSubview(buttonScan)    
+        
         loadViewWithoutCards()
         //requestPermission()
     }

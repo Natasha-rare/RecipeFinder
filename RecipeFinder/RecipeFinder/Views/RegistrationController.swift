@@ -18,6 +18,7 @@ class RegistrationController: UIViewController{
     var confirm = GrayTextField()
     var buttonCreate = NeoButton()
     var defaults = UserDefaults.standard
+    let scrollView = UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -29,7 +30,6 @@ class RegistrationController: UIViewController{
         label.text = "Registration"
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
-        super.view.addSubview(label)
         
         
         name.loadField(placeholderText: "name", isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
@@ -51,11 +51,19 @@ class RegistrationController: UIViewController{
         warning.numberOfLines = 0
         warning.lineBreakMode = .byWordWrapping
         warning.textAlignment = .center
-        super.view.addSubview(buttonCreate)
-        super.view.addSubview(email)
-        super.view.addSubview(password)
-        super.view.addSubview(confirm)
-        super.view.addSubview(name)
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
+        
+        scrollView.addSubview(label)
+        scrollView.addSubview(name)
+        scrollView.addSubview(email)
+        scrollView.addSubview(password)
+        
+        scrollView.addSubview(buttonCreate)
+        scrollView.addSubview(confirm)
+        super.view.addSubview(scrollView)
     }
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
@@ -82,7 +90,7 @@ class RegistrationController: UIViewController{
            let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
            if Password == "" || Email == "" || Confirm == "" || Name == ""{
                warning.text = "You've entered an empty value"
-               super.view.addSubview(warning)
+               scrollView.addSubview(warning)
            }
            else{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
@@ -101,7 +109,7 @@ class RegistrationController: UIViewController{
                     else if result == "\"User exists!\""{
                         self.warning.textColor = .red
                         self.warning.text = "User with the same email is already excist! Please Log In"
-                        super.view.addSubview(self.warning)
+                        self.scrollView.addSubview(self.warning)
                     }
                 }
                    print("Password right, email right")
@@ -120,17 +128,17 @@ class RegistrationController: UIViewController{
                    else {
                        warning.text = "Password should contain capital, lowercase letters and numbers"
                    }
-                   super.view.addSubview(warning)
+                   scrollView.addSubview(warning)
                }
                else if Password != Confirm{
                    print("Passwords are not equal")
                    warning.text = "Passwords are not equal"
-                   super.view.addSubview(warning)
+                   scrollView.addSubview(warning)
                }
                else {
                    print("Email wrong")
                    warning.text = "This email address doesn't exist"
-                   super.view.addSubview(warning)
+                   scrollView.addSubview(warning)
                }
            }
        }
