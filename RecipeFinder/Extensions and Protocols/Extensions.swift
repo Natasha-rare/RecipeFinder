@@ -358,6 +358,11 @@ extension HomeController{
     
     @objc func buttonTapped(_ sender: LikeButton){
         print(sender.url)
+        let originalImage = UIImage(named: "like.png")
+        let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
+        sender.setImage(tintedImage, for: .normal)
+        sender.tintColor = UIColor.red
+        
         let defaults = UserDefaults.standard
         let pass = defaults.object(forKey: "password")
         let email = defaults.object(forKey: "email")
