@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         label2.textAlignment = .center
-        label2.text = "Enter your products. We’ll show you the recipe."
+        label2.text = "Enter products. We’ll show the recipe."
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
@@ -69,13 +69,34 @@ class ViewController: UIViewController {
         imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
         
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 30, height: 80, width: 375)
+        
         super.view.addSubview(label2)
+        AddConstraints(view: label2, top: 104, height: 83, width: 286)
+        
         super.view.addSubview(email)
+        AddConstraints(view: email, top: 470, height: 60, width: 257)
+        
         super.view.addSubview(password)
+        AddConstraints(view: password, top: 540, height: 60, width: 257)
+        
         super.view.addSubview(imageView)
+        AddConstraints(view: imageView, top: 175, height: 257, width: 257)
+        
         super.view.addSubview(buttonStart)
+        AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
+        
         super.view.addSubview(buttonRegistr)
-            
+        AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
+    }
+    
+    func AddConstraints(view: UIView, top: Int, height: Int, width: Int){
+        view.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(top)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(height)
+            make.width.equalTo(width)
+        }
     }
     
     @objc func buttonClicked2(sender : NeoButton){
