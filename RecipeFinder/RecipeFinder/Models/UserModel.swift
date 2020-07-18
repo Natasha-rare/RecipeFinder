@@ -9,11 +9,12 @@
 import Foundation
 
 public struct User: Codable {
-    var id: Int
-    var name: String?
+    var name: String
     var email: String
+    var password: String?
     var savedLinks: [Link]?
     var productList: [Products]?
+    
 }
 
 public struct Products: Codable {

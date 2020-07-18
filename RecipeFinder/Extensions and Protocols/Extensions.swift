@@ -263,17 +263,14 @@ extension HomeController{
             let imageV = CardImage()
             imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 120 + count * 280, width: 256, height: 256), image: image, url: hit.recipe.url)
             imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)
-//           let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(imageTapped(_:)))
-//            tapGesture.delegate  = self
-//            imageV.addGestureRecognizer(tapGesture)
-//            imageV.isUserInteractionEnabled = true
 
-            let button = UIButton()
+            let button = LikeButton()
             button.frame = CGRect(x: 275, y: 315 + count * 280, width: 30, height: 30)
             button.setImage(UIImage(named: "like.png"), for: .normal)
-//            button.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
             button.layer.cornerRadius = 10
             button.layer.masksToBounds = true
+            button.url = hit.recipe.url
+            button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
             
             let buttonGrocery = UIButton()
             buttonGrocery.frame = CGRect(x: 75, y: 315 + count * 280, width: 30, height: 30)
@@ -295,10 +292,29 @@ extension HomeController{
     }
     
     @objc func imageTapped(_ sender: CardImage) {
-        print(sender.urlIm) // ссылка
-        print("aa[dlsfksefs;")
         let vc = WebViewController()
         vc.url = sender.urlIm
         self.present(vc, animated: true, completion: nil)
        }
+    
+    @objc func buttonTapped(_ sender: LikeButton){
+        print(sender.url)
+        let defaults = UserDefaults.standard
+        let pass = defaults.object(forKey: "password")
+        let email = defaults.object(forKey: "email")
+        let name = defaults.object(forKey: "name")
+        var arr: [Link] = []
+        let url = URL(string: "https://recipe-finder-api.azurewebsites.net")!
+        arr.append(Link(address: sender.url))
+        let user = User(name: name as! String, email: email as! String, password: pass as? String, savedLinks: arr, productList: nil)
+        AF.request(url,
+                   method: .put,
+                   parameters: try? JSONEncoder().encode(user)).response{response in
+                    print(response)
+        }
+    }
+}
+
+class LikeButton: UIButton{
+    var url: String = ""
 }
