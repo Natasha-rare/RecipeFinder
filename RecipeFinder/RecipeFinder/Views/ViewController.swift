@@ -8,6 +8,7 @@
 
 import UIKit
 import CryptoSwift
+import SnapKit
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -19,7 +20,6 @@ class ViewController: UIViewController {
     var password = GrayTextField()
     private var name: [String] = [""]
     let defaults = UserDefaults.standard
-    let scrollView = UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,19 +68,14 @@ class ViewController: UIViewController {
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
         
-        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
-        
-        scrollView.addSubview(label)
-        scrollView.addSubview(label2)
-        scrollView.addSubview(email)
-        scrollView.addSubview(password)
-        scrollView.addSubview(imageView)
-        scrollView.addSubview(buttonStart)
-        scrollView.addSubview(buttonRegistr)
-        super.view.addSubview(scrollView)
-        
+        super.view.addSubview(label)
+        super.view.addSubview(label2)
+        super.view.addSubview(email)
+        super.view.addSubview(password)
+        super.view.addSubview(imageView)
+        super.view.addSubview(buttonStart)
+        super.view.addSubview(buttonRegistr)
+            
     }
     
     @objc func buttonClicked2(sender : NeoButton){
@@ -96,7 +91,7 @@ class ViewController: UIViewController {
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
         if Password == "" || Email == ""{
             warning.text = "You've entered an empty value"
-            scrollView.addSubview(warning)
+            super.view.addSubview(warning)
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
@@ -138,12 +133,12 @@ class ViewController: UIViewController {
                     }
                     else if result == "\"Incorrect password!\""{
                         self.warning.text = "Incorrect password :("
-                        self.scrollView.addSubview(self.warning)
+                        super.view.addSubview(self.warning)
                     }
                     else{
                         self.warning.textColor = .red
                         self.warning.text = "Hey! Seems you have to register!"
-                        self.scrollView.addSubview(self.warning)
+                        super.view.addSubview(self.warning)
                     }
                 }
                 
@@ -156,11 +151,11 @@ class ViewController: UIViewController {
                 else {
                     warning.text = "Password should contain capital, lowercase letters and numbers"
                 }
-                scrollView.addSubview(warning)
+                super.view.addSubview(warning)
             }
             else {
                 warning.text = "This email address doesn't exist"
-                scrollView.addSubview(warning)
+                super.view.addSubview(warning)
             }
             print(self.name)
         }

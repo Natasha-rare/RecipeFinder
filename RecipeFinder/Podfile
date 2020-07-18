@@ -9,4 +9,5 @@ target 'RecipeFinder' do
 pod "Alamofire"
 pod "CryptoSwift", "1.3.1"
 pod "RNCryptor", "5.1.0"
+pod 'SnapKit', '~> 5.0'
 end
