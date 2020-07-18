@@ -35,10 +35,15 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-//        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gesture:)))
+//        
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+//        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//        view.addSubview(buttonScan)    
         loadViewWithoutCards()
         //requestPermission()
     }
+    
     //touch up/down
     @objc func buttonRegistr(sender : NeoButton) {
         sender.setShadows()
@@ -46,6 +51,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         let viewc = ScanController()
         self.present(viewc, animated: true, completion: nil)
     }
+    
     @objc func buttonRegistr2(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }
@@ -158,9 +164,6 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                 }
             }
         }
-            
-        
-        
         
     }
 

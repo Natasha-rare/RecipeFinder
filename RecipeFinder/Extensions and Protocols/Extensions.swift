@@ -216,7 +216,6 @@ extension HomeController{
         buttonText.addTarget(self, action: #selector(self.buttonText2(sender:)), for: .touchDown)
         
         
-        
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
         cameraView.frame = CGRect(x: 62, y: 548, width: 30, height: 30)
@@ -229,6 +228,7 @@ extension HomeController{
         let voiceView = UIImageView(image: voice)
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
+        
         super.view.addSubview(label)
         super.view.addSubview(label2)
         super.view.addSubview(buttonText)
@@ -237,6 +237,19 @@ extension HomeController{
         super.view.addSubview(cameraView)
         super.view.addSubview(textView)
         super.view.addSubview(voiceView)
+//
+//        buttonScan.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            buttonScan.topAnchor
+//                .constraint(equalTo: super.view.safeAreaLayoutGuide.topAnchor),
+//            buttonScan.leftAnchor
+//                .constraint(equalTo: super.view.safeAreaLayoutGuide.leftAnchor),
+//            buttonScan.bottomAnchor
+//                .constraint(equalTo: super.view.safeAreaLayoutGuide.bottomAnchor, constant: 593),
+//            buttonScan.rightAnchor
+//                .constraint(equalTo: super.view.safeAreaLayoutGuide.rightAnchor, constant: 312)
+//        ])
+//
     }
     
     
@@ -245,7 +258,7 @@ extension HomeController{
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Home"
         
-        label2.frame = CGRect(x: 10, y: 80, width: 259, height: 80)
+        label2.frame = CGRect(x: 60, y: 80, width: 256, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
@@ -258,10 +271,13 @@ extension HomeController{
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
-        var button = NeoButton()
+        let button = NeoButton()
         button.load(title: "Find other recipes", frame: CGRect(x: 60, y: 180, width: 256, height: 60))
         button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
-        label2.text = "Your ingredients: " + recipes.q + " "
+        
+        
+        
+        label2.text = "Your ingredients: " + recipes.q
         for hit in recipes.hits{
             let url = URL(string: hit.recipe.image)!
             let data = try? Data(contentsOf: url)
@@ -284,7 +300,7 @@ extension HomeController{
             
             let buttonGrocery = UIButton()
             buttonGrocery.frame = CGRect(x: 75, y: 315 + count * 280, width: 30, height: 30)
-            buttonGrocery.setImage(UIImage(named: "Local Grocery Store.png.png"), for: .normal)
+            buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
             
             buttonGrocery.layer.cornerRadius = 10
             buttonGrocery.layer.masksToBounds = true
