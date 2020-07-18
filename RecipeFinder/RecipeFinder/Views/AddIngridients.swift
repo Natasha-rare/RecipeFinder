@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
+
 class SecondaryViewController: UIViewController
 {
-
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -43,9 +43,13 @@ class SecondaryViewController: UIViewController
         imageMicro.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         
         super.view.addSubview(label2)
+        
         super.view.addSubview(label)
+        
         super.view.addSubview(buttonDone)
+        
         super.view.addSubview(imageMicro)
+        
     }
 
     @objc func buttonClicked_DONE(sender : UIButton) {

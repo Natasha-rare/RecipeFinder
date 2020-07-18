@@ -9,6 +9,7 @@
 import UIKit
 import CryptoSwift
 import SnapKit
+
 class ViewController: UIViewController {
     var label = UILabel()
     var label2 = UILabel()
@@ -52,12 +53,10 @@ class ViewController: UIViewController {
         warning.numberOfLines = 2
         warning.textAlignment = .center
         
-        
         buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
 
-        
         buttonRegistr.setTitle("Don’t have an account?", for: .normal)
         buttonRegistr.setTitleColor(UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1), for: .normal)
         buttonRegistr.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -88,15 +87,6 @@ class ViewController: UIViewController {
         
         super.view.addSubview(buttonRegistr)
         AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
-    }
-    
-    func AddConstraints(view: UIView, top: Int, height: Int, width: Int){
-        view.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(top)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(height)
-            make.width.equalTo(width)
-        }
     }
     
     @objc func buttonClicked2(sender : NeoButton){

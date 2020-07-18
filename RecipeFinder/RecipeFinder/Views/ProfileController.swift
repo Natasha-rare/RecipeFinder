@@ -42,10 +42,19 @@ class ProfileController: UIViewController{
         buttonExit.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
         super.view.addSubview(buttonExit)
+        AddConstraints(view: buttonExit, top: 525, height: 58, width: 170)
+        
         super.view.addSubview(imageView)
+        AddConstraints(view: imageView, top: 139, height: 117, width: 117)
+        
         super.view.addSubview(greeting)
+        AddConstraints(view: greeting, top: 281, height: 58, width: 257)
+        
         super.view.addSubview(email)
+        AddConstraints(view: email, top: 348, height: 58, width: 257)
     }
     
     @objc func buttonClicked(sender: NeoButton){

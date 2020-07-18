@@ -20,12 +20,16 @@ class GroceryController: UIViewController{
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
         super.view.addSubview(buttonEnter)
+        AddConstraints(view: buttonEnter, top: 589, height: 58, width: 259)
   }
 
     @objc func buttonClicked(sender : NeoButton) {
         sender.setShadows()
     }
+    
     @objc func buttonClicked1(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }

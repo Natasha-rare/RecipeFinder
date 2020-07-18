@@ -50,10 +50,19 @@ class TextController: UIViewController, UITextFieldDelegate{
         searchView.frame = CGRect(x: 49, y: 373, width: 30, height: 30)
         
         super.view.addSubview(buttonDone)
+        AddConstraints(view: buttonDone, top: 584, height: 58, width: 150)
+        
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
         super.view.addSubview(label2)
+        AddConstraints(view: label2, top: 200, height: 80, width: 259)
+        
         super.view.addSubview(searchView)
+        ImageConstraints(view: searchView, top: 373, width: 30, height: 30, left: 49)
+        
         super.view.addSubview(textSearch)
+        AddConstraints(view: textSearch, top: 364, height: 48, width: 225)
     }
     
     @objc func buttonClicked(sender: NeoButton){

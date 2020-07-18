@@ -107,7 +107,6 @@ class CardImage: UIButton{
             text.font = UIFont(name: "Harmattan-Regular", size: 24)
             text.textAlignment = .left
         
-        
 //        layer.insertSublayer(lightShadow, at: 1)
 //        layer.insertSublayer(darkShadow, at: 0)
 //        layer.insertSublayer(im, at: 2)
@@ -230,13 +229,29 @@ extension HomeController{
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
         super.view.addSubview(label2)
+        AddConstraints(view: label2, top: 200, height: 80, width: 259)
+        
         super.view.addSubview(buttonText)
+        AddConstraints(view: buttonText, top: 333, height: 60, width: 168)
+        
         super.view.addSubview(buttonVoice)
+        AddConstraints(view: buttonVoice, top: 433, height: 60, width: 168)
+        
         super.view.addSubview(buttonScan)
+        AddConstraints(view: buttonScan, top: 533, height: 60, width: 168)
+        
         super.view.addSubview(cameraView)
+        ImageConstraints(view: cameraView, top: 548, width: 30, height: 30, left: 62)
+        
         super.view.addSubview(textView)
+        ImageConstraints(view: textView, top: 348, width: 30, height: 30, left: 62)
+        
         super.view.addSubview(voiceView)
+        ImageConstraints(view: voiceView, top: 448, width: 30, height: 30, left: 62)
+        
     }
     
     
@@ -289,23 +304,46 @@ extension HomeController{
             let buttonGrocery = UIButton()
             buttonGrocery.frame = CGRect(x: 75, y: 285 + count * 280, width: 30, height: 30)
             buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
-            
             buttonGrocery.layer.cornerRadius = 10
             buttonGrocery.layer.masksToBounds = true
+            buttonGrocery.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
             
             scrollView.addSubview(imageV)
+            AddConstraints(view: imageV, top: 270 + count * 280, height: 256, width: 256)
+            
             scrollView.addSubview(button)
+            ImageConstraints(view: button, top: 285 + count * 280, width: 30, height: 30, left: 275)
+            
             scrollView.addSubview(buttonGrocery)
+            ImageConstraints(view: buttonGrocery, top: 285 + count * 280, width: 30, height: 30, left: 75)
             count += 1
         }
         
         scrollView.contentSize.height = CGFloat(Float(count * 280 + 270))
 
         scrollView.addSubview(label)
+        AddConstraints(view: label, top: 5, height: 79, width: 375)
+        
         label2.text = label2.text!.lowercased()
         scrollView.addSubview(label2)
+        AddConstraints(view: label2, top: 80, height: 80, width: 256)
+        
         scrollView.addSubview(button)
+        AddConstraints(view: button, top: 160, height: 60, width: 256)
+        
         super.view.addSubview(scrollView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leftAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            scrollView.bottomAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.rightAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
+        ])
     }
     @objc func buttonPressed(){
         let vc = HomeController()

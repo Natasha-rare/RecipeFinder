@@ -101,7 +101,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         super.view.addSubview(label2)
-        
+        AddConstraints(view: label2, top: 200, height: 80, width: 259)
         //optimizing string for request
             
         self.checker = 0

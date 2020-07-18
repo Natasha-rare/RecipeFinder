@@ -17,6 +17,7 @@ class RegistrationController: UIViewController{
     var name = GrayTextField()
     var confirm = GrayTextField()
     var buttonCreate = NeoButton()
+    let scrollView = UIScrollView()
     var defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,9 @@ class RegistrationController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
         
         name.loadField(placeholderText: "name", isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
         
@@ -51,16 +55,28 @@ class RegistrationController: UIViewController{
         warning.lineBreakMode = .byWordWrapping
         warning.textAlignment = .center
         
-       
         
         super.view.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
         super.view.addSubview(name)
+        AddConstraints(view: name, top: 152, height: 58, width: 257)
+        
         super.view.addSubview(email)
+        AddConstraints(view: email, top: 240, height: 58, width: 257)
+        
         super.view.addSubview(password)
-        super.view.addSubview(buttonCreate)
+        AddConstraints(view: password, top: 318, height: 58, width: 257)
+        
         super.view.addSubview(confirm)
+        AddConstraints(view: confirm, top: 396, height: 58, width: 257)
+        
+        super.view.addSubview(buttonCreate)
+        AddConstraints(view: buttonCreate, top: 516, height: 58, width: 257)
+        
         
     }
+    
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }

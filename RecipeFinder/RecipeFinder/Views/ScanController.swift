@@ -27,7 +27,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         resultLabel.font = UIFont(name: "Harmattan-Regular", size: 20)
         
         super.view.addSubview(resultLabel)
-        
+        AddConstraints(view: resultLabel, top: 50, height: 20, width: 400)
         
     }
     
