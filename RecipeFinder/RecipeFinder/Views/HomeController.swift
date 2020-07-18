@@ -17,6 +17,8 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     let buttonText = NeoButton()
     let buttonVoice = NeoButton()
     let buttonScan = NeoButton()
+    var string: String = ""
+    var checker = 0
 //    let imageV = CardImage()
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
@@ -35,11 +37,8 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
 //        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(gesture:)))
         loadViewWithoutCards()
-        requestPermission()
+        //requestPermission()
     }
-
-    
-    
     //touch up/down
     @objc func buttonRegistr(sender : NeoButton) {
         sender.setShadows()
@@ -92,6 +91,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     func getRecipes(ingridients: [String]){
+       
         super.view.subviews.forEach { $0.removeFromSuperview() }
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
@@ -103,97 +103,84 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         super.view.addSubview(label2)
         
         //optimizing string for request
-        var string: String = ""
-        for i in ingridients{
-            string += i + "%20"
-        }
-        let url = "https://api.edamam.com/search?q=\(string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
-        AF.request(url).responseDecodable(of: Welcome.self){
-            response in
-            guard let recipes = response.value else {return}
             
-            self.loadViewWithCards(recipes: recipes)
+        self.checker = 0
+        for i in ingridients
+        {
+            let url_check = "https://api.edamam.com/search?q=\(i)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+            AF.request(url_check).responseDecodable(of: Welcome.self){
+                response in
+                switch response.result{
+                case .success(let value):
+                    if value.count != 0{
+                        print("YEAH")
+                        self.string += i + "%20"
+                        print(1)
+                        self.checker += 1
+                        if self.checker == ingridients.count && self.string != ""
+                        {
+                            self.getrecipes()
+                            
+                        }
+                        else if self.checker == ingridients.count{
+                            self.loadViewWithoutCards()
+                            self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                        }
+                    }
+                    else{
+                        print("ERROR")
+                        print(1)
+                        self.checker += 1
+                        if self.checker == ingridients.count && self.string != ""
+                        {
+                            self.getrecipes()
+                            
+                        }
+                        else if self.checker == ingridients.count{
+                            self.loadViewWithoutCards()
+                            self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                        }
+                    }
+                case .failure(let error):
+                    print("ERROR")
+                    print(error)
+                    print(2)
+                    self.checker += 1
+                    if self.checker == ingridients.count && self.string != ""
+                    {
+                        self.loadViewWithoutCards()
+                        self.getrecipes()
+                        
+                    }
+                    else if self.checker == ingridients.count{
+                        self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                    }
+                }
+            }
         }
+            
+        
+        
+        
     }
 
-    func startSpeechRecognition(){
-        let node = audioEngine.inputNode
-        let recordingFormat = node.outputFormat(forBus: 0)
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat)  {(buffer, _) in
-            self.request.append(buffer)
-        }
-        audioEngine.prepare()
-        do{
-            try audioEngine.start()
-        } catch let error{
-            alertView(message: "Error comes here = \(error.localizedDescription)")
-        }
-        guard let myRecognization = SFSpeechRecognizer() else{
-            self.alertView(message: "Recognization is not allowed")
-            return
-        }
-        if !myRecognization.isAvailable{
-            self.alertView(message: "Recognization is free right now. Please try again after some time.")
-        }
-        task = speechRecognizer?.recognitionTask(with: request, resultHandler: {(response, error) in
-            guard let response = response else{
-                if error != nil {
-                    self.alertView(message: error.debugDescription)
-                }else{
-                    self.alertView(message: "Problem in giving the response")
-                }
-                return
-            }
-            let message = response.bestTranscription.formattedString
-            self.label2.text = message
-        })
-    }
-    func cancelSpeechRecognition(){
-        task.finish()
-        task.cancel()
-        task = nil
-        
-        request.endAudio()
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
-    }
-    @objc func buttonStart(sender: Any){
-        isStart = !isStart
-        if isStart{
-            startSpeechRecognition()
-            buttonVoice.setTitle("Stop", for: .normal)
-        }
-        else{
-            cancelSpeechRecognition()
-            buttonVoice.setTitle("Start", for: .normal)
-        }
-    }
-    func alertView(message: String){
-        let controller = UIAlertController.init(title: "Error occured!", message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
-            controller.dismiss(animated: true, completion: nil)
-        }))
-        self.present(controller, animated: true, completion: nil)
-    }
-    func requestPermission(){
-        self.buttonVoice.isEnabled = false
-        SFSpeechRecognizer.requestAuthorization({(authState) in
-            OperationQueue.main.addOperation {
-                if authState == .authorized{
-                    print("ACCEPTED")
-                    self.buttonVoice.isEnabled = true
-                }else if authState == .denied{
-                    print("DENIED")
-                    self.alertView(message: "User denied the permition")
-                }else if authState == .notDetermined{
-                    print("NO SUCH FUNCTION")
-                    self.alertView(message: "User has no such function")
-                }else if authState == .restricted{
-                    print("RESTRICTED")
-                    self.alertView(message: "It has been restricted")
-                }
-            }
-        })
+    func getrecipes(){
+        print(33)
+        if self.string != "" {
+                   print("enter")
+            let url = "https://api.edamam.com/search?q=\(self.string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+                   AF.request(url).responseDecodable(of: Welcome.self){
+                       response in
+                       guard let recipes = response.value else {return}
+                       
+                       self.loadViewWithCards(recipes: recipes)
+                       }
+               }
+               else{
+                   print("failed")
+                   //self.loadViewWithoutCards()
+                   //self.label2.text = "There're no recipes for your ingredients. Enter them correctly."
+                   }
     }
     
 }
