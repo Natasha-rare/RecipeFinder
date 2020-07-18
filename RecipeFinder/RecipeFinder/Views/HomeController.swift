@@ -39,7 +39,6 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         loadViewWithoutCards()
         //requestPermission()
     }
-    
     //touch up/down
     @objc func buttonRegistr(sender : NeoButton) {
         sender.setShadows()
@@ -47,7 +46,6 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         let viewc = ScanController()
         self.present(viewc, animated: true, completion: nil)
     }
-    
     @objc func buttonRegistr2(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
     }
@@ -160,6 +158,9 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                 }
             }
         }
+            
+        
+        
         
     }
 

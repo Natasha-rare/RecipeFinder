@@ -216,6 +216,7 @@ extension HomeController{
         buttonText.addTarget(self, action: #selector(self.buttonText2(sender:)), for: .touchDown)
         
         
+        
         let camera = UIImage(named: "camera.png")
         let cameraView = UIImageView(image: camera)
         cameraView.frame = CGRect(x: 62, y: 548, width: 30, height: 30)
@@ -228,7 +229,6 @@ extension HomeController{
         let voiceView = UIImageView(image: voice)
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
-        
         super.view.addSubview(label)
         super.view.addSubview(label2)
         super.view.addSubview(buttonText)
@@ -237,19 +237,6 @@ extension HomeController{
         super.view.addSubview(cameraView)
         super.view.addSubview(textView)
         super.view.addSubview(voiceView)
-//
-//        buttonScan.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            buttonScan.topAnchor
-//                .constraint(equalTo: super.view.safeAreaLayoutGuide.topAnchor),
-//            buttonScan.leftAnchor
-//                .constraint(equalTo: super.view.safeAreaLayoutGuide.leftAnchor),
-//            buttonScan.bottomAnchor
-//                .constraint(equalTo: super.view.safeAreaLayoutGuide.bottomAnchor, constant: 593),
-//            buttonScan.rightAnchor
-//                .constraint(equalTo: super.view.safeAreaLayoutGuide.rightAnchor, constant: 312)
-//        ])
-//
     }
     
     

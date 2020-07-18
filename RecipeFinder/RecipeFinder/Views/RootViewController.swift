@@ -22,7 +22,7 @@ class RootViewController: UITabBarController{
         homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.png"), tag: 0)
         savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
-        groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Local Grocery Store.png"), tag: 0)
+        groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "shopping-cart"), tag: 0)
         
         let viewControllerList = [groceryVC, homeVC, savedVC, profileVC]
         viewControllers = viewControllerList
