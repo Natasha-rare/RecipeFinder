@@ -43,33 +43,18 @@ class TextController: UIViewController, UITextFieldDelegate{
         textSearch.delegate = self
         
         buttonDone.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
-        buttonDone.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        //buttonDone.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonDone.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
         let search = UIImage(named: "search.png")
         let searchView = UIImageView(image: search)
         searchView.frame = CGRect(x: 49, y: 373, width: 30, height: 30)
         
-        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 650)
-        
-        scrollView.addSubview(buttonDone)
-        AddConstraints(view: buttonDone, top: 584, height: 58, width: 150)
-        
-        scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
-        
-        scrollView.addSubview(label2)
-        AddConstraints(view: label2, top: 200, height: 80, width: 259)
-        
-        scrollView.addSubview(searchView)
-        ImageConstraints(view: searchView, top: 373, width: 30, height: 30, left: 49)
-        
-        scrollView.addSubview(textSearch)
-        AddConstraints(view: textSearch, top: 364, height: 48, width: 225)
-        
-        super.view.addSubview(scrollView)
-        ScrollViewConstraints(view: scrollView)
+        super.view.addSubview(buttonDone)
+        super.view.addSubview(label)
+        super.view.addSubview(label2)
+        super.view.addSubview(searchView)
+        super.view.addSubview(textSearch)
     }
     
     @objc func buttonClicked(sender: NeoButton){
@@ -78,6 +63,7 @@ class TextController: UIViewController, UITextFieldDelegate{
         self.dismiss(animated: true, completion: nil)
     }
     @objc func buttonClicked2(sender: NeoButton){
+        sender.setShadows()
         sender.layer.sublayers?.removeFirst(2)
         self.delegate?.getIngridients(productsList)
         self.dismiss(animated: true, completion: nil)

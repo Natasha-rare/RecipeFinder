@@ -32,6 +32,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     var selectedImage: String = ""
     let scrollView = UIScrollView()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -91,19 +92,19 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     func getRecipes(ingridients: [String]){
+       
         super.view.subviews.forEach { $0.removeFromSuperview() }
-        
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = "Loading your recipes..."
+        
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
-        
         super.view.addSubview(label2)
         AddConstraints(view: label2, top: 200, height: 80, width: 259)
-        
+        //optimizing string for request
             
         self.checker = 0
         for i in ingridients
@@ -114,9 +115,9 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                 switch response.result{
                 case .success(let value):
                     if value.count != 0{
-                       
+                        print("YEAH")
                         self.string += i + "%20"
-                        
+                        print(1)
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
@@ -129,8 +130,8 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         }
                     }
                     else{
-                       
-                        
+                        print("ERROR")
+                        print(1)
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
@@ -143,7 +144,9 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         }
                     }
                 case .failure(let error):
-                   print(error)
+                    print("ERROR")
+                    print(error)
+                    print(2)
                     self.checker += 1
                     if self.checker == ingridients.count && self.string != ""
                     {
@@ -157,23 +160,29 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                 }
             }
         }
+            
+        
+        
+        
     }
 
     func getrecipes(){
         print(33)
-        if self.string != ""
-        {
-            print("enter")
+        if self.string != "" {
+                   print("enter")
             let url = "https://api.edamam.com/search?q=\(self.string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
                    AF.request(url).responseDecodable(of: Welcome.self){
-                   response in
-                   guard let recipes = response.value else {return}
-                   self.loadViewWithCards(recipes: recipes)
-                }
-        }
-        else{
-           print("failed")
-        }
+                       response in
+                       guard let recipes = response.value else {return}
+                       
+                       self.loadViewWithCards(recipes: recipes)
+                       }
+               }
+               else{
+                   print("failed")
+                   //self.loadViewWithoutCards()
+                   //self.label2.text = "There're no recipes for your ingredients. Enter them correctly."
+                   }
     }
     
 }
