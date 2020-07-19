@@ -21,7 +21,13 @@ class SavedController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        super.view.addSubview(label)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
+        scrollView.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
     }
 }
