@@ -207,7 +207,7 @@ extension HomeController{
         
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 680)
         
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)

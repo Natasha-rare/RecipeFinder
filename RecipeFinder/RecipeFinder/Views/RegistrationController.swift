@@ -98,8 +98,9 @@ class RegistrationController: UIViewController{
            let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
            let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
            if Password == "" || Email == "" || Confirm == "" || Name == ""{
-               warning.text = "You've entered an empty value"
-            super.view.addSubview(warning)
+                warning.text = "You've entered an empty value"
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 456, height: 58, width: 257)
            }
            else{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
@@ -107,7 +108,6 @@ class RegistrationController: UIViewController{
                 let hashedPassword = ("\(Password!).\(Email!)").sha256()
                
                 register(email: Email!, password: hashedPassword, name: Name!){result in
-                   
                     if result == "\"Signed up!\""{
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
@@ -118,32 +118,31 @@ class RegistrationController: UIViewController{
                     else if result == "\"User exists!\""{
                         self.warning.textColor = .red
                         self.warning.text = "User with the same email is already excist! Please Log In"
-                        super.view.addSubview(self.warning)
+                        self.scrollView.addSubview(self.warning)
+                        AddConstraints(view: self.warning, top: 456, height: 58, width: 257)
+                        }
                     }
-                }
-                   
-
                }
                else if password_check.evaluate(with: Password) == false
                {
-                  
                    if Password!.count < 8 {
                        warning.text = "Your password is too short"
                    }
                    else {
                        warning.text = "Password should contain capital, lowercase letters and numbers"
                    }
-                super.view.addSubview(warning)
+                    scrollView.addSubview(warning)
+                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
                }
                else if Password != Confirm{
-                  
-                   warning.text = "Passwords are not equal"
-                super.view.addSubview(warning)
+                    warning.text = "Passwords are not equal"
+                    scrollView.addSubview(warning)
+                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
                }
                else {
-                   
-                   warning.text = "This email address doesn't exist"
-                super.view.addSubview(warning)
+                    warning.text = "This email address doesn't exist"
+                    scrollView.addSubview(warning)
+                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
                }
            }
        }
