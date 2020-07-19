@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     private var name: [String] = [""]
     let defaults = UserDefaults.standard
     var scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +72,6 @@ class ViewController: UIViewController {
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
         
-        
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 30, height: 80, width: 375)
         
@@ -100,6 +100,7 @@ class ViewController: UIViewController {
     @objc func buttonClicked2(sender : NeoButton){
         sender.setShadows()
     }
+    
     @objc func buttonClicked(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
         let Password = password.text
@@ -110,7 +111,8 @@ class ViewController: UIViewController {
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
         if Password == "" || Email == ""{
             warning.text = "You've entered an empty value"
-            super.view.addSubview(warning)
+            scrollView.addSubview(warning)
+            AddConstraints(view: warning, top: 395, height: 60, width: 350)
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
@@ -151,12 +153,14 @@ class ViewController: UIViewController {
                     }
                     else if result == "\"Incorrect password!\""{
                         self.warning.text = "Incorrect password :("
-                        super.view.addSubview(self.warning)
+                        self.scrollView.addSubview(self.warning)
+                        AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
                     }
                     else{
                         self.warning.textColor = .red
                         self.warning.text = "Hey! Seems you have to register!"
-                        super.view.addSubview(self.warning)
+                        self.scrollView.addSubview(self.warning)
+                        AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
                     }
                 }
                 
@@ -169,20 +173,24 @@ class ViewController: UIViewController {
                 else {
                     warning.text = "Password should contain capital, lowercase letters and numbers"
                 }
-                super.view.addSubview(warning)
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 395, height: 60, width: 350)
             }
             else {
                 warning.text = "This email address doesn't exist"
-                super.view.addSubview(warning)
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 395, height: 60, width: 350)
             }
            
         }
     }
+    
     func setdefault(Email: String, Password: String, Logged: Bool){
         self.defaults.set(Email, forKey: "email")
         self.defaults.set(Password, forKey: "password")
         self.defaults.set(Logged, forKey: "logged")
     }
+    
     @objc func buttonRegistr(sender : UIButton) {
         let viewc = RegistrationController()
         self.present(viewc, animated: true, completion: nil)
