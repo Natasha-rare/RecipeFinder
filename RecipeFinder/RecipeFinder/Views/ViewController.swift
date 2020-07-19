@@ -108,10 +108,10 @@ class ViewController: UIViewController {
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
                 {
                     let hashedPassword = ("\(Password!).\(Email!)").sha256()
-                    print(hashedPassword)
+                    
                 auth(email: Email!, password: hashedPassword){
                     result in
-                    print(result)
+                    
                     if result == "\"Logged in!\""{
                         let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(Email!)&pass=\(hashedPassword)")!
                         //var request = URLRequest(url: url)
@@ -119,24 +119,23 @@ class ViewController: UIViewController {
                             if let error = error {
                                 print("error: \(error)")
                             } else {
-                                if let response = response as? HTTPURLResponse {
-                                    print("statusCode: \(response.statusCode)")
+                                if (response as? HTTPURLResponse) != nil {
+                                    
                                 }
                                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                                    print("data: \(dataString)")
+                                    
                                     var namel = dataString.components(separatedBy: "name\":\"")[1]
-                                    print(namel)
+                                   
                                     namel = namel.components(separatedBy: "\",\"e")[0]
-                                    print(namel)
+                                    
                                     self.name[0] = namel
                                     //self.defaults.set(namel, forKey: "name")
                                 }
                             }
                         }
                         task.resume()
-                        print(self.name[0])
                         
-                        self.setdefault(Email: Email!, Password: Password!, Logged: true)
+                        self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
 
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
@@ -168,7 +167,7 @@ class ViewController: UIViewController {
                 warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
             }
-            print(self.name)
+           
         }
     }
     func setdefault(Email: String, Password: String, Logged: Bool){

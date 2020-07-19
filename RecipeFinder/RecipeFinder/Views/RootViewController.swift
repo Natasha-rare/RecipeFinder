@@ -13,12 +13,17 @@ class RootViewController: UITabBarController{
 
     override func viewDidLoad() {
         
+        
         super.viewDidLoad()
+        
+        FetchUser { (user) in
+            GlobalUser = user
+        }
+        
         let homeVC = HomeController()
         let savedVC = SavedController()
         let profileVC = ProfileController()
         let groceryVC = GroceryController()
-        profileVC.FetchUserData()
         homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.png"), tag: 0)
         savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)

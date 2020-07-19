@@ -27,7 +27,7 @@ class ProfileController: UIViewController{
         greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
-        greeting.text = "Hello, \(defaults.string(forKey: "name"))!"
+        greeting.text = "Hello, \(String(describing: defaults.string(forKey: "name")))!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
         email.font = UIFont(name: "Harmattan-Regular", size: 24)
@@ -65,7 +65,7 @@ class ProfileController: UIViewController{
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-        print("Button1 Clicked")
+        
     }
     @objc func buttonClicked2(sender: NeoButton){
         sender.layer.sublayers?.removeFirst(2)

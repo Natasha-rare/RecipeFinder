@@ -51,7 +51,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     @objc func imageTapped(sender: CardImage){
-        print(sender.urlIm)
+       
         let vc = WebViewController()
         vc.url = sender.urlIm
         self.present(vc, animated: true, completion: nil)
@@ -113,9 +113,9 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                 switch response.result{
                 case .success(let value):
                     if value.count != 0{
-                        print("YEAH")
+                       
                         self.string += i + "%20"
-                        print(1)
+                        
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
@@ -128,8 +128,8 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         }
                     }
                     else{
-                        print("ERROR")
-                        print(1)
+                       
+                        
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
@@ -142,9 +142,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         }
                     }
                 case .failure(let error):
-                    print("ERROR")
-                    print(error)
-                    print(2)
+                   print(error)
                     self.checker += 1
                     if self.checker == ingridients.count && self.string != ""
                     {

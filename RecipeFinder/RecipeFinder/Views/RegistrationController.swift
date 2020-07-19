@@ -93,10 +93,7 @@ class RegistrationController: UIViewController{
            let Email = email.text
            let Confirm = confirm.text
            let Name = name.text
-           print("Password : \(Password ?? ""), Email: \(Email ?? "")")
-           //var url_text =  "https://recipe-finder-api.azurewebsites.net?email=" + Email! ?? "" + "&pass=" + Password!
-           //let url = URL(string: url_text)
-           //print(url)
+
            let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
            let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
            let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
@@ -108,11 +105,11 @@ class RegistrationController: UIViewController{
                if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
                {
                 let hashedPassword = ("\(Password!).\(Email!)").sha256()
-                print(hashedPassword)
+               
                 register(email: Email!, password: hashedPassword, name: Name!){result in
-                    print(result)
+                   
                     if result == "\"Signed up!\""{
-                        self.setdefault(Email: Email!, Password: Password!, Logged: true)
+                        self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
@@ -124,16 +121,12 @@ class RegistrationController: UIViewController{
                         super.view.addSubview(self.warning)
                     }
                 }
-                   print("Password right, email right")
-//                   let vc = RootViewController()
-//                   vc.modalPresentationStyle = .fullScreen
-//                   self.present(vc, animated: true, completion: nil)
-//                   print("Button1 Clicked")
+                   
 
                }
                else if password_check.evaluate(with: Password) == false
                {
-                   print("Password wrong")
+                  
                    if Password!.count < 8 {
                        warning.text = "Your password is too short"
                    }
@@ -143,12 +136,12 @@ class RegistrationController: UIViewController{
                 super.view.addSubview(warning)
                }
                else if Password != Confirm{
-                   print("Passwords are not equal")
+                  
                    warning.text = "Passwords are not equal"
                 super.view.addSubview(warning)
                }
                else {
-                   print("Email wrong")
+                   
                    warning.text = "This email address doesn't exist"
                 super.view.addSubview(warning)
                }

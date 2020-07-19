@@ -107,11 +107,6 @@ class CardImage: UIButton{
             text.font = UIFont(name: "Harmattan-Regular", size: 24)
             text.textAlignment = .left
         
-//        layer.insertSublayer(lightShadow, at: 1)
-//        layer.insertSublayer(darkShadow, at: 0)
-//        layer.insertSublayer(im, at: 2)
-//        self.setImage(image, for: .normal)
-//        self.layer.masksToBounds = true
         self.addSubview(label)
         self.addSubview(text)
     }
@@ -177,8 +172,8 @@ extension ProfileController{
         request.responseDecodable(of: User.self){
             (response) in
             guard let user = response.value else{return}
-            self.greeting.text = "Hello, \(user.name ?? "Chef")"
-            self.email.text = "Your email: \(user.email)"
+            self.greeting.text = "Hello, \(String(describing: user.name))"
+            self.email.text = "Your email: \(String(describing: user.email))"
         }
        
     }
@@ -363,19 +358,11 @@ extension HomeController{
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor.red
         
-        let defaults = UserDefaults.standard
-        let pass = defaults.object(forKey: "password")
-        let email = defaults.object(forKey: "email")
-        let name = defaults.object(forKey: "name")
-        var arr: [Link] = []
-        let url = URL(string: "https://recipe-finder-api.azurewebsites.net")!
-        arr.append(Link(address: sender.url))
-        let user = User(name: name as! String, email: email as! String, password: pass as? String, savedLinks: arr, productList: nil)
-        AF.request(url,
-                   method: .put,
-                   parameters: try? JSONEncoder().encode(user)).response{response in
-                    print(response)
-        }
+        GlobalUser.savedLinks?.append(Link(address: sender.url))
+    }
+    
+    @objc func groceryTapped(_ sender: UIButton){
+        // ingridients to groery
     }
 }
 
