@@ -29,3 +29,23 @@ public func ImageConstraints(view: UIView, top: Int, width: Int, height: Int, le
     }
 }
 
+public func ScrollViewConstraints(view: UIScrollView){
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.snp.makeConstraints{(make) -> Void in
+        make.top.equalToSuperview()
+        make.left.equalToSuperview()
+        make.bottom.equalToSuperview()
+        make.right.equalToSuperview()
+    }
+//    NSLayoutConstraint.activate([
+//        scrollView.topAnchor
+//            .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+//        scrollView.leftAnchor
+//            .constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+//        scrollView.bottomAnchor
+//            .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+//        scrollView.rightAnchor
+//            .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
+//    ])
+}
+

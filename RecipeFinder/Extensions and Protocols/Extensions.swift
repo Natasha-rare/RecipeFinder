@@ -333,17 +333,7 @@ extension HomeController{
         
         super.view.addSubview(scrollView)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor
-                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leftAnchor
-                .constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            scrollView.bottomAnchor
-                .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            scrollView.rightAnchor
-                .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
-        ])
+        ScrollViewConstraints(view: scrollView)
     }
     @objc func buttonPressed(){
         let vc = HomeController()

@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var password = GrayTextField()
     private var name: [String] = [""]
     let defaults = UserDefaults.standard
+    var scrollView = UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,26 +68,34 @@ class ViewController: UIViewController {
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
         
-        super.view.addSubview(label)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
+        
+        
+        scrollView.addSubview(label)
         AddConstraints(view: label, top: 30, height: 80, width: 375)
         
-        super.view.addSubview(label2)
+        scrollView.addSubview(label2)
         AddConstraints(view: label2, top: 104, height: 83, width: 286)
         
-        super.view.addSubview(email)
+        scrollView.addSubview(email)
         AddConstraints(view: email, top: 470, height: 60, width: 257)
         
-        super.view.addSubview(password)
+        scrollView.addSubview(password)
         AddConstraints(view: password, top: 540, height: 60, width: 257)
         
-        super.view.addSubview(imageView)
+        scrollView.addSubview(imageView)
         AddConstraints(view: imageView, top: 175, height: 257, width: 257)
         
-        super.view.addSubview(buttonStart)
+        scrollView.addSubview(buttonStart)
         AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
         
-        super.view.addSubview(buttonRegistr)
+        scrollView.addSubview(buttonRegistr)
         AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
     }
     
     @objc func buttonClicked2(sender : NeoButton){
