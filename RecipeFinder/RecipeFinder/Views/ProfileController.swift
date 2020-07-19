@@ -28,7 +28,7 @@ class ProfileController: UIViewController{
         greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
-        greeting.text = "Hello, \(defaults.string(forKey: "name") ?? "user")!"
+        greeting.text = "Hello, \(defaults.object(forKey: "name") ?? "user")!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
         email.font = UIFont(name: "Harmattan-Regular", size: 24)

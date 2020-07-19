@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 public struct User: Codable {
-    var id: Int?
     var name: String?
     var email: String?
     var password: String?
@@ -27,14 +26,12 @@ public struct Link: Codable {
     var address: String?
 }
 
-public var GlobalUser = User(id: 0, name: "", email: "", password: "", savedLinks: nil, productList: nil)
+public var GlobalUser = User(name: "", email: "", password: "", savedLinks: nil, productList: nil)
 
 public func FetchUser(with completion: @escaping (User) -> ()){
     let defaults = UserDefaults.standard
     let email = defaults.string(forKey: "email") ?? "Nope"
     let password = defaults.string(forKey: "password") ?? "Nope"
-    print(email)
-    print(password)
     let url =  "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)"
     AF.request(url).responseDecodable(of: User.self){
         (response) in
@@ -44,6 +41,17 @@ public func FetchUser(with completion: @escaping (User) -> ()){
 }
 
 public func ChangeUserInfo(user: User){
-    
+    let url =  "https://recipe-finder-api.azurewebsites.net/"
+    let params = user.dictionary
+    AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
+        response in
+        print(response)
+    }
 }
 
+extension Encodable {
+  var dictionary: [String: Any]? {
+    guard let data = try? JSONEncoder().encode(self) else { return nil }
+    return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+  }
+}

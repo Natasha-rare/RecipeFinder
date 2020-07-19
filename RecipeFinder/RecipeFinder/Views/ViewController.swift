@@ -137,7 +137,7 @@ class ViewController: UIViewController {
                                     namel = namel.components(separatedBy: "\",\"e")[0]
                                     
                                     self.name[0] = namel
-                                    //self.defaults.set(namel, forKey: "name")
+                                    self.defaults.set(namel, forKey: "name")
                                 }
                             }
                         }

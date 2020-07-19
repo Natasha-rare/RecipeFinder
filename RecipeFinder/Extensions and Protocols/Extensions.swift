@@ -161,24 +161,6 @@ class NeoButton: UIButton {
     
 }
 
-
-extension ProfileController{
-    func FetchUserData(){
-        let defaults = UserDefaults.standard
-        let email = defaults.string(forKey: "email") ?? "Nope"
-        let password = defaults.string(forKey: "password") ?? "Nope"
-        let url =  "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)"
-        let request = AF.request(url)
-        request.responseDecodable(of: User.self){
-            (response) in
-            guard let user = response.value else{return}
-            self.greeting.text = "Hello, \(String(describing: user.name))"
-            self.email.text = "Your email: \(String(describing: user.email))"
-        }
-       
-    }
-}
-
 extension HomeController{
     
     func loadViewWithoutCards(){
