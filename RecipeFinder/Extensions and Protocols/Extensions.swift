@@ -223,29 +223,36 @@ extension HomeController{
         let voiceView = UIImageView(image: voice)
         voiceView.frame = CGRect(x: 62, y: 448, width: 30, height: 30)
         
-        super.view.addSubview(label)
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
+        
+        scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
-        super.view.addSubview(label2)
+        scrollView.addSubview(label2)
         AddConstraints(view: label2, top: 200, height: 80, width: 259)
         
-        super.view.addSubview(buttonText)
+        scrollView.addSubview(buttonText)
         AddConstraints(view: buttonText, top: 333, height: 60, width: 168)
         
-        super.view.addSubview(buttonVoice)
+        scrollView.addSubview(buttonVoice)
         AddConstraints(view: buttonVoice, top: 433, height: 60, width: 168)
         
-        super.view.addSubview(buttonScan)
+        scrollView.addSubview(buttonScan)
         AddConstraints(view: buttonScan, top: 533, height: 60, width: 168)
         
-        super.view.addSubview(cameraView)
+        scrollView.addSubview(cameraView)
         ImageConstraints(view: cameraView, top: 548, width: 30, height: 30, left: 62)
         
-        super.view.addSubview(textView)
+        scrollView.addSubview(textView)
         ImageConstraints(view: textView, top: 348, width: 30, height: 30, left: 62)
         
-        super.view.addSubview(voiceView)
+        scrollView.addSubview(voiceView)
         ImageConstraints(view: voiceView, top: 448, width: 30, height: 30, left: 62)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
         
     }
     
@@ -327,9 +334,9 @@ extension HomeController{
         AddConstraints(view: button, top: 160, height: 60, width: 256)
         
         super.view.addSubview(scrollView)
-        
         ScrollViewConstraints(view: scrollView)
     }
+    
     @objc func buttonPressed(){
         let vc = HomeController()
         vc.modalPresentationStyle = .fullScreen
@@ -347,7 +354,6 @@ extension HomeController{
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor.red
-        
         GlobalUser.savedLinks?.append(Link(address: sender.url))
     }
     

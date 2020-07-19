@@ -11,6 +11,7 @@ import UIKit
 
 class SecondaryViewController: UIViewController
 {
+    let scrollView = UIScrollView()
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -42,13 +43,23 @@ class SecondaryViewController: UIViewController
         imageMicro.frame = CGRect(x: 144, y: 592, width: 87, height: 87)
         imageMicro.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         
-        super.view.addSubview(label2)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
         
-        super.view.addSubview(label)
+        scrollView.addSubview(label2)
+        AddConstraints(view: label2, top: 322, height: 49, width: 360)
         
-        super.view.addSubview(buttonDone)
+        scrollView.addSubview(label)
+        AddConstraints(view: label, top: 85, height: 53, width: 370)
         
-        super.view.addSubview(imageMicro)
+        scrollView.addSubview(buttonDone)
+        AddConstraints(view: buttonDone, top: 478, height: 77, width: 274)
+        
+        scrollView.addSubview(imageMicro)
+        AddConstraints(view: imageMicro, top: 592, height: 87, width: 87)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
         
     }
 

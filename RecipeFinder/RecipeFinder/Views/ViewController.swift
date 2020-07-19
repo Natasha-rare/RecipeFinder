@@ -69,7 +69,6 @@ class ViewController: UIViewController {
         imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
         
         

@@ -31,10 +31,6 @@ class RegistrationController: UIViewController{
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
-        
         name.loadField(placeholderText: "name", isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
@@ -56,25 +52,29 @@ class RegistrationController: UIViewController{
         warning.textAlignment = .center
         
         
-        super.view.addSubview(label)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
+        
+        scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
-        super.view.addSubview(name)
+        scrollView.addSubview(name)
         AddConstraints(view: name, top: 152, height: 58, width: 257)
         
-        super.view.addSubview(email)
+        scrollView.addSubview(email)
         AddConstraints(view: email, top: 240, height: 58, width: 257)
         
-        super.view.addSubview(password)
+        scrollView.addSubview(password)
         AddConstraints(view: password, top: 318, height: 58, width: 257)
         
-        super.view.addSubview(confirm)
+        scrollView.addSubview(confirm)
         AddConstraints(view: confirm, top: 396, height: 58, width: 257)
         
-        super.view.addSubview(buttonCreate)
+        scrollView.addSubview(buttonCreate)
         AddConstraints(view: buttonCreate, top: 516, height: 58, width: 257)
         
-        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
     }
     
     @objc func buttonClicked2(sender : NeoButton){
