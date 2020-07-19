@@ -9,6 +9,7 @@ class ProfileController: UIViewController{
     var password = UILabel()
     var greeting = UILabel()
     var defaults = UserDefaults.standard
+    let scrollView = UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -27,7 +28,7 @@ class ProfileController: UIViewController{
         greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
-        greeting.text = "Hello, \(String(describing: defaults.string(forKey: "name")))!"
+        greeting.text = "Hello, \(defaults.string(forKey: "name") ?? "user")!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
         email.font = UIFont(name: "Harmattan-Regular", size: 24)
@@ -41,20 +42,27 @@ class ProfileController: UIViewController{
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonExit.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
-        super.view.addSubview(label)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
+        
+        
+        scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
-        super.view.addSubview(buttonExit)
+        scrollView.addSubview(buttonExit)
         AddConstraints(view: buttonExit, top: 525, height: 58, width: 170)
         
-        super.view.addSubview(imageView)
+        scrollView.addSubview(imageView)
         AddConstraints(view: imageView, top: 139, height: 117, width: 117)
         
-        super.view.addSubview(greeting)
+        scrollView.addSubview(greeting)
         AddConstraints(view: greeting, top: 281, height: 58, width: 257)
         
-        super.view.addSubview(email)
+        scrollView.addSubview(email)
         AddConstraints(view: email, top: 348, height: 58, width: 257)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
     }
     
     @objc func buttonClicked(sender: NeoButton){
