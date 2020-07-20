@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 import Alamofire
+
 class ProfileController: UIViewController{
+    
     var buttonExit = NeoButton()
     let label = UILabel()
     var name = UILabel()
@@ -10,6 +12,7 @@ class ProfileController: UIViewController{
     var greeting = UILabel()
     var defaults = UserDefaults.standard
     let scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -73,8 +76,8 @@ class ProfileController: UIViewController{
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-        
     }
+    
     @objc func buttonClicked2(sender: NeoButton){
         sender.layer.sublayers?.removeFirst(2)
     }

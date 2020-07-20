@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 
 class SavedController: UIViewController{
+    
     let scrollView = UIScrollView()
+    let label = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        let label = UILabel()
+        
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Saved"

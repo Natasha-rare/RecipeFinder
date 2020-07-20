@@ -1,6 +1,5 @@
 import UIKit
 
-
 class GroceryController: UIViewController{
     var label = UILabel()
     var scrollView = UIScrollView()

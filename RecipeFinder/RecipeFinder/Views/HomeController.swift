@@ -52,7 +52,6 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     @objc func imageTapped(sender: CardImage){
-       
         let vc = WebViewController()
         vc.url = sender.urlIm
         self.present(vc, animated: true, completion: nil)
@@ -113,63 +112,59 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
             AF.request(url_check).responseDecodable(of: Welcome.self){
                 response in
                 switch response.result{
-                case .success(let value):
-                    if value.count != 0{
-                        print("YEAH")
-                        self.string += i + "%20"
-                        print(1)
-                        self.checker += 1
-                        if self.checker == ingridients.count && self.string != ""
-                        {
-                            self.getrecipes()
-                            
+                    case .success(let value):
+                        if value.count != 0{
+                            print("YEAH")
+                            self.string += i + "%20"
+                            print(1)
+                            self.checker += 1
+                            if self.checker == ingridients.count && self.string != ""
+                            {
+                                self.getrecipes()
+                                
+                            }
+                            else if self.checker == ingridients.count{
+                                self.loadViewWithoutCards()
+                                self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                            }
                         }
-                        else if self.checker == ingridients.count{
-                            self.loadViewWithoutCards()
-                            self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                        else{
+                            print("ERROR")
+                            print(1)
+                            self.checker += 1
+                            if self.checker == ingridients.count && self.string != ""
+                            {
+                                self.getrecipes()
+                                
+                            }
+                            else if self.checker == ingridients.count{
+                                self.loadViewWithoutCards()
+                                self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                            }
                         }
-                    }
-                    else{
+                    case .failure(let error):
                         print("ERROR")
-                        print(1)
+                        print(error)
+                        print(2)
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
+                            self.loadViewWithoutCards()
                             self.getrecipes()
                             
                         }
                         else if self.checker == ingridients.count{
-                            self.loadViewWithoutCards()
                             self.label2.text = "There's no result for your search. Enter ingredients correctly!"
                         }
-                    }
-                case .failure(let error):
-                    print("ERROR")
-                    print(error)
-                    print(2)
-                    self.checker += 1
-                    if self.checker == ingridients.count && self.string != ""
-                    {
-                        self.loadViewWithoutCards()
-                        self.getrecipes()
-                        
-                    }
-                    else if self.checker == ingridients.count{
-                        self.label2.text = "There's no result for your search. Enter ingredients correctly!"
                     }
                 }
             }
-        }
-            
-        
-        
-        
     }
 
     func getrecipes(){
         print(33)
         if self.string != "" {
-                   print("enter")
+            print("enter")
             let url = "https://api.edamam.com/search?q=\(self.string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
                    AF.request(url).responseDecodable(of: Welcome.self){
                        response in
@@ -178,11 +173,11 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                        self.loadViewWithCards(recipes: recipes)
                        }
                }
-               else{
-                   print("failed")
-                   //self.loadViewWithoutCards()
-                   //self.label2.text = "There're no recipes for your ingredients. Enter them correctly."
-                   }
+        else{
+           print("failed")
+           //self.loadViewWithoutCards()
+           //self.label2.text = "There're no recipes for your ingredients. Enter them correctly."
+           }
     }
     
 }

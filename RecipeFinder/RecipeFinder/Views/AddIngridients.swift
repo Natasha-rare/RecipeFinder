@@ -12,26 +12,27 @@ import UIKit
 class SecondaryViewController: UIViewController
 {
     let scrollView = UIScrollView()
+    let label = UILabel()
+    let label2 = UILabel()
+    let buttonDone = UIButton()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         view.backgroundColor = .blue
         
-        let label = UILabel()
         label.frame = CGRect(x: 3, y: 85, width: 370, height: 53)
         label.textColor = UIColor.white
         label.text = "Input Ingredients"
         label.font = UIFont(name: "Harmattan-Regular", size: 30)
         label.textAlignment = .center
        
-        let label2 = UILabel()
         label2.frame = CGRect(x: 8, y: 322, width: 360, height: 49)
         label2.textColor = UIColor.lightGray
         label2.text = "Recognized Text"
         label2.font = UIFont(name: "Harmattan-Regular", size: 30)
         label2.textAlignment = .center
         
-        let buttonDone = UIButton()
         buttonDone.setTitle("DONE", for: .normal)
         buttonDone.setTitleColor(UIColor.white, for: .normal)
         buttonDone.backgroundColor = .systemPink
@@ -64,7 +65,7 @@ class SecondaryViewController: UIViewController
     }
 
     @objc func buttonClicked_DONE(sender : UIButton) {
-            
+            // function is overriden in extensions
         }
 }
 

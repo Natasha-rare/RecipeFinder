@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CryptoSwift
+
 class RegistrationController: UIViewController{
     var warning = UILabel()
     var email = GrayTextField()
@@ -19,11 +20,11 @@ class RegistrationController: UIViewController{
     var buttonCreate = NeoButton()
     let scrollView = UIScrollView()
     var defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         view.layer.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1).cgColor
-        
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -50,7 +51,6 @@ class RegistrationController: UIViewController{
         warning.numberOfLines = 0
         warning.lineBreakMode = .byWordWrapping
         warning.textAlignment = .center
-        
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
@@ -88,29 +88,31 @@ class RegistrationController: UIViewController{
     }
     
     @objc func buttonClicked(sender : UIButton) {
-            sender.layer.sublayers?.removeFirst(2)
-           let Password = password.text
-           let Email = email.text
-           let Confirm = confirm.text
-           let Name = name.text
+        sender.layer.sublayers?.removeFirst(2)
+        let Password = password.text
+        let Email = email.text
+        let Confirm = confirm.text
+        let Name = name.text
 
-           let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
-           let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
-           let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
-           if Password == "" || Email == "" || Confirm == "" || Name == ""{
-                warning.text = "You've entered an empty value"
-                scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 456, height: 58, width: 257)
-           }
-           else{
-               if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
-               {
+        let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
+        let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
+        
+        if Password == "" || Email == "" || Confirm == "" || Name == ""{
+            warning.text = "You've entered an empty value"
+            scrollView.addSubview(warning)
+            AddConstraints(view: warning, top: 456, height: 58, width: 257)
+        }
+        else{
+            if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
+            {
                 let hashedPassword = ("\(Password!).\(Email!)").sha256()
-               
+
                 register(email: Email!, password: hashedPassword, name: Name!){result in
                     if result == "\"Signed up!\""{
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
+                        
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
@@ -118,35 +120,38 @@ class RegistrationController: UIViewController{
                     else if result == "\"User exists!\""{
                         self.warning.textColor = .red
                         self.warning.text = "User with the same email is already excist! Please Log In"
+                        
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 456, height: 58, width: 257)
                         }
-                    }
-               }
-               else if password_check.evaluate(with: Password) == false
-               {
-                   if Password!.count < 8 {
-                       warning.text = "Your password is too short"
-                   }
-                   else {
-                       warning.text = "Password should contain capital, lowercase letters and numbers"
-                   }
-                    scrollView.addSubview(warning)
-                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
-               }
-               else if Password != Confirm{
-                    warning.text = "Passwords are not equal"
-                    scrollView.addSubview(warning)
-                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
-               }
-               else {
-                    warning.text = "This email address doesn't exist"
-                    scrollView.addSubview(warning)
-                    AddConstraints(view: warning, top: 456, height: 58, width: 257)
-               }
-           }
-       }
-    
+                }
+            }
+            else if password_check.evaluate(with: Password) == false
+            {
+                if Password!.count < 8 {
+                   warning.text = "Your password is too short"
+                }
+                else {
+                   warning.text = "Password should contain capital, lowercase letters and numbers"
+                }
+                
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+            }
+            else if Password != Confirm{
+                warning.text = "Passwords are not equal"
+
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+            }
+            else {
+                warning.text = "This email address doesn't exist"
+                
+                scrollView.addSubview(warning)
+                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+            }
+        }
+    }
 }
 
 public func register(email: String, password: String, name: String, with completion: @escaping (String) -> ()){
@@ -180,6 +185,5 @@ public func register(email: String, password: String, name: String, with complet
                 }
             }
         }
-        
     }.resume()
 }

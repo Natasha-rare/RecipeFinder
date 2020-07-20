@@ -13,7 +13,6 @@ import AVKit
 
 class VoiceController: UIViewController {
 
-    
     weak var delegate: RecipeArrayDelegate?
     
     var button = UIButton()
@@ -23,6 +22,7 @@ class VoiceController: UIViewController {
     let speechRecognizer = SFSpeechRecognizer()
     var doneButton = NeoButton()
     var productsList: [String] = []
+    var scrollView = UIScrollView()
     
     var recognitionRequest : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask : SFSpeechRecognitionTask?
@@ -30,9 +30,11 @@ class VoiceController: UIViewController {
     var ingredients:[String] = []
     let phrazes = ["It seems that you didn’t enter ingridients!", "You have to enter some products to search the recipe!"]
     var i = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
+        
         button.frame = CGRect(x: 113, y: 500, width: 150, height: 58)
         button.setTitle("start", for: .normal)
         button.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
@@ -60,24 +62,42 @@ class VoiceController: UIViewController {
         labelHead.text = "Just speak"
         labelHead.font = UIFont(name: "Georgia", size: 43)
         labelHead.textAlignment = .center
+        
         let imageSound = UIImageView(image: UIImage(named: "sound.png"))
         imageSound.frame = CGRect(x: 67, y: 377, width: 257, height: 67)
         
-        super.view.addSubview(button)
-        super.view.addSubview(doneButton)
-        super.view.addSubview(label)
-        super.view.addSubview(labelHead)
-        super.view.addSubview(imageSound)
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 650)
+        
+        scrollView.addSubview(button)
+        AddConstraints(view: button, top: 500, height: 58, width: 150)
+        
+        scrollView.addSubview(doneButton)
+        AddConstraints(view: doneButton, top: 584, height: 58, width: 150)
+        
+        scrollView.addSubview(label)
+        AddConstraints(view: label, top: 200, height: 80, width: 259)
+        
+        scrollView.addSubview(labelHead)
+        AddConstraints(view: labelHead, top: 38, height: 79, width: 375)
+        
+        scrollView.addSubview(imageSound)
+        AddConstraints(view: imageSound, top: 377, height: 67, width: 257)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
+        
         self.setupSpeech()
     }
+    
     @objc func btnStartSpeechToText(_ sender: UIButton) {
-//        sender.setShadows()
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.button.isEnabled = false
             self.button.setTitle("start", for: .normal)
-        } else {
+        }
+        else {
             self.startRecording()
             self.button.setTitle("stop", for: .normal)
         }
@@ -95,34 +115,31 @@ class VoiceController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-
     func setupSpeech() {
-
         self.button.isEnabled = false
         self.speechRecognizer?.delegate = self
 
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
-
             var isButtonEnabled = false
 
             switch authStatus {
-            case .authorized:
-                isButtonEnabled = true
+                case .authorized:
+                    isButtonEnabled = true
 
-            case .denied:
-                isButtonEnabled = false
-                print("User denied access to speech recognition")
+                case .denied:
+                    isButtonEnabled = false
+                    print("User denied access to speech recognition")
 
-            case .restricted:
-                isButtonEnabled = false
-                print("Speech recognition restricted on this device")
+                case .restricted:
+                    isButtonEnabled = false
+                    print("Speech recognition restricted on this device")
 
-            case .notDetermined:
-                isButtonEnabled = false
-                print("Speech recognition not yet authorized")
-            @unknown default:
-                isButtonEnabled = false
-                print("unknown default")
+                case .notDetermined:
+                    isButtonEnabled = false
+                    print("Speech recognition not yet authorized")
+                @unknown default:
+                    isButtonEnabled = false
+                    print("unknown default")
             }
 
             OperationQueue.main.addOperation() {
@@ -132,7 +149,7 @@ class VoiceController: UIViewController {
     }
 
     func startRecording() {
-
+        
         // Clear all previous session data and cancel task
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -141,10 +158,12 @@ class VoiceController: UIViewController {
 
         // Create instance of audio session to record voice
         let audioSession = AVAudioSession.sharedInstance()
+        
         do {
             try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
+        }
+        catch {
             print("audioSession properties weren't set because of an error.")
         }
 
@@ -159,17 +178,14 @@ class VoiceController: UIViewController {
         recognitionRequest.shouldReportPartialResults = true
 
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-
             var isFinal = false
 
             if result != nil {
-
                 self.label.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
 
             if error != nil || isFinal {
-
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
 
@@ -206,9 +222,11 @@ extension VoiceController: SFSpeechRecognizerDelegate {
         }
     }
 }
+
 extension UIView {
     func fadeTransition(_ duration:CFTimeInterval) {
         let animation = CATransition()
+        
         animation.timingFunction = CAMediaTimingFunction(name:
             CAMediaTimingFunctionName.easeInEaseOut)
         animation.type = CATransitionType.fade
