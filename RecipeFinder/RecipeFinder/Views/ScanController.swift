@@ -11,22 +11,23 @@ import UIKit
 import Vision
 
 class ScanController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    weak var delegate: RecipeArrayDelegate?
+
     var resultLabel = UILabel()
     let vc = UIImagePickerController()
     var buttonCamera = UIButton()
     var buttonLibrary = UIButton()
     var buttonDone = NeoButton()
+    var productsList: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-//
-        
-        
-        
         resultLabel.text = "Choose image"
-        resultLabel.frame = CGRect(x: 100, y: 50, width: 400, height: 20)
+        resultLabel.frame = CGRect(x: 135, y: 50, width: 400, height: 20)
         resultLabel.textColor = .black
         resultLabel.font = UIFont(name: "Harmattan-Regular", size: 20)
+        resultLabel.textAlignment = .center
+
         buttonCamera.frame = CGRect(x: 113, y: 420, width: 150, height: 58)
         buttonCamera.setTitle("take a photo", for: .normal)
         buttonCamera.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
@@ -36,7 +37,8 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         buttonCamera.layer.masksToBounds = true
         buttonCamera.layer.borderWidth = 1
         buttonCamera.addTarget(self, action: #selector(self.buttonCameraPressed), for: .touchUpInside)
-        
+
+
         buttonLibrary.frame = CGRect(x: 113, y: 500, width: 150, height: 58)
         buttonLibrary.setTitle("from library", for: .normal)
         buttonLibrary.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
@@ -46,13 +48,14 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         buttonLibrary.layer.masksToBounds = true
         buttonLibrary.layer.borderWidth = 1
         buttonLibrary.addTarget(self, action: #selector(self.buttonLibraryPressed), for: .touchUpInside)
-        
+
         buttonDone.load(title: "done", frame: CGRect(x: 58, y: 600, width: 257, height: 58))
-        buttonDone.addTarget(self, action: #selector(self.buttonDonePressed), for: .touchDown)
+        buttonDone.addTarget(self, action: #selector(self.buttonDonePressed(sender:)), for: .touchDown)
         super.view.addSubview(resultLabel)
         super.view.addSubview(buttonLibrary)
         super.view.addSubview(buttonCamera)
-        AddConstraints(view: resultLabel, top: 100, height: 20, width: 400)
+        super.view.addSubview(buttonDone)
+        AddConstraints(view: resultLabel, top: 50, height: 20, width: 400)
     }
     @objc func buttonCameraPressed(){
         vc.sourceType = .camera
@@ -66,29 +69,39 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         vc.delegate = self
         present(vc, animated: true)
     }
-    @objc func buttonDonePressed(){
-        
+    @objc func buttonDonePressed(sender: NeoButton){
+        if (self.resultLabel.text?.contains(" "))!{
+            productsList = self.resultLabel.text!.components(separatedBy: " ")
+        }
+        else{
+            productsList.append(self.resultLabel.text!)
+        }
+        print(productsList)
+        sender.setShadows()
+        sender.layer.sublayers?.removeFirst(2)
+        self.delegate?.getIngridients(productsList)
+        self.dismiss(animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
+
         guard let image = info[.originalImage] as? UIImage else {
             print("No image found")
             return
         }
-        
+
         classifyImage(image)
     }
-    
+
     private lazy var classificationRequest: VNCoreMLRequest = {
         do {
             // 2
             var model = try VNCoreMLModel(for: SqueezeNet().model)
-            
+
             if #available(iOS 12.0, *) {
                 model = try VNCoreMLModel(for: Fridge_copy().model)
             }
-            
+
             // 3
             let request = VNCoreMLRequest(model: model) { request, _ in
                 if let classifications =
@@ -96,7 +109,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
                     self.processClassifications(for: request)
                 }
             }
-            
+
             // 4
             request.imageCropAndScaleOption = .centerCrop
             return request
@@ -106,7 +119,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
             fatalError("Failed to load Vision ML model: \(error)")
         }
     }()
-    
+
     func classifyImage(_ image: UIImage) {
         // 1
         guard let orientation = CGImagePropertyOrientation(
@@ -122,7 +135,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         DispatchQueue.global(qos: .userInitiated).async {
             let handler =
               VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
-                
+
             do {
                 try handler.perform([self.classificationRequest])
             }
@@ -131,17 +144,17 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
         }
     }
-    
-    
+
+
     func processClassifications(for request: VNRequest) {
         DispatchQueue.main.async {
             guard let results = request.results else {
                 self.resultLabel.text = "Unable to classify image."
                 return
             }
-            
+
             let classifications = results as! [VNClassificationObservation]
-            
+
             if classifications.isEmpty {
                 self.resultLabel.text = "Nothing recognized."
             }
@@ -150,9 +163,15 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
                 let descriptions = topClassifications.map { classification in
                     return String(classification.identifier)
                 }
-                
-                self.resultLabel.text = descriptions.joined()
+                if self.resultLabel.text == "Choose image"{
+                    self.resultLabel.text = descriptions.joined()
+                }
+                else {
+                    self.resultLabel.text = self.resultLabel.text! + " " +  descriptions.joined()
+                }
             }
         }
     }
 }
+
+

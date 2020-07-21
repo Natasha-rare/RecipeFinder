@@ -44,6 +44,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         sender.setShadows()
         
         let viewc = ScanController()
+        viewc.delegate = self
         self.present(viewc, animated: true, completion: nil)
     }
     
@@ -81,6 +82,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     func getIngridients(_ array: [String]) {
+        print(40)
         if array.count != 0{
             getRecipes(ingridients: array)
             self.numberOfIngredient = array.count
@@ -91,7 +93,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     func getRecipes(ingridients: [String]){
-       
+        print(22)
         super.view.subviews.forEach { $0.removeFromSuperview() }
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)

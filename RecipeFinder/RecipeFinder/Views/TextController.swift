@@ -72,12 +72,6 @@ class TextController: UIViewController, UITextFieldDelegate{
         ScrollViewConstraints(view: scrollView)
     }
     
-//    @objc func buttonClicked(sender: NeoButton){
-//        sender.setShadows()
-//        self.delegate?.getIngridients(productsList)
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
     @objc func buttonClicked2(sender: NeoButton){
         sender.setShadows()
         sender.layer.sublayers?.removeFirst(2)
