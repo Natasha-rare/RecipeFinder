@@ -19,6 +19,8 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
     var buttonLibrary = UIButton()
     var buttonDone = NeoButton()
     var productsList: [String] = []
+    var scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
@@ -51,24 +53,40 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
 
         buttonDone.load(title: "done", frame: CGRect(x: 58, y: 600, width: 257, height: 58))
         buttonDone.addTarget(self, action: #selector(self.buttonDonePressed(sender:)), for: .touchDown)
-        super.view.addSubview(resultLabel)
-        super.view.addSubview(buttonLibrary)
-        super.view.addSubview(buttonCamera)
-        super.view.addSubview(buttonDone)
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 680)
+        
+        scrollView.addSubview(resultLabel)
         AddConstraints(view: resultLabel, top: 50, height: 20, width: 400)
+        
+        scrollView.addSubview(buttonLibrary)
+        AddConstraints(view: buttonLibrary, top: 500, height: 58, width: 150)
+        
+        scrollView.addSubview(buttonCamera)
+        AddConstraints(view: buttonCamera, top: 420, height: 58, width: 150)
+        
+        scrollView.addSubview(buttonDone)
+        AddConstraints(view: buttonDone, top: 600, height: 58, width: 257)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
     }
+    
     @objc func buttonCameraPressed(){
         vc.sourceType = .camera
         vc.allowsEditing = true
         vc.delegate = self
         present(vc, animated: true)
     }
+    
     @objc func buttonLibraryPressed(){
         vc.sourceType = .photoLibrary
         vc.allowsEditing = true
         vc.delegate = self
         present(vc, animated: true)
     }
+    
     @objc func buttonDonePressed(sender: NeoButton){
         if (self.resultLabel.text?.contains(" "))!{
             productsList = self.resultLabel.text!.components(separatedBy: " ")
@@ -76,12 +94,16 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         else{
             productsList.append(self.resultLabel.text!)
         }
+        
         print(productsList)
+        
         sender.setShadows()
         sender.layer.sublayers?.removeFirst(2)
+        
         self.delegate?.getIngridients(productsList)
         self.dismiss(animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
 

@@ -30,7 +30,7 @@ class GrayTextField: UITextField{
         textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         font = UIFont(name: "Harmattan-Regular", size: 27)
         textAlignment = .center
-        layer.cornerRadius = 35.0
+        layer.cornerRadius = 30.0
         isSecureTextEntry = isSecure
     }
 }
@@ -135,7 +135,7 @@ class NeoButton: UIButton {
         setTitleColor(UIColor.black, for: .normal)
         self.frame = frame
         backgroundColor = color
-        layer.cornerRadius = 35.0
+        layer.cornerRadius = 30.0
         
         setShadows()
     }
@@ -145,7 +145,7 @@ class NeoButton: UIButton {
            lightShadow.frame = self.bounds
            lightShadow.backgroundColor = self.backgroundColor?.cgColor
            lightShadow.shadowColor = UIColor.white.withAlphaComponent(1).cgColor
-           lightShadow.cornerRadius = 35
+           lightShadow.cornerRadius = 30
            lightShadow.shadowOffset = CGSize(width: -10, height: -10)
            lightShadow.shadowOpacity = 1
            lightShadow.shadowRadius = 7
@@ -154,7 +154,7 @@ class NeoButton: UIButton {
            darkShadow.frame = self.bounds
            darkShadow.backgroundColor = self.backgroundColor?.cgColor
            darkShadow.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-           darkShadow.cornerRadius = 35
+           darkShadow.cornerRadius = 30
            darkShadow.shadowOffset = CGSize(width: 10, height: 10)
            darkShadow.shadowOpacity = 1
            darkShadow.shadowRadius = 10
