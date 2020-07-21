@@ -109,7 +109,7 @@ class RegistrationController: UIViewController{
                 let hashedPassword = ("\(Password!).\(Email!)").sha256()
 
                 register(email: Email!, password: hashedPassword, name: Name!){result in
-                    if result == "\"Signed up!\""{
+                    if result == "Signed up!"{
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
                         
@@ -117,7 +117,7 @@ class RegistrationController: UIViewController{
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }
-                    else if result == "\"User exists!\""{
+                    else if result == "User exists!"{
                         self.warning.textColor = .red
                         self.warning.text = "User with the same email is already excist! Please Log In"
                         
@@ -155,7 +155,7 @@ class RegistrationController: UIViewController{
 }
 
 public func register(email: String, password: String, name: String, with completion: @escaping (String) -> ()){
-    let url = URL(string: "https://recipe-finder-api.azurewebsites.net/register")!
+    let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/register")!
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
@@ -181,6 +181,7 @@ public func register(email: String, password: String, name: String, with complet
             
             if let result = String(data: data, encoding: .utf8){
                 DispatchQueue.main.async {
+                    print(result)
                     completion(result)
                 }
             }

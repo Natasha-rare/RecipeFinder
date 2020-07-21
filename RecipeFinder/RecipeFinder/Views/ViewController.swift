@@ -123,8 +123,8 @@ class ViewController: UIViewController {
                 auth(email: Email!, password: hashedPassword){
                     result in
                     
-                    if result == "\"Logged in!\""{
-                        let url = URL(string: "https://recipe-finder-api.azurewebsites.net/?email=\(Email!)&pass=\(hashedPassword)")!
+                    if result == "Logged in!"{
+                        let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&pass=\(hashedPassword)")!
                         //var request = URLRequest(url: url)
                         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                             if let error = error {
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }
-                    else if result == "\"Incorrect password!\""{
+                    else if result == "Incorrect password!"{
                         self.warning.text = "Incorrect password :("
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
@@ -200,7 +200,7 @@ class ViewController: UIViewController {
 
 
 public func auth(email: String, password: String, with completion: @escaping (String) -> ()){
-    let url = URL(string: "https://recipe-finder-api.azurewebsites.net")!
+    let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/login")!
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
