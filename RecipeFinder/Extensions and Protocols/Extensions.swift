@@ -366,7 +366,7 @@ extension HomeController{
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){
-        
+        vibrate()
         let originalImage = UIImage(named: "grocery.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)

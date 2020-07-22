@@ -8,7 +8,6 @@ class GroceryController: UIViewController{
     var label = UILabel()
     var scrollView = UIScrollView()
     var buttonEnter = NeoButton()
-    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
@@ -30,8 +29,10 @@ class GroceryController: UIViewController{
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
+        
         print(groceryIngridients)
+        
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(groceryIngridients.count * 50 + 330))
         
         for ingredient in groceryIngridients{
             let label2 = UILabel()
@@ -39,12 +40,14 @@ class GroceryController: UIViewController{
             label2.frame = CGRect(x: 80, y: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 240, height: 50)
             label2.textColor = UIColor.systemGray
             
-            let image = UIImageView(image: UIImage(named: "check-box.png"))
-            image.frame = CGRect(x: 56, y: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20)
-            image.tintColor = UIColor.black
+            let checked = UIButton()
+            checked.frame = CGRect(x: 56, y: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20)
+            checked.setImage(UIImage(named: "check-box.png"), for: .normal)
+            checked.layer.borderColor = UIColor.black.cgColor
+            checked.addTarget(self, action: #selector(self.imageTapped(_:)), for: .touchUpInside)
             
-            scrollView.addSubview(image)
-            ImageConstraints(view: image, top: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20, left: 56)
+            scrollView.addSubview(checked)
+            ImageConstraints(view: checked, top: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20, left: 56)
             
             scrollView.addSubview(label2)
             AddConstraints(view: label2, top: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, height: 50, width: 240)
@@ -54,7 +57,7 @@ class GroceryController: UIViewController{
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
         scrollView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 589, height: 58, width: 259)
+        AddConstraints(view: buttonEnter, top: 259 + groceryIngridients.count * 50, height: 58, width: 259)
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
@@ -67,6 +70,27 @@ class GroceryController: UIViewController{
     @objc func buttonClicked1(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
         groceryIngridients = []
+        scrollView.subviews.map { $0.removeFromSuperview() }
+        
+        scrollView.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
+        scrollView.addSubview(buttonEnter)
+        AddConstraints(view: buttonEnter, top: 589, height: 58, width: 259)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
+    }
+    
+    @objc func imageTapped(_ button: UIButton){
+        if button.layer.borderColor == UIColor.black.cgColor{
+            button.setImage(UIImage(named: "checked.png"), for: .normal)
+            button.layer.borderColor = UIColor.white.cgColor
+        }
+        else{
+            button.setImage(UIImage(named: "check-box.png"), for: .normal)
+            button.layer.borderColor = UIColor.black.cgColor
+        }
     }
 
 }

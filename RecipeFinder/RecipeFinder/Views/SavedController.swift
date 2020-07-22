@@ -16,7 +16,7 @@ class SavedController: UIViewController{
     
     let scrollView = UIScrollView()
     let label = UILabel()
-
+    let buttonEnter = NeoButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,13 @@ class SavedController: UIViewController{
         label.textAlignment = .center
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(savedLinks.count * 80 + 200))
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(savedLinks.count * 80 + 330))
+        
+        buttonEnter.load(title: "clear all", frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
+        buttonEnter.setTitleColor(.white, for: .normal)
+        buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
+        
         var count = 0
         for url in savedLinks {
             let imageV = SaveButton()
@@ -46,6 +52,9 @@ class SavedController: UIViewController{
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
+        scrollView.addSubview(buttonEnter)
+        AddConstraints(view: buttonEnter, top: 259 + count * 80, height: 58, width: 259)
+        
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
         
@@ -56,6 +65,26 @@ class SavedController: UIViewController{
         vc.url = sender.url
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @objc func buttonClicked(sender : NeoButton) {
+        sender.setShadows()
+    }
+
+    @objc func buttonClicked1(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
+        savedLinks = []
+        scrollView.subviews.map { $0.removeFromSuperview() }
+        
+        scrollView.addSubview(label)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        
+        scrollView.addSubview(buttonEnter)
+        AddConstraints(view: buttonEnter, top: 589, height: 58, width: 259)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
+    }
+    
     
 }
 
