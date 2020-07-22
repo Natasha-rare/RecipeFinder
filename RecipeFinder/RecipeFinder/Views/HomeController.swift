@@ -94,15 +94,17 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     
     func getRecipes(ingridients: [String]){
         print(22)
+        var buttonStop = NeoButton()
         super.view.subviews.forEach { $0.removeFromSuperview() }
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = "Loading your recipes..."
-        var buttonStop = NeoButton()
+        
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
+        
         buttonStop.load(title: "stop searching process", frame: CGRect(x: 58, y: 400, width: 259, height: 58))
         buttonStop.addTarget(self, action: #selector(stopProcess(_:)), for: .touchDown)
         super.view.addSubview(label2)

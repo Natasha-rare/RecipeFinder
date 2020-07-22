@@ -240,9 +240,8 @@ extension HomeController{
     }
     
     func loadViewWithCards(recipes: Welcome){
+        scrollView.subviews.map { $0.removeFromSuperview() }
         var count: Int = 0
-        scrollView = UIScrollView()
-        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Home"
