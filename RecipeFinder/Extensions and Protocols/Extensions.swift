@@ -239,7 +239,8 @@ extension HomeController{
     
     func loadViewWithCards(recipes: Welcome){
         var count: Int = 0
-        
+        scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Home"
@@ -346,7 +347,14 @@ extension HomeController{
         // ingridients to grocery
         let vc = GroceryController()
         vc.ingredients = sender.ingredientList
-    }
+        // ingridients to groery
+        let originalImage = UIImage(named: "grocery.png")
+        let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
+        
+        sender.setImage(tintedImage, for: .normal)
+        sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
+        
+}
 }
 
 class LikeButton: UIButton{
