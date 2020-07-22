@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import Alamofire
+import AVFoundation
+import AudioToolbox
 
 class GrayTextField: UITextField{
     override init(frame: CGRect) {
@@ -283,7 +285,12 @@ extension HomeController{
                 button.layer.masksToBounds = true
                 button.url = hit.recipe.url
                 button.addTarget(self, action: #selector(self.likeButtonTapped(_:)), for: .touchUpInside)
-            
+            if savedLinks.contains(hit.recipe.url) {
+                let originalImage = UIImage(named: "like.png")
+                let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
+                button.setImage(tintedImage, for: .normal)
+                button.tintColor = UIColor.red
+            }
             let buttonGrocery = GroceryButton()
                 buttonGrocery.frame = CGRect(x: 75, y: 285 + count * 280, width: 30, height: 30)
                 buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
@@ -332,15 +339,29 @@ extension HomeController{
         vc.url = sender.urlIm
         self.present(vc, animated: true, completion: nil)
     }
-
+    
+    func vibrate(){
+           AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+       }
+    
     @objc func likeButtonTapped(_ sender: LikeButton){
-        print(sender.url)
-        let originalImage = UIImage(named: "like.png")
+       print(sender.url)
+        vibrate()
+        let originalImage = sender.image(for: .normal)
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
-        sender.tintColor = UIColor.red
-    
-        savedLinks.append(sender.url)
+        if sender.tintColor == UIColor.red{
+            sender.tintColor = UIColor.white
+            sender.setImage(UIImage(named: "like.png"), for: .normal)
+            let savedLinksNew = savedLinks.filter { $0 != sender.url }
+            savedLinks = savedLinksNew
+            
+        }
+        else{
+            sender.tintColor = UIColor.red
+            savedLinks.append(sender.url)
+        }
+        print(savedLinks)
         SendLinks(savedLinks: savedLinks)
     }
 
