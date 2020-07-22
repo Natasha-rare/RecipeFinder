@@ -338,16 +338,15 @@ extension HomeController{
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor.red
-        
-        let vc = SavedController()
-        vc.savedLinks.append(sender.url)
+    
+        savedLinks.append(sender.url)
+        SendLinks(savedLinks: savedLinks)
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){
         // ingridients to grocery
         let vc = GroceryController()
         vc.ingredients = sender.ingredientList
-        // ingridients to groery
         let originalImage = UIImage(named: "grocery.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         
