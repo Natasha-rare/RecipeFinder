@@ -118,7 +118,6 @@ class CardImage: UIButton{
     
 }
 
-
 class NeoButton: UIButton {
     
     override init(frame: CGRect) {
@@ -165,6 +164,7 @@ class NeoButton: UIButton {
        self.layer.insertSublayer(darkShadow, at: 0)
     }
 }
+
 extension HomeController{
     
     func loadViewWithoutCards(){
@@ -374,9 +374,9 @@ extension HomeController{
         
         // ingridients to grocery
         groceryIngridients = sender.ingredientList
+        print("\(sender.ingredientList) grocery tapped")
         SendIngredients(ingredientList: groceryIngridients)
-
-}
+    }
 }
 
 class LikeButton: UIButton{
