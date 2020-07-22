@@ -27,13 +27,27 @@ public func FetchUser(){
         print(user)
     }
 }
+let defaults = UserDefaults.standard
 
-public func ChangeUserInfo(user: User){
+public func SendLinks(savedLinks: [String]){
     let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
-    let params = user.dictionary
+    
+    let email = defaults.string(forKey: "email") ?? "Nope"
+    let password = defaults.string(forKey: "password") ?? "Nope"
+    
+    let preparedString = savedLinks.joined(separator: "|")
+    print(preparedString)
+    let params = [
+        "email": "\(email)",
+        "password": "\(password)",
+        "savedLinks": "\(preparedString)"
+    ]
     AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
         response in
-        print(response)
+        if let string = response.value{
+            print("Send links response: \(string)")
+        }
+        
     }
 }
 
