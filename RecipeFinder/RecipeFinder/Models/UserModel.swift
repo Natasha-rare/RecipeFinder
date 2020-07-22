@@ -51,6 +51,27 @@ public func SendLinks(savedLinks: [String]){
     }
 }
 
+public func SendIngredients(ingredientList: [String]){
+    let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
+    
+    let email = defaults.string(forKey: "email") ?? "Nope"
+    let password = defaults.string(forKey: "password") ?? "Nope"
+    
+    let preparedString = ingredientList.joined(separator: "|")
+    let params = [
+        "email": "\(email)",
+        "password": "\(password)",
+        "productList": "\(preparedString)"
+    ]
+    AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
+        response in
+        if let string = response.value{
+            print("Ingredient send response: \(string)")
+        }
+        
+    }
+}
+
 extension Encodable {
   var dictionary: [String: Any]? {
     guard let data = try? JSONEncoder().encode(self) else { return nil }
