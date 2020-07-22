@@ -106,12 +106,14 @@ class ViewController: UIViewController {
         sender.layer.sublayers?.removeFirst(2)
         let Password = password.text
         let Email = email.text
+        showSpinner(onView: scrollView)
         
         let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
         let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
         if Password == "" || Email == ""{
             warning.text = "You've entered an empty value"
+            removeSpinner()
             scrollView.addSubview(warning)
             AddConstraints(view: warning, top: 395, height: 60, width: 350)
         }
@@ -147,19 +149,21 @@ class ViewController: UIViewController {
                         task.resume()
                         
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
-
+                        
                         let vc = RootViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }
                     else if result == "Incorrect password!"{
                         self.warning.text = "Incorrect password :("
+                        removeSpinner()
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
                     }
                     else{
                         self.warning.textColor = .red
                         self.warning.text = "Hey! Seems you have to register!"
+                        removeSpinner()
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
                     }
@@ -174,11 +178,13 @@ class ViewController: UIViewController {
                 else {
                     warning.text = "Password should contain capital, lowercase letters and numbers"
                 }
+                removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 395, height: 60, width: 350)
             }
             else {
                 warning.text = "This email address doesn't exist"
+                removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 395, height: 60, width: 350)
             }
