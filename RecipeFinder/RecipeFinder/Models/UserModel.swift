@@ -12,36 +12,24 @@ public struct User: Codable {
     var name: String?
     var email: String?
     var password: String?
-    var savedLinks: [Link]?
-    var productList: [Products]?
-    
+    var savedLinks: String?
+    var productList: String?
 }
 
-public struct Products: Codable {
-    var product: String?
-    var amount: Double?
-}
-
-public struct Link: Codable {
-    var address: String?
-}
-
-public var GlobalUser = User(name: "", email: "", password: "", savedLinks: nil, productList: nil)
-
-public func FetchUser(with completion: @escaping (User) -> ()){
+public func FetchUser(){
     let defaults = UserDefaults.standard
-    let email = defaults.string(forKey: "email") ?? "Nope"
-    let password = defaults.string(forKey: "password") ?? "Nope"
-    let url =  "https://recipe-finder-api.azurewebsites.net/?email=\(email)&pass=\(password)"
+    let email1 = defaults.string(forKey: "email") ?? "Nope"
+    let password1 = defaults.string(forKey: "password") ?? "Nope"
+    let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email1)&password=\(password1)"
     AF.request(url).responseDecodable(of: User.self){
         (response) in
         guard let user = response.value else{return}
-        completion(user)
+        print(user)
     }
 }
 
 public func ChangeUserInfo(user: User){
-    let url =  "https://recipe-finder-api.azurewebsites.net/"
+    let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
     let params = user.dictionary
     AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
         response in

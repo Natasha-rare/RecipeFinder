@@ -337,7 +337,7 @@ extension HomeController{
         
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor.red
-        GlobalUser.savedLinks?.append(Link(address: sender.url))
+        // append link to user
     }
 
     @objc func groceryTapped(_ sender: UIButton){
