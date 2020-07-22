@@ -29,16 +29,16 @@ class SavedController: UIViewController{
         label.textAlignment = .center
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(savedLinks.count * 80 + 200))
         var count = 0
         for url in savedLinks {
             let imageV = SaveButton()
-            imageV.load(title: url, frame: CGRect(x: 10,y: 150 + count * 60, width: 300, height: 50), url: url)
-            imageV.setTitle(url, for: .normal)
+            
+            imageV.load(title: url, frame: CGRect(x: 10,y: 128 + count * 80, width: 290, height: 62), url: url)
             imageV.addTarget(self, action: #selector(self.imageTapped(_:)), for: .touchUpInside)
             
             scrollView.addSubview(imageV)
-            AddConstraints(view: imageV, top: 150 + count * 60, height: 50, width: 300)
+            AddConstraints(view: imageV, top: 128 + count * 80, height: 62, width: 290)
             
             count += 1
         }
@@ -60,7 +60,6 @@ class SavedController: UIViewController{
 }
 
 class SaveButton: UIButton{
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         load(title: "Hi", frame: frame, url: "")
@@ -71,14 +70,26 @@ class SaveButton: UIButton{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1), url: String){
+    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1), url: String, imageFrame: CGRect = CGRect(x: 10, y: 16, width: 30, height: 30)){
+        
         self.url = url
-        setTitle("\(title)", for: .normal)
-        setTitleColor(UIColor.black, for: .normal)
+        let label = UILabel()
+        label.text = title
+        label.textColor = .black
+        label.frame = CGRect(x: 48, y: 0, width: Int(frame.width) - 50, height: Int(frame.height))
+        label.font = UIFont(name: "Harmattan-Regular", size: 18)
+        
+        let imageView = UIImageView(image: UIImage(named: "link.png"))
+        imageView.frame = imageFrame
+        
         self.frame = frame
         backgroundColor = color
-        layer.borderColor = UIColor.black.cgColor
+        layer.cornerRadius = 5.0
+        layer.borderColor = UIColor.systemGray.cgColor
         layer.borderWidth = 0.5
+        
+        self.addSubview(label)
+        self.addSubview(imageView)
     }
 }
 
