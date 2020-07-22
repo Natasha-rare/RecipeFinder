@@ -30,7 +30,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     var numberOfIngredient: Int = 0
     var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
     var selectedImage: String = ""
-    let scrollView = UIScrollView()
+    var scrollView = UIScrollView()
     
     
     override func viewDidLoad() {
