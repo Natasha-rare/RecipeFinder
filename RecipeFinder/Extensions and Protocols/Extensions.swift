@@ -345,15 +345,16 @@ extension HomeController{
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){
-        // ingridients to grocery
-        let vc = GroceryController()
-        vc.ingredients = sender.ingredientList
+        
         let originalImage = UIImage(named: "grocery.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
-        
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         
+        // ingridients to grocery
+        groceryIngridients = sender.ingredientList
+        SendIngredients(ingredientList: groceryIngridients)
+
 }
 }
 

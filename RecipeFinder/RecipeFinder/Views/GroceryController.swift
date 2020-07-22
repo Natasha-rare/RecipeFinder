@@ -1,5 +1,9 @@
 import UIKit
 
+
+public var groceryIngridients: [String] = []
+
+
 class GroceryController: UIViewController{
     var label = UILabel()
     var scrollView = UIScrollView()
@@ -7,7 +11,7 @@ class GroceryController: UIViewController{
     
     
     //list from home
-    var ingredients: [String] = []
+
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
