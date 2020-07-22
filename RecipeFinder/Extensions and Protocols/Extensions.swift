@@ -345,6 +345,9 @@ extension HomeController{
         else{
             sender.tintColor = UIColor.red
         }
+               
+        let vc = SavedController()
+        vc.savedLinks.append(sender.url)
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){
