@@ -9,6 +9,7 @@
 import UIKit
 import CryptoSwift
 import SnapKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -122,29 +123,22 @@ class ViewController: UIViewController {
                     
                 auth(email: Email!, password: hashedPassword){
                     result in
-                    
+                    print("email: \(Email!) \n password: \(hashedPassword)")
+                    print(result)
                     if result == "Logged in!"{
-                        let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&pass=\(hashedPassword)")!
-                        //var request = URLRequest(url: url)
-                        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                            if let error = error {
-                                print("error: \(error)")
-                            } else {
-                                if (response as? HTTPURLResponse) != nil {
+                        let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(hashedPassword)"
+                        AF.request(url, method: .get).response{
+                            response in
+                            if let data = response.value{
+                                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
                                     
-                                }
-                                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                                    
-                                    var namel = dataString.components(separatedBy: "name\":\"")[1]
-                                   
-                                    namel = namel.components(separatedBy: "\",\"e")[0]
-                                    
-                                    self.name[0] = namel
-                                    self.defaults.set(namel, forKey: "name")
+                                if let dict = json as? [String: Any]{
+                                    print(dict["name"] as! String)
+                                    self.defaults.set(dict["name"] as! String, forKey: "name")
                                 }
                             }
                         }
-                        task.resume()
+                        
                         
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
 
