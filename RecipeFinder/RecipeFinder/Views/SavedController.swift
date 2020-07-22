@@ -25,7 +25,6 @@ class SavedController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         
-        
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Saved"
@@ -37,19 +36,13 @@ class SavedController: UIViewController{
         var count = 0
         print(savedLinks)
         for url in savedLinks {
-            let data = try? Data(contentsOf: URL(string: url)!)
-            var image = UIImage()
-            
-            if let imageData = data {
-                image = UIImage(data: imageData)!
-            }
-            
-            let imageV = CardImage()
-            imageV.load(title: "",frame: CGRect(x: 60, y: 270 + count * 280, width: 256, height: 256), image: image, url: url)
+            let imageV = SaveButton()
+            imageV.load(title: url, frame: CGRect(x: 10,y: 150 + count * 60, width: 300, height: 50), url: url)
+            imageV.setTitle(url, for: .normal)
             imageV.addTarget(self, action: #selector(self.imageTapped(_:)), for: .touchUpInside)
             
             scrollView.addSubview(imageV)
-            AddConstraints(view: imageV, top: 270 + count * 280, height: 256, width: 256)
+            AddConstraints(view: imageV, top: 150 + count * 60, height: 50, width: 300)
             
             count += 1
         }
@@ -62,9 +55,32 @@ class SavedController: UIViewController{
         
     }
     
-    @objc func imageTapped(_ sender: CardImage) {
+    @objc func imageTapped(_ sender: SaveButton) {
         let vc = WebViewController()
-        vc.url = sender.urlIm
+        vc.url = sender.url
         self.present(vc, animated: true, completion: nil)
+    }
+}
+
+class SaveButton: UIButton{
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        load(title: "Hi", frame: frame, url: "")
+    }
+    
+    var url = ""
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1), url: String){
+        self.url = url
+        setTitle("\(title)", for: .normal)
+        setTitleColor(UIColor.black, for: .normal)
+        self.frame = frame
+        backgroundColor = color
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 0.5
     }
 }
