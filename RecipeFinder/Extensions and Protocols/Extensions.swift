@@ -281,14 +281,15 @@ extension HomeController{
                 button.layer.cornerRadius = 10
                 button.layer.masksToBounds = true
                 button.url = hit.recipe.url
-                button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(self.likeButtonTapped(_:)), for: .touchUpInside)
             
-            let buttonGrocery = UIButton()
+            let buttonGrocery = GroceryButton()
                 buttonGrocery.frame = CGRect(x: 75, y: 285 + count * 280, width: 30, height: 30)
                 buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
                 buttonGrocery.layer.cornerRadius = 10
                 buttonGrocery.layer.masksToBounds = true
-                buttonGrocery.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
+                buttonGrocery.ingredientList = hit.recipe.ingredientLines
+                buttonGrocery.addTarget(self, action: #selector(self.groceryTapped(_:)), for: .touchUpInside)
             
             scrollView.addSubview(imageV)
             AddConstraints(view: imageV, top: 270 + count * 280, height: 256, width: 256)
@@ -331,23 +332,29 @@ extension HomeController{
         self.present(vc, animated: true, completion: nil)
     }
 
-    @objc func buttonTapped(_ sender: LikeButton){
-        print(sender.url)
+    @objc func likeButtonTapped(_ sender: LikeButton){
         let originalImage = UIImage(named: "like.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
-        
         sender.setImage(tintedImage, for: .normal)
         sender.tintColor = UIColor.red
-        // append link to user
+        
+        let vc = SavedController()
+        vc.savedLinks.append(sender.url)
     }
 
-    @objc func groceryTapped(_ sender: UIButton){
-        // ingridients to groery
+    @objc func groceryTapped(_ sender: GroceryButton){
+        // ingridients to grocery
+        let vc = GroceryController()
+        vc.ingredients = sender.ingredientList
     }
 }
 
 class LikeButton: UIButton{
     var url: String = ""
+}
+
+class GroceryButton: UIButton{
+    var ingredientList: [String] = []
 }
 
 public var vSpinner: UIView?

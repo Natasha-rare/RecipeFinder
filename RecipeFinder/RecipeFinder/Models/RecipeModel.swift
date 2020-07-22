@@ -29,6 +29,7 @@ struct Recipe: Codable {
     let image: String
     let source: String
     let url: String
+    let ingredientLines: [String]
 }
 
 
