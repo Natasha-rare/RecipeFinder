@@ -89,6 +89,8 @@ class RegistrationController: UIViewController{
     
     @objc func buttonClicked(sender : UIButton) {
         sender.layer.sublayers?.removeFirst(2)
+        showSpinner(onView: scrollView)
+        
         let Password = password.text
         let Email = email.text
         let Confirm = confirm.text
@@ -100,6 +102,7 @@ class RegistrationController: UIViewController{
         
         if Password == "" || Email == "" || Confirm == "" || Name == ""{
             warning.text = "You've entered an empty value"
+            removeSpinner()
             scrollView.addSubview(warning)
             AddConstraints(view: warning, top: 456, height: 58, width: 257)
         }
@@ -120,7 +123,7 @@ class RegistrationController: UIViewController{
                     else if result == "User exists!"{
                         self.warning.textColor = .red
                         self.warning.text = "User with the same email is already excist! Please Log In"
-                        
+                        removeSpinner()
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 456, height: 58, width: 257)
                         }
@@ -134,19 +137,19 @@ class RegistrationController: UIViewController{
                 else {
                    warning.text = "Password should contain capital, lowercase letters and numbers"
                 }
-                
+                removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)
             }
             else if Password != Confirm{
                 warning.text = "Passwords are not equal"
-
+                removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)
             }
             else {
                 warning.text = "This email address doesn't exist"
-                
+                removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)
             }
