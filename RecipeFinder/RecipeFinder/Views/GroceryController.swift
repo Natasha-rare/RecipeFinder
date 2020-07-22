@@ -1,5 +1,5 @@
 import UIKit
-
+import Alamofire
 
 public var groceryIngridients: [String] = []
 
@@ -16,7 +16,8 @@ class GroceryController: UIViewController{
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
-        
+        fetchIngredients()
+        print(groceryIngridients)
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Grocery"
@@ -49,4 +50,22 @@ class GroceryController: UIViewController{
         sender.layer.sublayers?.removeFirst(2)
     }
 
+}
+
+extension GroceryController{
+    func fetchIngredients(){
+        let email = defaults.string(forKey: "email") ?? "Nope"
+        let password = defaults.string(forKey: "password") ?? "Nope"
+        let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email)&password=\(password)"
+        AF.request(url).responseDecodable(of: User.self){
+            (response) in
+            if let data = response.value{
+                if let value = data.productList?.components(separatedBy: "|"){
+                    print(value)
+                    groceryIngridients = value
+                }
+                
+            }
+        }
+    }
 }

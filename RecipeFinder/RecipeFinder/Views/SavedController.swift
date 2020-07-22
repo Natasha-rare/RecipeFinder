@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Alamofire
 
 public var savedLinks: [String] = []
 
@@ -16,15 +16,12 @@ class SavedController: UIViewController{
     
     let scrollView = UIScrollView()
     let label = UILabel()
-    
-    
-    //list from home
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
+        fetchLinks()
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Saved"
@@ -34,7 +31,6 @@ class SavedController: UIViewController{
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         var count = 0
-        print(savedLinks)
         for url in savedLinks {
             let imageV = SaveButton()
             imageV.load(title: url, frame: CGRect(x: 10,y: 150 + count * 60, width: 300, height: 50), url: url)
@@ -60,6 +56,7 @@ class SavedController: UIViewController{
         vc.url = sender.url
         self.present(vc, animated: true, completion: nil)
     }
+    
 }
 
 class SaveButton: UIButton{
@@ -82,5 +79,23 @@ class SaveButton: UIButton{
         backgroundColor = color
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 0.5
+    }
+}
+
+extension SavedController{
+    func fetchLinks(){
+        let email = defaults.string(forKey: "email") ?? "Nope"
+        let password = defaults.string(forKey: "password") ?? "Nope"
+        let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email)&password=\(password)"
+        AF.request(url).responseDecodable(of: User.self){
+            (response) in
+            if let data = response.value{
+                if let value = data.savedLinks?.components(separatedBy: "|"){
+                    print(value)
+                    savedLinks = value
+                }
+                
+            }
+        }
     }
 }

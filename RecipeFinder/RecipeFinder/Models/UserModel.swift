@@ -18,23 +18,6 @@ public struct User: Codable {
 
 let defaults = UserDefaults.standard
 
-public func FetchAllData(completon: @escaping (Result<User, AFError>) -> Void){
-    let email = defaults.string(forKey: "email") ?? "Nope"
-    let password = defaults.string(forKey: "password") ?? "Nope"
-    let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email)&password=\(password)"
-    AF.request(url).responseDecodable(of: User.self){
-        (response) in
-        switch response.result{
-        case .success(let user):
-            completon(.success(.init(name: user.name, email: user.email, password: "***", savedLinks: user.savedLinks, productList: user.productList)))
-            
-        case .failure(let error):
-            completon(.failure(error))
-
-        }
-    }
-}
-
 
 public func SendLinks(savedLinks: [String]){
     let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
