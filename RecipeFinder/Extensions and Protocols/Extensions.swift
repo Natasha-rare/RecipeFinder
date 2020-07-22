@@ -334,6 +334,7 @@ extension HomeController{
     }
 
     @objc func likeButtonTapped(_ sender: LikeButton){
+        print(sender.url)
         let originalImage = UIImage(named: "like.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
