@@ -51,6 +51,7 @@ class GroceryController: UIViewController{
             
             scrollView.addSubview(label2)
             AddConstraints(view: label2, top: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, height: 50, width: 240)
+            scrollView.addConstraint(NSLayoutConstraint(item: label2, attribute: .left, relatedBy: .equal, toItem: checked, attribute: .right, multiplier: 1, constant: 25))
         }
         
         scrollView.addSubview(label)
