@@ -334,13 +334,18 @@ extension HomeController{
     }
 
     @objc func likeButtonTapped(_ sender: LikeButton){
+        //print(sender.url)
         let originalImage = UIImage(named: "like.png")
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
-        sender.setImage(tintedImage, for: .normal)
-        sender.tintColor = UIColor.red
         
-        let vc = SavedController()
-        vc.savedLinks.append(sender.url)
+        sender.setImage(tintedImage, for: .normal)
+        if sender.tintColor == UIColor.red{
+            sender.tintColor = UIColor.white
+        }
+        else{
+            sender.tintColor = UIColor.red
+        }
+        GlobalUser.savedLinks?.append(Link(address: sender.url))
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){
