@@ -5,6 +5,10 @@ class GroceryController: UIViewController{
     var scrollView = UIScrollView()
     var buttonEnter = NeoButton()
     
+    
+    //list from home
+    var ingredients: [String] = []
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
