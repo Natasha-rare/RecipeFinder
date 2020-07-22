@@ -71,10 +71,8 @@ class SavedController: UIViewController{
     }
 
     @objc func buttonClicked1(sender : NeoButton) {
-        sender.layer.sublayers?.removeFirst(2)
         savedLinks = []
         scrollView.subviews.map { $0.removeFromSuperview() }
-        
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
@@ -83,6 +81,8 @@ class SavedController: UIViewController{
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
+        
+        SendLinks(savedLinks: savedLinks)
     }
     
     

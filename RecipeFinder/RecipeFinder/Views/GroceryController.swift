@@ -69,7 +69,6 @@ class GroceryController: UIViewController{
     }
 
     @objc func buttonClicked1(sender : NeoButton) {
-        sender.layer.sublayers?.removeFirst(2)
         groceryIngridients = []
         scrollView.subviews.map { $0.removeFromSuperview() }
         
@@ -81,6 +80,8 @@ class GroceryController: UIViewController{
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
+        SendIngredients(ingredientList: groceryIngridients)
+    
     }
     
     @objc func imageTapped(_ button: UIButton){

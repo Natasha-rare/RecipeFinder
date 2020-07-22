@@ -190,7 +190,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         let vc = RootViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: false, completion: nil)
-        vc.selectedIndex = 1
+        vc.selectedIndex = 0
     }
     
 }
