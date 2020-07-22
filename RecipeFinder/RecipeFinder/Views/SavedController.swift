@@ -102,7 +102,6 @@ extension SavedController{
             (response) in
             if let data = response.value{
                 if let value = data.savedLinks?.components(separatedBy: "|"){
-                    print(value)
                     savedLinks = value
                 }
                 

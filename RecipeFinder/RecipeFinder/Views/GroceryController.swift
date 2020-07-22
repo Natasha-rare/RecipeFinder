@@ -12,8 +12,11 @@ class GroceryController: UIViewController{
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
-        fetchIngredients()
-        print(groceryIngridients)
+        fetchIngredients{
+            res in
+            print(res)
+            groceryIngridients = res
+        }
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -31,7 +34,6 @@ class GroceryController: UIViewController{
         print(groceryIngridients)
         
         for ingredient in groceryIngridients{
-            print("xdxd")
             let label2 = UILabel()
             label2.text = ingredient
             label2.frame = CGRect(x: 80, y: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 240, height: 50)
@@ -70,18 +72,17 @@ class GroceryController: UIViewController{
 }
 
 extension GroceryController{
-    func fetchIngredients(){
+    func fetchIngredients(competionHandler: @escaping ([String]) -> ()){
         let email = defaults.string(forKey: "email") ?? "Nope"
         let password = defaults.string(forKey: "password") ?? "Nope"
         let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email)&password=\(password)"
         AF.request(url).responseDecodable(of: User.self){
             (response) in
             if let data = response.value{
-                if let value = data.productList?.components(separatedBy: "|"){
-                    print("\(value) FOUND!")
-                    groceryIngridients = value
-                }
                 
+                if let value = data.productList?.components(separatedBy: "|"){
+                    competionHandler(value)
+                }
             }
         }
     }
