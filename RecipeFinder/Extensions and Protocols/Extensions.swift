@@ -341,6 +341,7 @@ extension HomeController{
         sender.setImage(tintedImage, for: .normal)
         if sender.tintColor == UIColor.red{
             sender.tintColor = UIColor.white
+            sender.setImage(UIImage(named: "like.png"), for: .normal)
         }
         else{
             sender.tintColor = UIColor.red
