@@ -151,11 +151,12 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         self.checker += 1
                         if self.checker == ingridients.count && self.string != ""
                         {
-                            self.loadViewWithoutCards()
+                            
                             self.getrecipes()
                             
                         }
                         else if self.checker == ingridients.count{
+                            self.loadViewWithoutCards()
                             self.label2.text = "There's no result for your search. Enter ingredients correctly!"
                         }
                     }
