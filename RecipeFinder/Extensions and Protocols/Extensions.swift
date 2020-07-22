@@ -330,7 +330,7 @@ extension HomeController{
         let vc = RootViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: false, completion: nil)
-        vc.selectedIndex = 1
+        vc.selectedIndex = 0
     }
 
     @objc func imageTapped(_ sender: CardImage) {
