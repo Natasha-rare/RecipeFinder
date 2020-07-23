@@ -20,6 +20,7 @@
 		6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41B77224BC61BE00011770 /* GroceryController.swift */; };
 		6F4291AE24B879D700611FDA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4291AD24B879D700611FDA /* HomeController.swift */; };
 		6F4291B024B87A4C00611FDA /* SavedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4291AF24B87A4C00611FDA /* SavedController.swift */; };
+		6F4A072A24C97E0200958594 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F4A072924C97E0200958594 /* loading.json */; };
 		6F5518EA24B7A18300E5981D /* AddIngridients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5518E924B7A18300E5981D /* AddIngridients.swift */; };
 		6F5518EE24B7A2BC00E5981D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5518ED24B7A2BC00E5981D /* UserModel.swift */; };
 		6F5518F024B7A7B900E5981D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5518EF24B7A7B900E5981D /* RootViewController.swift */; };
@@ -31,6 +32,7 @@
 		6FDC744A24BDCE6200ED4F55 /* Fridge copy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC744924BDCE6200ED4F55 /* Fridge copy.mlmodel */; };
 		6FE471A424C19C3400B7A075 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A324C19C3400B7A075 /* WebViewController.swift */; };
 		6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A624C19E8300B7A075 /* Protocols.swift */; };
+		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		BE62197024B8B20A008C4ADD /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62196F24B8B20A008C4ADD /* RegistrationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,7 @@
 		6F41B77224BC61BE00011770 /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
 		6F4291AD24B879D700611FDA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		6F4291AF24B87A4C00611FDA /* SavedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedController.swift; sourceTree = "<group>"; };
+		6F4A072924C97E0200958594 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		6F5518E924B7A18300E5981D /* AddIngridients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngridients.swift; sourceTree = "<group>"; };
 		6F5518ED24B7A2BC00E5981D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		6F5518EF24B7A7B900E5981D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		6FDC744924BDCE6200ED4F55 /* Fridge copy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "Fridge copy.mlmodel"; sourceTree = "<group>"; };
 		6FE471A324C19C3400B7A075 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6FE471A624C19E8300B7A075 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		6FE511C924C9890D000C3A47 /* food.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = food.json; sourceTree = "<group>"; };
 		8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.release.xcconfig"; sourceTree = "<group>"; };
 		BE62196F24B8B20A008C4ADD /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				1211690824B6516800879FED /* Assets.xcassets */,
 				1211690A24B6516800879FED /* LaunchScreen.storyboard */,
 				1211690D24B6516800879FED /* Info.plist */,
+				6FE511C924C9890D000C3A47 /* food.json */,
+				6F4A072924C97E0200958594 /* loading.json */,
 			);
 			path = RecipeFinder;
 			sourceTree = "<group>";
@@ -239,6 +245,8 @@
 			files = (
 				1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */,
 				1211690924B6516800879FED /* Assets.xcassets in Resources */,
+				6FE511CA24C9890D000C3A47 /* food.json in Resources */,
+				6F4A072A24C97E0200958594 /* loading.json in Resources */,
 				12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

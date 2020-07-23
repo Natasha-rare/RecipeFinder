@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Speech
 import Alamofire
+import Lottie
+
 class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizerDelegate{
 
     let label = UILabel()
@@ -31,6 +33,9 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     var rec = Welcome(q: "", from: 0, to: 0, more: false, count: 0, hits: [])
     var selectedImage: String = ""
     var scrollView = UIScrollView()
+    
+    //ANIMATION
+    let animation = Animation.named("loading")
     
     
     override func viewDidLoad() {
@@ -96,9 +101,13 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         print(22)
         let buttonStop = NeoButton()
         super.view.subviews.forEach { $0.removeFromSuperview() }
-        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label2.frame = CGRect(x: 58, y: 150, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = "Loading your recipes..."
+        
+        let animationView = AnimationView(animation: animation)
+        animationView.frame = CGRect(x: 115, y: 220, width: 150, height: 150)
+        
         
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
@@ -109,9 +118,11 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         buttonStop.addTarget(self, action: #selector(stopProcess(_:)), for: .touchDown)
         super.view.addSubview(label2)
         super.view.addSubview(buttonStop)
+        super.view.addSubview(animationView)
+        animationView.loopMode = .loop
+        animationView.play()
         
-        AddConstraints(view: label2, top: 200, height: 80, width: 259)
-        //optimizing string for request
+        AddConstraints(view: label2, top: 150, height: 80, width: 259)
             
         self.checker = 0
         for i in ingridients
@@ -178,7 +189,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                    AF.request(url).responseDecodable(of: Welcome.self){
                        response in
                        guard let recipes = response.value else {return}
-                       
+                       super.view.subviews.forEach { $0.removeFromSuperview() }
                        self.loadViewWithCards(recipes: recipes)
                        }
                }
