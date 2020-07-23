@@ -102,7 +102,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         cell.textLabel?.frame = CGRect(x: 60, y: 5, width: Int(UIScreen.main.bounds.width - 76), height: 30)
         cell.btn.titleLabel!.text = savedLinks[indexPath.row]
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
-//        cell.btn.setImage(UIImage(named: "link.png"), for: .normal)
+        cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
         cell.layoutSubviews()
         print(savedLinks[indexPath.row])
         return cell

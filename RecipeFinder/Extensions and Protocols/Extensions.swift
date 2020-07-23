@@ -438,7 +438,7 @@ public class TableViewCell: UITableViewCell {
         btn.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
         
         self.addSubview(btn)
-        ImageConstraints(view: btn, top: 5, width: 30, height: 30, left: 5)
+//        ImageConstraints(view: btn, top: 5, width: 30, height: 30, left: 5)
     }
     
 }
