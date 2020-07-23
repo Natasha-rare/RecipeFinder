@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
-        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
+        password.loadField(placeholderText: "password", isSecure: false, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
         password.isSecureTextEntry = true
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         
         let animationView = AnimationView(animation: animation)
-        animationView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
+        animationView.frame = CGRect(x: 58, y: 220, width: 220, height: 220)
         
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         AddConstraints(view: password, top: 540, height: 60, width: 257)
         
         scrollView.addSubview(animationView)
-        AddConstraints(view: animationView, top: 175, height: 257, width: 257)
+        AddConstraints(view: animationView, top: 220, height: 220, width: 220)
         
         scrollView.addSubview(buttonStart)
         AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
