@@ -17,11 +17,13 @@ class RootViewController: UITabBarController{
         let homeVC = HomeController()
         let savedVC = SavedController()
         savedVC.fetchLinks()
+        savedVC.tableView.reloadData()
         let profileVC = ProfileController()
         let groceryVC = GroceryController()
         groceryVC.fetchIngredients{
             res in
             groceryIngridients = res
+            groceryVC.tableView.reloadData()
         }
         
         if #available(iOS 13.0, *) {

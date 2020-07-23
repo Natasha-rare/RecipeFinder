@@ -138,6 +138,7 @@ extension SavedController{
             if let data = response.value{
                 if let value = data.savedLinks?.components(separatedBy: "|"){
                     savedLinks = value
+                    self.tableView.reloadData()
                 }
                 
             }
