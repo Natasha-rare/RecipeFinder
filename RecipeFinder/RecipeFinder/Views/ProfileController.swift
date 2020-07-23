@@ -56,7 +56,7 @@ class ProfileController: UIViewController{
         deleteAccountButton.addTarget(self, action: #selector(self.deleteAccount(sender:)), for: .touchUpInside)
         
         scrollView.addSubview(deleteAccountButton)
-        
+        AddConstraints(view: deleteAccountButton, top: 420, height: 50, width: 150)
         
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
