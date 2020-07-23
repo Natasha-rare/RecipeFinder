@@ -361,6 +361,8 @@ extension HomeController{
             savedLinks.append(sender.url)
         }
         print(savedLinks)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+        
         SendLinks(savedLinks: savedLinks)
     }
 

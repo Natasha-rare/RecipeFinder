@@ -26,7 +26,8 @@ class SavedController: UIViewController, UITableViewDataSource{
         fetchLinks()
         print(savedLinks)
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Saved"
@@ -41,10 +42,13 @@ class SavedController: UIViewController, UITableViewDataSource{
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
         
-        tableView.frame = CGRect(x: 0, y: 128, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        tableView.frame = CGRect(x: 0, y: 128, width: Int(UIScreen.main.bounds.width), height: Int(UIScreen.main.bounds.height))
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
         tableView.dataSource = self
         tableView.backgroundColor = view.backgroundColor
+        tableView.rowHeight = UITableView.automaticDimension
+        
+//        tableView.estimatedRowHeight = 100
         
         var count = 0
         for url in savedLinks {
@@ -64,7 +68,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
         tableView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 259 + count * 80, height: 58, width: 259)
+        AddConstraints(view: buttonEnter, top: 200 + count * 30, height: 58, width: 259)
         
         
         super.view.addSubview(tableView)
@@ -72,6 +76,12 @@ class SavedController: UIViewController, UITableViewDataSource{
 //        super.view.addSubview(scrollView)
 //        ScrollViewConstraints(view: scrollView)
         
+    }
+    
+    @objc func refresh() {
+
+        self.tableView.reloadData() // a refresh the tableView.
+
     }
     
     @objc func imageTapped(_ sender: SaveButton) {
@@ -95,6 +105,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         cell.textLabel?.text = savedLinks[indexPath.row]
         cell.btn.titleLabel!.text = savedLinks[indexPath.row]
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
+        cell.layoutSubviews()
         print(savedLinks[indexPath.row])
         return cell
     }
@@ -113,16 +124,8 @@ class SavedController: UIViewController, UITableViewDataSource{
 
     @objc func buttonClicked1(sender : NeoButton) {
         savedLinks = []
-        scrollView.subviews.forEach { $0.removeFromSuperview() }
-        scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
         
-        scrollView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 589, height: 58, width: 259)
-        
-        super.view.addSubview(scrollView)
-        ScrollViewConstraints(view: scrollView)
-        
+         self.tableView.reloadData()
         SendLinks(savedLinks: savedLinks)
     }
     
@@ -142,19 +145,24 @@ class TableViewCell: UITableViewCell {
         let imageView = UIImageView(image: UIImage(named: "link.png"))
         imageView.frame = CGRect(x: 10, y: 16, width: 20, height: 20)
         self.addSubview(imageView)
-        ImageConstraints(view: imageView, top: 5, width: 20, height: 20, left: 5)
+        
+        ImageConstraints(view: imageView, top: 10, width: 20, height: 20, left: 5)
 
         self.textLabel!.translatesAutoresizingMaskIntoConstraints = false
         textLabel!.textColor = .black
         textLabel!.font = UIFont(name: "Harmattan-Regular", size: 18)
-        textLabel!.frame = CGRect(x: 40, y: 10, width: 200, height: 30)
+//        textLabel!.frame = CGRect(x: 40, y: 10, width: 200, height: 30)
+        textLabel?.textRect(forBounds: CGRect(x: 0, y: 0, width: 180, height: 30), limitedToNumberOfLines: 2)
         self.addSubview(textLabel!)
+        textLabel!.leftAnchor.constraint(equalTo: self.imageView!.rightAnchor).isActive = true
+        textLabel!.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        textLabel!.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        textLabel!.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        textLabel?.leftAnchor.constraint(equalTo: self.imageView!.leftAnchor, constant: 40)
         
-//        btn.titleLabel?.text = textLabel?.text
         self.addSubview(btn)
         AddConstraints(view: btn, top: 5, height: 30, width: 200)
     }
-    
     
 }
 
