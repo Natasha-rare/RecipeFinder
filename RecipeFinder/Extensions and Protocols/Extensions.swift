@@ -240,7 +240,7 @@ extension HomeController{
     }
     
     func loadViewWithCards(recipes: Welcome){
-        scrollView.subviews.map { $0.removeFromSuperview() }
+        scrollView.subviews.forEach { $0.removeFromSuperview() }
         var count: Int = 0
         label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)

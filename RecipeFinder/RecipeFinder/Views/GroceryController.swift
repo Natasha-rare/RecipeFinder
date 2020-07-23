@@ -70,7 +70,7 @@ class GroceryController: UIViewController{
 
     @objc func buttonClicked1(sender : NeoButton) {
         groceryIngridients = []
-        scrollView.subviews.map { $0.removeFromSuperview() }
+        scrollView.subviews.forEach { $0.removeFromSuperview() }
         
         scrollView.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)

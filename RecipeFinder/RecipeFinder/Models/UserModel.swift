@@ -35,7 +35,7 @@ public func SendLinks(savedLinks: [String]){
     AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
         response in
         if let string = response.value{
-            print("Send links response: \(string)")
+            print("Send links response: \(string!)")
         }
         
     }
@@ -56,7 +56,7 @@ public func SendIngredients(ingredientList: [String]){
     AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
         response in
         if let string = response.value{
-            print("Ingredient send response: \(string)")
+            print("Ingredient send response: \(string!)")
         }
         
     }
