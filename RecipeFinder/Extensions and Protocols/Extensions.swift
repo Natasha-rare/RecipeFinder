@@ -376,6 +376,8 @@ extension HomeController{
         // ingridients to grocery
         groceryIngridients = sender.ingredientList
         print("\(sender.ingredientList) grocery tapped")
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         SendIngredients(ingredientList: groceryIngridients)
     }
 }
@@ -409,5 +411,69 @@ public func removeSpinner() {
     DispatchQueue.main.async {
         vSpinner?.removeFromSuperview()
         vSpinner = nil
+    }
+}
+
+
+public class TableViewCell: UITableViewCell {
+    
+    
+    let btn = UIButton()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        self.textLabel!.translatesAutoresizingMaskIntoConstraints = false
+        textLabel!.textColor = .black
+        textLabel!.font = UIFont(name: "Harmattan-Regular", size: 18)
+        textLabel!.frame = CGRect(x: 45, y: 5, width: Int(self.bounds.width - 45), height: 30)
+        self.addSubview(textLabel!)
+        
+        
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
+        
+        self.addSubview(btn)
+        ImageConstraints(view: btn, top: 5, width: 30, height: 30, left: 5)
+    }
+    
+}
+
+
+
+class SaveButton: UIButton{
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        load(title: "Hi", frame: frame, url: "")
+    }
+    
+    var url = ""
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1), url: String, imageFrame: CGRect = CGRect(x: 10, y: 16, width: 30, height: 30)){
+        
+        self.url = url
+        let label = UILabel()
+        label.text = title
+        label.textColor = .black
+        label.frame = CGRect(x: 48, y: 0, width: Int(frame.width) - 50, height: Int(frame.height))
+        label.font = UIFont(name: "Harmattan-Regular", size: 18)
+        
+        let imageView = UIImageView(image: UIImage(named: "link.png"))
+        imageView.frame = imageFrame
+        
+        self.frame = frame
+        backgroundColor = color
+        layer.cornerRadius = 5.0
+        layer.borderColor = UIColor.systemGray.cgColor
+        layer.borderWidth = 0.5
+        
+        self.addSubview(label)
+        self.addSubview(imageView)
     }
 }

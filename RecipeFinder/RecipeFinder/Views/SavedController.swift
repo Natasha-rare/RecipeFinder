@@ -68,7 +68,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
         tableView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 200 + count * 30, height: 58, width: 259)
+        AddConstraints(view: buttonEnter, top: 300 + count * 30, height: 58, width: 259)
         
         
         super.view.addSubview(tableView)
@@ -79,9 +79,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     }
     
     @objc func refresh() {
-
         self.tableView.reloadData() // a refresh the tableView.
-
     }
     
     @objc func imageTapped(_ sender: SaveButton) {
@@ -105,6 +103,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         cell.textLabel?.text = savedLinks[indexPath.row]
         cell.btn.titleLabel!.text = savedLinks[indexPath.row]
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
+        cell.btn.setImage(UIImage(named: "link.png"), for: .normal)
         cell.layoutSubviews()
         print(savedLinks[indexPath.row])
         return cell
@@ -115,91 +114,19 @@ class SavedController: UIViewController, UITableViewDataSource{
     }
     
     @objc func presentWebBrowser(sender: UIButton) {
-            print("fs")
             let vc = WebViewController()
             vc.url = sender.titleLabel?.text! as! String
             self.present(vc, animated: true, completion: nil)
-    //        print("tapped")
         }
 
     @objc func buttonClicked1(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
         savedLinks = []
         
          self.tableView.reloadData()
         SendLinks(savedLinks: savedLinks)
     }
     
-}
-
-class TableViewCell: UITableViewCell {
-    
-    
-    let btn = UIButton()
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let imageView = UIImageView(image: UIImage(named: "link.png"))
-        imageView.frame = CGRect(x: 10, y: 16, width: 20, height: 20)
-        self.addSubview(imageView)
-        
-        ImageConstraints(view: imageView, top: 10, width: 20, height: 20, left: 5)
-
-        self.textLabel!.translatesAutoresizingMaskIntoConstraints = false
-        textLabel!.textColor = .black
-        textLabel!.font = UIFont(name: "Harmattan-Regular", size: 18)
-//        textLabel!.frame = CGRect(x: 40, y: 10, width: 200, height: 30)
-        textLabel?.textRect(forBounds: CGRect(x: 0, y: 0, width: 180, height: 30), limitedToNumberOfLines: 2)
-        self.addSubview(textLabel!)
-        textLabel!.leftAnchor.constraint(equalTo: self.imageView!.rightAnchor).isActive = true
-        textLabel!.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        textLabel!.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        textLabel!.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        textLabel?.leftAnchor.constraint(equalTo: self.imageView!.leftAnchor, constant: 40)
-        
-        self.addSubview(btn)
-        AddConstraints(view: btn, top: 5, height: 30, width: 200)
-    }
-    
-}
-
-
-
-class SaveButton: UIButton{
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        load(title: "Hi", frame: frame, url: "")
-    }
-    
-    var url = ""
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func load(title: String, frame: CGRect, color: UIColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1), url: String, imageFrame: CGRect = CGRect(x: 10, y: 16, width: 30, height: 30)){
-        
-        self.url = url
-        let label = UILabel()
-        label.text = title
-        label.textColor = .black
-        label.frame = CGRect(x: 48, y: 0, width: Int(frame.width) - 50, height: Int(frame.height))
-        label.font = UIFont(name: "Harmattan-Regular", size: 18)
-        
-        let imageView = UIImageView(image: UIImage(named: "link.png"))
-        imageView.frame = imageFrame
-        
-        self.frame = frame
-        backgroundColor = color
-        layer.cornerRadius = 5.0
-        layer.borderColor = UIColor.systemGray.cgColor
-        layer.borderWidth = 0.5
-        
-        self.addSubview(label)
-        self.addSubview(imageView)
-    }
 }
 
 extension SavedController{
