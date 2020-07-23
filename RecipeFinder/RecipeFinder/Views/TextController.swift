@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TextController: UIViewController, UITextFieldDelegate{
+class TextController: UIViewController{
     weak var delegate: RecipeArrayDelegate?
     
     var label = UILabel()
@@ -80,7 +80,7 @@ class TextController: UIViewController, UITextFieldDelegate{
         self.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         performAction()
         return true

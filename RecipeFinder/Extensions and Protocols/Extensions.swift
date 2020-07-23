@@ -478,3 +478,11 @@ class SaveButton: UIButton{
         self.addSubview(imageView)
     }
 }
+
+
+extension UIViewController: UITextFieldDelegate{
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+}

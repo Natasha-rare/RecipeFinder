@@ -73,7 +73,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
         tableView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 300 + groceryIngridients.count * 30, height: 58, width: 259)
+        AddConstraints(view: buttonEnter, top: 200 + groceryIngridients.count * 30, height: 58, width: 259)
         
         super.view.addSubview(tableView)
     }

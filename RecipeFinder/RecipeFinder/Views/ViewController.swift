@@ -49,9 +49,10 @@ class ViewController: UIViewController {
         label2.text = "Enter products. We’ll show the recipe."
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
+        email.delegate = self
         
-        password.loadField(placeholderText: "password", isSecure: false, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
-        password.isSecureTextEntry = true
+        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
+        password.delegate = self
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
         warning.frame = CGRect(x: 10, y: 395, width: 350, height: 60)
