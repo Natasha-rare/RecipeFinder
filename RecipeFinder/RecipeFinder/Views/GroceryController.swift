@@ -19,6 +19,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
             res in
             print(res)
             groceryIngridients = res
+            self.tableView.reloadData()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
