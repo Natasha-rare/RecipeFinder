@@ -36,10 +36,10 @@ class RegistrationController: UIViewController{
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
         
-        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
-        
-        confirm.loadField(placeholderText: "repeat password", isSecure: true, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
-        
+        password.loadField(placeholderText: "password", isSecure: false, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
+        password.isSecureTextEntry = true
+        confirm.loadField(placeholderText: "repeat password", isSecure: false, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
+        confirm.isSecureTextEntry = true
         buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: 257, height: 58))
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
