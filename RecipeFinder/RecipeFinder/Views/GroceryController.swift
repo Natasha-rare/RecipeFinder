@@ -95,7 +95,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.textLabel?.text = groceryIngridients[indexPath.row]
         cell.btn.setImage(UIImage(named: "check-box.png"), for: .normal)
-        cell.textLabel?.frame = CGRect(x: 45, y: 5, width: Int(UIScreen.main.bounds.width - 50), height: 30)
+        cell.textLabel?.frame = CGRect(x: 60, y: 5, width: Int(UIScreen.main.bounds.width - 76), height: 30)
         cell.btn.addTarget(self, action: #selector(imageTapped(_:)), for: .touchDown)
         cell.layoutSubviews()
         return cell

@@ -50,6 +50,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.rowHeight = UITableView.automaticDimension
         
+        
         var count = 0
         for url in savedLinks {
             let imageV = SaveButton()
@@ -72,9 +73,6 @@ class SavedController: UIViewController, UITableViewDataSource{
         
         
         super.view.addSubview(tableView)
-        
-//        super.view.addSubview(scrollView)
-//        ScrollViewConstraints(view: scrollView)
         
     }
     
@@ -101,6 +99,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         var cell = TableViewCell()
         cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.textLabel?.text = savedLinks[indexPath.row]
+        cell.textLabel?.frame = CGRect(x: 60, y: 5, width: Int(UIScreen.main.bounds.width - 76), height: 30)
         cell.btn.titleLabel!.text = savedLinks[indexPath.row]
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
         cell.btn.setImage(UIImage(named: "link.png"), for: .normal)

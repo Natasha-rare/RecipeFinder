@@ -428,10 +428,11 @@ public class TableViewCell: UITableViewCell {
 
         self.textLabel!.translatesAutoresizingMaskIntoConstraints = false
         textLabel!.textColor = .black
+        textLabel!.textAlignment = .right
         textLabel!.font = UIFont(name: "Harmattan-Regular", size: 18)
-        textLabel!.frame = CGRect(x: 45, y: 5, width: Int(self.bounds.width - 45), height: 30)
+        textLabel!.frame = CGRect(x: 76, y: 5, width: Int(self.bounds.width - 76), height: 30)
         self.addSubview(textLabel!)
-        
+        ImageConstraints(view: textLabel!, top: 5, width: Int(self.bounds.width - 76), height: 30, left: 76)
         
         btn.layer.borderColor = UIColor.black.cgColor
         btn.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
