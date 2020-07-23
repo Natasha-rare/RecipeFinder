@@ -99,7 +99,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     
     func getRecipes(ingridients: [String]){
         print(22)
-        let buttonStop = NeoButton()
+        let buttonStop = UIButton()
         super.view.subviews.forEach { $0.removeFromSuperview() }
         label2.frame = CGRect(x: 58, y: 150, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
@@ -114,8 +114,15 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         
-        buttonStop.load(title: "stop searching process", frame: CGRect(x: 58, y: 400, width: 259, height: 58))
         buttonStop.addTarget(self, action: #selector(stopProcess(_:)), for: .touchDown)
+        buttonStop.frame = CGRect(x: 113, y: 420, width: 150, height: 58)
+        buttonStop.setTitle("stop search", for: .normal)
+        buttonStop.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
+        buttonStop.backgroundColor = view.backgroundColor
+        buttonStop.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        buttonStop.layer.cornerRadius = 30
+        buttonStop.layer.masksToBounds = true
+        buttonStop.layer.borderWidth = 1
         super.view.addSubview(label2)
         super.view.addSubview(buttonStop)
         super.view.addSubview(animationView)
@@ -123,7 +130,8 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         animationView.play()
         
         AddConstraints(view: label2, top: 150, height: 80, width: 259)
-            
+        AddConstraints(view: animationView, top: 220, height: 150, width: 150)
+        AddConstraints(view: buttonStop, top: 400, height: 58, width: 259)
         self.checker = 0
         for i in ingridients
         {
