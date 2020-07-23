@@ -10,6 +10,7 @@ import UIKit
 import CryptoSwift
 import SnapKit
 import Alamofire
+import Lottie
 
 class ViewController: UIViewController {
     
@@ -24,6 +25,8 @@ class ViewController: UIViewController {
     private var name: [String] = [""]
     let defaults = UserDefaults.standard
     var scrollView = UIScrollView()
+    
+    let animation = Animation.named("food")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +70,9 @@ class ViewController: UIViewController {
         buttonRegistr.frame = CGRect(x: 0, y: 750, width: 375, height: 33)
         buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         
-        let image = UIImage(named: "mainImage.png")
-        let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
+        let animationView = AnimationView(animation: animation)
+        animationView.frame = CGRect(x: 58, y: 175, width: 256, height: 256)
+        
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
@@ -86,8 +89,8 @@ class ViewController: UIViewController {
         scrollView.addSubview(password)
         AddConstraints(view: password, top: 540, height: 60, width: 257)
         
-        scrollView.addSubview(imageView)
-        AddConstraints(view: imageView, top: 175, height: 257, width: 257)
+        scrollView.addSubview(animationView)
+        AddConstraints(view: animationView, top: 175, height: 257, width: 257)
         
         scrollView.addSubview(buttonStart)
         AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
@@ -96,6 +99,8 @@ class ViewController: UIViewController {
         AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
         
         super.view.addSubview(scrollView)
+        animationView.loopMode = .loop
+        animationView.play()
         ScrollViewConstraints(view: scrollView)
     }
     
