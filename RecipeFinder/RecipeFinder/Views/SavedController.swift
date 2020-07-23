@@ -42,13 +42,13 @@ class SavedController: UIViewController, UITableViewDataSource{
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
         
-        tableView.frame = CGRect(x: 0, y: 128, width: Int(UIScreen.main.bounds.width), height: Int(UIScreen.main.bounds.height))
+        tableView.frame = CGRect(x: 8, y: 128, width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
         tableView.dataSource = self
         tableView.backgroundColor = view.backgroundColor
+        tableView.separatorStyle = .singleLine
+        tableView.tableFooterView = UIView(frame: .zero)
         tableView.rowHeight = UITableView.automaticDimension
-        
-//        tableView.estimatedRowHeight = 100
         
         var count = 0
         for url in savedLinks {
