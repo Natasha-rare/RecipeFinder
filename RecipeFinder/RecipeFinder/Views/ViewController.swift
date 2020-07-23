@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         
         email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         
-        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
+        password.loadField(placeholderText: "password", isSecure: false, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
         password.isSecureTextEntry = true
         
         warning.text = "Password should contain capital, lowercase letters and numbers"
