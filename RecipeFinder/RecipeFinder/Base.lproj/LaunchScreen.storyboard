@@ -18,14 +18,18 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="EXe-zy-Z8v">
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="MEf-TU-DIu"/>
+                                    <constraint firstAttribute="width" constant="240" id="y39-r2-OeO"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="6s7-2J-ybS"/>
-                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="WnE-6U-PWl"/>
-                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="340" id="fMl-oK-1S2"/>
-                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="z6F-yM-ZAB"/>
+                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="340" id="79T-oz-Vsi"/>
+                            <constraint firstItem="EXe-zy-Z8v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="tk6-sV-f28"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EXe-zy-Z8v" secondAttribute="bottom" constant="350" id="wnE-HF-u6k"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EXe-zy-Z8v" secondAttribute="trailing" constant="87" id="xej-Uq-xbA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

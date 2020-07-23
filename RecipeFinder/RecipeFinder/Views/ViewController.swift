@@ -71,8 +71,9 @@ class ViewController: UIViewController {
         buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         
         let animationView = AnimationView(animation: animation)
-        animationView.frame = CGRect(x: 58, y: 180, width: 250, height: 250)
-        
+        animationView.frame = CGRect(x: 58, y: 210, width: 180, height: 180)
+        animationView.loopMode = .loop
+        animationView.play()
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
@@ -90,7 +91,7 @@ class ViewController: UIViewController {
         AddConstraints(view: password, top: 540, height: 60, width: 257)
         
         scrollView.addSubview(animationView)
-        AddConstraints(view: animationView, top: 180, height: 250, width: 250)
+        AddConstraints(view: animationView, top: 210, height: 180, width: 180)
         
         scrollView.addSubview(buttonStart)
         AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
@@ -99,8 +100,7 @@ class ViewController: UIViewController {
         AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
         
         super.view.addSubview(scrollView)
-        animationView.loopMode = .loop
-        animationView.play()
+        
         ScrollViewConstraints(view: scrollView)
     }
     

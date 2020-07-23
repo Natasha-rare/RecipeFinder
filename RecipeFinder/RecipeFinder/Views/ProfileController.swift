@@ -12,6 +12,7 @@ class ProfileController: UIViewController{
     var greeting = UILabel()
     var defaults = UserDefaults.standard
     let scrollView = UIScrollView()
+    let deleteAccountButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,14 @@ class ProfileController: UIViewController{
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
+    
+        deleteAccountButton.frame = CGRect(x: 105, y: 420, width: 150, height: 50)
+        deleteAccountButton.setTitle("Delete account", for: .normal)
+        deleteAccountButton.titleLabel?.font = UIFont(name: "Harmattan-Regular", size: 24)
+        deleteAccountButton.setTitleColor(.red, for: .normal)
+        deleteAccountButton.addTarget(self, action: #selector(self.deleteAccount(sender:)), for: .touchUpInside)
+        
+        scrollView.addSubview(deleteAccountButton)
         
         
         scrollView.addSubview(label)
@@ -80,5 +89,39 @@ class ProfileController: UIViewController{
     
     @objc func buttonClicked2(sender: NeoButton){
         sender.layer.sublayers?.removeFirst(2)
+    }
+    
+    @objc func deleteAccount(sender: UIButton){
+        let alert = UIAlertController(title: "Do you want to continue?", message: "By clicking 'yes' your account will be permanently deleted!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler:  {
+                (action) -> Void in
+            
+            self.deleteAccountOnServer()
+            self.defaults.set(false, forKey: "logged")
+            
+            let vc = ViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteAccountOnServer(){
+        let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
+        let email = defaults.string(forKey: "email") ?? "Nope"
+        let password = defaults.string(forKey: "password") ?? "Nope"
+        let params = [
+            "email": "\(email)",
+            "password": "\(password)"]
+        AF.request(url, method: .delete, parameters: params, encoding: JSONEncoding.default).response{
+            response in
+            if let data = response.data{
+                if let string = String(data: data, encoding: .utf8){
+                    print("Delete account response: \(string)")
+                }
+            }
+        }
     }
 }
