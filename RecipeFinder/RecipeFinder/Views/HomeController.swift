@@ -178,7 +178,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                    AF.request(url).responseDecodable(of: Welcome.self){
                        response in
                        guard let recipes = response.value else {return}
-                       
+                       super.view.subviews.forEach { $0.removeFromSuperview() }
                        self.loadViewWithCards(recipes: recipes)
                        }
                }
