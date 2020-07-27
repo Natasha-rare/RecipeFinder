@@ -40,7 +40,7 @@ class ProfileController: UIViewController{
         email.textAlignment = .center
         email.text = defaults.string(forKey: "email")
         
-        buttonExit.load(title: "log out", frame: CGRect(x: 102, y: 525, width: 170, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
+        buttonExit.load(title: NSLocalizedString("log out", comment: ""), frame: CGRect(x: 102, y: 525, width: 170, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
         
         buttonExit.setTitleColor(.white, for: .normal)
         buttonExit.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
@@ -50,7 +50,7 @@ class ProfileController: UIViewController{
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 700)
     
         deleteAccountButton.frame = CGRect(x: 105, y: 420, width: 150, height: 50)
-        deleteAccountButton.setTitle("Delete account", for: .normal)
+        deleteAccountButton.setTitle(NSLocalizedString("Delete account", comment: ""), for: .normal)
         deleteAccountButton.titleLabel?.font = UIFont(name: "Harmattan-Regular", size: 24)
         deleteAccountButton.setTitleColor(.red, for: .normal)
         deleteAccountButton.addTarget(self, action: #selector(self.deleteAccount(sender:)), for: .touchUpInside)

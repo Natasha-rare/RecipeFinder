@@ -35,6 +35,7 @@
 		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		BE62197024B8B20A008C4ADD /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62196F24B8B20A008C4ADD /* RegistrationController.swift */; };
 		BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483124CEF93800CF36C2 /* Localizable.strings */; };
+		BE7D483B24CF416300CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483D24CF416300CF36C2 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		BE62196F24B8B20A008C4ADD /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		BE7D482C24CEF57500CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE7D483024CEF93800CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BE7D483824CF414200CF36C2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BE7D483C24CF416300CF36C2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 				1211690A24B6516800879FED /* LaunchScreen.storyboard */,
 				1211690D24B6516800879FED /* Info.plist */,
 				BE7D483124CEF93800CF36C2 /* Localizable.strings */,
+				BE7D483D24CF416300CF36C2 /* Localizable.strings */,
 				6FE511C924C9890D000C3A47 /* food.json */,
 				6F4A072924C97E0200958594 /* loading.json */,
 			);
@@ -232,6 +236,7 @@
 				en,
 				Base,
 				ru,
+				de,
 			);
 			mainGroup = 121168F324B6516700879FED;
 			productRefGroup = 121168FD24B6516700879FED /* Products */;
@@ -251,6 +256,7 @@
 				1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */,
 				BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */,
 				1211690924B6516800879FED /* Assets.xcassets in Resources */,
+				BE7D483B24CF416300CF36C2 /* Localizable.strings in Resources */,
 				6FE511CA24C9890D000C3A47 /* food.json in Resources */,
 				6F4A072A24C97E0200958594 /* loading.json in Resources */,
 				12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */,
@@ -338,6 +344,7 @@
 			children = (
 				1211690B24B6516800879FED /* Base */,
 				BE7D482C24CEF57500CF36C2 /* ru */,
+				BE7D483824CF414200CF36C2 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -346,6 +353,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE7D483024CEF93800CF36C2 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BE7D483D24CF416300CF36C2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE7D483C24CF416300CF36C2 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

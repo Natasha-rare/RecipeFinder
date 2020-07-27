@@ -1,0 +1,54 @@
+/*
+  Localizable.strings
+  RecipeFinder
+
+  Created by I on 27.07.2020.
+  Copyright © 2020 Наталья Автухович. All rights reserved.
+*/
+"Registration" = "Check-In";
+"Enter products. We'll show the recipe." = "Produkte eingeben. Wir zeigen das Rezept.";
+"email" = "post";
+"password" = "passwort";
+"let's go" = "lass uns gehen";
+"Don’t have an account?" = "Sie haben noch kein Konto?";
+"Password should contain capital, lowercase letters and numbers" = "
+Das Passwort sollte Groß- und Kleinbuchstaben sowie Zahlen enthalten";
+"ready" = "registrieren";
+"name" = "name";
+"repeat password" = "passwort wiederholen";
+"User with the same email already excists! Please Log In" = "Benutzer mit der gleichen E-Mail existiert bereits! Bitte loggen Sie sich ein";
+"Hey! Seems you have to register!" = "Hallo! Scheint, Sie müssen sich registrieren!";
+"Your password is too short" = "Dein Passwort ist zu kurz";
+"You've entered an empty value" = "Sie haben einen leeren Wert eingegeben";
+"Incorrect password :(" = "Falsches passwort :(";
+"Passwords are not equal" = "Passwörter sind nicht gleich";
+"This email address doesn't exist" = "Diese E-Mail-Adresse existiert nicht";
+"Your password is too short" = "Dein Passwort ist zu kurz";
+"Loading your recipes..." = "Laden Sie Ihre Rezepte...";
+"It seems that you didn’t enter ingridients!" = "Es scheint, dass Sie keine Zutaten eingegeben haben!";
+"There's no result for your search. Enter ingredients correctly!" = "
+Es gibt kein Ergebnis für Ihre Suche. Zutaten richtig eingeben!";
+"clear all" = "alles löschen";
+"Saved" = "Gerettet";
+"Grocery" = "Einkaufsliste";
+"Just speak" = "Rede einfach";
+"done" = "getan";
+"start" = "anfang";
+"stop" = "halt";
+"Profile" = "Profil";
+"Hello" = "Hallo";
+"camera" = "kamera";
+"voice" = "stimme";
+"text" = "text";
+"Home" = "zuhause";
+"input ingredients" = "zutaten eingeben";
+"take a photo" = "mach ein foto";
+"Choose image" = "Bild auswählen";
+"from library" = "aus der Bibliothek";
+"Nothing recognized." = "Nichts erkannt.";
+"Unable to classify image." = "Bild kann nicht klassifiziert werden.";
+"stop search" = "suche beenden";
+"Find other recipes" = "Finden Sie andere Rezepte";
+"Ingredients" = "Zutaten";
+"log out" = "ausloggen";
+"Delete account" = "konto löschen";
