@@ -26,18 +26,10 @@ class RootViewController: UITabBarController{
             groceryVC.tableView.reloadData()
         }
         
-        if #available(iOS 13.0, *) {
             profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person.crop.circle"), tag: 0)
             homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 0)
             savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "bookmark"), tag: 0)
             groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "cart"), tag: 0)
-        } else {
-            // Fallback on earlier versions
-            profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user.png"), tag: 0)
-            homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.png"), tag: 0)
-            savedVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "post.png"), tag: 0)
-            groceryVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "shopping-cart"), tag: 0)
-        }
         
         let viewControllerList = [homeVC, groceryVC, savedVC, profileVC]
         

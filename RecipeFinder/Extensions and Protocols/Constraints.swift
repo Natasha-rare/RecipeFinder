@@ -18,6 +18,15 @@ public func AddConstraints(view: UIView, top: Int, height: Int, width: Int){
         make.width.equalTo(width)
     }
 }
+
+public func MakeConstraints(view: UIView, topView: UIView, topViewOffset: Int, height: Int, multipliedWidth: Double){
+    view.snp.makeConstraints { (make) -> Void in
+        make.top.equalTo(topView.snp.bottom).offset(topViewOffset)
+        make.centerX.equalToSuperview()
+        make.height.equalTo(height)
+        make.width.equalToSuperview().multipliedBy(multipliedWidth)
+    }
+}
     
 public func ImageConstraints(view: UIView, top: Int, width: Int, height: Int, left: Int){
     view.snp.makeConstraints { (make) -> Void in

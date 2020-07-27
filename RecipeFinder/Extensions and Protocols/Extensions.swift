@@ -183,9 +183,9 @@ extension HomeController{
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         
-        buttonText.load(title: NSLocalizedString("text", comment: ""), frame: CGRect(x: 144, y: 333, width: 168, height: 60))
-        buttonVoice.load(title: NSLocalizedString("voice", comment: ""), frame: CGRect(x: 144, y: 433, width: 168, height: 60))
-        buttonScan.load(title: NSLocalizedString("camera", comment: ""), frame: CGRect(x: 144, y: 533, width: 168, height: 60))
+        buttonText.load(title: NSLocalizedString("text", comment: ""), frame: CGRect(x: 144, y: 333, width: UIScreen.main.bounds.width * 0.50, height: 60))
+        buttonVoice.load(title: NSLocalizedString("voice", comment: ""), frame: CGRect(x: 144, y: 433, width: UIScreen.main.bounds.width * 0.50, height: 60))
+        buttonScan.load(title: NSLocalizedString("camera", comment: ""), frame: CGRect(x: 144, y: 533, width: UIScreen.main.bounds.width * 0.50, height: 60))
         
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr2(sender:)), for: .touchDown)
@@ -212,28 +212,52 @@ extension HomeController{
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 680)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        // тут не делал функцию потому что top равна superview
+        label.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(50)
+                make.centerX.equalToSuperview()
+                make.height.equalTo(80)
+            make.width.equalToSuperview().offset(20)
+            }
         
         scrollView.addSubview(label2)
-        AddConstraints(view: label2, top: 200, height: 80, width: 259)
+        MakeConstraints(view: label2, topView: label, topViewOffset: 30, height: 80, multipliedWidth: 0.80)
         
         scrollView.addSubview(buttonText)
-        AddConstraints(view: buttonText, top: 333, height: 60, width: 168)
+        MakeConstraints(view: buttonText, topView: label2, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         scrollView.addSubview(buttonVoice)
-        AddConstraints(view: buttonVoice, top: 433, height: 60, width: 168)
+        MakeConstraints(view: buttonVoice, topView: buttonText, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         scrollView.addSubview(buttonScan)
-        AddConstraints(view: buttonScan, top: 533, height: 60, width: 168)
+        MakeConstraints(view: buttonScan, topView: buttonVoice, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
-        scrollView.addSubview(cameraView)
-        ImageConstraints(view: cameraView, top: 548, width: 30, height: 30, left: 62)
+        
+        
         
         scrollView.addSubview(textView)
-        ImageConstraints(view: textView, top: 348, width: 30, height: 30, left: 62)
-        
+        textView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(label2.snp.bottom).offset(60)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
+            make.right.equalTo(buttonText.snp.left).offset(-30)
+        }
+
         scrollView.addSubview(voiceView)
-        ImageConstraints(view: voiceView, top: 448, width: 30, height: 30, left: 62)
+        voiceView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(textView.snp.bottom).offset(80)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
+            make.right.equalTo(buttonVoice.snp.left).offset(-30)
+        }
+        
+        scrollView.addSubview(cameraView)
+        cameraView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(voiceView.snp.bottom).offset(90)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
+            make.right.equalTo(buttonScan.snp.left).offset(-30)
+        }
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
