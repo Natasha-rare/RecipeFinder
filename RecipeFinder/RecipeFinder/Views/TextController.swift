@@ -42,7 +42,7 @@ class TextController: UIViewController{
         textSearch.loadField(placeholderText: NSLocalizedString("input ingredients", comment: ""), isSecure: false, frame: CGRect(x: 97, y: 364, width: 225, height: 48))
         textSearch.delegate = self
         
-        buttonDone.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
+        buttonDone.load(title: NSLocalizedString("done", comment: ""), frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         //buttonDone.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonDone.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
