@@ -34,11 +34,11 @@ class GroceryController: UIViewController, UITableViewDataSource{
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Grocery"
+        label.text =  NSLocalizedString("Grocery", comment: "")
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        buttonEnter.load(title: "clear all", frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
+        buttonEnter.load(title: NSLocalizedString("clear all", comment: ""), frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
         buttonEnter.setTitleColor(.white, for: .normal)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)

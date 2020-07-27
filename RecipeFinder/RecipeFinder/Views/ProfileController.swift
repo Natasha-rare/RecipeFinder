@@ -20,7 +20,7 @@ class ProfileController: UIViewController{
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Profile"
+        label.text = NSLocalizedString("Profile", comment: "")
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
@@ -32,7 +32,7 @@ class ProfileController: UIViewController{
         greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
-        greeting.text = "Hello, \(defaults.object(forKey: "name") ?? "Chef")!"
+        greeting.text = NSLocalizedString("Hello", comment: "") + ", " + " \(defaults.object(forKey: "name") ?? "Chef")!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
         email.font = UIFont(name: "Harmattan-Regular", size: 24)

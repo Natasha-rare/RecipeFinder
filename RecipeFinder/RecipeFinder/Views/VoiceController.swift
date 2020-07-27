@@ -28,7 +28,6 @@ class VoiceController: UIViewController {
     var recognitionTask : SFSpeechRecognitionTask?
     let audioEngine = AVAudioEngine()
     var ingredients:[String] = []
-    let phrazes = ["It seems that you didn’t enter ingridients!", "You have to enter some products to search the recipe!"]
     var i = 0
     
     override func viewDidLoad() {
@@ -36,7 +35,7 @@ class VoiceController: UIViewController {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         
         button.frame = CGRect(x: 113, y: 500, width: 150, height: 58)
-        button.setTitle("start", for: .normal)
+        button.setTitle(NSLocalizedString("start", comment: ""), for: .normal)
         button.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
         button.backgroundColor = view.backgroundColor
         button.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
@@ -45,13 +44,13 @@ class VoiceController: UIViewController {
         button.layer.borderWidth = 1
         button.addTarget(self, action: #selector(self.btnStartSpeechToText(_:)), for: .touchUpInside)
         
-        doneButton.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
+        doneButton.load(title: NSLocalizedString("done", comment: ""), frame: CGRect(x: 113, y: 584, width: 150, height: 58))
         doneButton.addTarget(self, action: #selector(self.buttonDoneClicked(_:)), for: .touchUpInside)
         doneButton.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
         
         label.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label.text = phrazes[0]
+        label.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -59,7 +58,7 @@ class VoiceController: UIViewController {
         
         labelHead.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         labelHead.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        labelHead.text = "Just speak"
+        labelHead.text = NSLocalizedString("Just speak", comment: "")
         labelHead.font = UIFont(name: "Georgia", size: 43)
         labelHead.textAlignment = .center
         
@@ -95,11 +94,11 @@ class VoiceController: UIViewController {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.button.isEnabled = false
-            self.button.setTitle("start", for: .normal)
+            self.button.setTitle(NSLocalizedString("start", comment: ""), for: .normal)
         }
         else {
             self.startRecording()
-            self.button.setTitle("stop", for: .normal)
+            self.button.setTitle(NSLocalizedString("stop", comment: ""), for: .normal)
         }
     }
     
@@ -108,7 +107,8 @@ class VoiceController: UIViewController {
     }
     
     @objc func buttonDoneClicked(_ sender: UIButton){
-        if label.text != "It seems that you didn’t enter ingridients!"{
+        if label.text != NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
+        {
         productsList = label.text!.components(separatedBy: " ")
         self.delegate?.getIngridients(productsList)
         }

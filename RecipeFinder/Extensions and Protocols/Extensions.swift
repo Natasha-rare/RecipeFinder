@@ -171,21 +171,21 @@ extension HomeController{
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Home"
+        label.text = NSLocalizedString("Home", comment: "")
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label2.text = "It seems that you didn’t enter ingridients!"
+        label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         
-        buttonText.load(title: "text", frame: CGRect(x: 144, y: 333, width: 168, height: 60))
-        buttonVoice.load(title: "voice", frame: CGRect(x: 144, y: 433, width: 168, height: 60))
-        buttonScan.load(title: "camera", frame: CGRect(x: 144, y: 533, width: 168, height: 60))
+        buttonText.load(title: NSLocalizedString("text", comment: ""), frame: CGRect(x: 144, y: 333, width: 168, height: 60))
+        buttonVoice.load(title: NSLocalizedString("voice", comment: ""), frame: CGRect(x: 144, y: 433, width: 168, height: 60))
+        buttonScan.load(title: NSLocalizedString("camera", comment: ""), frame: CGRect(x: 144, y: 533, width: 168, height: 60))
         
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
         buttonScan.addTarget(self, action: #selector(self.buttonRegistr2(sender:)), for: .touchDown)
@@ -254,8 +254,6 @@ extension HomeController{
         label2.numberOfLines = 2
         label2.lineBreakMode = .byWordWrapping
         label2.text =  "Ingredients: " + recipes.q + " "
-        
-//        print(recipes)
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)

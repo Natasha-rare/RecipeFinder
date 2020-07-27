@@ -93,7 +93,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
             self.numberOfIngredient = array.count
         }
         else{
-            self.label2.text = "It seems that you didn’t enter ingridients!"
+            self.label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         }
     }
     
@@ -103,7 +103,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         super.view.subviews.forEach { $0.removeFromSuperview() }
         label2.frame = CGRect(x: 58, y: 150, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label2.text = "Loading your recipes..."
+        label2.text = NSLocalizedString("Loading your recipes...", comment: "")
         
         let animationView = AnimationView(animation: animation)
         animationView.frame = CGRect(x: 115, y: 220, width: 150, height: 150)
@@ -152,7 +152,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                             }
                             else if self.checker == ingridients.count{
                                 self.loadViewWithoutCards()
-                                self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                                self.label2.text =  NSLocalizedString("There's no result for your search. Enter ingredients correctly!", comment: "")
                             }
                         }
                         else{
@@ -166,7 +166,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                             }
                             else if self.checker == ingridients.count{
                                 self.loadViewWithoutCards()
-                                self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                                self.label2.text = NSLocalizedString("There's no result for your search. Enter ingredients correctly!", comment: "")
                             }
                         }
                     case .failure(let error):
@@ -182,7 +182,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
                         }
                         else if self.checker == ingridients.count{
                             self.loadViewWithoutCards()
-                            self.label2.text = "There's no result for your search. Enter ingredients correctly!"
+                            self.label2.text = NSLocalizedString("There's no result for your search. Enter ingredients correctly!", comment: "")
                         }
                     }
                 }

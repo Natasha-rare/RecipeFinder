@@ -136,7 +136,7 @@ class RegistrationController: UIViewController{
             else if password_check.evaluate(with: Password) == false
             {
                 if Password!.count < 8 {
-                   warning.text = "Your password is too short"
+                   warning.text = NSLocalizedString("Your password is too short", comment: "")
                 }
                 else {
                    warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")

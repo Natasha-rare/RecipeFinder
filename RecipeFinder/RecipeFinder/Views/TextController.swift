@@ -27,19 +27,19 @@ class TextController: UIViewController{
                 
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 80)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Home"
+        label.text = NSLocalizedString("Home", comment: "")
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label2.text = "It seems that you didn’t enter ingridients!"
+        label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         
-        textSearch.loadField(placeholderText: "input ingredients", isSecure: false, frame: CGRect(x: 97, y: 364, width: 225, height: 48))
+        textSearch.loadField(placeholderText: NSLocalizedString("input ingredients", comment: ""), isSecure: false, frame: CGRect(x: 97, y: 364, width: 225, height: 48))
         textSearch.delegate = self
         
         buttonDone.load(title: "done", frame: CGRect(x: 113, y: 584, width: 150, height: 58))
