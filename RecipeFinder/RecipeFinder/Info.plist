@@ -28,11 +28,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow your camera to scan your products</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow this pls</string>
+	<string>Allow this to recognize products</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need your camera to scan your products</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Allow this pls</string>
+	<string>Allow this to recognize products</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Harmattan-Regular.ttf</string>
@@ -69,9 +69,9 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+<!--		<string>UIInterfaceOrientationPortraitUpsideDown</string>-->
+<!--		<string>UIInterfaceOrientationLandscapeLeft</string>-->
+<!--		<string>UIInterfaceOrientationLandscapeRight</string>-->
 	</array>
 </dict>
 </plist>

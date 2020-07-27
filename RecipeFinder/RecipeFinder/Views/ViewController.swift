@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         warning.numberOfLines = 2
         warning.textAlignment = .center
         
-        buttonStart.load(title: NSLocalizedString("let's go", comment: ""), frame: CGRect(x: 58, y: 643, width: UIScreen.main.bounds.width * 0.50, height: 58))
+        buttonStart.load(title: NSLocalizedString("let's go", comment: ""), frame: CGRect(x: 0, y: 643, width: UIScreen.main.bounds.width * 0.50, height: 58))
 
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
