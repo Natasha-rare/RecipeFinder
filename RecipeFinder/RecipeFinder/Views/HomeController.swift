@@ -116,7 +116,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         
         buttonStop.addTarget(self, action: #selector(stopProcess(_:)), for: .touchDown)
         buttonStop.frame = CGRect(x: 113, y: 420, width: 150, height: 58)
-        buttonStop.setTitle("stop search", for: .normal)
+        buttonStop.setTitle(NSLocalizedString("stop search", comment: ""), for: .normal)
         buttonStop.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
         buttonStop.backgroundColor = view.backgroundColor
         buttonStop.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor

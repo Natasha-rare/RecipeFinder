@@ -40,3 +40,11 @@
 "text" = "текст";
 "Home" = "Дом";
 "input ingredients" = "введите ингредиенты";
+"take a photo" = "сделать фото";
+"Choose image" = "Выберите изображение";
+"from library" = "из библиотеки";
+"Nothing recognized." = "Не удалось распознать.";
+"Unable to classify image." = "Невозможно распознать изображение.";
+"stop search" = "прекратить поиск";
+"Find other recipes" = "Найти другие рецепты";
+"Ingredients" = "Ингрендиенты";

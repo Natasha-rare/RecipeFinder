@@ -24,14 +24,14 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        resultLabel.text = "Choose image"
+        resultLabel.text = NSLocalizedString("Choose image", comment: "")
         resultLabel.frame = CGRect(x: 135, y: 50, width: 400, height: 20)
         resultLabel.textColor = .black
         resultLabel.font = UIFont(name: "Harmattan-Regular", size: 20)
         resultLabel.textAlignment = .center
 
         buttonCamera.frame = CGRect(x: 113, y: 420, width: 150, height: 58)
-        buttonCamera.setTitle("take a photo", for: .normal)
+        buttonCamera.setTitle(NSLocalizedString("take a photo", comment: ""), for: .normal)
         buttonCamera.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
         buttonCamera.backgroundColor = view.backgroundColor
         buttonCamera.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
@@ -42,7 +42,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 
         buttonLibrary.frame = CGRect(x: 113, y: 500, width: 150, height: 58)
-        buttonLibrary.setTitle("from library", for: .normal)
+        buttonLibrary.setTitle(NSLocalizedString("from library", comment: ""), for: .normal)
         buttonLibrary.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
         buttonLibrary.backgroundColor = view.backgroundColor
         buttonLibrary.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
@@ -51,7 +51,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         buttonLibrary.layer.borderWidth = 1
         buttonLibrary.addTarget(self, action: #selector(self.buttonLibraryPressed), for: .touchUpInside)
 
-        buttonDone.load(title: "done", frame: CGRect(x: 58, y: 600, width: 257, height: 58))
+        buttonDone.load(title: NSLocalizedString("done", comment: ""), frame: CGRect(x: 58, y: 600, width: 257, height: 58))
         buttonDone.addTarget(self, action: #selector(self.buttonDonePressed(sender:)), for: .touchDown)
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -171,21 +171,21 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
     func processClassifications(for request: VNRequest) {
         DispatchQueue.main.async {
             guard let results = request.results else {
-                self.resultLabel.text = "Unable to classify image."
+                self.resultLabel.text = NSLocalizedString("Unable to classify image.", comment: "")
                 return
             }
 
             let classifications = results as! [VNClassificationObservation]
 
             if classifications.isEmpty {
-                self.resultLabel.text = "Nothing recognized."
+                self.resultLabel.text = NSLocalizedString("Nothing recognized.", comment: "")
             }
             else {
                 let topClassifications = classifications.prefix(1)
                 let descriptions = topClassifications.map { classification in
                     return String(classification.identifier)
                 }
-                if self.resultLabel.text == "Choose image"{
+                if self.resultLabel.text == NSLocalizedString("Choose image", comment: ""){
                     self.resultLabel.text = descriptions.joined()
                 }
                 else {

@@ -253,13 +253,13 @@ extension HomeController{
         label2.textAlignment = .center
         label2.numberOfLines = 2
         label2.lineBreakMode = .byWordWrapping
-        label2.text =  "Ingredients: " + recipes.q + " "
+        label2.text =  NSLocalizedString("Ingredients", comment: "") + ": "  + recipes.q + " "
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
         
         let button = NeoButton()
-        button.load(title: "Find other recipes", frame: CGRect(x: 60, y: 160, width: 256, height: 60))
+        button.load(title: NSLocalizedString("Find other recipes", comment: ""), frame: CGRect(x: 60, y: 160, width: 256, height: 60))
         button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
         
         for hit in recipes.hits{
