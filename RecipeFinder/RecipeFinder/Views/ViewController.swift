@@ -11,6 +11,7 @@ import CryptoSwift
 import SnapKit
 import Alamofire
 import Lottie
+import AuthenticationServices
 
 class ViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
     private var name: [String] = [""]
     let defaults = UserDefaults.standard
     var scrollView = UIScrollView()
+    
     
     let animation = Animation.named("food")
     
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
         warning.numberOfLines = 2
         warning.textAlignment = .center
         
-        buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
+        buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: UIScreen.main.bounds.width * 0.50, width: UIScreen.main.bounds.width * 0.50, height: 58))
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
 
@@ -80,25 +82,37 @@ class ViewController: UIViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 800)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 30, height: 80, width: 375)
+        // тут не делал функцию потому что top равна superview
+        label.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(100)
+                make.centerX.equalToSuperview()
+                make.height.equalTo(80)
+            make.width.equalToSuperview().offset(20)
+            }
         
         scrollView.addSubview(label2)
-        AddConstraints(view: label2, top: 104, height: 83, width: 286)
-        
-        scrollView.addSubview(email)
-        AddConstraints(view: email, top: 470, height: 60, width: 257)
-        
-        scrollView.addSubview(password)
-        AddConstraints(view: password, top: 540, height: 60, width: 257)
+        MakeConstraints(view: label2, topView: label, topViewOffset: 15, height: 83, multipliedWidth: 0.80)
         
         scrollView.addSubview(animationView)
-        AddConstraints(view: animationView, top: 210, height: 180, width: 180)
+        animationView.snp.makeConstraints { (make) in
+            make.top.equalTo(label2.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(180)
+            make.width.equalTo(180)
+        }
+        
+        scrollView.addSubview(email)
+        MakeConstraints(view: email, topView: animationView, topViewOffset: 40, height: 60, multipliedWidth: 0.80)
+        
+        scrollView.addSubview(password)
+        MakeConstraints(view: password, topView: email, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
+        
         
         scrollView.addSubview(buttonStart)
-        AddConstraints(view: buttonStart, top: 643, height: 58, width: 257)
+        MakeConstraints(view: buttonStart, topView: password, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         scrollView.addSubview(buttonRegistr)
-        AddConstraints(view: buttonRegistr, top: 750, height: 33, width: 375)
+        MakeConstraints(view: buttonRegistr, topView: buttonStart, topViewOffset: 50, height: 33, multipliedWidth: 0.80)
         
         super.view.addSubview(scrollView)
         

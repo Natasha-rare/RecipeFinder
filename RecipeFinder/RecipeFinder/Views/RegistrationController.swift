@@ -44,7 +44,7 @@ class RegistrationController: UIViewController{
         confirm.loadField(placeholderText: "repeat password", isSecure: true, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
         confirm.delegate = self
         
-        buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: 257, height: 58))
+        buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: UIScreen.main.bounds.width * 0.50, height: 58))
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
@@ -60,22 +60,27 @@ class RegistrationController: UIViewController{
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 600)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        label.snp.makeConstraints { (make) -> Void in
+        make.top.equalToSuperview().offset(100)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(80)
+        make.width.equalToSuperview().offset(20)
+        }
         
         scrollView.addSubview(name)
-        AddConstraints(view: name, top: 152, height: 58, width: 257)
+        MakeConstraints(view: name, topView: label, topViewOffset: 50, height: 60, multipliedWidth: 0.80)
         
         scrollView.addSubview(email)
-        AddConstraints(view: email, top: 240, height: 58, width: 257)
+        MakeConstraints(view: email, topView: name, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
         
         scrollView.addSubview(password)
-        AddConstraints(view: password, top: 318, height: 58, width: 257)
+        MakeConstraints(view: password, topView: email, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
         
         scrollView.addSubview(confirm)
-        AddConstraints(view: confirm, top: 396, height: 58, width: 257)
+        MakeConstraints(view: confirm, topView: password, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
         
         scrollView.addSubview(buttonCreate)
-        AddConstraints(view: buttonCreate, top: 516, height: 58, width: 257)
+        MakeConstraints(view: buttonCreate, topView: confirm, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
