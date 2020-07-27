@@ -28,27 +28,27 @@ class RegistrationController: UIViewController{
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = "Registration"
+        label.text = NSLocalizedString("Registration", comment: "")
         label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
-        name.loadField(placeholderText: "name", isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
+        name.loadField(placeholderText: NSLocalizedString("name", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
         name.delegate = self
         
-        email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
+        email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
         email.delegate = self
         
-        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
+        password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
         password.delegate = self
         
-        confirm.loadField(placeholderText: "repeat password", isSecure: true, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
+        confirm.loadField(placeholderText: NSLocalizedString("repeat password", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
         confirm.delegate = self
         
-        buttonCreate.load(title: "ready", frame: CGRect(x: 58, y: 516, width: 257, height: 58))
+        buttonCreate.load(title: NSLocalizedString("ready", comment: ""), frame: CGRect(x: 58, y: 516, width: 257, height: 58))
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
         
-        warning.text = "Password should contain capital, lowercase letters and numbers"
+        warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")
         warning.frame = CGRect(x: 0, y: 456, width: 257, height: 58)
         warning.textColor = UIColor.red
         warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
@@ -105,7 +105,7 @@ class RegistrationController: UIViewController{
         let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
         
         if Password == "" || Email == "" || Confirm == "" || Name == ""{
-            warning.text = "You've entered an empty value"
+            warning.text =  NSLocalizedString("You've entered an empty value", comment: "")
             removeSpinner()
             scrollView.addSubview(warning)
             AddConstraints(view: warning, top: 456, height: 58, width: 257)
@@ -126,7 +126,7 @@ class RegistrationController: UIViewController{
                     }
                     else if result == "User exists!"{
                         self.warning.textColor = .red
-                        self.warning.text = "User with the same email is already excist! Please Log In"
+                        self.warning.text = NSLocalizedString("User with the same email already excists! Please Log In", comment: "")
                         removeSpinner()
                         self.scrollView.addSubview(self.warning)
                         AddConstraints(view: self.warning, top: 456, height: 58, width: 257)
@@ -139,20 +139,20 @@ class RegistrationController: UIViewController{
                    warning.text = "Your password is too short"
                 }
                 else {
-                   warning.text = "Password should contain capital, lowercase letters and numbers"
+                   warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")
                 }
                 removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)
             }
             else if Password != Confirm{
-                warning.text = "Passwords are not equal"
+                warning.text = NSLocalizedString("Passwords are not equal", comment: "")
                 removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)
             }
             else {
-                warning.text = "This email address doesn't exist"
+                warning.text = NSLocalizedString("This email address doesn't exist", comment: "")
                 removeSpinner()
                 scrollView.addSubview(warning)
                 AddConstraints(view: warning, top: 456, height: 58, width: 257)

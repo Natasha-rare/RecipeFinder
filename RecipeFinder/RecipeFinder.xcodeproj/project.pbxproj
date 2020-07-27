@@ -34,6 +34,7 @@
 		6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A624C19E8300B7A075 /* Protocols.swift */; };
 		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		BE62197024B8B20A008C4ADD /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62196F24B8B20A008C4ADD /* RegistrationController.swift */; };
+		BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483124CEF93800CF36C2 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.release.xcconfig"; sourceTree = "<group>"; };
 		BE62196F24B8B20A008C4ADD /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		BE7D482C24CEF57500CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BE7D483024CEF93800CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 				1211690824B6516800879FED /* Assets.xcassets */,
 				1211690A24B6516800879FED /* LaunchScreen.storyboard */,
 				1211690D24B6516800879FED /* Info.plist */,
+				BE7D483124CEF93800CF36C2 /* Localizable.strings */,
 				6FE511C924C9890D000C3A47 /* food.json */,
 				6F4A072924C97E0200958594 /* loading.json */,
 			);
@@ -227,6 +231,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 121168F324B6516700879FED;
 			productRefGroup = 121168FD24B6516700879FED /* Products */;
@@ -244,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1211690C24B6516800879FED /* LaunchScreen.storyboard in Resources */,
+				BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */,
 				1211690924B6516800879FED /* Assets.xcassets in Resources */,
 				6FE511CA24C9890D000C3A47 /* food.json in Resources */,
 				6F4A072A24C97E0200958594 /* loading.json in Resources */,
@@ -331,8 +337,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				1211690B24B6516800879FED /* Base */,
+				BE7D482C24CEF57500CF36C2 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BE7D483124CEF93800CF36C2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE7D483024CEF93800CF36C2 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -342,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -402,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

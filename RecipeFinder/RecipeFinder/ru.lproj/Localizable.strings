@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  RecipeFinder
+
+  Created by I on 27.07.2020.
+  Copyright © 2020 Наталья Автухович. All rights reserved.
+*/
+"Registration" = "Регистрация";
+"Enter products. We'll show the recipe." = "Введите продукты. Мы покажем рецепты.";
+"email" = "почта";
+"password" = "пароль";
+"let's go" = "войти";
+"Don’t have an account?" = "Ещё нет аккаунта?";
+"Password should contain capital, lowercase letters and numbers" = "Пароль должен состоять из заглавных, строчных букв и цифр.";
+"ready" = "зарегестрироваться";
+"name" = "Ваше имя";
+"repeat password" = "Повторите пароль";
+"User with the same email already excists! Please Log In" = "Пользователь с такой почтой уже существует! Пожалуйста, зарегестрируйтесь.";
+"Hey! Seems you have to register!" = "Аккаунт не существует. Нужно зарегестрироваться.";
+"Your password is too short" = "Слишком короткий пароль.";
+"You've entered an empty value" = "Вы ввели пустую строку";
+"Incorrect password :(" = "Неверный пароль :(";
+"Passwords are not equal" = "Пароли не совпадают";
+"This email address doesn't exist" = "Такой почты не существует";

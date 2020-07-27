@@ -46,26 +46,26 @@ class ViewController: UIViewController {
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         label2.textAlignment = .center
-        label2.text = "Enter products. We’ll show the recipe."
+        label2.text = NSLocalizedString("Enter products. We'll show the recipe.", comment: "")
         
-        email.loadField(placeholderText: "email", isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
+        email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
         email.delegate = self
         
-        password.loadField(placeholderText: "password", isSecure: true, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
+        password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
         password.delegate = self
         
-        warning.text = "Password should contain capital, lowercase letters and numbers"
+        warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")
         warning.frame = CGRect(x: 10, y: 395, width: 350, height: 60)
         warning.textColor = UIColor.red
         warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
         warning.numberOfLines = 2
         warning.textAlignment = .center
         
-        buttonStart.load(title: "let's go", frame: CGRect(x: 58, y: 643, width: 257, height: 58))
+        buttonStart.load(title: NSLocalizedString("let's go", comment: ""), frame: CGRect(x: 58, y: 643, width: 257, height: 58))
         buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
         buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
 
-        buttonRegistr.setTitle("Don’t have an account?", for: .normal)
+        buttonRegistr.setTitle(NSLocalizedString("Don’t have an account?", comment: ""), for: .normal)
         buttonRegistr.setTitleColor(UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1), for: .normal)
         buttonRegistr.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         buttonRegistr.frame = CGRect(x: 0, y: 750, width: 375, height: 33)
