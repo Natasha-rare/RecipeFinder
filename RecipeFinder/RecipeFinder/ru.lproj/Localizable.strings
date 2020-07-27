@@ -15,7 +15,7 @@
 "ready" = "зарегестрироваться";
 "name" = "Ваше имя";
 "repeat password" = "Повторите пароль";
-"User with the same email already excists! Please Log In" = "Пользователь с такой почтой уже существует! Пожалуйста, зарегестрируйтесь.";
+"User with the same email already excists! Please Log In" = "Пользователь с такой почтой уже существует! Пожалуйста, войдите.";
 "Hey! Seems you have to register!" = "Аккаунт не существует. Нужно зарегестрироваться.";
 "Your password is too short" = "Слишком короткий пароль.";
 "You've entered an empty value" = "Вы ввели пустую строку";
@@ -26,7 +26,7 @@
 "Loading your recipes..." = "Загружаем рецепты...";
 "It seems that you didn’t enter ingridients!" = "Кажется, вы не ввели ингредиенты!";
 "There's no result for your search. Enter ingredients correctly!" = "Поиск не дал результатов. Убедитесь, что ввели ингредиенты правильно!";
-"clear all" = "сбросить";
+"clear all" = "очистить";
 "Saved" = "Сохранённые";
 "Grocery" = "Список покупок";
 "Just speak" = "Просто говори";

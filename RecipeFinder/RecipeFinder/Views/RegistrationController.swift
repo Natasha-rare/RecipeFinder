@@ -113,7 +113,7 @@ class RegistrationController: UIViewController{
             warning.text =  NSLocalizedString("You've entered an empty value", comment: "")
             removeSpinner()
             scrollView.addSubview(warning)
-            AddConstraints(view: warning, top: 456, height: 58, width: 257)
+            MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
@@ -134,7 +134,7 @@ class RegistrationController: UIViewController{
                         self.warning.text = NSLocalizedString("User with the same email already excists! Please Log In", comment: "")
                         removeSpinner()
                         self.scrollView.addSubview(self.warning)
-                        AddConstraints(view: self.warning, top: 456, height: 58, width: 257)
+                        MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
                         }
                 }
             }
@@ -148,19 +148,19 @@ class RegistrationController: UIViewController{
                 }
                 removeSpinner()
                 scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+                MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
             }
             else if Password != Confirm{
                 warning.text = NSLocalizedString("Passwords are not equal", comment: "")
                 removeSpinner()
                 scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+                MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
             }
             else {
                 warning.text = NSLocalizedString("This email address doesn't exist", comment: "")
                 removeSpinner()
                 scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 456, height: 58, width: 257)
+                MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
             }
         }
     }

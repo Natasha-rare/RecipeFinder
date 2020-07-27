@@ -137,7 +137,7 @@ class ViewController: UIViewController {
             warning.text = "You've entered an empty value"
             removeSpinner()
             scrollView.addSubview(warning)
-            AddConstraints(view: warning, top: 395, height: 60, width: 350)
+            MakeConstraints(view: warning, topView: password, topViewOffset: 20, height: 20, multipliedWidth: 1)
         }
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
@@ -173,14 +173,14 @@ class ViewController: UIViewController {
                         self.warning.text = "Incorrect password :("
                         removeSpinner()
                         self.scrollView.addSubview(self.warning)
-                        AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
+                        MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
                     }
                     else{
                         self.warning.textColor = .red
                         self.warning.text = "Hey! Seems you have to register!"
                         removeSpinner()
                         self.scrollView.addSubview(self.warning)
-                        AddConstraints(view: self.warning, top: 395, height: 60, width: 350)
+                        MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
                     }
                 }
                 
@@ -195,13 +195,13 @@ class ViewController: UIViewController {
                 }
                 removeSpinner()
                 scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 395, height: 60, width: 350)
+                MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
             }
             else {
                 warning.text = "This email address doesn't exist"
                 removeSpinner()
                 scrollView.addSubview(warning)
-                AddConstraints(view: warning, top: 395, height: 60, width: 350)
+                MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
             }
            
         }
