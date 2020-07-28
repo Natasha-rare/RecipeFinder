@@ -14,17 +14,14 @@ class RootViewController: UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        savedLinks = defaults.object(forKey: "savedLinks") as? [String] ?? [""]
+        groceryIngridients = defaults.array(forKey: "grocery") as? [String] ?? [""]
         let homeVC = HomeController()
         let savedVC = SavedController()
-        savedVC.fetchLinks()
-        savedVC.tableView.reloadData()
+        savedVC.refresh()
         let profileVC = ProfileController()
         let groceryVC = GroceryController()
-        groceryVC.fetchIngredients{
-            res in
-            groceryIngridients = res
-            groceryVC.tableView.reloadData()
-        }
+        groceryVC.refresh()
         
             profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person.crop.circle"), tag: 0)
             homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 0)

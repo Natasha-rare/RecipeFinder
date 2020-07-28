@@ -126,6 +126,16 @@ class RegistrationController: UIViewController{
                         self.defaults.set(self.name.text, forKey: "name")
                         
                         let vc = RootViewController()
+                        let savedVC = SavedController()
+                        savedVC.fetchLinks()
+                        savedVC.refresh()
+                        let groceryVC = GroceryController()
+                        groceryVC.fetchIngredients { (value) in
+                            groceryIngridients = value
+                            groceryVC.refresh()
+                        }
+                        self.defaults.set(savedLinks, forKey: "savedLinks")
+                        self.defaults.set(groceryIngridients, forKey: "grocery")
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }

@@ -15,13 +15,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
-        fetchIngredients{
-            res in
-            print(res)
-            groceryIngridients = res
-            self.tableView.reloadData()
-        }
-        
+        refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         
         tableView.frame = CGRect(x: 8, y: 128, width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height)

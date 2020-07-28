@@ -382,9 +382,8 @@ extension HomeController{
             sender.tintColor = UIColor.red
             savedLinks.append(sender.url)
         }
-        print(savedLinks)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
-        
+        defaults.set(savedLinks, forKey: "savedLinks")
         SendLinks(savedLinks: savedLinks)
     }
 
@@ -397,7 +396,7 @@ extension HomeController{
         
         // ingridients to grocery
         groceryIngridients = sender.ingredientList
-        print("\(sender.ingredientList) grocery tapped")
+        defaults.set(groceryIngridients, forKey: "grocery")
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         SendIngredients(ingredientList: groceryIngridients)

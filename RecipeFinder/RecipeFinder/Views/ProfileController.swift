@@ -79,8 +79,12 @@ class ProfileController: UIViewController{
     
     @objc func buttonClicked(sender: NeoButton){
         sender.setShadows()
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "logged")
+        self.defaults.set(false, forKey: "logged")
+        self.defaults.removeObject(forKey: "grocery")
+        self.defaults.removeObject(forKey: "savedLinks")
+        self.defaults.removeObject(forKey: "email")
+        self.defaults.removeObject(forKey: "password")
+        self.defaults.removeObject(forKey: "name")
         
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
@@ -98,6 +102,11 @@ class ProfileController: UIViewController{
             
             self.deleteAccountOnServer()
             self.defaults.set(false, forKey: "logged")
+            self.defaults.removeObject(forKey: "grocery")
+            self.defaults.removeObject(forKey: "savedLinks")
+            self.defaults.removeObject(forKey: "email")
+            self.defaults.removeObject(forKey: "password")
+            self.defaults.removeObject(forKey: "name")
             
             let vc = ViewController()
             vc.modalPresentationStyle = .fullScreen

@@ -22,10 +22,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
-        fetchLinks()
-        print(savedLinks)
-        
+        refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
 
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
@@ -120,7 +117,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     
     @objc func presentWebBrowser(sender: UIButton) {
             let vc = WebViewController()
-            vc.url = sender.titleLabel?.text! as! String
+            vc.url = sender.titleLabel?.text ?? "https://www.google.com"
             self.present(vc, animated: true, completion: nil)
         }
 

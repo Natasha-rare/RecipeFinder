@@ -166,6 +166,14 @@ class ViewController: UIViewController {
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         
                         let vc = RootViewController()
+                        let savedVC = SavedController()
+                        savedVC.fetchLinks()
+                        savedVC.refresh()
+                        let groceryVC = GroceryController()
+                        groceryVC.fetchIngredients { (value) in
+                            groceryIngridients = value
+                            groceryVC.refresh()
+                        }
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }
