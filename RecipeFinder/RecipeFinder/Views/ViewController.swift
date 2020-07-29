@@ -40,12 +40,14 @@ class ViewController: UIViewController {
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Recipe Finder"
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
+        //label.font = UIFont(name: "Georgia", size: 43)
         label.textAlignment = .center
         
         label2.frame = CGRect(x: 45, y: 104, width: 286, height: 83)
         label2.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        label2.font = UIFont(name: "Harmattan-Regular", size: 25)
+        //label2.font = UIFont(name: "Harmattan-Regular", size: 25)
+        label2.font = UIFont.systemFont(ofSize: 23, weight: .light)
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
         label2.textAlignment = .center

@@ -172,7 +172,7 @@ extension HomeController{
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = NSLocalizedString("Home", comment: "")
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
@@ -269,7 +269,7 @@ extension HomeController{
         label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = "Home"
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         
         label2.frame = CGRect(x: 60, y: 80, width: 256, height: 80)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)

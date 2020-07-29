@@ -59,7 +59,7 @@ class VoiceController: UIViewController {
         labelHead.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         labelHead.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         labelHead.text = NSLocalizedString("Just speak", comment: "")
-        labelHead.font = UIFont(name: "Georgia", size: 43)
+        labelHead.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         labelHead.textAlignment = .center
         
         let imageSound = UIImageView(image: UIImage(named: "sound.png"))

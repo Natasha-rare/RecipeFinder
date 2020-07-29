@@ -29,7 +29,7 @@ class RegistrationController: UIViewController{
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = NSLocalizedString("Registration", comment: "")
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
         name.loadField(placeholderText: NSLocalizedString("name", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 152, width: 257, height: 58))
@@ -61,7 +61,7 @@ class RegistrationController: UIViewController{
         
         scrollView.addSubview(label)
         label.snp.makeConstraints { (make) -> Void in
-        make.top.equalToSuperview().offset(100)
+        make.top.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
             make.height.equalTo(80)
         make.width.equalToSuperview().offset(20)

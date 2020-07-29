@@ -21,7 +21,8 @@ class ProfileController: UIViewController{
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = NSLocalizedString("Profile", comment: "")
-        label.font = UIFont(name: "Georgia", size: 43)
+        //label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
         let image = UIImage(named: "user-1.png")

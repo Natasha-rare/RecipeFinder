@@ -29,7 +29,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text =  NSLocalizedString("Grocery", comment: "")
-        label.font = UIFont(name: "Georgia", size: 43)
+        label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
         buttonEnter.load(title: NSLocalizedString("clear all", comment: ""), frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
