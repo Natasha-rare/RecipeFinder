@@ -87,7 +87,7 @@ class RegistrationController: UIViewController{
     }
     
     @objc func buttonClicked2(sender : NeoButton){
-        sender.setShadows()
+        sender.layer.sublayers?.removeFirst(2)
     }
     
     func setdefault(Email: String, Password: String, Logged: Bool){
@@ -96,8 +96,8 @@ class RegistrationController: UIViewController{
         self.defaults.set(Logged, forKey: "logged")
     }
     
-    @objc func buttonClicked(sender : UIButton) {
-        sender.layer.sublayers?.removeFirst(2)
+    @objc func buttonClicked(sender : NeoButton) {
+        sender.setShadows()
         showSpinner(onView: scrollView)
         
         let Password = password.text

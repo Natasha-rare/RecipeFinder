@@ -13,12 +13,13 @@ import Alamofire
 import Lottie
 import AuthenticationServices
 
+
 class ViewController: UIViewController {
     
     var label = UILabel()
     var label2 = UILabel()
-    var buttonStart = NeoButton()
-    var buttonRegistr = UIButton()
+    var buttonLogin = NeoButton()
+    var buttonRegistr = NeoButton()
     var image = UIImage(named: "image 1.jpg")
     var warning =  UILabel()
     var email = GrayTextField()
@@ -50,29 +51,15 @@ class ViewController: UIViewController {
         label2.textAlignment = .center
         label2.text = NSLocalizedString("Enter products. We'll show the recipe.", comment: "")
         
-        email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 468, width: 257, height: 58))
-        email.delegate = self
         
-        password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 536, width: 257, height: 58))
-        password.delegate = self
-        
-        warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")
-        warning.frame = CGRect(x: 10, y: 395, width: 350, height: 60)
-        warning.textColor = UIColor.red
-        warning.font = UIFont.systemFont(ofSize: 18, weight: .thin)
-        warning.numberOfLines = 2
-        warning.textAlignment = .center
-        
-        buttonStart.load(title: NSLocalizedString("let's go", comment: ""), frame: CGRect(x: 0, y: 643, width: UIScreen.main.bounds.width * 0.50, height: 58))
+        buttonLogin.load(title: NSLocalizedString("login", comment: ""), frame: CGRect(x: 0, y: 500, width: UIScreen.main.bounds.width * 0.50, height: 58))
 
-        buttonStart.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
-        buttonStart.addTarget(self, action: #selector(self.buttonClicked2(sender:)), for: .touchDown)
+        buttonLogin.addTarget(self, action: #selector(self.loginButtonClicked2(sender:)), for: .touchUpInside)
+        buttonLogin.addTarget(self, action: #selector(self.loginButtonClicked(sender:)), for: .touchDown)
 
-        buttonRegistr.setTitle(NSLocalizedString("Don’t have an account?", comment: ""), for: .normal)
-        buttonRegistr.setTitleColor(UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1), for: .normal)
-        buttonRegistr.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        buttonRegistr.frame = CGRect(x: 0, y: 750, width: 375, height: 33)
-        buttonRegistr.addTarget(self, action: #selector(self.buttonRegistr(sender:)), for: .touchUpInside)
+        buttonRegistr.load(title: "sign up", frame: CGRect(x: 0, y: 600, width: UIScreen.main.bounds.width * 0.50, height: 58))
+        buttonRegistr.addTarget(self, action: #selector(self.registerButtonClicked2(sender:)), for: .touchUpInside)
+        buttonRegistr.addTarget(self, action: #selector(self.registerButtonClicked(sender:)), for: .touchDown)
         
         let animationView = AnimationView(animation: animation)
         animationView.frame = CGRect(x: 58, y: 210, width: 180, height: 180)
@@ -102,128 +89,36 @@ class ViewController: UIViewController {
             make.width.equalTo(180)
         }
         
-        scrollView.addSubview(email)
-        MakeConstraints(view: email, topView: animationView, topViewOffset: 40, height: 60, multipliedWidth: 0.80)
-        
-        scrollView.addSubview(password)
-        MakeConstraints(view: password, topView: email, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
-        
-        
-        scrollView.addSubview(buttonStart)
-        MakeConstraints(view: buttonStart, topView: password, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
+        scrollView.addSubview(buttonLogin)
+        MakeConstraints(view: buttonLogin, topView: animationView, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         scrollView.addSubview(buttonRegistr)
-        MakeConstraints(view: buttonRegistr, topView: buttonStart, topViewOffset: 50, height: 33, multipliedWidth: 0.80)
+        MakeConstraints(view: buttonRegistr, topView: buttonLogin, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
         super.view.addSubview(scrollView)
         
         ScrollViewConstraints(view: scrollView)
     }
     
-    @objc func buttonClicked2(sender : NeoButton){
-        sender.setShadows()
-    }
-    
-    @objc func buttonClicked(sender : NeoButton) {
+    @objc func loginButtonClicked(sender : NeoButton){
         sender.layer.sublayers?.removeFirst(2)
-        let Password = password.text
-        let Email = email.text
-        showSpinner(onView: scrollView)
-        
-        let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
-        let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
-        let email_check = NSPredicate(format: "SELF MATCHES %@ ", email_checker)
-        if Password == "" || Email == ""{
-            warning.text = "You've entered an empty value"
-            removeSpinner()
-            scrollView.addSubview(warning)
-            MakeConstraints(view: warning, topView: password, topViewOffset: 20, height: 20, multipliedWidth: 1)
-        }
-        else{
-            if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
-                {
-                    let hashedPassword = ("\(Password!).\(Email!)").sha256()
-                    
-                auth(email: Email!, password: hashedPassword){
-                    result in
-                    print("email: \(Email!) \n password: \(hashedPassword)")
-                    print(result)
-                    if result == "Logged in!"{
-                        let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(hashedPassword)"
-                        AF.request(url, method: .get).response{
-                            response in
-                            if let data = response.value{
-                                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                                    
-                                if let dict = json as? [String: Any]{
-                                    print(dict["name"] as! String)
-                                    self.defaults.set(dict["name"] as! String, forKey: "name")
-                                }
-                            }
-                        }
-                        
-                        
-                        self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
-                        
-                        let vc = RootViewController()
-                        let savedVC = SavedController()
-                        savedVC.fetchLinks()
-                        savedVC.refresh()
-                        let groceryVC = GroceryController()
-                        groceryVC.fetchIngredients { (value) in
-                            groceryIngridients = value
-                            groceryVC.refresh()
-                        }
-                        vc.modalPresentationStyle = .fullScreen
-                        self.present(vc, animated: true, completion: nil)
-                    }
-                    else if result == "Incorrect password!"{
-                        self.warning.text = "Incorrect password :("
-                        removeSpinner()
-                        self.scrollView.addSubview(self.warning)
-                        MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
-                    }
-                    else{
-                        self.warning.textColor = .red
-                        self.warning.text = "Hey! Seems you have to register!"
-                        removeSpinner()
-                        self.scrollView.addSubview(self.warning)
-                        MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
-                    }
-                }
-                
-            }
-            else if password_check.evaluate(with: Password) == false
-            {
-                if Password!.count < 8 {
-                    warning.text = "Your password is too short"
-                }
-                else {
-                    warning.text = "Password should contain capital, lowercase letters and numbers"
-                }
-                removeSpinner()
-                scrollView.addSubview(warning)
-                MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
-            }
-            else {
-                warning.text = "This email address doesn't exist"
-                removeSpinner()
-                scrollView.addSubview(warning)
-                MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
-            }
-           
-        }
     }
     
-    func setdefault(Email: String, Password: String, Logged: Bool){
-        self.defaults.set(Email, forKey: "email")
-        self.defaults.set(Password, forKey: "password")
-        self.defaults.set(Logged, forKey: "logged")
+    @objc func loginButtonClicked2(sender : NeoButton) {
+        sender.setShadows()
+        let vc = LoginController()
+        self.present(vc, animated: true, completion: nil)
+
     }
     
-    @objc func buttonRegistr(sender : UIButton) {
+    @objc func registerButtonClicked2(sender : NeoButton) {
+        sender.setShadows()
         let viewc = RegistrationController()
         self.present(viewc, animated: true, completion: nil)
+    }
+    
+    @objc func registerButtonClicked(sender : NeoButton) {
+        sender.layer.sublayers?.removeFirst(2)
     }
 }
 
