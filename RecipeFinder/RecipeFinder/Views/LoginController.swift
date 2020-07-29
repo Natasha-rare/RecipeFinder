@@ -88,7 +88,6 @@ override func viewDidLoad() {
             sender.setShadows()
             let Password = password.text
             let Email = email.text
-            showSpinner(onView: scrollView)
             
             let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
             let email_checker = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
@@ -103,7 +102,7 @@ override func viewDidLoad() {
                 if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
                     {
                         let hashedPassword = ("\(Password!).\(Email!)").sha256()
-                        
+                        showSpinner(onView: scrollView)
                         auth(email: Email!, password: hashedPassword){
                         result in
                         if result == "Logged in!"{
@@ -132,6 +131,7 @@ override func viewDidLoad() {
                                 groceryIngridients = value
                                 groceryVC.refresh()
                             }
+                            removeSpinner()
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: true, completion: nil)
                         }
@@ -141,13 +141,20 @@ override func viewDidLoad() {
                             self.scrollView.addSubview(self.warning)
                             MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
                         }
-                        else{
+                        else if result == "Need to register!"{
                             self.warning.textColor = .red
                             self.warning.text = "Hey! Seems you have to register!"
                             removeSpinner()
                             self.scrollView.addSubview(self.warning)
                             MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
                         }
+                        else{
+                            self.warning.textColor = .red
+                            self.warning.text = "Something went wrong, try again!"
+                            removeSpinner()
+                            self.scrollView.addSubview(self.warning)
+                            MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
+                            }
                     }
                     
                 }
