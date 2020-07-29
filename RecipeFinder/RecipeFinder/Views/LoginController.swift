@@ -129,6 +129,7 @@ override func viewDidLoad() {
                             let groceryVC = GroceryController()
                             groceryVC.fetchIngredients { (value) in
                                 groceryIngridients = value
+                                self.defaults.set(value, forKey: "grocery")
                                 groceryVC.refresh()
                             }
                             removeSpinner()

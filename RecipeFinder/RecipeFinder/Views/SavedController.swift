@@ -141,6 +141,7 @@ extension SavedController{
             if let data = response.value{
                 if let value = data.savedLinks?.components(separatedBy: "|"){
                     savedLinks = value
+                    defaults.set(value, forKey: "savedLinks")
                     self.tableView.reloadData()
                 }
                 
