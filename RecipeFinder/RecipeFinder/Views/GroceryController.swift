@@ -24,7 +24,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         tableView.backgroundColor = view.backgroundColor
         tableView.separatorStyle = .singleLine
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.rowHeight = 35
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -71,7 +71,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.textLabel?.text = groceryIngridients[indexPath.row]
         cell.btn.setImage(UIImage(named: "check-box.png"), for: .normal)
-        cell.textLabel?.frame = CGRect(x: 60, y: 5, width: Int(UIScreen.main.bounds.width - 76), height: 30)
+//        cell.textLabel?.frame = CGRect(x: 60, y: 5, width: Int(UIScreen.main.bounds.width - 76), height: 30)
         cell.btn.addTarget(self, action: #selector(imageTapped(_:)), for: .touchDown)
         cell.layoutSubviews()
         return cell
