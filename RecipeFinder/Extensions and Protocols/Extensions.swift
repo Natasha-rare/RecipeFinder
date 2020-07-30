@@ -385,6 +385,17 @@ extension HomeController{
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         // write array to user defaults here...
+        var names = [String]()
+        var imgs = [String]()
+        var urls = [String]()
+        for i in fullLinks{
+            names.append(i.name)
+            imgs.append(i.imageUrl)
+            urls.append(i.url)
+        }
+        defaults.set(names, forKey: "recipeNames")
+        defaults.set(imgs, forKey: "recipeImages")
+        defaults.set(urls, forKey: "recipeUrls")
         SendLinks(savedLinks: fullLinks)
     }
 
