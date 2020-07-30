@@ -89,7 +89,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case tableView:
-           return savedLinks.count
+           return fullLinks.count
          default:
            return 0
         }
@@ -97,29 +97,20 @@ class SavedController: UIViewController, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            savedLinks.remove(at: indexPath.row)
-            print(savedLinks)
+            fullLinks.remove(at: indexPath.row)
+            print(fullLinks)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(fullLinks)
+        print("\(fullLinks) FULLLINKS HEREEE")
         var cell = TableViewCellS()
         cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellS", for: indexPath) as! TableViewCellS
-        if fullLinks.count != 0{
-            cell.recipe = fullLinks[indexPath.row]
-            cell.textLabel?.text = ""
-            cell.btn.titleLabel!.text = fullLinks[indexPath.row].url
-            cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
-            cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
-        }
-        else{
-            cell.textLabel?.text = savedLinks[indexPath.row]
-            cell.btn.titleLabel!.text = savedLinks[indexPath.row]
-            cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
-            cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
-            cell.layoutSubviews()}
+        cell.recipe = fullLinks[indexPath.row]
+//        cell.btn.titleLabel!.text = fullLinks[indexPath.row].url
+        cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
+        cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
         return cell
     }
 //
@@ -134,7 +125,8 @@ class SavedController: UIViewController, UITableViewDataSource{
         }
 
     @objc func buttonClicked1(sender : NeoButton) {
-        sender.layer.sublayers?.removeFirst(2)
+//        sender.layer.sublayers?.removeFirst(2)
+        print(fullLinks)
         fullLinks = []
         defaults.removeObject(forKey: "recipeUrls")
         defaults.removeObject(forKey: "recipeImages")
