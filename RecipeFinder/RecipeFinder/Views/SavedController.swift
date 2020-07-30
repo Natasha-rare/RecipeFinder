@@ -130,10 +130,12 @@ class SavedController: UIViewController, UITableViewDataSource{
 
     @objc func buttonClicked1(sender : NeoButton) {
         sender.layer.sublayers?.removeFirst(2)
-        savedLinks = []
-        
+        fullLinks = []
+        defaults.removeObject(forKey: "recipeUrls")
+        defaults.removeObject(forKey: "recipeImages")
+        defaults.removeObject(forKey: "recipeNames")
          self.tableView.reloadData()
-        SendLinks(savedLinks: savedLinks)
+        SendLinks(savedLinks: fullLinks)
     }
     
 }
@@ -199,12 +201,21 @@ extension SavedController{
         AF.request(url).responseDecodable(of: User.self){
             (response) in
             if let data = response.value{
-                if let value = data.savedLinks?.components(separatedBy: "|"){
-                    savedLinks = value
-                    defaults.set(value, forKey: "savedLinks")
-                    self.tableView.reloadData()
+                let images = data.savedRecipeImages?.components(separatedBy: "|")
+                let urls = data.savedRecipeURLs?.components(separatedBy: "|")
+                let names = data.savedRecipeNames?.components(separatedBy: "|")
+                if let res = images{
+                    for i in 0 ..< res.count {
+                        fullLinks.append(Links(url: urls![i], imageUrl: images![i], name: names![i]))
+                    }
+                    defaults.set(images, forKey: "recipeImages")
+                    defaults.set(urls, forKey: "recipeUrls")
+                    defaults.set(names, forKey: "recipeNames")
                 }
-                
+                else{
+                    fullLinks = []
+                }
+                self.tableView.reloadData()
             }
         }
     }
