@@ -12,32 +12,45 @@ public struct User: Codable {
     var name: String?
     var email: String?
     var password: String?
-    var savedLinks: String?
+    var savedRecipeURLs: String?
+    var savedRecipeImages: String?
+    var savedRecipeNames: String?
     var productList: String?
 }
 
 let defaults = UserDefaults.standard
 
 
-public func SendLinks(savedLinks: [String]){
+public func SendLinks(savedLinks: [Links]){
     let url =  "https://recipe-finder-api-nodejs.herokuapp.com/"
     
     let email = defaults.string(forKey: "email") ?? "Nope"
     let password = defaults.string(forKey: "password") ?? "Nope"
     
-    let preparedString = savedLinks.joined(separator: "|")
-    print(preparedString)
+    var links = [String]()
+    var images = [String]()
+    var names = [String]()
+    
+    for i in savedLinks{
+        links.append(i.url)
+        images.append(i.imageUrl)
+        names.append(i.name)
+    }
+    let preparedLinks = links.joined(separator: "|")
+    let preparedImages = images.joined(separator: "|")
+    let preparedNames = names.joined(separator: "|")
     let params = [
         "email": "\(email)",
         "password": "\(password)",
-        "savedLinks": "\(preparedString)"
+        "savedRecipeURLs": "\(preparedLinks)",
+        "savedRecipeImages": "\(preparedImages)",
+        "savedRecipeNames": "\(preparedNames)"
     ]
     AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default).response{
         response in
         if let string = response.value{
             print("Send links response: \(string!)")
         }
-        
     }
 }
 

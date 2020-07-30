@@ -376,18 +376,27 @@ extension HomeController{
         if sender.tintColor == UIColor.red{
             sender.tintColor = UIColor.white
             sender.setImage(UIImage(named: "like.png"), for: .normal)
-            let savedLinksNew = savedLinks.filter { $0 != sender.url }
-            savedLinks = savedLinksNew
-            fullLinks = []
+            let savedLinksNew = fullLinks.filter { $0.url != sender.url }
+            fullLinks = savedLinksNew
         }
         else{
             sender.tintColor = UIColor.red
-            savedLinks.append(sender.url)
             fullLinks.append(Links(url: sender.url, imageUrl: sender.imageUrl, name: sender.name))
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
-        defaults.set(savedLinks, forKey: "savedLinks")
-        SendLinks(savedLinks: savedLinks)
+        // write array to user defaults here...
+        var names = [String]()
+        var imgs = [String]()
+        var urls = [String]()
+        for i in fullLinks{
+            names.append(i.name)
+            imgs.append(i.imageUrl)
+            urls.append(i.url)
+        }
+        defaults.set(names, forKey: "recipeNames")
+        defaults.set(imgs, forKey: "recipeImages")
+        defaults.set(urls, forKey: "recipeUrls")
+        SendLinks(savedLinks: fullLinks)
     }
 
     @objc func groceryTapped(_ sender: GroceryButton){

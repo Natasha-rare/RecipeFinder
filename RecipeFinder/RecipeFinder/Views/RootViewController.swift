@@ -14,7 +14,19 @@ class RootViewController: UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        savedLinks = defaults.object(forKey: "savedLinks") as? [String] ?? [""]
+        let recipeNames = defaults.stringArray(forKey: "recipeNames")
+        let recipeUrls = defaults.stringArray(forKey: "recipeUrls")
+        let recipeImages = defaults.stringArray(forKey: "recipeImages")
+        
+        if recipeUrls != nil
+        {
+            for i in 0..<recipeUrls!.count
+            {
+                fullLinks.append(Links(url: recipeUrls![i], imageUrl: recipeImages![i], name: recipeNames![i]))
+            }
+            print(fullLinks)
+        }
+        
         groceryIngridients = defaults.array(forKey: "grocery") as? [String] ?? [""]
         let homeVC = HomeController()
         let savedVC = SavedController()
