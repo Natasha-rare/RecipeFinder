@@ -460,19 +460,23 @@ public class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
+        
         self.textLabel!.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         textLabel!.textColor = .black
         textLabel!.textAlignment = .right
         textLabel!.font = UIFont(name: "Harmattan-Regular", size: 18)
-        textLabel!.frame = CGRect(x: 76, y: 5, width: Int(self.bounds.width - 76), height: 30)
+        
+//        ImageConstraints(view: textLabel!, top: 5, width: Int(self.bounds.width - 76), height: 30, left: 76)
+        
+//        btn.layer.borderColor = UIColor.black.cgColor
+//        btn.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
         self.addSubview(textLabel!)
-        ImageConstraints(view: textLabel!, top: 5, width: Int(self.bounds.width - 76), height: 30, left: 76)
-        
-        btn.layer.borderColor = UIColor.black.cgColor
-        btn.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
-        
         self.addSubview(btn)
+        btn.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 25, height: 25, enableInsets: false)
+        textLabel!.anchor(top: topAnchor, left: btn.rightAnchor, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: frame.size.width - 40, height: 0, enableInsets: false)
 //        ImageConstraints(view: btn, top: 5, width: 30, height: 30, left: 5)
     }
     
