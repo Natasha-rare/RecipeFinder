@@ -39,7 +39,7 @@ override func viewDidLoad() {
     email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 150, width: 257, height: 58))
     email.delegate = self
     
-    password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 200, width: 257, height: 58))
+    password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: true, frame: CGRect(x: 58, y: 200, width: 257, height: 58))
     password.delegate = self
     
     warning.text = NSLocalizedString("Password should contain capital, lowercase letters and numbers", comment: "")

@@ -17,7 +17,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     
     let scrollView = UIScrollView()
     let label = UILabel()
-    let buttonEnter = NeoButton()
+    let buttonEnter = UIButton(type: .custom)
     let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -34,10 +34,17 @@ class SavedController: UIViewController, UITableViewDataSource{
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
-        buttonEnter.load(title: NSLocalizedString("clear all", comment: ""), frame: CGRect(x: 58, y: 589, width: 259, height: 58), color: UIColor(red: 216.0/255.0, green: 141.0/255.0, blue: 10.0/255.0, alpha: 1))
-        buttonEnter.setTitleColor(.white, for: .normal)
-        buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
-        buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchDown)
+        buttonEnter.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: 620, width: 60, height: 60)
+//        buttonEnter.setTitle("Clear All", for: .normal)
+        buttonEnter.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        buttonEnter.clipsToBounds = true
+        buttonEnter.layer.cornerRadius = 30
+        buttonEnter.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        buttonEnter.layer.borderWidth = 1.0
+        buttonEnter.setImage(UIImage(named: "trash-2.png"), for: .normal)
+//        buttonEnter.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+        buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchUpInside)
+        
         
         tableView.frame = CGRect(x: 8, y: 128, width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height)
         tableView.register(TableViewCellS.self, forCellReuseIdentifier: "TableViewCellS")
@@ -48,27 +55,25 @@ class SavedController: UIViewController, UITableViewDataSource{
         tableView.rowHeight = 60
         
         
+        
         tableView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(savedLinks.count * 60 + 100))
 //         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + CGFloat(savedLinks.count * 60))
         
         super.view.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)
         
-        tableView.addSubview(buttonEnter)
-        AddConstraints(view: buttonEnter, top: 200 + savedLinks.count * 50, height: 58, width: 259)
-        
+//        tableView.addSubview(buttonEnter)
+//        AddConstraints(view: buttonEnter, top: 100 + savedLinks.count * 50, height: 100, width: 100)
         super.view.addSubview(tableView)
+        super.view.addSubview(buttonEnter)
         
-//        scrollView.addSubview(label)
-//        AddConstraints(view: label, top: 28, height: 79, width: 375)
-//
-//        scrollView.addSubview(tableView)
-//
-//        scrollView.addSubview(buttonEnter)
-//        AddConstraints(view: buttonEnter, top: 100 + savedLinks.count * 80, height: 58, width: 259)
-//
-//        super.view.addSubview(scrollView)
-//        AddConstraints(view: scrollView, top: 0, height: Int(UIScreen.main.bounds.height + CGFloat(savedLinks.count * 60)), width:  Int(UIScreen.main.bounds.width))
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        buttonEnter.removeFromSuperview()
     }
     
     @objc func refresh() {
@@ -117,10 +122,10 @@ class SavedController: UIViewController, UITableViewDataSource{
             cell.layoutSubviews()}
         return cell
     }
-    
-    @objc func buttonClicked(sender : NeoButton) {
-        sender.setShadows()
-    }
+//
+//    @objc func buttonClicked(sender : NeoButton) {
+//        sender.setShadows()
+//    }
     
     @objc func presentWebBrowser(sender: UIButton) {
             let vc = WebViewController()
@@ -129,7 +134,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         }
 
     @objc func buttonClicked1(sender : NeoButton) {
-        sender.layer.sublayers?.removeFirst(2)
+//        sender.layer.sublayers?.removeFirst(2)
         savedLinks = []
         
          self.tableView.reloadData()
