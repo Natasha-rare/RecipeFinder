@@ -305,6 +305,8 @@ extension HomeController{
                 button.layer.cornerRadius = 10
                 button.layer.masksToBounds = true
                 button.url = hit.recipe.url
+                button.imageUrl = hit.recipe.image
+                button.name = hit.recipe.label
                 button.addTarget(self, action: #selector(self.likeButtonTapped(_:)), for: .touchUpInside)
             if savedLinks.contains(hit.recipe.url) {
                 let originalImage = UIImage(named: "like.png")
@@ -376,11 +378,12 @@ extension HomeController{
             sender.setImage(UIImage(named: "like.png"), for: .normal)
             let savedLinksNew = savedLinks.filter { $0 != sender.url }
             savedLinks = savedLinksNew
-            
+            fullLinks = []
         }
         else{
             sender.tintColor = UIColor.red
             savedLinks.append(sender.url)
+            fullLinks.append(Links(url: sender.url, imageUrl: sender.imageUrl, name: sender.name))
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         defaults.set(savedLinks, forKey: "savedLinks")
@@ -405,6 +408,8 @@ extension HomeController{
 
 class LikeButton: UIButton{
     var url: String = ""
+    var imageUrl: String = ""
+    var name: String = ""
 }
 
 class GroceryButton: UIButton{
@@ -506,4 +511,44 @@ extension UIViewController: UITextFieldDelegate{
         textField.resignFirstResponder()
         return true;
     }
+}
+
+extension UIView {
+    
+    func anchor (top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat, enableInsets: Bool) {
+        var topInset = CGFloat(0)
+        var bottomInset = CGFloat(0)
+        
+        if #available(iOS 11, *), enableInsets {
+            let insets = self.safeAreaInsets
+            topInset = insets.top
+            bottomInset = insets.bottom
+            
+            print("Top: \(topInset)")
+            print("bottom: \(bottomInset)")
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let top = top {
+            self.topAnchor.constraint(equalTo: top, constant: paddingTop+topInset).isActive = true
+        }
+        if let left = left {
+            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
+        }
+        if let right = right {
+            rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
+        }
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: bottom, constant: -paddingBottom-bottomInset).isActive = true
+        }
+        if height != 0 {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+        if width != 0 {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+    }
+    
 }

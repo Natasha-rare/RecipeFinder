@@ -16,6 +16,12 @@ struct Welcome: Codable {
     let hits: [Hit]
 }
 
+public struct Links: Codable{
+    let url: String
+    let imageUrl: String
+    let name: String
+}
+
 // MARK: - Hit
 struct Hit: Codable {
     let recipe: Recipe

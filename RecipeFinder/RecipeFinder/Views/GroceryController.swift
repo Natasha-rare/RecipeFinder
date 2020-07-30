@@ -43,25 +43,6 @@ class GroceryController: UIViewController, UITableViewDataSource{
         
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(groceryIngridients.count * 50 + 330))
         
-        for ingredient in groceryIngridients{
-            let label2 = UILabel()
-            label2.text = ingredient
-            label2.frame = CGRect(x: 80, y: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 240, height: 50)
-            label2.textColor = UIColor.systemGray
-            
-            let checked = UIButton()
-            checked.frame = CGRect(x: 56, y: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20)
-            checked.setImage(UIImage(named: "check-box.png"), for: .normal)
-            checked.layer.borderColor = UIColor.black.cgColor
-            checked.addTarget(self, action: #selector(self.imageTapped(_:)), for: .touchUpInside)
-            
-            scrollView.addSubview(checked)
-            ImageConstraints(view: checked, top: 155 + groceryIngridients.firstIndex(of: ingredient)! * 50, width: 20, height: 20, left: 56)
-            
-            scrollView.addSubview(label2)
-            AddConstraints(view: label2, top: 140 + groceryIngridients.firstIndex(of: ingredient)! * 50, height: 50, width: 240)
-            scrollView.addConstraint(NSLayoutConstraint(item: label2, attribute: .left, relatedBy: .equal, toItem: checked, attribute: .right, multiplier: 1, constant: 25))
-        }
         
         super.view.addSubview(label)
         AddConstraints(view: label, top: 28, height: 79, width: 375)

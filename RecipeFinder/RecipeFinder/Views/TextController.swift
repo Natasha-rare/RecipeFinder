@@ -89,7 +89,7 @@ class TextController: UIViewController{
    func performAction() {
         productsList.append(textSearch.text!.lowercased())
     
-        if label2.text == "It seems that you didn’t enter ingridients!"{
+    if (label2.text?.contains("!"))!{
            label2.text = textSearch.text!
         }
         else{
