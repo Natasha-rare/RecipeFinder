@@ -108,7 +108,7 @@ class SavedController: UIViewController, UITableViewDataSource{
         var cell = TableViewCellS()
         cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellS", for: indexPath) as! TableViewCellS
         cell.recipe = fullLinks[indexPath.row]
-//        cell.btn.titleLabel!.text = fullLinks[indexPath.row].url
+        cell.btn.titleLabel!.text = fullLinks[indexPath.row].url
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
         cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
         return cell
