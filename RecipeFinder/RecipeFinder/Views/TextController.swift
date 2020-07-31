@@ -25,13 +25,13 @@ class TextController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
                 
-        label.frame = CGRect(x: 0, y: 28, width: 375, height: 80)
+        label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.text = NSLocalizedString("Home", comment: "")
         label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
@@ -57,10 +57,10 @@ class TextController: UIViewController{
         AddConstraints(view: buttonDone, top: 584, height: 58, width: 150)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 80, width: 375)
+        AddConstraints(view: label, top: 28, height: 79, width: 375)
         
         scrollView.addSubview(label2)
-        AddConstraints(view: label2, top: 200, height: 80, width: 259)
+        AddConstraints(view: label2, top: 200, height: 79, width: 259)
         
         scrollView.addSubview(searchView)
         ImageConstraints(view: searchView, top: 373, width: 30, height: 30, left: 49)

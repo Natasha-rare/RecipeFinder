@@ -175,7 +175,7 @@ extension HomeController{
         label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         label.textAlignment = .center
         
-        label2.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label2.frame = CGRect(x: 58, y: 200, width: 0.8 * scrollView.contentSize.width, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
@@ -216,12 +216,12 @@ extension HomeController{
         label.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview().offset(50)
                 make.centerX.equalToSuperview()
-                make.height.equalTo(80)
+                make.height.equalTo(79)
             make.width.equalToSuperview().offset(20)
             }
         
         scrollView.addSubview(label2)
-        MakeConstraints(view: label2, topView: label, topViewOffset: 30, height: 80, multipliedWidth: 0.80)
+        MakeConstraints(view: label2, topView: label, topViewOffset: 30, height: 79, multipliedWidth: 0.80)
         
         scrollView.addSubview(buttonText)
         MakeConstraints(view: buttonText, topView: label2, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
@@ -271,7 +271,7 @@ extension HomeController{
         label.text = "Home"
         label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
         
-        label2.frame = CGRect(x: 60, y: 80, width: 256, height: 80)
+        label2.frame = CGRect(x: 60, y: 80, width: 259, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.font = UIFont(name: "Harmattan-Regular", size: 20)
         label2.textAlignment = .center
@@ -322,14 +322,15 @@ extension HomeController{
                 buttonGrocery.ingredientList = hit.recipe.ingredientLines
                 buttonGrocery.addTarget(self, action: #selector(self.groceryTapped(_:)), for: .touchUpInside)
             
+            imageV.addSubview(button)
+            ImageConstraints(view: button, top: 5, width: 30, height: 30, left: 221)
+            
+            imageV.addSubview(buttonGrocery)
+            ImageConstraints(view: buttonGrocery, top: 5, width: 30, height: 30, left: 5)
+            
+            
             scrollView.addSubview(imageV)
             AddConstraints(view: imageV, top: 270 + count * 280, height: 256, width: 256)
-            
-            scrollView.addSubview(button)
-            ImageConstraints(view: button, top: 285 + count * 280, width: 30, height: 30, left: 275)
-            
-            scrollView.addSubview(buttonGrocery)
-            ImageConstraints(view: buttonGrocery, top: 285 + count * 280, width: 30, height: 30, left: 75)
             
             count += 1
         }
@@ -341,7 +342,7 @@ extension HomeController{
         
         label2.text = label2.text!.lowercased()
         scrollView.addSubview(label2)
-        AddConstraints(view: label2, top: 80, height: 80, width: 256)
+        AddConstraints(view: label2, top: 80, height: 79, width: 259)
         
         scrollView.addSubview(button)
         AddConstraints(view: button, top: 160, height: 60, width: 256)
@@ -401,15 +402,22 @@ extension HomeController{
 
     @objc func groceryTapped(_ sender: GroceryButton){
         vibrate()
-        let originalImage = UIImage(named: "grocery.png")
+        let originalImage = sender.image(for: .normal)
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
-        sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
+        if sender.tintColor == UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1){
+            sender.tintColor = UIColor.white
+            sender.setImage(UIImage(named: "grocery.png"), for: .normal)
+            let savedLinksNew = groceryIngridients.filter { $0 != sender.ingredientList } // не работает
+            groceryIngridients = savedLinksNew
+        }
+        else{
+            sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
+            // ingridients to grocery
+            groceryIngridients = sender.ingredientList
+        }
         
-        // ingridients to grocery
-        groceryIngridients = sender.ingredientList
         defaults.set(groceryIngridients, forKey: "grocery")
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         SendIngredients(ingredientList: groceryIngridients)
     }

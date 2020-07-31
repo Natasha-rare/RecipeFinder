@@ -48,7 +48,7 @@ class VoiceController: UIViewController {
         doneButton.addTarget(self, action: #selector(self.buttonDoneClicked(_:)), for: .touchUpInside)
         doneButton.addTarget(self, action: #selector(self.buttonClickedDown(_:)), for: .touchDown)
         
-        label.frame = CGRect(x: 58, y: 200, width: 259, height: 80)
+        label.frame = CGRect(x: 58, y: 200, width: 259, height: 79)
         label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
         label.font = UIFont(name: "Harmattan-Regular", size: 20)
@@ -75,7 +75,7 @@ class VoiceController: UIViewController {
         AddConstraints(view: doneButton, top: 584, height: 58, width: 150)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 200, height: 80, width: 259)
+        AddConstraints(view: label, top: 200, height: 79, width: 259)
         
         scrollView.addSubview(labelHead)
         AddConstraints(view: labelHead, top: 38, height: 79, width: 375)
