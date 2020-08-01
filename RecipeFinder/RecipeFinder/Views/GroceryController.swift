@@ -2,7 +2,6 @@ import UIKit
 import Alamofire
 
 public var groceryIngridients: [String] = []
-public var recipeNameToShare: String = ""
 
 class GroceryController: UIViewController, UITableViewDataSource{
     
@@ -80,7 +79,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
     }
     
     @objc func shareGrocery(sender : UIButton){
-        var items = ["✅ Here are products to make \(recipeNameToShare): \n"]
+        var items = ["✅ Here are products to buy: \n"]
         for i in groceryIngridients{
             items[0] += "• " + i + "\n"
         }
