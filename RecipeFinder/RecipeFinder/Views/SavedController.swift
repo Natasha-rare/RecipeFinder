@@ -147,14 +147,16 @@ class SavedController: UIViewController, UITableViewDataSource{
 
 class TableViewCellS: TableViewCell {
     var recipe : Links? {
-    didSet {
-        let data = try? Data(contentsOf: URL(string: recipe!.imageUrl)!)
         
-        if let imageData = data {
-            recipeImageUrl.image = UIImage(data: imageData)
-        }
-        else{
-            recipeImageUrl.image = UIImage(named: "logo")
+    didSet {
+        DispatchQueue.main.async {
+            let data = try? Data(contentsOf: URL(string: self.recipe!.imageUrl)!)
+            if let imageData = data {
+                self.recipeImageUrl.image = UIImage(data: imageData)
+            }
+            else{
+                self.recipeImageUrl.image = UIImage(named: "logo")
+            }
         }
         
         recipeUrl.text = recipe?.url
