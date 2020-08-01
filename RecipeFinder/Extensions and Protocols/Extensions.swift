@@ -109,7 +109,7 @@ class CardImage: UIButton{
             text.frame = self.frameText
             text.textColor = UIColor.white
             text.text = self.title
-            text.font = UIFont(name: "Harmattan-Regular", size: 24)
+        text.font = UIFont.systemFont(ofSize: 24, weight: .medium)
             text.textAlignment = .left
         
         self.addSubview(label)

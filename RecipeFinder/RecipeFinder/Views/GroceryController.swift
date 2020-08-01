@@ -50,7 +50,12 @@ class GroceryController: UIViewController, UITableViewDataSource{
         
         
         super.view.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        label.snp.makeConstraints { (make) -> Void in
+        make.top.equalToSuperview().offset(50)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(79)
+        make.width.equalToSuperview().offset(20)
+        }
         
         super.view.addSubview(tableView)
         super.view.addSubview(buttonEnter)

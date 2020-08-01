@@ -60,7 +60,12 @@ class ProfileController: UIViewController{
         AddConstraints(view: deleteAccountButton, top: 420, height: 50, width: 150)
         
         scrollView.addSubview(label)
-        AddConstraints(view: label, top: 28, height: 79, width: 375)
+        label.snp.makeConstraints { (make) -> Void in
+        make.top.equalToSuperview().offset(50)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(79)
+        make.width.equalToSuperview().offset(20)
+        }
         
         scrollView.addSubview(buttonExit)
         AddConstraints(view: buttonExit, top: 525, height: 58, width: 170)
