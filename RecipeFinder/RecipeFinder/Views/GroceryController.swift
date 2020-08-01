@@ -85,7 +85,15 @@ class GroceryController: UIViewController, UITableViewDataSource{
             items[0] += "• " + i + "\n"
         }
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(ac, animated: true)
+        ac.excludedActivityTypes = [.airDrop]
+        // this is the beginning of 💩 code for iPad
+        if let popoverController = ac.popoverPresentationController {
+            popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            popoverController.sourceView = self.view
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
+        // end of strange code
+        self.present(ac, animated: true, completion: nil)
     }
     
     @objc func refresh() {
