@@ -21,6 +21,13 @@ class SavedController: UIViewController, UITableViewDataSource{
     let tableView = UITableView()
     
     override func viewDidLoad() {
+        
+        if(fullLinks.count != 0){
+            if(fullLinks[0].url == ""){
+                fullLinks.remove(at: 0)
+            }
+        }
+        
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         refresh()
@@ -103,8 +110,19 @@ class SavedController: UIViewController, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             fullLinks.remove(at: indexPath.row)
-            print(fullLinks)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            SendLinks(savedLinks: fullLinks)
+            var names = [String]()
+            var imgs = [String]()
+            var urls = [String]()
+            for i in fullLinks{
+                names.append(i.name)
+                imgs.append(i.imageUrl)
+                urls.append(i.url)
+            }
+            defaults.set(names, forKey: "recipeNames")
+            defaults.set(imgs, forKey: "recipeImages")
+            defaults.set(urls, forKey: "recipeUrls")
         } 
     }
     
@@ -130,8 +148,6 @@ class SavedController: UIViewController, UITableViewDataSource{
         }
 
     @objc func buttonClicked1(sender : NeoButton) {
-//        sender.layer.sublayers?.removeFirst(2)
-        print(fullLinks)
         fullLinks = []
         defaults.removeObject(forKey: "recipeUrls")
         defaults.removeObject(forKey: "recipeImages")

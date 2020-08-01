@@ -13,6 +13,13 @@ class GroceryController: UIViewController, UITableViewDataSource{
     var tableView = UITableView()
     
     override func viewDidLoad() {
+        
+        if(groceryIngridients.count != 0){
+            if(groceryIngridients[0] == ""){
+                groceryIngridients.remove(at: 0)
+            }
+        }
+        
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
         refresh()
@@ -89,10 +96,11 @@ class GroceryController: UIViewController, UITableViewDataSource{
         return cell
     }
 
-    @objc func buttonClicked1(sender : NeoButton) {
+    @objc func buttonClicked1(sender : UIButton) {
         
         groceryIngridients = []
-         self.tableView.reloadData()
+        defaults.removeObject(forKey: "grocery")
+        self.tableView.reloadData()
         SendIngredients(ingredientList: groceryIngridients)
     
     }
