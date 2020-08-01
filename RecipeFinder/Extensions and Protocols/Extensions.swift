@@ -408,8 +408,9 @@ extension HomeController{
         if sender.tintColor == UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1){
             sender.tintColor = UIColor.white
             sender.setImage(UIImage(named: "grocery.png"), for: .normal)
-            let savedLinksNew = groceryIngridients.filter { $0 != sender.ingredientList } // не работает
-            groceryIngridients = savedLinksNew
+            for ingredient in sender.ingredientList{
+                groceryIngridients = groceryIngridients.filter {$0 != ingredient}
+            }
         }
         else{
             sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
