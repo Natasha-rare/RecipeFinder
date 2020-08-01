@@ -64,7 +64,6 @@ class SavedController: UIViewController, UITableViewDataSource{
         
         
         tableView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(savedLinks.count * 60 + 100))
-//         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + CGFloat(savedLinks.count * 60))
         
         super.view.addSubview(label)
         label.snp.makeConstraints { (make) -> Void in
@@ -74,8 +73,6 @@ class SavedController: UIViewController, UITableViewDataSource{
         make.width.equalToSuperview().offset(20)
         }
         
-//        tableView.addSubview(buttonEnter)
-//        AddConstraints(view: buttonEnter, top: 100 + savedLinks.count * 50, height: 100, width: 100)
         super.view.addSubview(tableView)
         super.view.addSubview(buttonEnter)
         
@@ -85,18 +82,11 @@ class SavedController: UIViewController, UITableViewDataSource{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        buttonEnter.removeFromSuperview()
     }
     
     @objc func refresh() {
         self.tableView.reloadData() // a refresh the tableView.
     }
-    
-//    @objc func imageTapped(_ sender: SaveButton) {
-//        let vc = WebViewController()
-//        vc.url = sender.url
-//        self.present(vc, animated: true, completion: nil)
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
@@ -136,10 +126,6 @@ class SavedController: UIViewController, UITableViewDataSource{
         cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
         return cell
     }
-//
-//    @objc func buttonClicked(sender : NeoButton) {
-//        sender.setShadows()
-//    }
     
     @objc func presentWebBrowser(sender: UIButton) {
             let vc = WebViewController()

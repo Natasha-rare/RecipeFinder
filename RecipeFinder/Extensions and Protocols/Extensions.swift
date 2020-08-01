@@ -320,6 +320,7 @@ extension HomeController{
                 buttonGrocery.layer.cornerRadius = 10
                 buttonGrocery.layer.masksToBounds = true
                 buttonGrocery.ingredientList = hit.recipe.ingredientLines
+                buttonGrocery.name = hit.recipe.label
                 buttonGrocery.addTarget(self, action: #selector(self.groceryTapped(_:)), for: .touchUpInside)
             
             imageV.addSubview(button)
@@ -414,8 +415,8 @@ extension HomeController{
         }
         else{
             sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
-            // ingridients to grocery
             groceryIngridients = sender.ingredientList
+            recipeNameToShare = sender.name
         }
         
         defaults.set(groceryIngridients, forKey: "grocery")
@@ -432,6 +433,7 @@ class LikeButton: UIButton{
 
 class GroceryButton: UIButton{
     var ingredientList: [String] = []
+    var name = ""
 }
 
 public var vSpinner: UIView?

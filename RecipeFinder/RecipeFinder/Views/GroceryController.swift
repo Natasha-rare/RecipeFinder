@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 
 public var groceryIngridients: [String] = []
-
+public var recipeNameToShare: String = ""
 
 class GroceryController: UIViewController, UITableViewDataSource{
     
@@ -11,6 +11,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
     var scrollView = UIScrollView()
     var buttonEnter = UIButton()
     var tableView = UITableView()
+    var sharebtn = UIButton()
     
     override func viewDidLoad() {
         
@@ -25,7 +26,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         
-        tableView.frame = CGRect(x: 8, y: 128, width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height)
+        tableView.frame = CGRect(x: 8, y: 128, width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height-100)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
         tableView.dataSource = self
         tableView.backgroundColor = view.backgroundColor
@@ -55,6 +56,14 @@ class GroceryController: UIViewController, UITableViewDataSource{
         
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(groceryIngridients.count * 50 + 330))
         
+        sharebtn.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: 700, width: 60, height: 60)
+       sharebtn.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+       sharebtn.clipsToBounds = true
+       sharebtn.layer.cornerRadius = 30
+       sharebtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+       sharebtn.layer.borderWidth = 1.0
+        sharebtn.setImage(UIImage(systemName: "square.and.arrow.up")?.withTintColor(.white), for: .normal)
+        sharebtn.addTarget(self, action: #selector(self.shareGrocery(sender:)), for: .touchUpInside)
         
         super.view.addSubview(label)
         label.snp.makeConstraints { (make) -> Void in
@@ -66,7 +75,17 @@ class GroceryController: UIViewController, UITableViewDataSource{
         
         super.view.addSubview(tableView)
         super.view.addSubview(buttonEnter)
+        super.view.addSubview(sharebtn)
         
+    }
+    
+    @objc func shareGrocery(sender : UIButton){
+        var items = ["✅ Here are products to make \(recipeNameToShare): \n"]
+        for i in groceryIngridients{
+            items[0] += "• " + i + "\n"
+        }
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     @objc func refresh() {
