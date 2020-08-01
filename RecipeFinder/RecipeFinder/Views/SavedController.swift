@@ -151,7 +151,10 @@ class TableViewCellS: TableViewCell {
         let data = try? Data(contentsOf: URL(string: recipe!.imageUrl)!)
         
         if let imageData = data {
-            recipeImageUrl.image = UIImage(data: imageData)!
+            recipeImageUrl.image = UIImage(data: imageData)
+        }
+        else{
+            recipeImageUrl.image = UIImage(named: "logo")
         }
         
         recipeUrl.text = recipe?.url
@@ -177,7 +180,7 @@ class TableViewCellS: TableViewCell {
     }()
     
     private let recipeImageUrl : UIImageView = {
-        let imgView = UIImageView(image: UIImage(named:""))
+    let imgView = UIImageView()
     imgView.contentMode = .scaleAspectFit
     imgView.clipsToBounds = true
     return imgView
