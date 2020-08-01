@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "photo_2020-07-23 15.29.33.jpeg",
+      "filename" : "logologo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "logologo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "logologo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
