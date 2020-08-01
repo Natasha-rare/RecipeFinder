@@ -109,7 +109,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         animationView.frame = CGRect(x: 115, y: 220, width: 150, height: 150)
         
         
-        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label2.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping

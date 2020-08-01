@@ -34,7 +34,7 @@ class TextController: UIViewController{
         label2.frame = CGRect(x: 58, y: 200, width: 259, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
-        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label2.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping

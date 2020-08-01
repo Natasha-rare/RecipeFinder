@@ -51,7 +51,7 @@ class VoiceController: UIViewController {
         label.frame = CGRect(x: 58, y: 200, width: 259, height: 79)
         label.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
-        label.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

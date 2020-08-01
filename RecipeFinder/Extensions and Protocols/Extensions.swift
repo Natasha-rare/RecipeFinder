@@ -30,7 +30,7 @@ class GrayTextField: UITextField{
         
         self.frame = frame
         textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        font = UIFont(name: "Harmattan-Regular", size: 27)
+        font = UIFont.systemFont(ofSize: 27, weight: .regular)
         textAlignment = .center
         layer.cornerRadius = 30.0
         isSecureTextEntry = isSecure
@@ -178,7 +178,7 @@ extension HomeController{
         label2.frame = CGRect(x: 58, y: 200, width: 0.8 * scrollView.contentSize.width, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
         label2.text = NSLocalizedString("It seems that you didn’t enter ingridients!", comment: "")
-        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label2.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label2.textAlignment = .center
         label2.numberOfLines = 0
         label2.lineBreakMode = .byWordWrapping
@@ -273,7 +273,7 @@ extension HomeController{
         
         label2.frame = CGRect(x: 60, y: 80, width: 259, height: 79)
         label2.textColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-        label2.font = UIFont(name: "Harmattan-Regular", size: 20)
+        label2.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label2.textAlignment = .center
         label2.numberOfLines = 2
         label2.lineBreakMode = .byWordWrapping
@@ -508,7 +508,7 @@ class SaveButton: UIButton{
         label.text = title
         label.textColor = .black
         label.frame = CGRect(x: 48, y: 0, width: Int(frame.width) - 50, height: Int(frame.height))
-        label.font = UIFont(name: "Harmattan-Regular", size: 18)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         
         let imageView = UIImageView(image: UIImage(named: "link.png"))
         imageView.frame = imageFrame

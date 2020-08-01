@@ -30,13 +30,13 @@ class ProfileController: UIViewController{
         imageView.frame = CGRect(x: 128, y: 139, width: 117, height: 117)
         
         greeting.frame = CGRect(x: 61, y: 281, width: 257, height: 58)
-        greeting.font = UIFont(name: "Harmattan-Regular", size: 24)
+        greeting.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
         greeting.text = NSLocalizedString("Hello", comment: "") + ", " + " \(defaults.object(forKey: "name") ?? "Chef")!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
-        email.font = UIFont(name: "Harmattan-Regular", size: 24)
+        email.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         email.textAlignment = .center
         email.text = defaults.string(forKey: "email")
@@ -52,12 +52,12 @@ class ProfileController: UIViewController{
     
         deleteAccountButton.frame = CGRect(x: 105, y: 420, width: 150, height: 50)
         deleteAccountButton.setTitle(NSLocalizedString("Delete account", comment: ""), for: .normal)
-        deleteAccountButton.titleLabel?.font = UIFont(name: "Harmattan-Regular", size: 24)
+        deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         deleteAccountButton.setTitleColor(.red, for: .normal)
         deleteAccountButton.addTarget(self, action: #selector(self.deleteAccount(sender:)), for: .touchUpInside)
         
         scrollView.addSubview(deleteAccountButton)
-        AddConstraints(view: deleteAccountButton, top: 420, height: 50, width: 150)
+        AddConstraints(view: deleteAccountButton, top: 420, height: 50, width: Int(UIScreen.main.bounds.width * 0.80))
         
         scrollView.addSubview(label)
         label.snp.makeConstraints { (make) -> Void in

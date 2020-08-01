@@ -27,7 +27,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
         resultLabel.text = NSLocalizedString("Choose image", comment: "")
         resultLabel.frame = CGRect(x: 135, y: 50, width: 400, height: 20)
         resultLabel.textColor = .black
-        resultLabel.font = UIFont(name: "Harmattan-Regular", size: 20)
+        resultLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         resultLabel.textAlignment = .center
 
         buttonCamera.frame = CGRect(x: 113, y: 420, width: 150, height: 58)

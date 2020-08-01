@@ -30,7 +30,7 @@ class SecondaryViewController: UIViewController
         label2.frame = CGRect(x: 8, y: 322, width: 360, height: 49)
         label2.textColor = UIColor.lightGray
         label2.text = "Recognized Text"
-        label2.font = UIFont(name: "Harmattan-Regular", size: 30)
+        label2.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label2.textAlignment = .center
         
         buttonDone.setTitle("DONE", for: .normal)
