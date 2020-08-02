@@ -149,16 +149,16 @@ class TableViewCellS: TableViewCell {
     var recipe : Links? {
         
     didSet {
-        DispatchQueue.main.async {
-            let data = try? Data(contentsOf: URL(string: self.recipe!.imageUrl)!)
-            if let imageData = data {
-                self.recipeImageUrl.image = UIImage(data: imageData)
+
+        AF.request(self.recipe!.imageUrl).response{
+            res in
+            if let data = res.data{
+                self.recipeImageUrl.image = UIImage(data: data)
             }
             else{
                 self.recipeImageUrl.image = UIImage(named: "logo")
             }
         }
-        
         recipeUrl.text = recipe?.url
         recipeNameLabel.text = recipe?.name
     }
