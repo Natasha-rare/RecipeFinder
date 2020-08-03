@@ -129,6 +129,9 @@ class GroceryController: UIViewController, UITableViewDataSource{
         defaults.removeObject(forKey: "grocery")
         self.tableView.reloadData()
         SendIngredients(ingredientList: groceryIngridients)
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
     
     }
     

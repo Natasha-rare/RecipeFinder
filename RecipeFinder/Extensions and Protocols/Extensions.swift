@@ -360,7 +360,9 @@ extension HomeController{
     }
     
     func vibrate(){
-           AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+           let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+           impactFeedbackgenerator.prepare()
+           impactFeedbackgenerator.impactOccurred()
        }
     
     @objc func likeButtonTapped(_ sender: LikeButton){

@@ -138,7 +138,9 @@ class SavedController: UIViewController, UITableViewDataSource{
         defaults.removeObject(forKey: "recipeUrls")
         defaults.removeObject(forKey: "recipeImages")
         defaults.removeObject(forKey: "recipeNames")
-        
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
          self.tableView.reloadData()
         SendLinks(savedLinks: fullLinks)
     }
