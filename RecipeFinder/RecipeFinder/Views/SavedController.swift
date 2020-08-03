@@ -130,7 +130,7 @@ class SavedController: UIViewController, UITableViewDataSource{
     }
     
     @objc func shareSaved(sender : UIButton){
-        var items = ["📌Look what I’ve found at RecipeFinder: \n"]
+        var items = ["📌 Look what I’ve found at RecipeFinder: \n"]
         items[0] += (sender.titleLabel?.text!)!
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         ac.excludedActivityTypes = [.airDrop]
