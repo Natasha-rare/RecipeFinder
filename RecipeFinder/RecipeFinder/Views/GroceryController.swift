@@ -46,7 +46,8 @@ class GroceryController: UIViewController, UITableViewDataSource{
         buttonEnter.layer.cornerRadius = 30
         buttonEnter.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         buttonEnter.layer.borderWidth = 1.0
-        buttonEnter.setImage(UIImage(named: "trash-2.png"), for: .normal)
+        buttonEnter.setImage(UIImage(systemName: "trash"), for: .normal)
+        buttonEnter.tintColor = .white
         buttonEnter.addTarget(self, action: #selector(self.buttonClicked1(sender:)), for: .touchUpInside)
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -61,7 +62,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         sharebtn.layer.cornerRadius = 30
         sharebtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         sharebtn.layer.borderWidth = 1.0
-        sharebtn.setImage(UIImage(systemName: "square.and.arrow.up")?.withTintColor(.white), for: .normal)
+        sharebtn.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         sharebtn.tintColor = .white
         sharebtn.addTarget(self, action: #selector(self.shareGrocery(sender:)), for: .touchUpInside)
         

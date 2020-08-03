@@ -294,9 +294,11 @@ extension HomeController{
                 }
             imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)
 
+            let config = UIImage.SymbolConfiguration(pointSize: 25)
             let button = LikeButton()
                 button.frame = CGRect(x: 275, y: 285 + count * 280, width: 30, height: 30)
-                button.setImage(UIImage(named: "like.png"), for: .normal)
+                button.setImage(UIImage(systemName: "bookmark.fill", withConfiguration: config), for: .normal)
+                button.tintColor = .white
                 button.layer.cornerRadius = 10
                 button.layer.masksToBounds = true
                 button.url = hit.recipe.url
@@ -304,14 +306,12 @@ extension HomeController{
                 button.name = hit.recipe.label
                 button.addTarget(self, action: #selector(self.likeButtonTapped(_:)), for: .touchUpInside)
             if savedLinks.contains(hit.recipe.url) {
-                let originalImage = UIImage(named: "like.png")
-                let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
-                button.setImage(tintedImage, for: .normal)
                 button.tintColor = UIColor.red
             }
             let buttonGrocery = GroceryButton()
                 buttonGrocery.frame = CGRect(x: 75, y: 285 + count * 280, width: 30, height: 30)
-                buttonGrocery.setImage(UIImage(named: "grocery.png"), for: .normal)
+                buttonGrocery.setImage(UIImage(systemName: "cart.fill", withConfiguration: config), for: .normal)
+                buttonGrocery.tintColor = .white
                 buttonGrocery.layer.cornerRadius = 10
                 buttonGrocery.layer.masksToBounds = true
                 buttonGrocery.ingredientList = hit.recipe.ingredientLines
@@ -366,14 +366,12 @@ extension HomeController{
        }
     
     @objc func likeButtonTapped(_ sender: LikeButton){
-       print(sender.url)
         vibrate()
         let originalImage = sender.image(for: .normal)
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         sender.setImage(tintedImage, for: .normal)
         if sender.tintColor == UIColor.red{
             sender.tintColor = UIColor.white
-            sender.setImage(UIImage(named: "like.png"), for: .normal)
             let savedLinksNew = fullLinks.filter { $0.url != sender.url }
             fullLinks = savedLinksNew
         }
@@ -404,7 +402,6 @@ extension HomeController{
         sender.setImage(tintedImage, for: .normal)
         if sender.tintColor == UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1){
             sender.tintColor = UIColor.white
-            sender.setImage(UIImage(named: "grocery.png"), for: .normal)
             for ingredient in sender.ingredientList{
                 groceryIngridients = groceryIngridients.filter {$0 != ingredient}
             }
