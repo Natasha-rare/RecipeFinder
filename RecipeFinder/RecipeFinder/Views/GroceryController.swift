@@ -56,12 +56,13 @@ class GroceryController: UIViewController, UITableViewDataSource{
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(groceryIngridients.count * 50 + 330))
         
         sharebtn.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: 700, width: 60, height: 60)
-       sharebtn.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-       sharebtn.clipsToBounds = true
-       sharebtn.layer.cornerRadius = 30
-       sharebtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-       sharebtn.layer.borderWidth = 1.0
+        sharebtn.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        sharebtn.clipsToBounds = true
+        sharebtn.layer.cornerRadius = 30
+        sharebtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        sharebtn.layer.borderWidth = 1.0
         sharebtn.setImage(UIImage(systemName: "square.and.arrow.up")?.withTintColor(.white), for: .normal)
+        sharebtn.tintColor = .white
         sharebtn.addTarget(self, action: #selector(self.shareGrocery(sender:)), for: .touchUpInside)
         
         super.view.addSubview(label)

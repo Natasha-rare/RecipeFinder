@@ -167,6 +167,7 @@ class NeoButton: UIButton {
 extension HomeController{
     
     func loadViewWithoutCards(){
+        super.view.subviews.forEach { $0.removeFromSuperview() }
         
         label.frame = CGRect(x: 0, y: 28, width: 375, height: 79)
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -231,9 +232,6 @@ extension HomeController{
         scrollView.addSubview(buttonScan)
         MakeConstraints(view: buttonScan, topView: buttonVoice, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
         
-        
-        
-        
         scrollView.addSubview(textView)
         textView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(label2.snp.bottom).offset(60)
@@ -263,6 +261,7 @@ extension HomeController{
     }
     
     func loadViewWithCards(recipes: Welcome){
+        super.view.subviews.forEach { $0.removeFromSuperview() }
         scrollView.subviews.forEach { $0.removeFromSuperview() }
         var count: Int = 0
         label.frame = CGRect(x: 0, y: 5, width: 375, height: 79)
