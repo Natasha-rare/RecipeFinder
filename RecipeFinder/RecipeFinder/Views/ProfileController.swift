@@ -30,13 +30,13 @@ class ProfileController: UIViewController{
         imageView.frame = CGRect(x: 128, y: 139, width: 117, height: 117)
         
         greeting.frame = CGRect(x: 61, y: 281, width: 257, height: 58)
-        greeting.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        greeting.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         greeting.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         greeting.textAlignment = .center
         greeting.text = NSLocalizedString("Hello", comment: "") + ", " + " \(defaults.object(forKey: "name") ?? "Chef")!"
         
         email.frame = CGRect(x: 61, y: 348, width: 257, height: 58)
-        email.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        email.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         email.textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
         email.textAlignment = .center
         email.text = defaults.string(forKey: "email")
@@ -52,7 +52,7 @@ class ProfileController: UIViewController{
     
         deleteAccountButton.frame = CGRect(x: 105, y: 420, width: 150, height: 50)
         deleteAccountButton.setTitle(NSLocalizedString("Delete account", comment: ""), for: .normal)
-        deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         deleteAccountButton.setTitleColor(.red, for: .normal)
         deleteAccountButton.addTarget(self, action: #selector(self.deleteAccount(sender:)), for: .touchUpInside)
         
@@ -77,7 +77,7 @@ class ProfileController: UIViewController{
         AddConstraints(view: greeting, top: 281, height: 58, width: 257)
         
         scrollView.addSubview(email)
-        AddConstraints(view: email, top: 348, height: 58, width: 257)
+        AddConstraints(view: email, top: 348, height: 58, width: Int(UIScreen.main.bounds.width * 0.9))
         
         super.view.addSubview(scrollView)
         ScrollViewConstraints(view: scrollView)
