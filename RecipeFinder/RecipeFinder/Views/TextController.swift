@@ -87,13 +87,13 @@ class TextController: UIViewController{
    }
   
    func performAction() {
-        productsList.append(textSearch.text!.lowercased())
-    
+    productsList.append(textSearch.text!.lowercased().trimmingCharacters(in: .whitespaces))
+    print(productsList)
     if (label2.text?.contains("!"))!{
-           label2.text = textSearch.text!
+           label2.text = textSearch.text!.trimmingCharacters(in: .whitespaces)
         }
         else{
-            label2.text! += ", \(textSearch.text!)"
+            label2.text! += ", \(textSearch.text!.trimmingCharacters(in: .whitespaces))"
         }
 
         textSearch.text = ""

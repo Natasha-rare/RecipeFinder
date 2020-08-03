@@ -92,7 +92,7 @@ class ScanController: UIViewController, UINavigationControllerDelegate, UIImageP
             productsList = self.resultLabel.text!.components(separatedBy: " ")
         }
         else{
-            productsList.append(self.resultLabel.text!)
+            productsList.append(self.resultLabel.text!.trimmingCharacters(in: .whitespaces))
         }
         
         print(productsList)
