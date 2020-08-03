@@ -101,8 +101,8 @@ class RegistrationController: UIViewController{
         showSpinner(onView: scrollView)
         
         let Password = password.text
-        let Email = email.text
-        let Confirm = confirm.text
+        let Email = email.text?.lowercased()
+        let Confirm = confirm.text?.lowercased()
         let Name = name.text
 
         let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
