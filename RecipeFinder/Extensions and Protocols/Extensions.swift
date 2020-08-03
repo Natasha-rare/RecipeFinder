@@ -97,19 +97,18 @@ class CardImage: UIButton{
             im.frame = self.bounds
             im.cornerRadius = 10
             im.contents = myImage
-        im.masksToBounds = true
-        
-        let label = UILabel()
+            im.masksToBounds = true
+        let blurEffect = UIBlurEffect(style: .light)
+        let label = UIVisualEffectView(effect: blurEffect)
             label.frame = self.frameLab
-            label.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
             label.layer.cornerRadius = 10
             label.layer.masksToBounds = true
         
         let text = UILabel()
             text.frame = self.frameText
-            text.textColor = UIColor.white
+            text.textColor = .darkGray
             text.text = self.title
-        text.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+            text.font = UIFont.systemFont(ofSize: 20, weight: .medium)
             text.textAlignment = .left
         
         self.addSubview(label)
