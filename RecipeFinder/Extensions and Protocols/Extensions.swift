@@ -30,7 +30,7 @@ class GrayTextField: UITextField{
         
         self.frame = frame
         textColor = UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1)
-        font = UIFont.systemFont(ofSize: 27, weight: .regular)
+        font = UIFont.systemFont(ofSize: 20, weight: .regular)
         textAlignment = .center
         layer.cornerRadius = 30.0
         isSecureTextEntry = isSecure

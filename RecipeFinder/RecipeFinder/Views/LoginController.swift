@@ -68,9 +68,6 @@ override func viewDidLoad() {
     scrollView.addSubview(password)
     MakeConstraints(view: password, topView: email, topViewOffset: 20, height: 60, multipliedWidth: 0.80)
     
-    scrollView.addSubview(warning)
-    MakeConstraints(view: warning, topView: password, topViewOffset: 50, height: 30, multipliedWidth: 0.80)
-    
     scrollView.addSubview(buttonLogin)
     MakeConstraints(view: buttonLogin, topView: password, topViewOffset: 50, height: 60, multipliedWidth: 0.50)
     
