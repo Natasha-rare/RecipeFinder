@@ -124,7 +124,24 @@ class SavedController: UIViewController, UITableViewDataSource{
         cell.btn.titleLabel!.text = fullLinks[indexPath.row].url
         cell.btn.addTarget(self, action: #selector(presentWebBrowser(sender:)), for: .touchDown)
         cell.btn.frame = CGRect(x: 8, y: 1, width: 280, height: 30)
+        cell.btnShare.titleLabel!.text = fullLinks[indexPath.row].url
+        cell.btnShare.addTarget(self, action: #selector(shareSaved(sender:)), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func shareSaved(sender : UIButton){
+        var items = ["📌 Look what I’ve found at RecipeFinder: \n"]
+        items[0] += (sender.titleLabel?.text!)!
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        ac.excludedActivityTypes = [.airDrop]
+        // this is the beginning of 💩 code for iPad
+        if let popoverController = ac.popoverPresentationController {
+            popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            popoverController.sourceView = self.view
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
+        // end of strange code
+        self.present(ac, animated: true, completion: nil)
     }
     
     @objc func presentWebBrowser(sender: UIButton) {
@@ -166,6 +183,13 @@ class TableViewCellS: TableViewCell {
     }
     }
     
+    let btnShare : UIButton = {
+        let shareBtn = UIButton()
+        shareBtn.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareBtn.tintColor = .systemBlue
+        return shareBtn
+    }()
+    
     private let recipeNameLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
@@ -195,11 +219,12 @@ class TableViewCellS: TableViewCell {
         addSubview(recipeImageUrl)
         addSubview(recipeNameLabel)
         addSubview(btn)
+        addSubview(btnShare)
         
         recipeImageUrl.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 60, height: 0, enableInsets: false)
         recipeNameLabel.anchor(top: topAnchor, left: recipeImageUrl.rightAnchor, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width - 30, height: 0, enableInsets: false)
         btn.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 250, height: 0, enableInsets: false)
-    
+        btnShare.anchor(top: topAnchor, left: recipeNameLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 5, paddingBottom: 5, paddingRight: 35, width: 35, height: 35, enableInsets: false)
     }
     
     required init?(coder: NSCoder) {
