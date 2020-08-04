@@ -172,10 +172,7 @@ class TableViewCellS: TableViewCell {
         AF.request(self.recipe!.imageUrl).response{
             res in
             if let data = res.data{
-                self.recipeImageUrl.image = UIImage(data: data)
-            }
-            else{
-                self.recipeImageUrl.image = UIImage(named: "logo")
+                self.recipeImageUrl.image = UIImage(data: data) ?? UIImage(named: "logo")!
             }
         }
         recipeUrl.text = recipe?.url

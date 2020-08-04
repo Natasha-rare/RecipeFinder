@@ -289,7 +289,7 @@ extension HomeController{
             AF.request(hit.recipe.image, method: .get).response{
                 res in
                 if let data = res.data{
-                    imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 270 + count * 280, width: 256, height: 256), image: UIImage(data: data, scale: 1)!, url: hit.recipe.url)
+                    imageV.load(title: hit.recipe.label,frame: CGRect(x: 60, y: 270 + count * 280, width: 256, height: 256), image: (UIImage(data: data, scale: 1) ?? UIImage(named: "logo"))!, url: hit.recipe.url)
                 }
                 }
             imageV.addTarget(self, action: #selector(self.imageTapped(sender:)), for: .touchUpInside)

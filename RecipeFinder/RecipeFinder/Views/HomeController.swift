@@ -136,7 +136,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         self.checker = 0
         for i in ingridients
         {
-            let url_check = "https://api.edamam.com/search?q=\(i)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+            let url_check = "https://api.edamam.com/search?q=\(i)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1&to=100"
             AF.request(url_check).responseDecodable(of: Welcome.self){
                 response in
                 switch response.result{
@@ -194,7 +194,7 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
         print(33)
         if self.string != "" {
             print("enter")
-            let url = "https://api.edamam.com/search?q=\(self.string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1"
+            let url = "https://api.edamam.com/search?q=\(self.string)&app_id=ff10aa7b&app_key=2cc3b582558c8fa5ec04b81d34c537b1&to=100"
                    AF.request(url).responseDecodable(of: Welcome.self){
                        response in
                        guard let recipes = response.value else {return}
