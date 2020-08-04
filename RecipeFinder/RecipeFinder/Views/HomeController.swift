@@ -11,6 +11,7 @@ import UIKit
 import Speech
 import Alamofire
 import Lottie
+import SafariServices
 
 class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizerDelegate{
 
@@ -58,9 +59,10 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     }
     
     @objc func imageTapped(sender: CardImage){
-        let vc = WebViewController()
-        vc.url = sender.urlIm
-        self.present(vc, animated: true, completion: nil)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let vc = SFSafariViewController(url: URL(string: sender.urlIm)!, configuration: config)
+        present(vc, animated: true)
     }
     
     @objc func buttonText(sender: NeoButton){

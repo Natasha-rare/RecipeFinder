@@ -31,7 +31,6 @@
 		6F6DBFE824BDE94500A60CDA /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6DBFE724BDE94500A60CDA /* RecipeModel.swift */; };
 		6F78E73424BC6B8A0054B4FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78E73324BC6B8A0054B4FF /* Extensions.swift */; };
 		6FDC744A24BDCE6200ED4F55 /* Fridge copy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC744924BDCE6200ED4F55 /* Fridge copy.mlmodel */; };
-		6FE471A424C19C3400B7A075 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A324C19C3400B7A075 /* WebViewController.swift */; };
 		6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A624C19E8300B7A075 /* Protocols.swift */; };
 		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		6FFFA84724D09933004D60FE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA84624D09933004D60FE /* LoginController.swift */; };
@@ -67,7 +66,6 @@
 		6F6DBFE724BDE94500A60CDA /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		6F78E73324BC6B8A0054B4FF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6FDC744924BDCE6200ED4F55 /* Fridge copy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "Fridge copy.mlmodel"; sourceTree = "<group>"; };
-		6FE471A324C19C3400B7A075 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6FE471A624C19E8300B7A075 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		6FE511C924C9890D000C3A47 /* food.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = food.json; sourceTree = "<group>"; };
 		6FFFA84624D09933004D60FE /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				6F41B77224BC61BE00011770 /* GroceryController.swift */,
 				6F59DAE924BCC33000151970 /* ScanController.swift */,
 				12AABE1824BE1E0A00F2C9E4 /* TextController.swift */,
-				6FE471A324C19C3400B7A075 /* WebViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,7 +321,6 @@
 				6F5518EA24B7A18300E5981D /* AddIngridients.swift in Sources */,
 				6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */,
 				6FDC744A24BDCE6200ED4F55 /* Fridge copy.mlmodel in Sources */,
-				6FE471A424C19C3400B7A075 /* WebViewController.swift in Sources */,
 				1211690424B6516700879FED /* ViewController.swift in Sources */,
 				6F6DBFE624BDDD9200A60CDA /* VoiceController.swift in Sources */,
 				6F4291AE24B879D700611FDA /* HomeController.swift in Sources */,

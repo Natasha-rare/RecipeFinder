@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import SafariServices
 
 public var savedLinks: [String] = []
 public var fullLinks: [Links] = []
@@ -145,9 +146,10 @@ class SavedController: UIViewController, UITableViewDataSource{
     }
     
     @objc func presentWebBrowser(sender: UIButton) {
-            let vc = WebViewController()
-            vc.url = sender.titleLabel?.text ?? "https://www.google.com"
-            self.present(vc, animated: true, completion: nil)
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let vc = SFSafariViewController(url: URL(string: sender.titleLabel?.text ?? "https://www.google.com")!, configuration: config)
+            present(vc, animated: true)
         }
 
     @objc func buttonClicked1(sender : NeoButton) {
