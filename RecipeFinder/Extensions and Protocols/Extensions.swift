@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import AVFoundation
 import AudioToolbox
+import SafariServices
 
 class GrayTextField: UITextField{
     override init(frame: CGRect) {
@@ -354,9 +355,10 @@ extension HomeController{
     }
 
     @objc func imageTapped(_ sender: CardImage) {
-        let vc = WebViewController()
-        vc.url = sender.urlIm
-        self.present(vc, animated: true, completion: nil)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let vc = SFSafariViewController(url: URL(string: sender.urlIm)!, configuration: config)
+        present(vc, animated: true)
     }
     
     func vibrate(){
