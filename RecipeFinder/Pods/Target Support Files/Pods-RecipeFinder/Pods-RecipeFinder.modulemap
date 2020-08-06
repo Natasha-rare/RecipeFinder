@@ -1,4 +1,4 @@
-framework module Pods_RecipeFinder {
+module Pods_RecipeFinder {
   umbrella header "Pods-RecipeFinder-umbrella.h"
 
   export *

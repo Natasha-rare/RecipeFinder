@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		1296F1BD24D6AA180081FCCA /* LocalizationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296F1BC24D6AA180081FCCA /* LocalizationSystem.swift */; };
 		12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */; };
 		12AABE1924BE1E0A00F2C9E4 /* TextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AABE1824BE1E0A00F2C9E4 /* TextController.swift */; };
-		200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */; };
 		6F38CCAD24BDFDE800551327 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38CCAC24BDFDE800551327 /* ProfileController.swift */; };
 		6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41B77224BC61BE00011770 /* GroceryController.swift */; };
 		6F4291AE24B879D700611FDA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4291AD24B879D700611FDA /* HomeController.swift */; };
@@ -34,13 +33,66 @@
 		6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A624C19E8300B7A075 /* Protocols.swift */; };
 		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		6FFFA84724D09933004D60FE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA84624D09933004D60FE /* LoginController.swift */; };
+		A4B7149DAEDC05A522A3E458 /* libPods-RecipeFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */; };
+		B3BA2B2A49DB38B698053742 /* libPods-RecipeFinder Watch Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */; };
 		BE62197024B8B20A008C4ADD /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62196F24B8B20A008C4ADD /* RegistrationController.swift */; };
 		BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483124CEF93800CF36C2 /* Localizable.strings */; };
 		BE7D483B24CF416300CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483D24CF416300CF36C2 /* Localizable.strings */; };
+		BEE6495E24DC0EC40094598A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE6495C24DC0EC40094598A /* Interface.storyboard */; };
+		BEE6496024DC0EC90094598A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE6495F24DC0EC90094598A /* Assets.xcassets */; };
+		BEE6496724DC0EC90094598A /* RecipeFinder Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BEE6496624DC0EC90094598A /* RecipeFinder Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEE6496C24DC0EC90094598A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6496B24DC0EC90094598A /* InterfaceController.swift */; };
+		BEE6496E24DC0EC90094598A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6496D24DC0EC90094598A /* ExtensionDelegate.swift */; };
+		BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6496F24DC0EC90094598A /* NotificationController.swift */; };
+		BEE6497224DC0ECC0094598A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE6497124DC0ECC0094598A /* Assets.xcassets */; };
+		BEE6497724DC0ECC0094598A /* RecipeFinder Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEE6498524DC12730094598A /* GroceryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498424DC12730094598A /* GroceryRow.swift */; };
+		BEE6498724DC13E80094598A /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498624DC13E80094598A /* GroceryController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BEE6496824DC0EC90094598A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 121168F424B6516700879FED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEE6496524DC0EC90094598A;
+			remoteInfo = "RecipeFinder Watch Extension";
+		};
+		BEE6497524DC0ECC0094598A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 121168F424B6516700879FED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEE6495924DC0EC40094598A;
+			remoteInfo = "RecipeFinder Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BEE6497824DC0ECC0094598A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BEE6497724DC0ECC0094598A /* RecipeFinder Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE6497B24DC0ECC0094598A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BEE6496724DC0EC90094598A /* RecipeFinder Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		121168FC24B6516700879FED /* RecipeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		121168FF24B6516700879FED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1211690124B6516700879FED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +104,7 @@
 		1296F1BC24D6AA180081FCCA /* LocalizationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSystem.swift; sourceTree = "<group>"; };
 		12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Harmattan-Regular.ttf"; sourceTree = "<group>"; };
 		12AABE1824BE1E0A00F2C9E4 /* TextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
+		2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F38CCAC24BDFDE800551327 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		6F41B77224BC61BE00011770 /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
 		6F4291AD24B879D700611FDA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -71,19 +124,50 @@
 		6FFFA84624D09933004D60FE /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.release.xcconfig"; sourceTree = "<group>"; };
+		B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeFinder Watch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE62196F24B8B20A008C4ADD /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		BE7D482C24CEF57500CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE7D483024CEF93800CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE7D483824CF414200CF36C2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE7D483C24CF416300CF36C2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecipeFinder Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE6495D24DC0EC40094598A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BEE6495F24DC0EC90094598A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEE6496124DC0EC90094598A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE6496624DC0EC90094598A /* RecipeFinder Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RecipeFinder Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE6496B24DC0EC90094598A /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		BEE6496D24DC0EC90094598A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BEE6496F24DC0EC90094598A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		BEE6497124DC0ECC0094598A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEE6497324DC0ECC0094598A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BEE6498424DC12730094598A /* GroceryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroceryRow.swift; path = ../../../../Documents/GroceryRow.swift; sourceTree = "<group>"; };
+		BEE6498624DC13E80094598A /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroceryController.swift; path = ../../../../Documents/GroceryController.swift; sourceTree = "<group>"; };
+		C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1055E62A9BF662D9BEA7F1FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		121168F924B6516700879FED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */,
+				A4B7149DAEDC05A522A3E458 /* libPods-RecipeFinder.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE6496324DC0EC90094598A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3BA2B2A49DB38B698053742 /* libPods-RecipeFinder Watch Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +179,8 @@
 			children = (
 				121168FE24B6516700879FED /* RecipeFinder */,
 				6FE471A524C19E5800B7A075 /* Extensions and Protocols */,
+				BEE6495B24DC0EC40094598A /* RecipeFinder Watch */,
+				BEE6496A24DC0EC90094598A /* RecipeFinder Watch Extension */,
 				121168FD24B6516700879FED /* Products */,
 				E879E042701A1BEF3A715481 /* Pods */,
 				CE5FECC008C9024DB2CAAF30 /* Frameworks */,
@@ -105,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				121168FC24B6516700879FED /* RecipeFinder.app */,
+				BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */,
+				BEE6496624DC0EC90094598A /* RecipeFinder Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,10 +265,36 @@
 			path = "Extensions and Protocols";
 			sourceTree = "<group>";
 		};
+		BEE6495B24DC0EC40094598A /* RecipeFinder Watch */ = {
+			isa = PBXGroup;
+			children = (
+				BEE6495C24DC0EC40094598A /* Interface.storyboard */,
+				BEE6495F24DC0EC90094598A /* Assets.xcassets */,
+				BEE6496124DC0EC90094598A /* Info.plist */,
+			);
+			path = "RecipeFinder Watch";
+			sourceTree = "<group>";
+		};
+		BEE6496A24DC0EC90094598A /* RecipeFinder Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BEE6496B24DC0EC90094598A /* InterfaceController.swift */,
+				BEE6496D24DC0EC90094598A /* ExtensionDelegate.swift */,
+				BEE6496F24DC0EC90094598A /* NotificationController.swift */,
+				BEE6497124DC0ECC0094598A /* Assets.xcassets */,
+				BEE6497324DC0ECC0094598A /* Info.plist */,
+				BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */,
+				BEE6498424DC12730094598A /* GroceryRow.swift */,
+				BEE6498624DC13E80094598A /* GroceryController.swift */,
+			);
+			path = "RecipeFinder Watch Extension";
+			sourceTree = "<group>";
+		};
 		CE5FECC008C9024DB2CAAF30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */,
+				2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */,
+				B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +304,8 @@
 			children = (
 				8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */,
 				AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */,
+				FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */,
+				C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -205,16 +321,53 @@
 				121168F824B6516700879FED /* Sources */,
 				121168F924B6516700879FED /* Frameworks */,
 				121168FA24B6516700879FED /* Resources */,
-				AB30BCEEE8B5E04BD399A24B /* [CP] Embed Pods Frameworks */,
+				BEE6497824DC0ECC0094598A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BEE6497624DC0ECC0094598A /* PBXTargetDependency */,
 			);
 			name = RecipeFinder;
 			productName = RecipeFinder;
 			productReference = 121168FC24B6516700879FED /* RecipeFinder.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BEE6495924DC0EC40094598A /* RecipeFinder Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE6497F24DC0ECC0094598A /* Build configuration list for PBXNativeTarget "RecipeFinder Watch" */;
+			buildPhases = (
+				BEE6495824DC0EC40094598A /* Resources */,
+				BEE6497B24DC0ECC0094598A /* Embed App Extensions */,
+				1055E62A9BF662D9BEA7F1FE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEE6496924DC0EC90094598A /* PBXTargetDependency */,
+			);
+			name = "RecipeFinder Watch";
+			productName = "RecipeFinder Watch";
+			productReference = BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BEE6496524DC0EC90094598A /* RecipeFinder Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE6497E24DC0ECC0094598A /* Build configuration list for PBXNativeTarget "RecipeFinder Watch Extension" */;
+			buildPhases = (
+				7DC236B99A844E3DFD36F5F1 /* [CP] Check Pods Manifest.lock */,
+				BEE6496224DC0EC90094598A /* Sources */,
+				BEE6496324DC0EC90094598A /* Frameworks */,
+				BEE6496424DC0EC90094598A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RecipeFinder Watch Extension";
+			productName = "RecipeFinder Watch Extension";
+			productReference = BEE6496624DC0EC90094598A /* RecipeFinder Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -227,6 +380,12 @@
 				ORGANIZATIONNAME = "Наталья Автухович";
 				TargetAttributes = {
 					121168FB24B6516700879FED = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					BEE6495924DC0EC40094598A = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					BEE6496524DC0EC90094598A = {
 						CreatedOnToolsVersion = 11.5;
 					};
 				};
@@ -247,6 +406,8 @@
 			projectRoot = "";
 			targets = (
 				121168FB24B6516700879FED /* RecipeFinder */,
+				BEE6495924DC0EC40094598A /* RecipeFinder Watch */,
+				BEE6496524DC0EC90094598A /* RecipeFinder Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -266,24 +427,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEE6495824DC0EC40094598A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE6496024DC0EC90094598A /* Assets.xcassets in Resources */,
+				BEE6495E24DC0EC40094598A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE6496424DC0EC90094598A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE6497224DC0ECC0094598A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AB30BCEEE8B5E04BD399A24B /* [CP] Embed Pods Frameworks */ = {
+		7DC236B99A844E3DFD36F5F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecipeFinder Watch Extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB27696D18D306706AECA260 /* [CP] Check Pods Manifest.lock */ = {
@@ -340,7 +523,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEE6496224DC0EC90094598A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */,
+				BEE6498524DC12730094598A /* GroceryRow.swift in Sources */,
+				BEE6498724DC13E80094598A /* GroceryController.swift in Sources */,
+				BEE6496E24DC0EC90094598A /* ExtensionDelegate.swift in Sources */,
+				BEE6496C24DC0EC90094598A /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEE6496924DC0EC90094598A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEE6496524DC0EC90094598A /* RecipeFinder Watch Extension */;
+			targetProxy = BEE6496824DC0EC90094598A /* PBXContainerItemProxy */;
+		};
+		BEE6497624DC0ECC0094598A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEE6495924DC0EC40094598A /* RecipeFinder Watch */;
+			targetProxy = BEE6497524DC0ECC0094598A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1211690A24B6516800879FED /* LaunchScreen.storyboard */ = {
@@ -367,6 +575,14 @@
 				BE7D483C24CF416300CF36C2 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BEE6495C24DC0EC40094598A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEE6495D24DC0EC40094598A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -532,6 +748,92 @@
 			};
 			name = Release;
 		};
+		BEE6497924DC0ECC0094598A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQT34X72YN;
+				IBSC_MODULE = RecipeFinder_Watch_Extension;
+				INFOPLIST_FILE = "RecipeFinder Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = NatashaRecipeFinder.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Debug;
+		};
+		BEE6497A24DC0ECC0094598A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CQT34X72YN;
+				IBSC_MODULE = RecipeFinder_Watch_Extension;
+				INFOPLIST_FILE = "RecipeFinder Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = NatashaRecipeFinder.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Release;
+		};
+		BEE6497C24DC0ECC0094598A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2A4Z87K2NU;
+				INFOPLIST_FILE = "RecipeFinder Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = NatashaRecipeFinder.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Debug;
+		};
+		BEE6497D24DC0ECC0094598A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2A4Z87K2NU;
+				INFOPLIST_FILE = "RecipeFinder Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = NatashaRecipeFinder.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -549,6 +851,24 @@
 			buildConfigurations = (
 				1211691124B6516800879FED /* Debug */,
 				1211691224B6516800879FED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEE6497E24DC0ECC0094598A /* Build configuration list for PBXNativeTarget "RecipeFinder Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE6497C24DC0ECC0094598A /* Debug */,
+				BEE6497D24DC0ECC0094598A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEE6497F24DC0ECC0094598A /* Build configuration list for PBXNativeTarget "RecipeFinder Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE6497924DC0ECC0094598A /* Debug */,
+				BEE6497A24DC0ECC0094598A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

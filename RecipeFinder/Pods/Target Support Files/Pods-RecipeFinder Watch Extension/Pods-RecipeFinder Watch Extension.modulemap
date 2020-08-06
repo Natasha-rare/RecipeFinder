@@ -1,0 +1,6 @@
+module Pods_RecipeFinder_Watch_Extension {
+  umbrella header "Pods-RecipeFinder Watch Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}
