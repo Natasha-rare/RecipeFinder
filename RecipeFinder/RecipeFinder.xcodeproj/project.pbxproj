@@ -16,7 +16,6 @@
 		1296F1BD24D6AA180081FCCA /* LocalizationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296F1BC24D6AA180081FCCA /* LocalizationSystem.swift */; };
 		12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */; };
 		12AABE1924BE1E0A00F2C9E4 /* TextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AABE1824BE1E0A00F2C9E4 /* TextController.swift */; };
-		200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */; };
 		6F38CCAD24BDFDE800551327 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38CCAC24BDFDE800551327 /* ProfileController.swift */; };
 		6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41B77224BC61BE00011770 /* GroceryController.swift */; };
 		6F4291AE24B879D700611FDA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4291AD24B879D700611FDA /* HomeController.swift */; };
@@ -34,6 +33,8 @@
 		6FE471A724C19E8300B7A075 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE471A624C19E8300B7A075 /* Protocols.swift */; };
 		6FE511CA24C9890D000C3A47 /* food.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FE511C924C9890D000C3A47 /* food.json */; };
 		6FFFA84724D09933004D60FE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA84624D09933004D60FE /* LoginController.swift */; };
+		A4B7149DAEDC05A522A3E458 /* libPods-RecipeFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */; };
+		B3BA2B2A49DB38B698053742 /* libPods-RecipeFinder Watch Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */; };
 		BE62197024B8B20A008C4ADD /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62196F24B8B20A008C4ADD /* RegistrationController.swift */; };
 		BE7D482F24CEF93800CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483124CEF93800CF36C2 /* Localizable.strings */; };
 		BE7D483B24CF416300CF36C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7D483D24CF416300CF36C2 /* Localizable.strings */; };
@@ -45,6 +46,7 @@
 		BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6496F24DC0EC90094598A /* NotificationController.swift */; };
 		BEE6497224DC0ECC0094598A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE6497124DC0ECC0094598A /* Assets.xcassets */; };
 		BEE6497724DC0ECC0094598A /* RecipeFinder Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEE6498324DC10FE0094598A /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498224DC10FE0094598A /* GroceryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +92,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		121168FC24B6516700879FED /* RecipeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		121168FF24B6516700879FED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1211690124B6516700879FED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		1296F1BC24D6AA180081FCCA /* LocalizationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSystem.swift; sourceTree = "<group>"; };
 		12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Harmattan-Regular.ttf"; sourceTree = "<group>"; };
 		12AABE1824BE1E0A00F2C9E4 /* TextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
+		2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F38CCAC24BDFDE800551327 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		6F41B77224BC61BE00011770 /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
 		6F4291AD24B879D700611FDA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		6FFFA84624D09933004D60FE /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder.release.xcconfig"; sourceTree = "<group>"; };
+		B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeFinder Watch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE62196F24B8B20A008C4ADD /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		BE7D482C24CEF57500CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE7D483024CEF93800CF36C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -137,14 +140,24 @@
 		BEE6497124DC0ECC0094598A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE6497324DC0ECC0094598A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BEE6498224DC10FE0094598A /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroceryController.swift; path = ../../../../Documents/GroceryController.swift; sourceTree = "<group>"; };
+		C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1055E62A9BF662D9BEA7F1FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		121168F924B6516700879FED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				200C903E312EBABCA6F6F535 /* Pods_RecipeFinder.framework in Frameworks */,
+				A4B7149DAEDC05A522A3E458 /* libPods-RecipeFinder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3BA2B2A49DB38B698053742 /* libPods-RecipeFinder Watch Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +282,7 @@
 				BEE6497124DC0ECC0094598A /* Assets.xcassets */,
 				BEE6497324DC0ECC0094598A /* Info.plist */,
 				BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */,
+				BEE6498224DC10FE0094598A /* GroceryController.swift */,
 			);
 			path = "RecipeFinder Watch Extension";
 			sourceTree = "<group>";
@@ -275,7 +290,8 @@
 		CE5FECC008C9024DB2CAAF30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				004B9B14F24E264C86EB0584 /* Pods_RecipeFinder.framework */,
+				2A69D8833FE3368E32330646 /* libPods-RecipeFinder.a */,
+				B07A68A32EDCBAFE48E981F3 /* libPods-RecipeFinder Watch Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,6 +301,8 @@
 			children = (
 				8A9E471FE358105EEB93E98F /* Pods-RecipeFinder.debug.xcconfig */,
 				AA1997EB1FB21FE0A6BA24C5 /* Pods-RecipeFinder.release.xcconfig */,
+				FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */,
+				C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -300,7 +318,6 @@
 				121168F824B6516700879FED /* Sources */,
 				121168F924B6516700879FED /* Frameworks */,
 				121168FA24B6516700879FED /* Resources */,
-				AB30BCEEE8B5E04BD399A24B /* [CP] Embed Pods Frameworks */,
 				BEE6497824DC0ECC0094598A /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -319,6 +336,7 @@
 			buildPhases = (
 				BEE6495824DC0EC40094598A /* Resources */,
 				BEE6497B24DC0ECC0094598A /* Embed App Extensions */,
+				1055E62A9BF662D9BEA7F1FE /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -334,6 +352,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEE6497E24DC0ECC0094598A /* Build configuration list for PBXNativeTarget "RecipeFinder Watch Extension" */;
 			buildPhases = (
+				7DC236B99A844E3DFD36F5F1 /* [CP] Check Pods Manifest.lock */,
 				BEE6496224DC0EC90094598A /* Sources */,
 				BEE6496324DC0EC90094598A /* Frameworks */,
 				BEE6496424DC0EC90094598A /* Resources */,
@@ -425,21 +444,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AB30BCEEE8B5E04BD399A24B /* [CP] Embed Pods Frameworks */ = {
+		7DC236B99A844E3DFD36F5F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecipeFinder Watch Extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipeFinder/Pods-RecipeFinder-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB27696D18D306706AECA260 /* [CP] Check Pods Manifest.lock */ = {
@@ -501,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */,
+				BEE6498324DC10FE0094598A /* GroceryController.swift in Sources */,
 				BEE6496E24DC0EC90094598A /* ExtensionDelegate.swift in Sources */,
 				BEE6496C24DC0EC90094598A /* InterfaceController.swift in Sources */,
 			);
@@ -761,6 +786,7 @@
 		};
 		BEE6497C24DC0ECC0094598A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -783,6 +809,7 @@
 		};
 		BEE6497D24DC0ECC0094598A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
