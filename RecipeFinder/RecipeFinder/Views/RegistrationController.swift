@@ -37,15 +37,12 @@ class RegistrationController: UIViewController{
         
         email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 240, width: 257, height: 58))
         email.delegate = self
-        email.textContentType = .username
         
         password.loadField(placeholderText: NSLocalizedString("password", comment: ""), isSecure: true, frame: CGRect(x: 58, y: 318, width: 257, height: 58))
         password.delegate = self
-        password.textContentType = .newPassword
         
         confirm.loadField(placeholderText: NSLocalizedString("repeat password", comment: ""), isSecure: true, frame: CGRect(x: 58, y: 396, width: 257, height: 58))
         confirm.delegate = self
-        confirm.textContentType = .newPassword
         
         buttonCreate.load(title: NSLocalizedString("ready", comment: ""), frame: CGRect(x: 58, y: 516, width: UIScreen.main.bounds.width * 0.50, height: 58))
         buttonCreate.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
@@ -105,7 +102,7 @@ class RegistrationController: UIViewController{
         
         let Password = password.text
         let Email = email.text?.lowercased()
-        let Confirm = confirm.text?.lowercased()
+        let Confirm = confirm.text
         let Name = name.text
 
         let password_check = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$")
