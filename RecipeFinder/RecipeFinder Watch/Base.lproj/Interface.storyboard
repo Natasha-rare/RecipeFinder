@@ -30,18 +30,21 @@
                         <label width="118" height="39" alignment="center" text="Grocery" textAlignment="center" id="EAX-Ap-9mq">
                             <fontDescription key="font" type="system" pointSize="22"/>
                         </label>
-                        <table alignment="left" id="nLq-Hn-Qgj">
+                        <table alignment="left" id="s7C-uq-x4c">
                             <items>
-                                <tableRow id="Km6-31-pKd">
-                                    <group key="rootItem" width="1" alignment="left" id="B88-ET-rAg">
+                                <tableRow identifier="Row" id="x4O-6y-JpX" customClass="GroceryRow" customModule="RecipeFinder_Watch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="RjV-ec-EUn">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="Label" id="fmq-57-M1Q"/>
+                                            <label alignment="left" verticalAlignment="center" text="Hello" id="xUT-Mh-yyi"/>
                                         </items>
                                     </group>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
+                    <connections>
+                        <outlet property="GroceryTable" destination="s7C-uq-x4c" id="HvI-gY-Fw1"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="504" y="345"/>
