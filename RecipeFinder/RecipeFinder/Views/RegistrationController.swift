@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CryptoSwift
+import Alamofire
 
 class RegistrationController: UIViewController{
     var warning = UILabel()
@@ -125,27 +126,49 @@ class RegistrationController: UIViewController{
                         self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
                         
-                        let vc = RootViewController()
-                        let savedVC = SavedController()
-                        savedVC.fetchLinks()
-                        savedVC.refresh()
-                        let groceryVC = GroceryController()
-                        groceryVC.fetchIngredients { (value) in
-                            groceryIngridients = value
-                            groceryVC.refresh()
-                        }
-                        self.defaults.set(savedLinks, forKey: "savedLinks")
-                        self.defaults.set(groceryIngridients, forKey: "grocery")
-                        vc.modalPresentationStyle = .fullScreen
-                        self.present(vc, animated: true, completion: nil)
+                        let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
+                        imageView.image = UIImage(named: "email")
+                        let alert = UIAlertController(title: "Please verify your account", message: nil, preferredStyle: .alert)
+                        alert.view.addSubview(imageView)
+                        let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 350)
+                        let width = NSLayoutConstraint(item: alert.view!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+                        alert.view.addConstraint(height)
+                        alert.view.addConstraint(width)
+
+                        alert.addAction(UIAlertAction(title: "No problem :)", style: .default, handler: {
+                            action in
+                            let vc = RootViewController()
+                            let savedVC = SavedController()
+                            savedVC.fetchLinks()
+                            savedVC.refresh()
+                            let groceryVC = GroceryController()
+                            groceryVC.fetchIngredients { (value) in
+                                groceryIngridients = value
+                                groceryVC.refresh()
+                            }
+                            self.defaults.set(savedLinks, forKey: "savedLinks")
+                            self.defaults.set(groceryIngridients, forKey: "grocery")
+                            vc.modalPresentationStyle = .fullScreen
+                            self.present(vc, animated: true, completion: nil)
+                        }))
+
+                        self.present(alert, animated: true)
                     }
                     else if result == "User exists!"{
                         self.warning.textColor = .red
-                        self.warning.text = NSLocalizedString("User with the same email already excists! Please Log In", comment: "")
+                        self.warning.text = NSLocalizedString("User with this email already exists!", comment: "")
                         removeSpinner()
                         self.scrollView.addSubview(self.warning)
                         MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
                         }
+                    else{
+                        removeSpinner()
+                        self.warning.textColor = .red
+                        self.warning.text = NSLocalizedString("There's something with the Internet, try again!", comment: "")
+                        removeSpinner()
+                        self.scrollView.addSubview(self.warning)
+                        MakeConstraints(view: self.warning, topView: self.confirm, topViewOffset: 20, height: 20, multipliedWidth: 1)
+                    }
                 }
             }
             else if password_check.evaluate(with: Password) == false
@@ -177,13 +200,7 @@ class RegistrationController: UIViewController{
 }
 
 public func register(email: String, password: String, name: String, with completion: @escaping (String) -> ()){
-    let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/register")!
-
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    // Set HTTP Request Headers
-    request.setValue("application/json", forHTTPHeaderField: "Accept")
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let url = "https://recipe-finder-api-nodejs.herokuapp.com/register"
 
     let newUser = [
         "email": "\(email)",
@@ -191,22 +208,15 @@ public func register(email: String, password: String, name: String, with complet
         "name": "\(name)"
     ]
 
-    let jsonData = try! JSONEncoder().encode(newUser)
-    request.httpBody = jsonData
-
-    URLSession.shared.dataTask(with: request){
-        data, response, error in
-        if let error = error {
-            print("Error! \(error)")
-        }
-        if let data = data{
-            
-            if let result = String(data: data, encoding: .utf8){
-                DispatchQueue.main.async {
-                    print(result)
+    AF.request(url, method: .post, parameters: newUser, encoding: JSONEncoding.default).response{
+        res in
+            if let data = res.value{
+                if let result = String(data: data!, encoding: .utf8){
                     completion(result)
                 }
             }
+            else{
+                completion("error")
         }
-    }.resume()
-}
+        }
+    }
