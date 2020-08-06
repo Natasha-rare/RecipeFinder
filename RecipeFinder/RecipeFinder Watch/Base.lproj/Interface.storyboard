@@ -38,6 +38,9 @@
                                             <label alignment="left" verticalAlignment="center" text="Hello" id="xUT-Mh-yyi"/>
                                         </items>
                                     </group>
+                                    <connections>
+                                        <outlet property="label" destination="xUT-Mh-yyi" id="h9s-vy-guK"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>

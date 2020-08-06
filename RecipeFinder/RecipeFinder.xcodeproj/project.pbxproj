@@ -46,8 +46,8 @@
 		BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6496F24DC0EC90094598A /* NotificationController.swift */; };
 		BEE6497224DC0ECC0094598A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE6497124DC0ECC0094598A /* Assets.xcassets */; };
 		BEE6497724DC0ECC0094598A /* RecipeFinder Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEE6495A24DC0EC40094598A /* RecipeFinder Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BEE6498524DC12730094598A /* GroceryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498424DC12730094598A /* GroceryRow.swift */; };
-		BEE6498724DC13E80094598A /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498624DC13E80094598A /* GroceryController.swift */; };
+		BEE6498C24DC33FA0094598A /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498B24DC33FA0094598A /* GroceryController.swift */; };
+		BEE6498E24DC34190094598A /* GroceryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE6498D24DC34190094598A /* GroceryRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,8 +141,8 @@
 		BEE6497124DC0ECC0094598A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE6497324DC0ECC0094598A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		BEE6498424DC12730094598A /* GroceryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroceryRow.swift; path = ../../../../Documents/GroceryRow.swift; sourceTree = "<group>"; };
-		BEE6498624DC13E80094598A /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroceryController.swift; path = ../../../../Documents/GroceryController.swift; sourceTree = "<group>"; };
+		BEE6498B24DC33FA0094598A /* GroceryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
+		BEE6498D24DC34190094598A /* GroceryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryRow.swift; sourceTree = "<group>"; };
 		C94FB4C3BD068068FD9F09EB /* Pods-RecipeFinder Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.release.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		FB2B1429C6F530394F89D739 /* Pods-RecipeFinder Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeFinder Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-RecipeFinder Watch Extension/Pods-RecipeFinder Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -284,8 +284,8 @@
 				BEE6497124DC0ECC0094598A /* Assets.xcassets */,
 				BEE6497324DC0ECC0094598A /* Info.plist */,
 				BEE6497424DC0ECC0094598A /* PushNotificationPayload.apns */,
-				BEE6498424DC12730094598A /* GroceryRow.swift */,
-				BEE6498624DC13E80094598A /* GroceryController.swift */,
+				BEE6498B24DC33FA0094598A /* GroceryController.swift */,
+				BEE6498D24DC34190094598A /* GroceryRow.swift */,
 			);
 			path = "RecipeFinder Watch Extension";
 			sourceTree = "<group>";
@@ -528,8 +528,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE6497024DC0EC90094598A /* NotificationController.swift in Sources */,
-				BEE6498524DC12730094598A /* GroceryRow.swift in Sources */,
-				BEE6498724DC13E80094598A /* GroceryController.swift in Sources */,
+				BEE6498C24DC33FA0094598A /* GroceryController.swift in Sources */,
+				BEE6498E24DC34190094598A /* GroceryRow.swift in Sources */,
 				BEE6496E24DC0EC90094598A /* ExtensionDelegate.swift in Sources */,
 				BEE6496C24DC0EC90094598A /* InterfaceController.swift in Sources */,
 			);

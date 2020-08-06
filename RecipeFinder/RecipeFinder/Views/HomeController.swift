@@ -42,8 +42,10 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
+        print(UserDefaults.standard.string(forKey: "email"))
+        print(UserDefaults.standard.string(forKey: "password"))
         loadViewWithoutCards()
+        
     }
     
     @objc func buttonRegistr(sender : NeoButton) {

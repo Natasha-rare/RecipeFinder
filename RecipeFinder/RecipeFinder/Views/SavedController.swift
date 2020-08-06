@@ -236,6 +236,7 @@ extension SavedController{
         let email = defaults.string(forKey: "email") ?? "Nope"
         let password = defaults.string(forKey: "password") ?? "Nope"
         let url =  "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(email)&password=\(password)"
+        print(url)
         AF.request(url).responseDecodable(of: User.self){
             (response) in
             if let data = response.value{
