@@ -794,7 +794,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2A4Z87K2NU;
+				DEVELOPMENT_TEAM = CQT34X72YN;
 				INFOPLIST_FILE = "RecipeFinder Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -817,7 +817,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2A4Z87K2NU;
+				DEVELOPMENT_TEAM = CQT34X72YN;
 				INFOPLIST_FILE = "RecipeFinder Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
