@@ -65,6 +65,11 @@
                                 <action selector="buttonResetPressed" destination="Z1t-La-1fF" id="Ac1-Fk-giK"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" hidden="YES" title="log out" id="V3x-sp-mW9">
+                            <connections>
+                                <action selector="logoutButtonPressed" destination="Z1t-La-1fF" id="oNx-Oo-ifQ"/>
+                            </connections>
+                        </button>
                         <table alignment="left" id="s7C-uq-x4c">
                             <items>
                                 <tableRow identifier="Row" id="x4O-6y-JpX" customClass="GroceryRow" customModule="RecipeFinder_Watch_Extension">
@@ -79,11 +84,14 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label width="136" alignment="center" hidden="YES" text="You need to log in" textAlignment="center" id="koT-KI-5Ad"/>
                     </items>
                     <connections>
                         <outlet property="GroceryTable" destination="s7C-uq-x4c" id="HvI-gY-Fw1"/>
                         <outlet property="buttonReset" destination="j9A-xn-h6f" id="Cay-LE-tJ9"/>
                         <outlet property="labelNothing" destination="13n-5S-LME" id="BwX-LE-caL"/>
+                        <outlet property="logoutButton" destination="V3x-sp-mW9" id="hnr-C5-bIK"/>
+                        <outlet property="notificationLabel" destination="koT-KI-5Ad" id="HDv-YK-zfr"/>
                     </connections>
                 </controller>
             </objects>

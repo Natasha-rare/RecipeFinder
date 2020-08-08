@@ -21,6 +21,9 @@ public struct User: Codable {
 }
 
 class GroceryController: WKInterfaceController {
+    @IBOutlet weak var notificationLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var logoutButton: WKInterfaceButton!
     @IBOutlet weak var labelNothing: WKInterfaceLabel!
     @IBOutlet weak var buttonReset: WKInterfaceButton!
     
@@ -33,6 +36,14 @@ class GroceryController: WKInterfaceController {
         if GroceryTable.numberOfRows == 0{
             buttonReset.setHidden(true)
             labelNothing.setHidden(false)
+        }
+        if UserDefaults.standard.bool(forKey: "logged"){
+            logoutButton.setHidden(false)
+            notificationLabel.setHidden(true)
+        }
+        else{
+            logoutButton.setHidden(true)
+            notificationLabel.setHidden(false)
         }
         // Configure interface objects here.
 //        fetchIngredients()
@@ -66,6 +77,15 @@ class GroceryController: WKInterfaceController {
         SendIngredients(ingredientList: [])
         GroceryTable.setNumberOfRows(0, withRowType: "Row")
         print("done")
+        buttonReset.setHidden(true)
+        labelNothing.setHidden(false)
+    }
+    @IBAction func logoutButtonPressed() {
+        let defaults = UserDefaults.standard
+        UserDefaults.resetStandardUserDefaults()
+        defaults.set(false, forKey: "logged")
+        logoutButton.setHidden(true)
+        notificationLabel.setHidden(false)
     }
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
