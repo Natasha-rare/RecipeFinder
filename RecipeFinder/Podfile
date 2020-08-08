@@ -9,6 +9,7 @@ def sharedPods
 end
 def sharedPodsWatch
   pod "Alamofire"
+  pod "CryptoSwift"
 end
 target 'RecipeFinder Watch Extension' do
 platform :watchos, '5.0'

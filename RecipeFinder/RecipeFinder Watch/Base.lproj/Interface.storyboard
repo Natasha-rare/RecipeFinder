@@ -14,8 +14,37 @@
                         <label width="136" height="33" alignment="center" text="RicipeFinder" textAlignment="center" id="atK-bD-T87">
                             <fontDescription key="font" type="system" pointSize="22"/>
                         </label>
+                        <group width="1" height="0.29999999999999999" alignment="left" id="BFh-fT-83X">
+                            <items>
+                                <textField width="1" alignment="left" text="123Password" placeholder="password" id="QzT-tU-8q1">
+                                    <connections>
+                                        <action selector="passwordText:" destination="AgC-eL-Hgc" id="qJE-de-0LF"/>
+                                    </connections>
+                                </textField>
+                            </items>
+                        </group>
+                        <group width="1" height="0.29999999999999999" alignment="left" id="QhI-pw-YAY">
+                            <items>
+                                <textField width="1" alignment="left" text="janelake2017@gmail.com" placeholder="email" id="0gY-BF-sWS">
+                                    <connections>
+                                        <action selector="emailText:" destination="AgC-eL-Hgc" id="VxX-fH-l1H"/>
+                                    </connections>
+                                </textField>
+                            </items>
+                        </group>
+                        <group height="0.20000000000000001" alignment="left" id="S8u-CD-eRN">
+                            <items>
+                                <button width="1" alignment="left" title="Done" id="YJe-Ti-s5N">
+                                    <connections>
+                                        <action selector="buttonDonePressed" destination="AgC-eL-Hgc" id="bR8-Hz-Huf"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
                     <connections>
+                        <outlet property="email" destination="0gY-BF-sWS" id="qCE-AR-Qat"/>
+                        <outlet property="password" destination="QzT-tU-8q1" id="Q11-6w-5jg"/>
                         <segue destination="Z1t-La-1fF" kind="relationship" relationship="nextPage" id="dzs-l6-NcG"/>
                     </connections>
                 </controller>
