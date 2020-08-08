@@ -16,7 +16,7 @@
                         </label>
                         <group width="1" height="0.29999999999999999" alignment="left" id="BFh-fT-83X">
                             <items>
-                                <textField width="1" alignment="left" text="123Password" placeholder="password" id="QzT-tU-8q1">
+                                <textField width="1" alignment="left" text="123Password" placeholder="password" secureTextEntry="YES" id="QzT-tU-8q1">
                                     <connections>
                                         <action selector="passwordText:" destination="AgC-eL-Hgc" id="qJE-de-0LF"/>
                                     </connections>
@@ -32,9 +32,9 @@
                                 </textField>
                             </items>
                         </group>
-                        <group height="0.29999999999999999" alignment="left" id="S8u-CD-eRN">
+                        <group height="0.20000000000000001" alignment="left" id="S8u-CD-eRN">
                             <items>
-                                <button width="1" height="1" alignment="left" title="Done" id="YJe-Ti-s5N">
+                                <button width="1" alignment="left" title="Done" id="YJe-Ti-s5N">
                                     <connections>
                                         <action selector="buttonDonePressed" destination="AgC-eL-Hgc" id="bR8-Hz-Huf"/>
                                     </connections>
@@ -49,7 +49,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="299"/>
         </scene>
         <!--Grocery Controller-->
         <scene sceneID="dn0-u2-YgC">
@@ -59,6 +59,12 @@
                         <label width="118" height="39" alignment="center" text="Grocery" textAlignment="center" id="EAX-Ap-9mq">
                             <fontDescription key="font" type="system" pointSize="22"/>
                         </label>
+                        <label width="1" alignment="center" hidden="YES" text="Nothing's here..." textAlignment="center" id="13n-5S-LME"/>
+                        <button width="1" alignment="left" title="Reset" id="j9A-xn-h6f">
+                            <connections>
+                                <action selector="buttonResetPressed" destination="Z1t-La-1fF" id="Ac1-Fk-giK"/>
+                            </connections>
+                        </button>
                         <table alignment="left" id="s7C-uq-x4c">
                             <items>
                                 <tableRow identifier="Row" id="x4O-6y-JpX" customClass="GroceryRow" customModule="RecipeFinder_Watch_Extension">
@@ -76,6 +82,8 @@
                     </items>
                     <connections>
                         <outlet property="GroceryTable" destination="s7C-uq-x4c" id="HvI-gY-Fw1"/>
+                        <outlet property="buttonReset" destination="j9A-xn-h6f" id="Cay-LE-tJ9"/>
+                        <outlet property="labelNothing" destination="13n-5S-LME" id="BwX-LE-caL"/>
                     </connections>
                 </controller>
             </objects>

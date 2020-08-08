@@ -53,6 +53,9 @@ class InterfaceController: WKInterfaceController {
                         print(dict["productList"] as! String)
                         UserDefaults.standard.set(dict["productList"] as! String, forKey: "productList")
                         UserDefaults.standard.set(true, forKey: "logged")
+                        UserDefaults.standard.set(self.Email, forKey: "email")
+                        UserDefaults.standard.set(String(hashedPassword.description), forKey: "password")
+                        print(UserDefaults.standard.string(forKey: "productList") ?? "None")
                         }
                     }
                 }
@@ -66,6 +69,7 @@ class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         print(UserDefaults.standard.bool(forKey: "logged"))
+        
         // Configure interface objects here.
     }
     
