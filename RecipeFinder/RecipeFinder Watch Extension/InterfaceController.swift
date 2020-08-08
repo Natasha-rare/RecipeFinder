@@ -65,9 +65,7 @@ class InterfaceController: WKInterfaceController {
     }
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if UserDefaults.standard.bool(forKey: "logged") {
-            self.presentController(withName: "GroceryController", context: nil)
-        }
+        print(UserDefaults.standard.bool(forKey: "logged"))
         // Configure interface objects here.
     }
     

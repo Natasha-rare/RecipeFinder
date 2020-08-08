@@ -32,9 +32,9 @@
                                 </textField>
                             </items>
                         </group>
-                        <group height="0.20000000000000001" alignment="left" id="S8u-CD-eRN">
+                        <group height="0.29999999999999999" alignment="left" id="S8u-CD-eRN">
                             <items>
-                                <button width="1" alignment="left" title="Done" id="YJe-Ti-s5N">
+                                <button width="1" height="1" alignment="left" title="Done" id="YJe-Ti-s5N">
                                     <connections>
                                         <action selector="buttonDonePressed" destination="AgC-eL-Hgc" id="bR8-Hz-Huf"/>
                                     </connections>

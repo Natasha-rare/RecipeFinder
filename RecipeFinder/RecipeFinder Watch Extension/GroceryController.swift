@@ -30,10 +30,13 @@ class GroceryController: WKInterfaceController {
         
         // Configure interface objects here.
 //        fetchIngredients()
+        print("DEFAULTS:", UserDefaults.standard.bool(forKey: "logged"))
         if UserDefaults.standard.bool(forKey: "logged") == true{
+            print("loading")
             ingredients = UserDefaults.standard.string(forKey: "productList")!
+            print("INDR:", ingredients)
             groceryIngr = ingredients.split(separator: "|")
-            for item in groceryIngr {
+            for item in groceryIngr{
                 ingr.append(String(item))
             }
             GroceryTable.setNumberOfRows(self.ingr.count, withRowType: "Row")
