@@ -31,6 +31,7 @@ class GroceryController: WKInterfaceController {
     var ingredients: String = ""
     var ingr: [String] = []
     var groceryIngr: [Substring] = []
+    var colors: Dictionary = [0 : ""]
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         if GroceryTable.numberOfRows == 0{
@@ -63,7 +64,9 @@ class GroceryController: WKInterfaceController {
             }
             for (index, product) in string.enumerated(){
                 guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else {continue}
+                
                 row.label.setText(product)
+                colors[index] = "white"
             }
             print(ingredients)
         }
@@ -88,6 +91,22 @@ class GroceryController: WKInterfaceController {
         notificationLabel.setHidden(false)
         GroceryTable.setNumberOfRows(0, withRowType: "Row")
     }
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        print("got it")
+        print("ROW INDEX:", rowIndex)
+            if let row = table.rowController(at: rowIndex) as? GroceryRow {
+                print("intooo")
+                if colors[rowIndex] == "white"{
+             row.label.setTextColor(UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1))
+                    colors[rowIndex] = "grey"
+                }
+                else {
+                    row.label.setTextColor(UIColor.white)
+                    colors[rowIndex] = "white"
+                }
+            }
+        }
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
