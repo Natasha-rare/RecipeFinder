@@ -63,11 +63,17 @@ class GroceryController: WKInterfaceController {
                 string.append(String(item))
             }
             for (index, product) in string.enumerated(){
-                guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else {continue}
+                guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else
+                {
+                    colors[index] = "white"
+                    continue
+                    
+                }
                 
                 row.label.setText(product)
                 colors[index] = "white"
             }
+            print("COLORS", colors)
             print(ingredients)
         }
         if GroceryTable.numberOfRows != 0 {
@@ -90,6 +96,8 @@ class GroceryController: WKInterfaceController {
         logoutButton.setHidden(true)
         notificationLabel.setHidden(false)
         GroceryTable.setNumberOfRows(0, withRowType: "Row")
+        buttonReset.setHidden(true)
+        labelNothing.setHidden(true)
     }
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         print("got it")
