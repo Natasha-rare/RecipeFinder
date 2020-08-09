@@ -51,10 +51,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="299"/>
         </scene>
-        <!--Grocery Controller-->
+        <!--Grocery-->
         <scene sceneID="dn0-u2-YgC">
             <objects>
-                <controller id="Z1t-La-1fF" customClass="GroceryController" customModule="RecipeFinder_Watch" customModuleProvider="target">
+                <controller identifier="Grocery" id="Z1t-La-1fF" customClass="GroceryController" customModule="RecipeFinder_Watch" customModuleProvider="target">
                     <items>
                         <label width="118" height="39" alignment="center" text="Grocery" textAlignment="center" id="EAX-Ap-9mq">
                             <fontDescription key="font" type="system" pointSize="22"/>

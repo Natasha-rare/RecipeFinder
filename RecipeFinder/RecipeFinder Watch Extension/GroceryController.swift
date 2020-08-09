@@ -86,10 +86,49 @@ class GroceryController: WKInterfaceController {
         defaults.set(false, forKey: "logged")
         logoutButton.setHidden(true)
         notificationLabel.setHidden(false)
+        GroceryTable.setNumberOfRows(0, withRowType: "Row")
     }
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        if GroceryTable.numberOfRows == 0{
+                    buttonReset.setHidden(true)
+                    labelNothing.setHidden(false)
+                }
+                if UserDefaults.standard.bool(forKey: "logged"){
+                    logoutButton.setHidden(false)
+                    notificationLabel.setHidden(true)
+                }
+                else{
+                    logoutButton.setHidden(true)
+                    notificationLabel.setHidden(false)
+                }
+                // Configure interface objects here.
+        //        fetchIngredients()
+                print("DEFAULTS:", UserDefaults.standard.bool(forKey: "logged"))
+                if UserDefaults.standard.bool(forKey: "logged") == true{
+                    print("loading")
+                    ingredients = UserDefaults.standard.string(forKey: "productList")!
+                    print("INDR:", ingredients)
+                    groceryIngr = ingredients.split(separator: "|")
+                    for item in groceryIngr{
+                        ingr.append(String(item))
+                    }
+                    GroceryTable.setNumberOfRows(self.ingr.count, withRowType: "Row")
+                    var string: [String] = []
+                    for item in self.ingr {
+                        string.append(String(item))
+                    }
+                    for (index, product) in string.enumerated(){
+                        guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else {continue}
+                        row.label.setText(product)
+                    }
+                    print(ingredients)
+                }
+                if GroceryTable.numberOfRows != 0 {
+                    buttonReset.setHidden(false)
+                    labelNothing.setHidden(true)
+                }
     }
 
     override func didDeactivate() {
