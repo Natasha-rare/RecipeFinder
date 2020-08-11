@@ -6,6 +6,7 @@ def sharedPods
     pod "RNCryptor", "5.1.0"
     pod 'SnapKit', '~> 5.0'
     pod 'lottie-ios'
+    pod 'Purchases', '3.4.0'
 end
 def sharedPodsWatch
   pod "Alamofire"
