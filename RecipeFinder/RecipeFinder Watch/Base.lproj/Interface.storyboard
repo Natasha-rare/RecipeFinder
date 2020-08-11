@@ -11,9 +11,10 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="RecipeFinder_Watch" customModuleProvider="target">
                     <items>
-                        <label width="136" height="33" alignment="center" text="RicipeFinder" textAlignment="center" id="atK-bD-T87">
+                        <label width="136" height="33" alignment="center" text="RecipeFinder" textAlignment="center" id="atK-bD-T87">
                             <fontDescription key="font" type="system" pointSize="22"/>
                         </label>
+                        <label width="1" alignment="left" hidden="YES" text="loading..." textAlignment="center" id="TS8-V2-iLy"/>
                         <group width="1" height="0.29999999999999999" alignment="left" id="BFh-fT-83X">
                             <items>
                                 <textField width="1" alignment="left" text="123Password" placeholder="password" secureTextEntry="YES" id="QzT-tU-8q1">
@@ -44,7 +45,9 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="buttonDone" destination="YJe-Ti-s5N" id="340-PS-zcm"/>
                         <outlet property="email" destination="0gY-BF-sWS" id="qCE-AR-Qat"/>
+                        <outlet property="loadingLabel" destination="TS8-V2-iLy" id="t9d-0F-9XR"/>
                         <outlet property="password" destination="QzT-tU-8q1" id="Q11-6w-5jg"/>
                     </connections>
                 </controller>
