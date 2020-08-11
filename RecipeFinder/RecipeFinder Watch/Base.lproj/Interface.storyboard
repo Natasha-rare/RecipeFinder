@@ -45,7 +45,6 @@
                     <connections>
                         <outlet property="email" destination="0gY-BF-sWS" id="qCE-AR-Qat"/>
                         <outlet property="password" destination="QzT-tU-8q1" id="Q11-6w-5jg"/>
-                        <segue destination="Z1t-La-1fF" kind="relationship" relationship="nextPage" id="dzs-l6-NcG"/>
                     </connections>
                 </controller>
             </objects>

@@ -57,6 +57,7 @@ class InterfaceController: WKInterfaceController {
                         UserDefaults.standard.set(self.Email, forKey: "email")
                         UserDefaults.standard.set(String(hashedPassword.description), forKey: "password")
                         print(UserDefaults.standard.string(forKey: "productList") ?? "None")
+                        self.presentController(withName: "Grocery", context: nil)
                         }
                     }
                 }

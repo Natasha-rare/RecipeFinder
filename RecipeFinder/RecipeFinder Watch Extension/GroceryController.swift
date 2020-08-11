@@ -34,51 +34,8 @@ class GroceryController: WKInterfaceController {
     var colors: Dictionary = [0 : ""]
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if GroceryTable.numberOfRows == 0{
-            buttonReset.setHidden(true)
-            labelNothing.setHidden(false)
-        }
         if UserDefaults.standard.bool(forKey: "logged"){
-            logoutButton.setHidden(false)
-            notificationLabel.setHidden(true)
-        }
-        else{
-            logoutButton.setHidden(true)
-            notificationLabel.setHidden(false)
-        }
-        // Configure interface objects here.
-//        fetchIngredients()
-        print("DEFAULTS:", UserDefaults.standard.bool(forKey: "logged"))
-        if UserDefaults.standard.bool(forKey: "logged") == true{
-            print("loading")
-            ingredients = UserDefaults.standard.string(forKey: "productList")!
-            print("INDR:", ingredients)
-            groceryIngr = ingredients.split(separator: "|")
-            for item in groceryIngr{
-                ingr.append(String(item))
-            }
-            GroceryTable.setNumberOfRows(self.ingr.count, withRowType: "Row")
-            var string: [String] = []
-            for item in self.ingr {
-                string.append(String(item))
-            }
-            for (index, product) in string.enumerated(){
-                guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else
-                {
-                    colors[index] = "white"
-                    continue
-                    
-                }
-                
-                row.label.setText(product)
-                colors[index] = "white"
-            }
-            print("COLORS", colors)
-            print(ingredients)
-        }
-        if GroceryTable.numberOfRows != 0 {
-            buttonReset.setHidden(false)
-            labelNothing.setHidden(true)
+            willActivate()
         }
     }
     @IBAction func buttonResetPressed() {
@@ -93,7 +50,6 @@ class GroceryController: WKInterfaceController {
         let defaults = UserDefaults.standard
         UserDefaults.resetStandardUserDefaults()
         defaults.set(false, forKey: "logged")
-        logoutButton.setHidden(true)
         notificationLabel.setHidden(false)
         GroceryTable.setNumberOfRows(0, withRowType: "Row")
         buttonReset.setHidden(true)
@@ -123,11 +79,9 @@ class GroceryController: WKInterfaceController {
                     labelNothing.setHidden(false)
                 }
                 if UserDefaults.standard.bool(forKey: "logged"){
-                    logoutButton.setHidden(false)
                     notificationLabel.setHidden(true)
                 }
                 else{
-                    logoutButton.setHidden(true)
                     notificationLabel.setHidden(false)
                 }
                 // Configure interface objects here.
@@ -138,19 +92,33 @@ class GroceryController: WKInterfaceController {
                     ingredients = UserDefaults.standard.string(forKey: "productList")!
                     print("INDR:", ingredients)
                     groceryIngr = ingredients.split(separator: "|")
-                    for item in groceryIngr{
+                    ingr = []
+                    for item in groceryIngr
+                    {
                         ingr.append(String(item))
                     }
+                    print("ROWS:", GroceryTable.numberOfRows)
                     GroceryTable.setNumberOfRows(self.ingr.count, withRowType: "Row")
+                    print("ROWS:", GroceryTable.numberOfRows)
                     var string: [String] = []
                     for item in self.ingr {
                         string.append(String(item))
                     }
+                    print("STRING LENGTH:", string.count)
                     for (index, product) in string.enumerated(){
-                        guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else {continue}
+                        print(index)
+                        guard let row = self.GroceryTable.rowController(at: index) as? GroceryRow else
+                        {
+                            colors[index] = "white"
+                            continue
+                        }
                         row.label.setText(product)
+                        colors[index] = "white"
+                        print("ROWS:", GroceryTable.numberOfRows)
                     }
+                    print("COLORS", colors)
                     print(ingredients)
+                    print("ROWS end:", GroceryTable.numberOfRows)
                 }
                 if GroceryTable.numberOfRows != 0 {
                     buttonReset.setHidden(false)
