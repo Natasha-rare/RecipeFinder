@@ -34,15 +34,10 @@ class GroceryController: WKInterfaceController {
     var colors: Dictionary = [0 : ""]
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if UserDefaults.standard.bool(forKey: "logged"){
-            willActivate()
-        }
     }
     @IBAction func buttonResetPressed() {
-        print("reset loading")
         SendIngredients(ingredientList: [])
         GroceryTable.setNumberOfRows(0, withRowType: "Row")
-        print("done")
         buttonReset.setHidden(true)
         labelNothing.setHidden(false)
     }
@@ -84,22 +79,16 @@ class GroceryController: WKInterfaceController {
                 else{
                     notificationLabel.setHidden(false)
                 }
-                // Configure interface objects here.
-        //        fetchIngredients()
                 print("DEFAULTS:", UserDefaults.standard.bool(forKey: "logged"))
                 if UserDefaults.standard.bool(forKey: "logged") == true{
-                    print("loading")
                     ingredients = UserDefaults.standard.string(forKey: "productList")!
-                    print("INDR:", ingredients)
                     groceryIngr = ingredients.split(separator: "|")
                     ingr = []
                     for item in groceryIngr
                     {
                         ingr.append(String(item))
                     }
-                    print("ROWS:", GroceryTable.numberOfRows)
                     GroceryTable.setNumberOfRows(self.ingr.count, withRowType: "Row")
-                    print("ROWS:", GroceryTable.numberOfRows)
                     var string: [String] = []
                     for item in self.ingr {
                         string.append(String(item))
@@ -116,9 +105,6 @@ class GroceryController: WKInterfaceController {
                         colors[index] = "white"
                         print("ROWS:", GroceryTable.numberOfRows)
                     }
-                    print("COLORS", colors)
-                    print(ingredients)
-                    print("ROWS end:", GroceryTable.numberOfRows)
                 }
                 if GroceryTable.numberOfRows != 0 {
                     buttonReset.setHidden(false)

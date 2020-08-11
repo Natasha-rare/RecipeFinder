@@ -34,7 +34,8 @@
                         </group>
                         <group height="0.20000000000000001" alignment="left" id="S8u-CD-eRN">
                             <items>
-                                <button width="1" alignment="left" title="Done" id="YJe-Ti-s5N">
+                                <button width="1" height="1" alignment="left" title="Done" id="YJe-Ti-s5N">
+                                    <color key="backgroundColor" red="0.9154792746" green="0.51733656059999999" blue="0.15894743080000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
                                         <action selector="buttonDonePressed" destination="AgC-eL-Hgc" id="bR8-Hz-Huf"/>
                                     </connections>
@@ -60,6 +61,7 @@
                         </label>
                         <label width="1" alignment="center" hidden="YES" text="Nothing's here..." textAlignment="center" id="13n-5S-LME"/>
                         <button width="1" alignment="left" title="Reset" id="j9A-xn-h6f">
+                            <color key="backgroundColor" red="0.9154792746" green="0.51733656059999999" blue="0.15894743080000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="buttonResetPressed" destination="Z1t-La-1fF" id="Ac1-Fk-giK"/>
                             </connections>
@@ -72,9 +74,9 @@
                         <table alignment="left" id="s7C-uq-x4c">
                             <items>
                                 <tableRow identifier="Row" id="x4O-6y-JpX" customClass="GroceryRow" customModule="RecipeFinder_Watch_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="RjV-ec-EUn">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="RjV-ec-EUn">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="Hello" id="xUT-Mh-yyi"/>
+                                            <label alignment="left" verticalAlignment="center" text="Hello" numberOfLines="10" id="xUT-Mh-yyi"/>
                                         </items>
                                     </group>
                                     <connections>
