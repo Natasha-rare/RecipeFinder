@@ -25,8 +25,8 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var email: WKInterfaceTextField!
     @IBOutlet weak var password: WKInterfaceTextField!
     @IBAction func buttonDonePressed() {
-        Password = "123Password"
-        Email = "janelake2017@gmail.com"
+        Password = "password"
+        Email = "login"
         let hash = "\(self.Password).\(self.Email)"
         let hashedPassword1 = SHA256.hash(data: Data(hash.utf8))
         let hashedPassword = hashedPassword1.map { String(format: "%02hhx", $0) }.joined()

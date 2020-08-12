@@ -16,6 +16,8 @@
 		1296F1BD24D6AA180081FCCA /* LocalizationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296F1BC24D6AA180081FCCA /* LocalizationSystem.swift */; };
 		12AABE1724BE120200F2C9E4 /* Harmattan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AABE1624BE11E400F2C9E4 /* Harmattan-Regular.ttf */; };
 		12AABE1924BE1E0A00F2C9E4 /* TextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AABE1824BE1E0A00F2C9E4 /* TextController.swift */; };
+		12D3A27C24E45FFB00E41AD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1211690824B6516800879FED /* Assets.xcassets */; };
+		12D3A27D24E45FFC00E41AD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1211690824B6516800879FED /* Assets.xcassets */; };
 		6F0AA91124E31AC200C51A89 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0AA91024E31AC200C51A89 /* StoreKit.framework */; };
 		6F38CCAD24BDFDE800551327 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38CCAC24BDFDE800551327 /* ProfileController.swift */; };
 		6F41B77324BC61BE00011770 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41B77224BC61BE00011770 /* GroceryController.swift */; };
@@ -439,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE6496024DC0EC90094598A /* Assets.xcassets in Resources */,
+				12D3A27C24E45FFB00E41AD3 /* Assets.xcassets in Resources */,
 				BEE6495E24DC0EC40094598A /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D3A27D24E45FFC00E41AD3 /* Assets.xcassets in Resources */,
 				BEE6497224DC0ECC0094598A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

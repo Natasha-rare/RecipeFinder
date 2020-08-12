@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,7 +17,7 @@
                         <label width="1" alignment="left" hidden="YES" text="loading..." textAlignment="center" id="TS8-V2-iLy"/>
                         <group width="1" height="0.29999999999999999" alignment="left" id="BFh-fT-83X">
                             <items>
-                                <textField width="1" alignment="left" text="123Password" placeholder="password" secureTextEntry="YES" id="QzT-tU-8q1">
+                                <textField width="1" alignment="left" text="password" placeholder="password" id="QzT-tU-8q1">
                                     <connections>
                                         <action selector="passwordText:" destination="AgC-eL-Hgc" id="qJE-de-0LF"/>
                                     </connections>
@@ -26,7 +26,7 @@
                         </group>
                         <group width="1" height="0.29999999999999999" alignment="left" id="QhI-pw-YAY">
                             <items>
-                                <textField width="1" alignment="left" text="janelake2017@gmail.com" placeholder="email" id="0gY-BF-sWS">
+                                <textField width="1" alignment="left" text="login" placeholder="email" id="0gY-BF-sWS">
                                     <connections>
                                         <action selector="emailText:" destination="AgC-eL-Hgc" id="VxX-fH-l1H"/>
                                     </connections>
