@@ -12,6 +12,7 @@ import Speech
 import Alamofire
 import Lottie
 import SafariServices
+import Purchases
 
 class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizerDelegate{
 
@@ -42,8 +43,6 @@ class HomeController: UIViewController, RecipeArrayDelegate, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        print(UserDefaults.standard.string(forKey: "email"))
-        print(UserDefaults.standard.string(forKey: "password"))
         loadViewWithoutCards()
         
     }

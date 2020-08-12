@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CryptoSwift
 import Alamofire
+import Purchases
 
 class RegistrationController: UIViewController{
     var warning = UILabel()
@@ -146,6 +147,19 @@ class RegistrationController: UIViewController{
                                 groceryIngridients = value
                                 groceryVC.refresh()
                             }
+                            showSpinner(onView: self.scrollView)
+                            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(hashedPassword)"
+                            AF.request(url, method: .get).responseDecodable(of: User.self){
+                                response in
+                                if let data = response.value{
+                                    self.defaults.set(data.id.uuidString, forKey: "id")
+                                    Purchases.shared.identify(data.id.uuidString) { (purchaserInfo, error) in
+                                            // purchaserInfo updated for my_app_user_id
+                                            print("UPDATED USER ID")
+                                        }
+                                    }
+                                    
+                                }
                             self.defaults.set(savedLinks, forKey: "savedLinks")
                             self.defaults.set(groceryIngridients, forKey: "grocery")
                             vc.modalPresentationStyle = .fullScreen

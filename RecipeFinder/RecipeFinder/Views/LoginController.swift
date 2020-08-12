@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Lottie
 import Alamofire
+import Purchases
 
 class LoginController: UIViewController {
 
@@ -113,6 +114,11 @@ override func viewDidLoad() {
                                     if let dict = json as? [String: Any]{
                                         print(dict["name"] as! String)
                                         self.defaults.set(dict["name"] as! String, forKey: "name")
+                                        self.defaults.set(dict["id"] as! String, forKey: "id")
+                                        Purchases.shared.identify(self.defaults.string(forKey: "id")!) { (purchaserInfo, error) in
+                                            // purchaserInfo updated for my_app_user_id
+                                            print("UPDATED USER ID")
+                                        }
                                     }
                                 }
                             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Purchases
 
 @available(iOS 13.0, *)
 @UIApplicationMain
@@ -14,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz")
         return true
     }
 

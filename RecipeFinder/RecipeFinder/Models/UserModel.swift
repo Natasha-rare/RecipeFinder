@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 public struct User: Codable {
+    var id: UUID
     var name: String?
     var email: String?
     var password: String?

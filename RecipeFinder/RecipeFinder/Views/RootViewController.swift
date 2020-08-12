@@ -8,17 +8,17 @@
 
 import Foundation
 import  UIKit
-
+import Purchases
 class RootViewController: UITabBarController{
     let userNotificationCenter = UNUserNotificationCenter.current()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.requestNotificationAuthorization()
         self.sendNotification()
         let recipeNames = defaults.stringArray(forKey: "recipeNames")
         let recipeUrls = defaults.stringArray(forKey: "recipeUrls")
         let recipeImages = defaults.stringArray(forKey: "recipeImages")
-        
         
         if recipeUrls != nil
         {
@@ -26,7 +26,6 @@ class RootViewController: UITabBarController{
             {
                 fullLinks.append(Links(url: recipeUrls![i], imageUrl: recipeImages![i], name: recipeNames![i]))
             }
-            print(fullLinks)
         }
         
         groceryIngridients = defaults.array(forKey: "grocery") as? [String] ?? [""]
@@ -50,6 +49,20 @@ class RootViewController: UITabBarController{
         tabBar.isTranslucent = true
         tabBar.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
         tabBar.unselectedItemTintColor = .lightGray
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+            if purchaserInfo?.entitlements["Chef version"]?.isActive != true{
+                print("USER IS NOT PREMIUM")
+                let vc  = PayWallController()
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+            else{
+                print("USER IS PREMIUM")
+            }
+        }
     }
     
     func requestNotificationAuthorization() {

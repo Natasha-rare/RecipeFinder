@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import Purchases
 
 class ProfileController: UIViewController{
     
@@ -93,6 +94,8 @@ class ProfileController: UIViewController{
         self.defaults.removeObject(forKey: "email")
         self.defaults.removeObject(forKey: "password")
         self.defaults.removeObject(forKey: "name")
+        self.defaults.removeObject(forKey: "id")
+        Purchases.shared.reset()
         
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
@@ -115,6 +118,8 @@ class ProfileController: UIViewController{
             self.defaults.removeObject(forKey: "email")
             self.defaults.removeObject(forKey: "password")
             self.defaults.removeObject(forKey: "name")
+            self.defaults.removeObject(forKey: "id")
+            Purchases.shared.reset()
             
             let vc = ViewController()
             vc.modalPresentationStyle = .fullScreen
