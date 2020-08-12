@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Purchases.debugLogsEnabled = true
-        Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz")
+        if defaults.bool(forKey: "logged") == true{
+            Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz", appUserID: defaults.string(forKey: "id"))
+        }   
+        
+        
         return true
     }
 

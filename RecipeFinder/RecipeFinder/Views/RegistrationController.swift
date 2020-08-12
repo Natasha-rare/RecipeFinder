@@ -153,10 +153,7 @@ class RegistrationController: UIViewController{
                                 response in
                                 if let data = response.value{
                                     self.defaults.set(data.id.uuidString, forKey: "id")
-                                    Purchases.shared.identify(data.id.uuidString) { (purchaserInfo, error) in
-                                            // purchaserInfo updated for my_app_user_id
-                                            print("UPDATED USER ID")
-                                        }
+                                    Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz", appUserID: data.id.uuidString)
                                     }
                                     
                                 }

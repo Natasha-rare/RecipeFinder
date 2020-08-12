@@ -106,39 +106,36 @@ override func viewDidLoad() {
                         result in
                         if result == "Logged in!"{
                             let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(hashedPassword)"
-                            AF.request(url, method: .get).response{
+                            AF.request(url, method: .get).responseDecodable(of: User.self){
                                 response in
                                 if let data = response.value{
-                                    let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                                        
-                                    if let dict = json as? [String: Any]{
-                                        print(dict["name"] as! String)
-                                        self.defaults.set(dict["name"] as! String, forKey: "name")
-                                        self.defaults.set(dict["id"] as! String, forKey: "id")
-                                        Purchases.shared.identify(self.defaults.string(forKey: "id")!) { (purchaserInfo, error) in
-                                            // purchaserInfo updated for my_app_user_id
-                                            print("UPDATED USER ID")
-                                        }
+                                    
+                                    self.defaults.set(data.name!, forKey: "name")
+                                    self.defaults.set(data.id.uuidString, forKey: "id")
+                                    Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz", appUserID: data.id.uuidString)
+                                    self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
+                                           
+                                           let vc = RootViewController()
+                                           let savedVC = SavedController()
+                                           savedVC.fetchLinks()
+                                           savedVC.refresh()
+                                           let groceryVC = GroceryController()
+                                           groceryVC.fetchIngredients { (value) in
+                                               groceryIngridients = value
+                                               self.defaults.set(value, forKey: "grocery")
+                                               groceryVC.refresh()
+                                           }
+                                           removeSpinner()
+                                           vc.modalPresentationStyle = .fullScreen
+                                           self.present(vc, animated: true, completion: nil)
                                     }
+                                else{
+                                    self.warning.text = "Incorrect password :("
+                                    removeSpinner()
+                                    self.scrollView.addSubview(self.warning)
+                                    MakeConstraints(view: self.warning, topView: self.password, topViewOffset: 20, height: 20, multipliedWidth: 1)
                                 }
-                            }
-                            
-                            
-                            self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
-                            
-                            let vc = RootViewController()
-                            let savedVC = SavedController()
-                            savedVC.fetchLinks()
-                            savedVC.refresh()
-                            let groceryVC = GroceryController()
-                            groceryVC.fetchIngredients { (value) in
-                                groceryIngridients = value
-                                self.defaults.set(value, forKey: "grocery")
-                                groceryVC.refresh()
-                            }
-                            removeSpinner()
-                            vc.modalPresentationStyle = .fullScreen
-                            self.present(vc, animated: true, completion: nil)
+                                }
                         }
                         else if result == "Incorrect password!"{
                             self.warning.text = "Incorrect password :("
