@@ -34,17 +34,7 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
         wcSession = WCSession.default
         wcSession.delegate = self
         wcSession.activate()
-        button.addTarget(self, action: #selector(sendToWatch), for: .touchDown)
-        button.frame = CGRect(x: 113, y: 600, width: 150, height: 58)
-        button.setTitle(NSLocalizedString("send to watch app", comment: ""), for: .normal)
-        button.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
-        button.backgroundColor = view.backgroundColor
-        button.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        button.layer.cornerRadius = 30
-        button.layer.masksToBounds = true
-        button.layer.borderWidth = 1
         view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
-        
         refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         
@@ -75,8 +65,6 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
         
         scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
-        print(groceryIngridients)
-        
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(groceryIngridients.count * 50 + 330))
         
         sharebtn.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: 700, width: 60, height: 60)
@@ -100,7 +88,10 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
         super.view.addSubview(tableView)
         super.view.addSubview(buttonEnter)
         super.view.addSubview(sharebtn)
-        super.view.addSubview(button)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        sendToWatch()
     }
     
     @objc func shareGrocery(sender : UIButton){
@@ -121,25 +112,15 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
     }
     
     @objc func refresh() {
-        self.tableView.reloadData() // a refresh the tableView.
-    }
-    @objc func sendToWatch(){
-        let timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-        self.button.setTitle("sending...", for: .normal)
-        self.button.backgroundColor = UIColor(red: 0.86, green: 0.84, blue: 0.84, alpha: 1.00)
-        let message = ["message": groceryIngridients]
-        wcSession.sendMessage(message, replyHandler: nil) { (error) in
-            
-            print(error.localizedDescription)
-        }
-        
-        
-    }
-    @objc func fireTimer(){
-        button.backgroundColor = view.backgroundColor
-        button.setTitle("sent to watch app", for: .normal)
+        self.tableView.reloadData() // a refresh for the tableView.
     }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    }
+    func sendToWatch(){
+        let message = ["message": groceryIngridients]
+        wcSession.sendMessage(message, replyHandler: nil) { (error) in
+        print(error.localizedDescription)
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
@@ -173,7 +154,7 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
-    
+        sendToWatch()
     }
     
     @objc func imageTapped(_ button: UIButton){
