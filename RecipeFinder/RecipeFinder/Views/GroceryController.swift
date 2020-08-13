@@ -124,11 +124,12 @@ class GroceryController: UIViewController, UITableViewDataSource, WCSessionDeleg
         self.tableView.reloadData() // a refresh the tableView.
     }
     @objc func sendToWatch(){
-        let timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         self.button.setTitle("sending...", for: .normal)
         self.button.backgroundColor = UIColor(red: 0.86, green: 0.84, blue: 0.84, alpha: 1.00)
         let message = ["message": groceryIngridients]
         wcSession.sendMessage(message, replyHandler: nil) { (error) in
+            
             print(error.localizedDescription)
         }
         

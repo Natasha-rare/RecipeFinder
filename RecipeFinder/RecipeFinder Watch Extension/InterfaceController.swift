@@ -22,7 +22,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let groceryIngredients = UserDefaults.standard.stringArray(forKey: "ingredients") ?? []
         loadGroceryTable(groceryIngredients: groceryIngredients, GroceryTable: GroceryTable)
         if groceryIngredients != [] {
+            if groceryIngredients.count != 0{
             notificationLabel.setText("You need to buy " + String(groceryIngredients.count) + " products")
+            }
+            else{
+                notificationLabel.setText("You have nothing to buy")
+            }
             notificationLabel.setHidden(false)
         }
         else {
@@ -62,7 +67,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         print(groceryIngredients)
         print("GROCERY:", groceryIngredients)
         loadGroceryTable(groceryIngredients: groceryIngredients, GroceryTable: GroceryTable)
-        notificationLabel.setText("You need to buy " + String(groceryIngredients.count) + " products")
+        if groceryIngredients.count != 0 {
+            notificationLabel.setText("You need to buy " + String(groceryIngredients.count) + " products")}
+        else {
+            notificationLabel.setText("You have nothing to buy")
+        }
         notificationLabel.setHidden(false)
         
     }

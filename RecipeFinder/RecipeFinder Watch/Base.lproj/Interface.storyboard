@@ -28,7 +28,11 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label width="1" alignment="left" text="don't forget to buy everything!" numberOfLines="3" id="1HC-zx-8b9"/>
+                        <group width="1" height="0.40000000000000002" alignment="left" id="bOr-vP-7I0">
+                            <items>
+                                <label width="1" height="1" alignment="left" text="don't forget to buy everything!" numberOfLines="4" id="1HC-zx-8b9"/>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="GroceryTable" destination="s7C-uq-x4c" id="b7s-ij-v8N"/>
