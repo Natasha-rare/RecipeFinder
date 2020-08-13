@@ -412,7 +412,6 @@ extension HomeController{
             sender.tintColor = UIColor(red: 0.847, green: 0.553, blue: 0.039, alpha: 1)
             groceryIngridients = sender.ingredientList
         }
-        
         defaults.set(groceryIngridients, forKey: "grocery")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         SendIngredients(ingredientList: groceryIngridients)
