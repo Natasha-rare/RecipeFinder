@@ -10,70 +10,15 @@ import WatchKit
 import Foundation
 import CryptoKit
 import Alamofire
-
-class InterfaceController: WKInterfaceController {
-    var Password : String = ""
-    var Email : String = ""
-    @IBAction func emailText(_ value: NSString?) {
-        self.Email = value! as String
-        print("E:", Email)
-    }
-    @IBAction func passwordText(_ value: NSString?) {
-        self.Password = value! as String
-        print("P:", Password)
-    }
-    @IBOutlet weak var email: WKInterfaceTextField!
-    @IBOutlet weak var password: WKInterfaceTextField!
-    @IBAction func buttonDonePressed() {
-        Password = "password"
-        Email = "login"
-        let hash = "\(self.Password).\(self.Email)"
-        let hashedPassword1 = SHA256.hash(data: Data(hash.utf8))
-        let hashedPassword = hashedPassword1.map { String(format: "%02hhx", $0) }.joined()
-        print("HASHED:", hashedPassword.description)
-        UserDefaults.standard.set(false, forKey: "logged")
-        print("HELLO:", UserDefaults.standard.bool(forKey: "logged"))
-        let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(self.Email)&password=\(String(hashedPassword.description))"
-        print(url)
-        auth(email: Email, password: String(hashedPassword.description)) {
-        result in
-            print("heyheyhey")
-            print("!", String(result))
-        if result == "Logged in!"{
-            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(self.Email)&password=\(String(hashedPassword.description))"
-            print(url)
-            AF.request(url, method: .get).response{
-                response in
-                if let data = response.value{
-                    print("next")
-                    let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                        
-                    if let dict = json as? [String: Any]{
-                        print("gogogo")
-                        print(dict["productList"] as! String)
-                        UserDefaults.standard.set(dict["productList"] as! String, forKey: "productList")
-                        UserDefaults.standard.set(true, forKey: "logged")
-                        print("LOGGED:", UserDefaults.standard.bool(forKey: "logged"))
-                        UserDefaults.standard.set(self.Email, forKey: "email")
-                        UserDefaults.standard.set(String(hashedPassword.description), forKey: "password")
-                        print(UserDefaults.standard.string(forKey: "productList") ?? "None")
-                        self.presentController(withName: "Grocery", context: nil)
-                        }
-                    }
-                }
-            
-            }
-        else{
-            print(String(result))
-            }
-        }
-    }
+import WatchConnectivity
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    @IBOutlet weak var GroceryTable: WKInterfaceTable!
+    
+    var colors: Dictionary = [0 : ""]
+    var wcSession : WCSession!
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        print(UserDefaults.standard.bool(forKey: "logged"))
-        if UserDefaults.standard.bool(forKey: "logged"){
-            presentController(withName: "Grocery", context: nil)
-        }
+        
         
         // Configure interface objects here.
     }
@@ -81,48 +26,57 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        wcSession = WCSession.default
+        wcSession.delegate = self
+        wcSession.activate()
     }
-    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+           print("got it")
+           print("ROW INDEX:", rowIndex)
+               if let row = table.rowController(at: rowIndex) as? GroceryRow {
+                   print("intooo")
+                   if colors[rowIndex] == "white"{
+                row.label.setTextColor(UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1))
+                       colors[rowIndex] = "grey"
+                   }
+                   else {
+                       row.label.setTextColor(UIColor.white)
+                       colors[rowIndex] = "white"
+                   }
+               }
+           }
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("into")
+        let groceryIngredients = message["message"] as! [String]
+        print(groceryIngredients)
+//        var groceryIngredients : [String] = []
+//        for item in grocery {
+//            groceryIngredients.append(String(item))
+//        }
+        print("GROCERY:", groceryIngredients)
+        var i : Int = 0
+        GroceryTable.setNumberOfRows(groceryIngredients.count, withRowType: "Row")
+        for item in groceryIngredients {
+            
+            guard let row = self.GroceryTable.rowController(at: i) as? GroceryRow else
+            {
+                colors[i] = "white"
+                continue
+            }
+            row.label.setText(item)
+            colors[i] = "white"
+            print("ROWS:", GroceryTable.numberOfRows)
+            i += 1
+        }
+           
+       }
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-    func auth(email: String, password: String, with completion: @escaping (String) -> ()){
-            let url = URL(string: "https://recipe-finder-api-nodejs.herokuapp.com/login")!
-            print("yes1")
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            // Set HTTP Request Headers
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                
-            let newUser = [
-                "email": "\(email)",
-                "password": "\(password)"
-            ]
-                
-            let jsonData = try! JSONEncoder().encode(newUser)
-            request.httpBody = jsonData
-            print("yo")
-            URLSession.shared.dataTask(with: request){
-                data, response, error in
-                if let error = error {
-                    print("Error! \(error)")
-                }
-                if let data = data{
-                        print("go")
-                    if let result = String(data: data, encoding: .utf8){
-                        DispatchQueue.main.async {
-                            print("aiaia")
-                            completion(result)
-                            print("zoo")
-                        }
-                    }
-                }
-                    
-            }.resume()
-                
-        }
-
+    
 }
 

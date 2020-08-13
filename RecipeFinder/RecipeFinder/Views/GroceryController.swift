@@ -1,9 +1,22 @@
 import UIKit
 import Alamofire
+import WatchConnectivity
 
 public var groceryIngridients: [String] = []
 
-class GroceryController: UIViewController, UITableViewDataSource{
+class GroceryController: UIViewController, UITableViewDataSource, WCSessionDelegate{
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
     
     
     var label = UILabel()
@@ -11,7 +24,8 @@ class GroceryController: UIViewController, UITableViewDataSource{
     var buttonEnter = UIButton()
     var tableView = UITableView()
     var sharebtn = UIButton()
-    
+    var button = UIButton()
+    var wcSession : WCSession! = nil
     override func viewDidLoad() {
         
         if(groceryIngridients.count != 0){
@@ -19,9 +33,21 @@ class GroceryController: UIViewController, UITableViewDataSource{
                 groceryIngridients.remove(at: 0)
             }
         }
-        
-        view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
         super.viewDidLoad()
+        wcSession = WCSession.default
+        wcSession.delegate = self
+        wcSession.activate()
+        button.addTarget(self, action: #selector(sendToWatch), for: .touchDown)
+        button.frame = CGRect(x: 113, y: 600, width: 150, height: 58)
+        button.setTitle(NSLocalizedString("send to watch app", comment: ""), for: .normal)
+        button.setTitleColor(UIColor(red: 0.647, green: 0.212, blue: 0.027, alpha: 1), for: .normal)
+        button.backgroundColor = view.backgroundColor
+        button.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        button.layer.cornerRadius = 30
+        button.layer.masksToBounds = true
+        button.layer.borderWidth = 1
+        view.backgroundColor = UIColor(red: 0.941, green: 0.941, blue: 0.953, alpha: 1)
+        
         refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         
@@ -77,7 +103,7 @@ class GroceryController: UIViewController, UITableViewDataSource{
         super.view.addSubview(tableView)
         super.view.addSubview(buttonEnter)
         super.view.addSubview(sharebtn)
-        
+        super.view.addSubview(button)
     }
     
     @objc func shareGrocery(sender : UIButton){
@@ -100,7 +126,14 @@ class GroceryController: UIViewController, UITableViewDataSource{
     @objc func refresh() {
         self.tableView.reloadData() // a refresh the tableView.
     }
-    
+    @objc func sendToWatch(){
+        let message = ["message": groceryIngridients]
+        wcSession.sendMessage(message, replyHandler: nil) { (error) in
+            
+            print(error.localizedDescription)
+            
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case tableView:
