@@ -121,8 +121,18 @@ class PayWallController: UIViewController{
             }
             else{
                 //tell user to buy subscription
-                print("NEED TO BUY")
                 removeSpinner()
+                let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
+                imageView.image = UIImage(named: "sad")
+                let alert = UIAlertController(title: "No subscription found :(", message: nil, preferredStyle: .alert)
+                alert.view.addSubview(imageView)
+                let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 350)
+                let width = NSLayoutConstraint(item: alert.view!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+                alert.view.addConstraint(height)
+                alert.view.addConstraint(width)
+
+                alert.addAction(UIAlertAction(title: "Renew", style: .default))
+                self.present(alert, animated: true)
             }
         }
     }
