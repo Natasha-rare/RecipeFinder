@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
 import Purchases
+import SafariServices
 
 var pkg = Purchases.Package()
 class PayWallController: UIViewController{
@@ -19,6 +20,8 @@ class PayWallController: UIViewController{
     var text = UILabel()
     var text2 = UILabel()
     var price = UILabel()
+    var terms = UIButton()
+    var privacy = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.backgroundColor = UIColor(red: 0.125, green: 0.145, blue: 0.18, alpha: 1)
@@ -41,7 +44,7 @@ class PayWallController: UIViewController{
         price.textAlignment = .center
         price.text = "Then \(priseStr)/month"
         
-        text2.frame = CGRect(x: 18, y: 740, width: 340, height: 90)
+        text2.frame = CGRect(x: 18, y: 720, width: 340, height: 90)
         text2.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         text2.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         text2.numberOfLines = 0
@@ -75,18 +78,35 @@ class PayWallController: UIViewController{
         restore.frame = CGRect(x: 30, y: 670, width: 300, height: 60)
         restore.addTarget(self, action: #selector(self.restoreTapped(sender:)), for: .touchDown)
         
+        terms.setTitle("Terms of use", for: .normal)
+        terms.setTitleColor(.lightGray, for: .normal)
+        terms.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        terms.frame = CGRect(x: 30, y: 780, width: 150, height: 60)
+        terms.addTarget(self, action: #selector(self.termsTapped(_ :)), for: .touchDown)
+        
+        privacy.setTitle("Privacy Policy", for: .normal)
+        privacy.setTitleColor(.lightGray, for: .normal)
+        privacy.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        privacy.frame = CGRect(x: 210, y: 780, width: 150, height: 60)
+        privacy.addTarget(self, action: #selector(self.privacyTapped(_:)), for: .touchDown)
+        
         super.view.addSubview(back)
         AddConstraints(view: back, top: 0, height: Int(super.view.bounds.height), width: Int(super.view.bounds.width))
         
-        
         super.view.addSubview(price)
         AddConstraints(view: price, top: 650, height: 46, width: 190)
+        
+        super.view.addSubview(privacy)
+        ImageConstraints(view: privacy, top: 780, width: 150, height: 60, left: 210)
+        
+        super.view.addSubview(terms)
+        ImageConstraints(view: terms, top: 780, width: 150, height: 60, left: 30)
         
         super.view.addSubview(text)
         AddConstraints(view: text, top: 100, height: 161, width: 203)
         
         super.view.addSubview(text2)
-        AddConstraints(view: text2, top: 740, height: 90, width: 340)
+        AddConstraints(view: text2, top: 720, height: 90, width: 340)
         
         super.view.addSubview(label)
         // тут не делал функцию потому что top равна superview
@@ -103,6 +123,19 @@ class PayWallController: UIViewController{
         super.view.addSubview(restore)
         AddConstraints(view: restore, top: 670, height: 60, width: 300)
 }
+    @objc func termsTapped(_ sender: UIButton){
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let vc = SFSafariViewController(url: URL(string: "http://recipef1nder.tilda.ws/turmsofuse")!, configuration: config)
+        present(vc, animated: true)
+    }
+    
+    @objc func privacyTapped(_ sender: UIButton){
+           let config = SFSafariViewController.Configuration()
+           config.entersReaderIfAvailable = true
+           let vc = SFSafariViewController(url: URL(string: "http://recipef1nder.tilda.ws/privacypollicy")!, configuration: config)
+           present(vc, animated: true)
+       }
     
     @objc func tapped(sender: NeoButton){
         showSpinner(onView: self.view)
