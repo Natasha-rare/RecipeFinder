@@ -30,11 +30,16 @@ class PayWallController: UIViewController{
             }
         }
         
-        price.frame = CGRect(x: 90, y: 560, width: 190, height: 46)
+        // need to switch in different places
+        var product = SKProduct(identifier: "chief.version", price: "0.99", priceLocale: Locale(identifier: "en_US"))
+        var priseStr = ""
+        priseStr = product.localizedPrice()
+        
+        price.frame = CGRect(x: 90, y: 650, width: 190, height: 46)
         price.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         price.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         price.textAlignment = .center
-        price.text = "Only 0.99 $/month"
+        price.text = "Then \(priseStr)/month"
         
         text2.frame = CGRect(x: 18, y: 740, width: 340, height: 90)
         text2.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
@@ -56,11 +61,11 @@ class PayWallController: UIViewController{
         
         label.frame = CGRect(x: 0, y: 18, width: 375, height: 79)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.text = "Become a chief"
+        label.text = "Chef version"
         label.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
         label.textAlignment = .center
         
-        btn.load(title: "Start trial", frame: CGRect(x: 30, y: 610, width: 300, height: 60))
+        btn.load(title: "Start free 1-week trial", frame: CGRect(x: 30, y: 560, width: 300, height: 60))
         btn.layer.sublayers?.removeLast(2)
         btn.addTarget(self, action: #selector(self.tapped(sender:)), for: .touchDown)
         
@@ -75,7 +80,7 @@ class PayWallController: UIViewController{
         
         
         super.view.addSubview(price)
-        AddConstraints(view: price, top: 560, height: 46, width: 190)
+        AddConstraints(view: price, top: 650, height: 46, width: 190)
         
         super.view.addSubview(text)
         AddConstraints(view: text, top: 100, height: 161, width: 203)
@@ -94,7 +99,7 @@ class PayWallController: UIViewController{
         
         
         super.view.addSubview(btn)
-        AddConstraints(view: btn, top: 610, height: 60, width: 300)
+        AddConstraints(view: btn, top: 560, height: 60, width: 300)
         super.view.addSubview(restore)
         AddConstraints(view: restore, top: 670, height: 60, width: 300)
 }

@@ -12,6 +12,23 @@ import Alamofire
 import AVFoundation
 import AudioToolbox
 import SafariServices
+import StoreKit
+
+extension SKProduct {
+    convenience init(identifier: String, price: String, priceLocale: Locale) {
+        self.init()
+        self.setValue(identifier, forKey: "productIdentifier")
+            self.setValue(NSDecimalNumber(string: price), forKey: "price")
+            self.setValue(priceLocale, forKey: "priceLocale")
+    }
+    
+    func localizedPrice() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = self.priceLocale
+        return formatter.string(from: self.price)!
+    }
+}
 
 class GrayTextField: UITextField{
     override init(frame: CGRect) {
