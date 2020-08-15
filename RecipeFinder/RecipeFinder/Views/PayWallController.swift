@@ -33,8 +33,14 @@ class PayWallController: UIViewController{
             }
         }
         
-        // need to switch in different places
-        var product = SKProduct(identifier: "chief.version", price: "0.99", priceLocale: Locale(identifier: "en_US"))
+//        let langCode = Locale.current.languageCode ?? ""
+//        let regionCode = Locale.current.regionCode ?? ""
+//        Locale.current.identifier
+        var indentifier = NSLocale.current.identifier
+        
+        if indentifier.count != 4{indentifier = "en_US"}
+        
+        var product = SKProduct(identifier: "chief.version", price: "0.99", priceLocale: Locale(identifier: indentifier))
         var priseStr = ""
         priseStr = product.localizedPrice()
         
