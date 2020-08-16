@@ -120,11 +120,10 @@ class RegistrationController: UIViewController{
         else{
             if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true && Password == Confirm
             {
-                let hashedPassword = ("\(Password!).\(Email!)").sha256()
 
-                register(email: Email!, password: hashedPassword, name: Name!){result in
+                register(email: Email!, password: Password!, name: Name!){result in
                     if result == "Signed up!"{
-                        self.setdefault(Email: Email!, Password: hashedPassword, Logged: true)
+                        self.setdefault(Email: Email!, Password: Password!, Logged: true)
                         self.defaults.set(self.name.text, forKey: "name")
                         
                         let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
@@ -148,7 +147,7 @@ class RegistrationController: UIViewController{
                                 groceryVC.refresh()
                             }
                             showSpinner(onView: self.scrollView)
-                            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(hashedPassword)"
+                            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(Password)"
                             AF.request(url, method: .get).responseDecodable(of: User.self){
                                 response in
                                 if let data = response.value{
