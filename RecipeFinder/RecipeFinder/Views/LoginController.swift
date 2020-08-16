@@ -100,12 +100,11 @@ override func viewDidLoad() {
             else{
                 if password_check.evaluate(with: Password) == true && email_check.evaluate(with: Email) == true
                     {
-                        let Password = ("\(Password!).\(Email!)").sha256()
                         showSpinner(onView: scrollView)
-                        auth(email: Email!, password: Password){
+                        auth(email: Email!, password: Password!){
                         result in
                         if result == "Logged in!"{
-                            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(Password)"
+                            let url = "https://recipe-finder-api-nodejs.herokuapp.com/?email=\(Email!)&password=\(Password!)"
                             AF.request(url, method: .get).responseDecodable(of: User.self){
                                 response in
                                 if let data = response.value{
@@ -113,7 +112,7 @@ override func viewDidLoad() {
                                     self.defaults.set(data.name!, forKey: "name")
                                     self.defaults.set(data.id.uuidString, forKey: "id")
                                     Purchases.configure(withAPIKey: "VFHDsrBztyKUyesgOiBWtPqQoZtolcsz", appUserID: data.id.uuidString)
-                                    self.setdefault(Email: Email!, Password: Password, Logged: true)
+                                    self.setdefault(Email: Email!, Password: Password!, Logged: true)
                                            
                                            let vc = RootViewController()
                                            let savedVC = SavedController()
