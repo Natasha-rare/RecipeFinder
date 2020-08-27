@@ -22,6 +22,7 @@ class PayWallController: UIViewController{
     var price = UILabel()
     var terms = UIButton()
     var privacy = UIButton()
+    var scrollView = UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.backgroundColor = UIColor(red: 0.125, green: 0.145, blue: 0.18, alpha: 1)
@@ -32,6 +33,10 @@ class PayWallController: UIViewController{
                 pkg = packages[0]
             }
         }
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 850)
+        
         
 //        let langCode = Locale.current.languageCode ?? ""
 //        let regionCode = Locale.current.regionCode ?? ""
@@ -96,25 +101,25 @@ class PayWallController: UIViewController{
         privacy.frame = CGRect(x: 210, y: 780, width: 150, height: 60)
         privacy.addTarget(self, action: #selector(self.privacyTapped(_:)), for: .touchDown)
         
-        super.view.addSubview(back)
-        AddConstraints(view: back, top: 0, height: Int(super.view.bounds.height), width: Int(super.view.bounds.width))
+        scrollView.addSubview(back)
+        AddConstraints(view: back, top: 0, height: 850, width: Int(super.view.bounds.width))
         
-        super.view.addSubview(price)
+        scrollView.addSubview(price)
         AddConstraints(view: price, top: 650, height: 46, width: 190)
         
-        super.view.addSubview(privacy)
+        scrollView.addSubview(privacy)
         ImageConstraints(view: privacy, top: 780, width: 150, height: 60, left: 210)
         
-        super.view.addSubview(terms)
+        scrollView.addSubview(terms)
         ImageConstraints(view: terms, top: 780, width: 150, height: 60, left: 30)
         
-        super.view.addSubview(text)
+        scrollView.addSubview(text)
         AddConstraints(view: text, top: 100, height: 161, width: 203)
         
-        super.view.addSubview(text2)
+        scrollView.addSubview(text2)
         AddConstraints(view: text2, top: 720, height: 90, width: 340)
         
-        super.view.addSubview(label)
+        scrollView.addSubview(label)
         // тут не делал функцию потому что top равна superview
         label.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview().offset(50)
@@ -124,10 +129,14 @@ class PayWallController: UIViewController{
             }
         
         
-        super.view.addSubview(btn)
+        scrollView.addSubview(btn)
         AddConstraints(view: btn, top: 560, height: 60, width: 300)
-        super.view.addSubview(restore)
+        
+        scrollView.addSubview(restore)
         AddConstraints(view: restore, top: 670, height: 60, width: 300)
+        
+        super.view.addSubview(scrollView)
+        ScrollViewConstraints(view: scrollView)
 }
     @objc func termsTapped(_ sender: UIButton){
         let config = SFSafariViewController.Configuration()

@@ -36,6 +36,9 @@ override func viewDidLoad() {
     label.font = UIFont.systemFont(ofSize: 43, weight: .semibold)
     label.textAlignment = .center
     
+    scrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 480)
+    
     email.loadField(placeholderText: NSLocalizedString("email", comment: ""), isSecure: false, frame: CGRect(x: 58, y: 150, width: 257, height: 58))
     email.delegate = self
     email.textContentType = .emailAddress
